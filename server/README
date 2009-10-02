@@ -9,3 +9,7 @@ python manage.py runserver [ip:port is optional]
 How to send a test query to the email inbox
 -------------------------------------------
 run emailstubs/test/test-message-queue.sh
+
+How to fill an empty database with test data
+--------------------------------------------
+python createmessages.py

@@ -4,6 +4,8 @@ setup_environ(settings)
 from emailstubs.models import *
 import datetime
 
+# Creates 1000 email messages to fill a database
+
 if __name__ == '__main__':
     now_time = datetime.datetime.now()
     for i in range(1000):
