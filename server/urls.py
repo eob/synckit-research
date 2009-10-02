@@ -1,9 +1,11 @@
 from django.conf.urls.defaults import *
-from django.conf import settings
+import private_settings
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
+
+print private_settings.STATIC_DOC_ROOT
 
 urlpatterns = patterns('',
     # Example:
@@ -16,6 +18,6 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # (r'^admin/(.*)', admin.site.root),
     (r'^email/', include('server.emailstubs.urls')),
-    (r'^media/(?P<path>.*)$', 'django.views.static.serve',
-            {'document_root': settings.STATIC_DOC_ROOT}),
+    (r'^static/(?P<path>.*)$', 'django.views.static.serve',
+            {'document_root': private_settings.STATIC_DOC_ROOT}),
 )

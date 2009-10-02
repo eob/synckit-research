@@ -71,3 +71,5 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'server.emailstubs'
 )
+
+
