@@ -1,3 +1,5 @@
+import private_settings
+
 # Django settings for server project.
 
 DEBUG = True
