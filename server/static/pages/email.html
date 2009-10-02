@@ -18,10 +18,10 @@ $(function() {
 
     var params = {"queries":state};    
     var dataspec = {
-       "songs":"SELECT * FROM Songs;"
+       "messages":"SELECT * FROM Messages;"
     };
     
-    var template = "<div>{# This is a comment and will be removed from the output.}{.section songs}<h2>Songs</h2><table width='100%'>{.repeated section @}<tr><td><a href='url'>Play</a><td><i>{title}</i></td><td>{artist}</td></tr>{.end}</table>{.or}<p><em>(No page content matches)</em></p>{.end}</div>";
+    var template = "<div>{# This is a comment and will be removed from the output.}{.section messages}<h2>Mails</h2><table width='100%'>{.repeated section @}<tr><td>{from_email}</td><td>{subject}</td></tr>{.end}</table>{.or}<p><em>(No mails)</em></p>{.end}</div>";
     
     $.post(endpoint, params, function(data) {
         window.db.bulkload(data);

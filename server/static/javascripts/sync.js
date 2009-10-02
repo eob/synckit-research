@@ -104,24 +104,34 @@ _skProto = function() {
     }
     
     this.bulkload = function(data) {
+        console.info("hey");
         console.time("Performing Bulkload Insertion");
-        for (var i=0; i<data.length; i++) {
-            var def = data[i];
-            var table = def[0];
-            var schema = def[1];
-            var sqlStatement = "INSERT INTO " + table + " VALUES (";
+        for (var tablename in data) {
+            var table_data = data[tablename];
+            if (typeof(table_data) == "string") {
+                console.info("Skipping table " + tablename + " with message: " + table_data);
+                continue;
+            }
+            
+            var schema = table_data.schema;
+            var table = table_data.results;
+            
+            // Create table
+            this.execute("CREATE TABLE IF NOT EXISTS " + tablename + " (" + schema.join() + ");");
+            
+            // Prepare SQL Statement
+            var sqlStatement = "INSERT INTO " + tablename + " VALUES (";
             for (var z = 0; z<schema.length; z++) {
                 sqlStatement += "?,";
             }   
             sqlStatement = sqlStatement.substr(0,sqlStatement.length - 1);
             sqlStatement += ");";
             
-            this.execute("CREATE TABLE IF NOT EXISTS " + table + " (" + schema.join() + ");");
-            var rows = def[2];
-                for (var j=0; j<rows.length; j++) {
-                    var row = rows[j];  
-                    this.execute(sqlStatement, row);
-                }
+            for (var j=0; j<table.length; j++) {
+                var row = table[j];  
+                this.execute(sqlStatement, row);
+            }
+            
         }
         console.timeEnd("Performing Bulkload Insertion");
     };
