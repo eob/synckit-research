@@ -1,0 +1,11 @@
+manage.py rules them all
+------------------------
+python manage.py help
+
+How to run the server
+---------------------
+python manage.py runserver [ip:port is optional]
+
+How to send a test query to the email inbox
+-------------------------------------------
+run emailstubs/test/test-message-queue.sh
