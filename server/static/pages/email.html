@@ -12,13 +12,27 @@
 $(function() {
     console.info("Page Loaded");
     window.db = create_synckit();
-        
-    var state = '{"Messages":{"max":"2009-10-04 03:30"},"Tags":{"items":[1,2,3,4]}}';
+    
+    var remote_views = {
+      "Messages":{
+        "type":"queue",
+        "field":"date",
+        "order":"ASC"
+      },
+      "Tags":{
+        "type":"set",
+        "field":"id"
+      }
+    };
+    
+    
+    // var state = window.db.get_state(remote_views);        
+    var state = {};
     var endpoint = "http://localhost:8000/email/inbox";
-
-    var params = {"queries":state};    
+    
+    var params = {"queries":JSON.stringify(state)};    
     var dataspec = {
-       "messages":"SELECT * FROM Messages;"
+       "messages":"SELECT * FROM Messages;",
     };
     
     var template = "<div>{# This is a comment and will be removed from the output.}{.section messages}<h2>Mails</h2><table width='100%'>{.repeated section @}<tr><td>{from_email}</td><td>{subject}</td></tr>{.end}</table>{.or}<p><em>(No mails)</em></p>{.end}</div>";

@@ -42,13 +42,33 @@ _skProto = function() {
         }
     };
     
-    this.get_state = function() {
+    this.get_state = function(state_spec) {
         if (this._localdb !== null) {
-            var res = this.execute("SELECT entity, state FROM sk_stats;");
             var state = {};
-            while (res.isValidRow()) {
-                state[result.field(0)] = result.field(1);
-                result.next();
+            
+            for (var table in state_spec) {
+                var details = state_spec[table];
+                
+                if (details.type == "set") {
+                    
+                }
+                else if (details.type == "queue") {
+                
+                    if (details.order == "DESC") {
+                        var stmt = "SELECT min("+ details.field + ") FROM " + table + ";";
+                        var res  = this.execute(stmt);
+                        if (res.isValidRow()) {
+                            state[table] = {"min":res.field(0)};
+                        }
+                    }
+                    else if (details.order == "ASC"){
+                        var stmt = "SELECT max("+ details.field + ") FROM " + table + ";";                        
+                        var res  = this.execute(stmt);
+                        if (res.isValidRow()) {
+                            state[table] = {"max":res.field(0)};
+                        }
+                    }
+                }
             }
             return state;
         }

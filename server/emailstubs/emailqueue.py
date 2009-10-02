@@ -43,10 +43,11 @@ def contents(request):
 
 def inbox(request):
     endpoints = generate_endpoint_args(request)
+    print "Query String"
+    print request.POST
     manager = EndpointManager()
     manager.register("Messages", MessageEndpoint())
     results = manager.runqueries(endpoints)
-    print "BOO"
     print results
     return HttpResponse(json.dumps(results), mimetype='application/json')
 
