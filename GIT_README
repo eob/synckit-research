@@ -1,0 +1,37 @@
+Merge:
+
+DELETE BRANCH
+-------------
+
+git branch -d <branch>
+
+Will make sure <branch> is merged into head first. -D skips this check
+
+MERGE BRANCH
+------------
+
+git merge <branch> 
+
+Will merge the branch into the working checkout
+
+CREATE BRANCH
+-------------
+
+git checkout -b <branch>
+
+Creates a new branch
+
+PUSH TO ONE'S OWN GITHUB REPO
+-----------------------------
+
+git push
+
+PULL FROM ONE'S OWN GITHUB REPO
+-------------------------------
+
+git pull origin master
+
+PULL FROM OTHER'S GITHUB REPO
+---------------------------
+
+git pull other master
