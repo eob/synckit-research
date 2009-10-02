@@ -46,6 +46,8 @@ def inbox(request):
     manager = EndpointManager()
     manager.register("Messages", MessageEndpoint())
     results = manager.runqueries(endpoints)
+    print "BOO"
+    print results
     return HttpResponse(json.dumps(results), mimetype='application/json')
 
 def generate_endpoint_args(request):

@@ -13,14 +13,21 @@ $(function() {
     console.info("Page Loaded");
     window.db = create_synckit();
     
-    var endpoint = 'http://localhost:3000/cached/item.js';
+    // var endpoint = 'http://localhost:3000/cached/item.js';
+    // var state = window.db.get_state();
+    
+    var state = '{"Messages":{"max":"2009-10-04 03:30"},"Tags":{"items":[1,2,3,4]}}';
+    var endpoint = "http://localhost:8000/email/inbox";
+
+    var params = {"queries":state};    
     var dataspec = {
        "songs":"SELECT * FROM Songs;"
     };
     
     var template = "<div>{# This is a comment and will be removed from the output.}{.section songs}<h2>Songs</h2><table width='100%'>{.repeated section @}<tr><td><a href='url'>Play</a><td><i>{title}</i></td><td>{artist}</td></tr>{.end}</table>{.or}<p><em>(No page content matches)</em></p>{.end}</div>";
     
-    $.post(endpoint, window.db.get_state(), function(data) {
+    $.post(endpoint, params, function(data) {
+        alert(data);
         window.db.bulkload(data);
         var data = window.db.process_data_spec(dataspec);
         $('#templated').template(template);
