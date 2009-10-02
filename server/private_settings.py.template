@@ -1,10 +1,12 @@
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = '/Users/eob/Repos/Haystack/synckit/server/media'
 
 TEMPLATE_DIRS = (
-    
+    '/Users/eob/Repos/Haystack/synckit/server/emailstubs/templates'
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
+
+STATIC_DOC_ROOT = '/your/files'
