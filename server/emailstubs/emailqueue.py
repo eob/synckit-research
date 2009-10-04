@@ -6,7 +6,13 @@ import re
 
 class MessageEndpoint:
     def results(self, client_params):
-        queryset = Message.objects.filter(date__gt = client_params["max"])
+        queryset = None
+        if "max" in client_params:
+            queryset = Message.objects.filter(date__gt = client_params["max"])
+        else:
+            queryset = Message.objects.all()
+        queryset = queryset.order_by("-date")
+            
         messages = []
         # TODO: HACK HACK HACK---make this return a generator---no sense in
         # wasting memory on the responses
@@ -46,8 +52,6 @@ def inbox(request):
     manager = EndpointManager()
     manager.register("Messages", MessageEndpoint())
     results = manager.runqueries(endpoints)
-    print "BOO"
-    print results
     return HttpResponse(json.dumps(results), mimetype='application/json')
 
 def generate_endpoint_args(request):
