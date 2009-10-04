@@ -49,6 +49,8 @@ def contents(request):
 
 def inbox(request):
     endpoints = generate_endpoint_args(request)
+    print "Query String"
+    print request.POST
     manager = EndpointManager()
     manager.register("Messages", MessageEndpoint())
     results = manager.runqueries(endpoints)
