@@ -4,22 +4,34 @@ import datetime
 import json
 import re
 
-class MessageEndpoint:
+# for more generic stuff, see
+# [f.name for f in model_or_instance._meta.fields]
+# /usr/share/python-support/python-django/django/db/backends/creation.py
+# /usr/share/python-support/python-django/django/core/management/sql.py
+
+class QueueEndpoint:
+    # order = "ASC" or "DESC"
+    def __init__(self, model, sortfield, order="ASC"):
+        self.attrs = [f.name for f in model._meta.fields]
+        self.order = order
+        self.sortfield = sortfield
     def results(self, client_params):
         queryset = None
-        if "max" in client_params:
-            queryset = Message.objects.filter(date__gt = client_params["max"])
+        minmax = "max" if self.order == "ASC" else "min"
+        if minmax in client_params:
+            gtlt = "gt" if self.order == "ASC" else "lt"
+            fieldcompare = "%s__%s" % (self.sortfield, gtlt)
+            kwargs = {fieldcompare: client_params[minmax]}
+            queryset = Message.objects.filter(**kwargs)
         else:
             queryset = Message.objects.all()
-        queryset = queryset.order_by("-date")
-            
-        messages = []
-        # TODO: HACK HACK HACK---make this return a generator---no sense in
-        # wasting memory on the responses
-        for message in queryset:
-            messages.append([message.id, message.from_email, message.to_email, \
-                             message.subject, message.contents, str(message.date)])
-        return messages
+        posneg = "" if self.order == "ASC" else "-"
+        queryset = queryset.order_by("%sdate" % (posneg))
+
+        results = []
+        for result in queryset:
+            results.append([str(getattr(result, field)) for field in self.attrs])
+        return results
     def schema(self):
         return ["id integer NOT NULL PRIMARY KEY", \
                 "from_email varchar(200) NOT NULL", \
@@ -49,10 +61,8 @@ def contents(request):
 
 def inbox(request):
     endpoints = generate_endpoint_args(request)
-    print "Query String"
-    print request.POST
     manager = EndpointManager()
-    manager.register("Messages", MessageEndpoint())
+    manager.register("Messages", QueueEndpoint(Message, "date"))
     results = manager.runqueries(endpoints)
     return HttpResponse(json.dumps(results), mimetype='application/json')
 
