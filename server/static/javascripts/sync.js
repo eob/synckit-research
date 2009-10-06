@@ -136,6 +136,7 @@ _skProto = function() {
     this.bulkload = function(data) {
         console.info("hey");
         console.time("Performing Bulkload Insertion");
+        
         for (var tablename in data) {
             var table_data = data[tablename];
             if (typeof(table_data) == "string") {
