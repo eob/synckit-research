@@ -11,6 +11,5 @@ urlpatterns = patterns('emailstubs',
 
     # Uncomment the next line to enable the admin:
     # (r'^admin/(.*)', admin.site.root),
-    (r'^contents$', 'emailqueue.contents'),
     (r'^inbox$', 'emailqueue.inbox'),
 )

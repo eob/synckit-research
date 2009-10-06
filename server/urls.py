@@ -5,8 +5,6 @@ import private_settings
 # from django.contrib import admin
 # admin.autodiscover()
 
-print private_settings.STATIC_DOC_ROOT
-
 urlpatterns = patterns('',
     # Example:
     # (r'^server/', include('server.foo.urls')),
