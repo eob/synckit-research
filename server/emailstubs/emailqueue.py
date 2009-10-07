@@ -6,6 +6,7 @@ from synckit.views import *
 # interpreter instance
 manager = ViewManager()
 manager.register("Messages", QueueView(Message, "date"))
+manager.register("Tags", SetView(Message, "id"))
 
 def inbox(request):
     results = manager.runqueries(request)
