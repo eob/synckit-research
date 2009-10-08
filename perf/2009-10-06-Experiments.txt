@@ -1,0 +1,37 @@
+Will wrapping bulkload with BEGIN TRANSACTION; END TRNSACTION statements increate performance?
+
+Full Bullkload
+
+Without TX: 2248ms
+With TX: 
+
+Empty Bulkload
+
+Without TX: 1ms
+With TX: 
+
+
+---
+
+Sam Meeting
+
+- Consider dropping the template library in favor of the inline-sql like Adam had before
+
+- Ordered, but allow insert
+
+- decide if we're goiing to optimize for sets (tags, etc)
+
+New Template Thing
+
+    query FROM context
+    
+    Messages.all => "SeLECT * FROM MESSAGES;"
+bindings = {}
+<div query="SELECT..." as="message">
+For result in resultset
+    bindings["message"] = result
+    <div query="SELECT * FROM tags AS t, messages_tags AS mt 
+                WHERE t.id = mt.tag_id AND mt.message_id = {message.id};" as="tag">
+    bindings.remove_key("message")
+EndFor                
+

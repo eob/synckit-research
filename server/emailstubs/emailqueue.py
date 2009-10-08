@@ -5,8 +5,11 @@ from synckit.views import *
 # This lives outside of a method so it's only instantiated once per
 # interpreter instance
 manager = ViewManager()
-manager.register("Messages", QueueView(Message, "date"))
-manager.register("Tags", SetView(Message, "id"))
+qv = QueueView(Message, "date")
+sv = SetView(Tag, "id")
+sv.set_parent(qv, "message")
+manager.register("Messages", qv)
+manager.register("Tags", sv)
 
 def inbox(request):
     results = manager.runqueries(request)

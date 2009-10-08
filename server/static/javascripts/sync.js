@@ -20,6 +20,11 @@ _skProto = function() {
         }
     };
     
+    this.table_exists = function(table) {
+        var result = db.execute("SELECT name FROM sqlite_master WHERE type='table' AND name=?;", [table]);
+        return result.isValidRow();
+    }
+    
     this.create_stats_table = function() {
         console.info("Creating Stats Table");
         if (this._localdb !== null) {
@@ -47,6 +52,11 @@ _skProto = function() {
             var state = {};
             
             for (var table in state_spec) {
+                if (! this.table_exists(table)) {
+                    state[table] = {};
+                    continue;
+                }
+                
                 var details = state_spec[table];
                 
                 if (details.type == "set") {
@@ -126,6 +136,7 @@ _skProto = function() {
     this.bulkload = function(data) {
         console.info("hey");
         console.time("Performing Bulkload Insertion");
+        
         for (var tablename in data) {
             var table_data = data[tablename];
             if (typeof(table_data) == "string") {

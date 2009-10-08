@@ -10,13 +10,14 @@ class ViewManager:
         self.views = {}
     def register(self, name, view):
         self.views[name] = view
+        view.set_name(name)
     def runqueries(self, request):
         view_queries = generate_view_args(request)
         results = {}
-        for name, query in view_queries.items():
+        for name in view_queries.keys():
             if name in self.views:
                 results[name] = {}
-                results[name]["results"] = self.views[name].results(query)
+                results[name]["results"] = self.views[name].results(view_queries)
                 results[name]["schema"] = self.views[name].schema()
             else:
                 results[name] = "no view registered for this query"
@@ -26,24 +27,43 @@ class BaseView:
     def __init__(self, model):
         self.model = model
         self.attrs = [f.name for f in model._meta.fields]
-    def results(self, client_params):
+        self.parent_view = None
+        self.parent_path = None
+    def results(self, queries):
         results = []
-        for result in self.queryset(client_params):
+        queryset = self.queryset(queries)
+        # TODO: make this a generator rather than instantiating everything
+        for result in queryset:
             results.append([str(getattr(result, field)) for field in self.attrs])
-        return results 
-    def queryset(self, client_params):
+        return results
+    def queryset(self, queries):
+        queryset = self.queryset_impl(queries[self.view_name])
+        queryset = self.limit_to_parent(queryset, queries)
+        return queryset
+    def queryset_impl(self, query):
         raise  NotImplementedError()
+    def limit_to_parent(self, queryset, queries):
+        if self.parent_view:
+            kwargs = {"%s__in" % (self.parent_path) :
+                      self.parent_view.queryset(queries)}
+            queryset = queryset.filter(**kwargs)
+        return queryset
     def schema(self):
         raise  NotImplementedError()
+    def set_parent(self, parent_view, parent_path):
+        self.parent_view = parent_view
+        self.parent_path = parent_path
+    def set_name(self, view_name):
+        self.view_name = view_name
 
 class SetView(BaseView):
     def __init__(self, model, idfield):
         BaseView.__init__(self, model)
         self.idfield = idfield
-    def queryset(self, client_params):
+    def queryset_impl(self, query):
         ids = None
-        if "items" in client_params:
-            ids = client_params["items"]
+        if "items" in query:
+            ids = query["items"]
         else:
             ids = []
         queryset = self.model.objects.exclude(id__in = ids)
@@ -61,18 +81,16 @@ class QueueView(BaseView):
         BaseView.__init__(self, model)
         self.order = order
         self.sortfield = sortfield
-    def queryset(self, client_params):
+    def queryset_impl(self, query):
         queryset = None
         minmax = "max" if self.order == "ASC" else "min"
-        if minmax in client_params:
+        if minmax in query:
             gtlt = "gt" if self.order == "ASC" else "lt"
             fieldcompare = "%s__%s" % (self.sortfield, gtlt)
-            kwargs = {fieldcompare: client_params[minmax]}
+            kwargs = {fieldcompare: query[minmax]}
             queryset = self.model.objects.filter(**kwargs)
         else:
             queryset = self.model.objects.all()
-        posneg = "" if self.order == "ASC" else "-"
-        queryset = queryset.order_by("%sdate" % (posneg))
         
         return queryset
     def schema(self):
