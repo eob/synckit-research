@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # (r'^admin/(.*)', admin.site.root),
     (r'^email/', include('server.emailstubs.urls')),
+    (r'^performancetest/', include('server.performancetest.urls')),
     (r'^static/(?P<path>.*)$', 'django.views.static.serve',
             {'document_root': private_settings.STATIC_DOC_ROOT}),
 )
