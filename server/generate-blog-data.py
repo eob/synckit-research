@@ -7,18 +7,18 @@ from server.blog.models import *
 
 import datetime
 import random
+import string
 import sys
 import traceback
 
 NUM_AUTHORS = 10
 START_DATE = datetime.datetime(2009, 05, 01)
 ENTRIES_PER_MINUTE = .06666666 # 4 / hour
-NUM_DAYS = 900
+NUM_DAYS = 30
 ENTRY_LENGTH_MU = 1024
 ENTRY_LENGTH_SIGMA = 1024
-TITLE_LENGTH_MU = 1024
-TITLE_LENGTH_SIGMA = 1024
-ALPHABET = 'abcdefghijklmnopqrstuvwxyz'*3000
+TITLE_LENGTH_MU = 50
+TITLE_LENGTH_SIGMA = 25
 
 @transaction.commit_manually
 def generate_data():
@@ -43,6 +43,7 @@ def generate_authors():
 def generate_entries(authors):
     date = START_DATE
     end_date = date + datetime.timedelta(days = NUM_DAYS)
+    itercount = 0
     while date < end_date:
         minute_delta = random.expovariate(ENTRIES_PER_MINUTE)
         date += datetime.timedelta(minutes = minute_delta)
@@ -54,9 +55,13 @@ def generate_entries(authors):
             random.gauss(ENTRY_LENGTH_MU, ENTRY_LENGTH_SIGMA))
         entry.date = date
         entry.save()
+        if (itercount % 1000) == 0:
+            print "Making entry for %s" % (str(date))
+        itercount += 1
 
 def generate_string(length):
-    return random.sample(ALPHABET, int(length))
+    int_length = int(length)
+    return "".join([random.choice(string.ascii_lowercase) for i in xrange(int_length)])
 
 if __name__ == "__main__":
     generate_data()
