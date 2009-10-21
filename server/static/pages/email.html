@@ -40,7 +40,7 @@ $(function() {
      */
     var state = window.db.get_state(remote_views);        
     // var state = {};
-    var endpoint = "http://localhost:8000/email/inbox";
+    var endpoint = "http://localhost:8080/email/inbox";
     
     var params = {"queries":JSON.stringify(state)};    
 
@@ -64,10 +64,15 @@ $(function() {
         console.info("Server Response");
         console.info(JSON.stringify(data));    
         window.db.bulkload(data);
-        var data = window.db.process_data_spec(dataspec);
-        $('#templated').template(template);
-        $('#templated').templateData(data);
-        $('#templated').render();
+//        var data = window.db.process_data_spec(dataspec);
+//        $('#templated').template(template);
+//        $('#templated').templateData(data);
+//        $('#templated').render();
+
+		  $('#newtemplate').render_new();
+	      // Do the new render
+	      
+	      
     }, "json");
     
 });
@@ -94,6 +99,14 @@ $(function() {
 <div id="templated">
 <p align="center"><b>Template Loading...</b></p>
 </div>
+
+<table id="newtemplate" query="SELECT * From Messages LIMIT 10;" as="message">
+	<tr itemscope="yes" itemtype="Message" />
+		<td><span itemprop="from_email">from</span></td>
+		<td><span itemprop="subject">subject</span></td>
+	</tr>
+</table>
+
 </body>
 
 </html>

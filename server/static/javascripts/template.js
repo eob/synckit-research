@@ -32,3 +32,31 @@ jQuery.fn.render = function() {
 	console.timeEnd("Rendering Template");
 }
 
+jQuery.fn.render_new = function() {
+	console.time("Rendering SQL Template");
+	var query = this.attr('query');
+	var templates = this.find("[itemscope]");
+	var res = window.db.execute(query);
+	var map = {};
+	
+	
+	while (res.isValidRow()) {
+		// Loop over each item to do
+		templates.each(function(i) {
+			jQuery(this).find("[itemprop]").each(function(j) {
+				var prop = jQuery(this).attr("itemprop");
+				var val = res.fieldByName(prop);
+				jQuery(this).html(val);
+			});
+			jQuery(this).before(jQuery(this).clone());
+		});
+		res.next();
+    }
+
+	templates.each(function(i) {
+		jQuery(this).remove();
+	});
+
+		console.timeEnd("Rendering SQL Template");
+}
+
