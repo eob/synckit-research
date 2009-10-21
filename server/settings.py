@@ -70,6 +70,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'server.emailstubs',
+    'server.blog',
 )
 
 
