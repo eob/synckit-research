@@ -39,7 +39,6 @@ jQuery.fn.render_new = function() {
 	var res = window.db.execute(query);
 	var map = {};
 	
-	
 	while (res.isValidRow()) {
 		// Loop over each item to do
 		templates.each(function(i) {
@@ -57,6 +56,6 @@ jQuery.fn.render_new = function() {
 		jQuery(this).remove();
 	});
 
-		console.timeEnd("Rendering SQL Template");
+	console.timeEnd("Rendering SQL Template");
 }
 
