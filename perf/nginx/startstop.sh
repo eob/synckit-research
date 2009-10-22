@@ -1,0 +1,78 @@
+#! /bin/sh
+###INSTALLATION INSTRUCTIONS
+# as root:
+#   cp feedme.initd /etc/init.d/feedme
+#   update-rc.d feedme defaults
+# that's it!:)
+### BEGIN INIT INFO
+# Provides:          FastCGI servers for Django
+# Required-Start:    networking
+# Required-Stop:     networking
+# Default-Start:     2 3 4 5
+# Default-Stop:      S 0 1 6
+# Short-Description: Start FastCGI servers with Django.
+# Description:       Combines starting nginx with starting django's
+#   FastCGI module.  Borrowed from
+#   http://code.djangoproject.com/wiki/InitdScriptForLinux
+### END INIT INFO
+
+#### SERVER SPECIFIC CONFIGURATION
+LOG_PATH=/var/virtualhost/sites/feedme/prod/log
+NGINX_CONF_PATH=/var/virtualhost/sites/feedme/prod/nginx-config
+DJANGO_PATH=/var/virtualhost/sites/feedme/prod/server
+RUN_AS=www-data
+#### DO NOT CHANGE ANYTHING AFTER THIS LINE!
+
+#
+#       Function that starts the daemon/service.
+#
+d_start()
+{
+  start-stop-daemon --start --pidfile $LOG_PATH/django.pid --chuid $RUN_AS --exec /usr/bin/python $DJANGO_PATH/manage.py runfcgi maxchildren=10 maxspare=5 minspare=2 method=prefork socket=$LOG_PATH/django.sock pidfile=$LOG_PATH/django.pid
+
+  sleep 1;
+
+  start-stop-daemon --start --quiet --pidfile $LOG_PATH/nginx.pid \
+                    --exec /usr/sbin/nginx -- -c $NGINX_CONF_PATH/nginx.conf
+}
+
+#
+#       Function that stops the daemon/service.
+#
+d_stop() {
+  start-stop-daemon --stop --quiet --pidfile $LOG_PATH/nginx.pid \
+                            || echo -n " not running"
+  start-stop-daemon --stop --quiet --pidfile $LOG_PATH/django.pid \
+                            || echo -n " not running"
+}
+
+ACTION="$1"
+case "$ACTION" in
+    start)
+        echo -n "Starting $DESC: $NAME"
+        d_start
+        echo "."
+        ;;
+
+    stop)
+        echo -n "Stopping $DESC: $NAME"
+        d_stop
+        echo "."
+        ;;
+
+    restart|force-reload)
+        echo -n "Restarting $DESC: $NAME"
+        d_stop
+        sleep 1
+        d_start
+        echo "."
+        ;;
+
+    *)
+        echo "Usage: $NAME {start|stop|restart|force-reload}" >&2
+        exit 3
+        ;;
+esac
+
+exit 0
+
