@@ -1,5 +1,6 @@
 import networkx as nx
 from random import *
+import datetime
 
 class Page:
     def __init__(self, name, URL):
@@ -10,11 +11,52 @@ class Page:
     
     def __str__(self):
         return self.name
+
+class User:
+    def __init__(self, visit_rate, visit_time_unit, last_visit_time):
+        self.visits = []
+        self.visit_rate = visit_rate
+        self.visit_time_unit = visit_time_unit
+        self.last_visit_time = last_visit_time
+        self.next_visit_time = None
     
+    def perform_next_visit(self, site):
+        visit = Visit(self.last_visit_time, self.next_visit_time, site.generate_click_trail())
+        self.visits.append(visit)
+        self.last_visit_time = self.next_visit_time
+        self.plan_next_visit()
+        return visit
+    
+    def plan_next_visit(self):
+        time_delta = expovariate(self.visit_rate)
+        params = {self.visit_time_unit : time_delta}
+        if (self.next_visit_time == None):
+            self.next_visit_time = self.last_visit_time + datetime.timedelta(**params)
+        else:
+            self.next_visit_time += datetime.timedelta(**params)
+        
+class Visit:
+    def __init__(self, last_time, this_time, click_trail):
+        self.last_time = last_time
+        self.this_time = this_time
+        self.click_trail = click_trail
+    
+    def __str__(self):
+        return str(self.last_time) + ", " + str(self.this_time) + ", " + str(self.click_trail)
+
+
+class ClickTrail:
+    def __init__(self, path):
+        self.path = path
+
+    def __str__(self):
+        return str([page.name for page in self.path])
+
 class Site:
-    def __init__(self):
+    def __init__(self, base_url):
         self.landing_page = None
         self.graph = None
+        self.base_url = base_url
         
     def create_graph(self, pages, articles_per_page, prob_of_next, prob_of_leaving):
         self.graph = nx.DiGraph()
@@ -23,12 +65,12 @@ class Site:
         main_pages = []
         article_pages = []
         END = Page("END", "END")
-        urlroot = "http://locahost:8080/"
+        urlroot = self.base_url
 
         prob_of_article = (1.0 - prob_of_next - prob_of_leaving) / articles_per_page
         
         for i in range(pages):
-            page = Page("Page " + str(i), urlroot + "?page=" + str(i))
+            page = Page("Page " + str(i), urlroot)
             if i == 0:
                 page.p_landing = 1.0
             self.graph.add_node(page)
@@ -36,7 +78,7 @@ class Site:
             for j in range(articles_per_page):
                 # 10 Articles per page
                 num = i * articles_per_page + i + 1
-                article = Page("Article " + str(num), urlroot + "?article=" + str(num))
+                article = Page("Link " + str(num), urlroot)
                 self.graph.add_node(article)
                 self.graph.add_edge(page, article, weight=prob_of_article)
                 article_pages.append(article)
@@ -76,10 +118,21 @@ class Site:
                 if sum > r:
                     cur_page = neighbor
                     break
-        return click_trail
+        return ClickTrail(click_trail)
+
+    def generate_click_trail(self):
+        start = self.sample_start_page()
+        trail = self.sample_click_trail(start)
+        return trail
 
 class Blog(Site):
-    def __init__(self):
-        Site.__init__(self)
+    def __init__(self, base_url):
+        Site.__init__(self, base_url)
         self.create_graph(10, 10, 0.3, 0.4)
+
+
+class OnePageBlog(Site):
+    def __init__(self, base_url):
+        Site.__init__(self, base_url)
+        self.create_graph(10, 10, 0.0, 1.0)
 
