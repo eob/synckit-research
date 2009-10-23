@@ -6,13 +6,13 @@ from random import *
 import datetime
 import pickle 
 
-VISIT_RATE = 1
+VISIT_RATE = 2
 VISIT_UNIT = "hours"
-NUM_USERS  = 3
+NUM_USERS  = 20
 PERCENT_NEW = 0.3
 
-FROM_DATE = datetime.datetime(2009, 05, 01)
-TO_DATE = datetime.datetime(2009, 05, 02)
+FROM_DATE = datetime.datetime(2010, 05, 01)
+TO_DATE = datetime.datetime(2010, 05, 02)
 
 BLOG = OnePageBlog('')
 
@@ -69,12 +69,12 @@ def run_test(site, users):
 
 def query_for_visit(visit, strategy):
     if strategy == 'tokyo':
-        return 'query={"Posts":{"now":"%s"}}' % (str(visit.this_time))
+        return 'queries={"Posts":{"now":"%s"}}' % (str(visit.this_time))
     else:
         if visit.last_time == None:
-            return 'query={"Posts":{"now":"%s"}}' % (str(visit.this_time))
+            return 'queries={"Posts":{"now":"%s"}}' % (str(visit.this_time))
         else:
-            return 'query={"Posts":{"now":"%s", "max":"%s"}}' % (str(visit.this_time), str(visit.last_time))        
+            return 'queries={"Posts":{"now":"%s", "max":"%s"}}' % (str(visit.this_time), str(visit.last_time))        
 
 def url_strings_for_visit(visit, strategy):
     page = visit.click_trail.path[0]
@@ -114,7 +114,7 @@ def write_test_files(test_name, num_users, percent_new, num_visits, in_period):
         write_url_file(urls, "%s_%s.txt" % (test_name, strategy), header=comments)
 
 
-write_test_files("test", 10, 0.3, 1, "days")
+write_test_files("test", NUM_USERS, PERCENT_NEW, VISIT_RATE, VISIT_UNIT)
 # PRINT ALL USERS
 
 #for i in range(len(users)):
@@ -129,9 +129,9 @@ write_test_files("test", 10, 0.3, 1, "days")
 #    page = visit.click_trail.path[0]
 #    if visit.last_time == None:
 #        print page.url + "template_file.html"
-#        print "      " + page.url + "data_endpoint.json method=POST contents=query={\"Posts\":{\"now\":\"" + str(visit.this_time) + "\"}}"
+#        print "      " + page.url + "data_endpoint.json method=POST contents=queries={\"Posts\":{\"now\":\"" + str(visit.this_time) + "\"}}"
 #        print 
 #    else:
-#        print page.url + "data_endpoint.json method=POST contents=query={\"Posts\":{\"max\":\"" + str(visit.last_time) + "\", \"now\":\"" + str(visit.this_time) + "\"}}"
+#        print page.url + "data_endpoint.json method=POST contents=queries={\"Posts\":{\"max\":\"" + str(visit.last_time) + "\", \"now\":\"" + str(visit.this_time) + "\"}}"
 #        print
 #    print str(visit)
