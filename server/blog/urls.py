@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import *
 
 
-urlpatterns = patterns('emailstubs',
+urlpatterns = patterns('blog',
     # Example:
     # (r'^server/', include('server.foo.urls')),
 
@@ -11,5 +11,5 @@ urlpatterns = patterns('emailstubs',
 
     # Uncomment the next line to enable the admin:
     # (r'^admin/(.*)', admin.site.root),
-    (r'^inbox$', 'emailqueue.inbox'),
+    (r'^entries$', 'entries.seepage'),
 )

@@ -84,14 +84,15 @@ class QueueView(BaseView):
     def queryset_impl(self, query):
         queryset = None
         minmax = "max" if self.order == "ASC" else "min"
+        kwargs = {}
         if minmax in query:
             gtlt = "gt" if self.order == "ASC" else "lt"
             fieldcompare = "%s__%s" % (self.sortfield, gtlt)
-            kwargs = {fieldcompare: query[minmax]}
-            queryset = self.model.objects.filter(**kwargs)
-        else:
-            queryset = self.model.objects.all()
-        
+            kwargs[fieldcompare] = query[minmax]
+        if "now" in query:
+            kwargs["date__lte"] = query["now"]
+        queryset = self.model.objects.filter(**kwargs)
+ 
         return queryset
     def schema(self):
         return ["id integer NOT NULL PRIMARY KEY", \
