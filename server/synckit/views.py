@@ -77,21 +77,31 @@ class SetView(BaseView):
 # /usr/share/python-support/python-django/django/core/management/sql.py
 class QueueView(BaseView):
     # order = "ASC" or "DESC"
-    def __init__(self, model, sortfield, order="ASC"):
+    def __init__(self, model, sortfield, limit, order="ASC"):
         BaseView.__init__(self, model)
         self.order = order
         self.sortfield = sortfield
+        self.limit = limit
+        # if our queue increases in the ascending direction, order the
+        # results in descending order to get the top ones.
+        self.orderby = "-%s" % (sortfield) if order == "ASC" else sortfield
+        # if we're increasing in ascending direction, the client will send
+        # us the max
+        self.minmax = "max" if order == "ASC" else "min"
+        # if we're increasing in ascending direction, we want things
+        # greater than the max
+        self.gtlt = "gt" if order == "ASC" else "lt"
     def queryset_impl(self, query):
         queryset = None
-        minmax = "max" if self.order == "ASC" else "min"
         kwargs = {}
-        if minmax in query:
-            gtlt = "gt" if self.order == "ASC" else "lt"
-            fieldcompare = "%s__%s" % (self.sortfield, gtlt)
-            kwargs[fieldcompare] = query[minmax]
+        if self.minmax in query:
+            fieldcompare = "%s__%s" % (self.sortfield, self.gtlt)
+            kwargs[fieldcompare] = query[self.minmax]
         if "now" in query:
             kwargs["date__lte"] = query["now"]
         queryset = self.model.objects.filter(**kwargs)
+        queryset = queryset.order_by(self.orderby)
+        queryset = queryset[:self.limit]
  
         return queryset
     def schema(self):

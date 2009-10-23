@@ -5,7 +5,7 @@ from synckit.views import *
 # This lives outside of a method so it's only instantiated once per
 # interpreter instance
 manager = ViewManager()
-qv = QueueView(Entry, "date")
+qv = QueueView(Entry, "date", 10)
 manager.register("Posts", qv)
 
 def seepage(request):
