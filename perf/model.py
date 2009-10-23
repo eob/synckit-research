@@ -53,9 +53,10 @@ class ClickTrail:
         return str([page.name for page in self.path])
 
 class Site:
-    def __init__(self):
+    def __init__(self, base_url):
         self.landing_page = None
         self.graph = None
+        self.base_url = base_url
         
     def create_graph(self, pages, articles_per_page, prob_of_next, prob_of_leaving):
         self.graph = nx.DiGraph()
@@ -64,7 +65,7 @@ class Site:
         main_pages = []
         article_pages = []
         END = Page("END", "END")
-        urlroot = "/"
+        urlroot = self.base_url
 
         prob_of_article = (1.0 - prob_of_next - prob_of_leaving) / articles_per_page
         
@@ -125,13 +126,13 @@ class Site:
         return trail
 
 class Blog(Site):
-    def __init__(self):
-        Site.__init__(self)
+    def __init__(self, base_url):
+        Site.__init__(self, base_url)
         self.create_graph(10, 10, 0.3, 0.4)
 
 
 class OnePageBlog(Site):
-    def __init__(self):
-        Site.__init__(self)
+    def __init__(self, base_url):
+        Site.__init__(self, base_url)
         self.create_graph(10, 10, 0.0, 1.0)
 
