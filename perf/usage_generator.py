@@ -17,7 +17,7 @@ TO_DATE = datetime.datetime(2010, 05, 02)
 BLOG = OnePageBlog('')
 
 # http://marcua.csail.mit.edu:7000/blog/entries
-TEMPLATE_ENNDPOINT = "/blog/template"
+TEMPLATE_ENNDPOINT = "/static/tokyo.tmpl"
 DATA_ENNDPOINT = "/blog/entries"
 PRERENDERED_ENNDPOINT = "/blog/traditional"
 

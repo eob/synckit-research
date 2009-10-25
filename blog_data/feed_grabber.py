@@ -62,19 +62,22 @@ for (site) in feeds:
                 site["entries"].append({"date":datetime.datetime(*entry.date_parsed[:6]), "content":div.toString()})
 
 
-    total_length = 0
     differences = []
+    lengths = []
     last_post = None
     
     for entry in site["entries"]:
-        total_length += len(entry["content"])
+        print entry.keys()
+
+        lengths.append(len(entry["content"]))
         if (last_post != None):
             differences.append((last_post - entry["date"]).seconds)
         last_post = entry["date"]
     
     print site["name"]
     print "-----------------------------"
-    print "Average len of article: %f" % (total_length / (1.0 * len(site["entries"])))
+    print "Average len of article: %f" % (numpy.average(lengths))
+    print "Standard Dev len of article: %f" % (numpy.std(lengths))
     print "Average Delta (seconds): %i" % numpy.average(differences)
     print "Standard Dev (seconds): %i" % (numpy.std(differences))
     print "Number Posts: %i" % (len(differences) + 1)
