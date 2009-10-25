@@ -17,9 +17,9 @@ TO_DATE = datetime.datetime(2010, 05, 02)
 BLOG = OnePageBlog('')
 
 # http://marcua.csail.mit.edu:7000/blog/entries
-TEMPLATE_ENNDPOINT = "/blog/entries"
+TEMPLATE_ENNDPOINT = "/blog/template"
 DATA_ENNDPOINT = "/blog/entries"
-PRERENDERED_ENNDPOINT = "/prerendered"
+PRERENDERED_ENNDPOINT = "/blog/traditional"
 
 tick_hash = {VISIT_UNIT : 1}
 
@@ -70,6 +70,8 @@ def run_test(site, users):
 def query_for_visit(visit, strategy):
     if strategy == 'tokyo':
         return 'queries={"Posts":{"now":"%s"}}' % (str(visit.this_time))
+    elif strategy == 'traditional':
+        return 'queries={"Posts":{"now":"%s"}}' % (str(visit.this_time))        
     else:
         if visit.last_time == None:
             return 'queries={"Posts":{"now":"%s"}}' % (str(visit.this_time))
@@ -80,7 +82,7 @@ def url_strings_for_visit(visit, strategy):
     page = visit.click_trail.path[0]
     strings = []
     if strategy == 'traditional':
-        strings.append(page.url + PRERENDERED_ENNDPOINT)
+            strings.append("%s%s?%s" % (page.url, PRERENDERED_ENNDPOINT, query_for_visit(visit, strategy)))
     else:        
         if visit.last_time == None:
             strings.append(page.url + TEMPLATE_ENNDPOINT)
