@@ -864,24 +864,37 @@ jQuery.fn.render = function() {
 	console.timeEnd("Rendering Template");
 }
 
-jQuery.fn.render_new = function(callback) {
-	console.time("Rendering SQL Template");
-	var query = this.attr('query');
+function replacementFieldByName(name) {
+	if (name == "id") {
+		return 0;
+	}
+	if (name == "title") {
+		return 2;
+	}
+	else if (name == "author") {
+		return 1;
+	}
+	else if (name == "content") {
+		return 3;
+	}
+}
+
+jQuery.fn.render_flying = function(data, callback) {
+	console.time("Rendering Flying Template");
 	var templates = this.find("[itemscope]");
-	var res = window.db.execute(query);
 	var map = {};
+	var results = data["Posts"]["results"];
 	
-	while (res.isValidRow()) {
+	for (var i=0; i<results.length; i++) {
 		// Loop over each item to do
 		templates.each(function(i) {
 			jQuery(this).find("[itemprop]").each(function(j) {
 				var prop = jQuery(this).attr("itemprop");
-				var val = res.fieldByName(prop);
+				var val = results[i][replacementFieldByName(prop)];
 				jQuery(this).html(val);
 			});
 			jQuery(this).before(jQuery(this).clone());
 		});
-		res.next();
     }
 
 	templates.each(function(i) {
@@ -916,32 +929,35 @@ $(function() {
       }
     };
 
-	var schema = {"Posts":["id integer NOT NULL PRIMARY KEY",
-	              		   "author varchar(200) NOT NULL", 
-	              		   "title text NOT NULL", 
-	              		   "content varchar(200)", 
-	              		   "date datetime NOT NULL"]
-	              };
+//	var schema = {"Posts":["id integer NOT NULL PRIMARY KEY",
+//	              		   "author varchar(200) NOT NULL", 
+//	              		   "title text NOT NULL", 
+//	              		   "content varchar(200)", 
+//	              		   "date datetime NOT NULL"]
+//	              };
     
     /*
      * The state represents what elements from the remove_views that the client has, so that the
      * server will not waste resources duplicating information.
      */
-    var state = window.db.get_state(schema, remote_views);   
+    //var state = window.db.get_state(schema, remote_views);   
          
     // var state = {};
     var endpoint = "/blog/entries";
+
+    var FLYING_STATE = {
+    	"Posts":{"now":"2010-04-29 20:37:11.433831"}
+	}
     
-    var params = {"queries":JSON.stringify(state)};    
+    var params = {"queries":JSON.stringify(FLYING_STATE)};    
 
     console.info("Endpoint: " + endpoint);    
     console.info("Params: " + JSON.stringify(params));
     
     $.post(endpoint, params, function(data) {
-        console.info("Server Response");
-        console.info(JSON.stringify(data));    
-        window.db.bulkload(data);
-		  $('#newtemplate').render_new(function() {
+//        var data = window.db.process_data_spec(dataspec);
+		
+		  $('#newtemplate').render_flying(data, function() {
 				jQuery.get("/blog/markdone");	
 		  });
 	      // Do the new render
@@ -952,19 +968,26 @@ $(function() {
 });
 </script>
 </head>
-<body>                
-   
+<body>
+    
     
 <div id="loading">
-    <button onclick="">----</button><button onclick="">------</button>
+    <button onclick=";">--(no op)--</button><button onclick="">--(no op)--</button>
 </div>
 
 <div id="debug">
 </div>
 <div id="templated">
-<p align="center"><b>--- Loading...</b></p>
+<p align="center"><b>FLYING TEMPLATES</b></p>
 </div>
- {% block content %}{% endblock %}
+
+<table id="newtemplate" query="SELECT * From Posts LIMIT 10;" as="entry">
+	<tr itemscope="yes" itemtype="Entry" />
+		<td><span itemprop="title">from</span></td>
+		<td><span itemprop="content">content</span></td>
+	</tr>
+</table>
 
 </body>
+
 </html>
