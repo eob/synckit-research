@@ -3,9 +3,6 @@
 # httperf --hog --server marcua.csail.mit.edu --port 8001 --wsess=20,5,0 --rate 20 --timeout 5
 
 
-
- /foo2.html method=POST contents=’Post data’
-        next one
-
- /foo2.html method=POST contents=’Post data’
-      
+# httperf --hog --server marcua.csail.mit.edu --port 8000 --wsesslog=2000,5,test_synckit.txt
+# httperf --hog --server marcua.csail.mit.edu --port 8000 --wsesslog=2000,5,test_tokyo.txt
+# httperf --hog --server marcua.csail.mit.edu --port 8000 --wsesslog=2000,5,test_traditional.txt
