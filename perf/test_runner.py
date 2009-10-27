@@ -67,6 +67,8 @@ def write_header(statistics_file):
     output = ",".join(header)
     print output
     statistics_file.write(output+'\n')
+    statistics_file.flush()
+    sys.stdout.flush()
 
 def write_output(file, rate, output, output_dir):
     file = open("%s/%s_%d" % (output_dir, file, rate), "w")
@@ -80,6 +82,8 @@ def write_statistics(statistics_file, statistics, filename, rate):
     output = ",".join(vals)
     print output
     statistics_file.write(output+'\n')
+    statistics_file.flush()
+    sys.stdout.flush()
 
 def update_rate(rate, lowerbound, upperbound, statistics):
     if statistics["200_statuses"] == statistics["total_requests"]:
