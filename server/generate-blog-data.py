@@ -11,14 +11,25 @@ import string
 import sys
 import traceback
 
+#original
+#NUM_AUTHORS = 10
+#START_DATE = datetime.datetime(2009, 05, 01)
+#ENTRIES_PER_MINUTE = .06666666 # 4 / hour
+#NUM_DAYS = 900
+#ENTRY_LENGTH_MU = 1024
+#ENTRY_LENGTH_SIGMA = 1024
+#TITLE_LENGTH_MU = 50
+#TITLE_LENGTH_SIGMA = 25
+
+#techcrunch
 NUM_AUTHORS = 10
 START_DATE = datetime.datetime(2009, 05, 01)
-ENTRIES_PER_MINUTE = .06666666 # 4 / hour
+ENTRIES_PER_MINUTE = .00873744 # about 1 entry every 2 hours
 NUM_DAYS = 900
-ENTRY_LENGTH_MU = 1024
-ENTRY_LENGTH_SIGMA = 1024
+ENTRY_LENGTH_MU = 5487
+ENTRY_LENGTH_SIGMA = 4349
 TITLE_LENGTH_MU = 50
-TITLE_LENGTH_SIGMA = 25
+TITLE_LENGTH_SIGMA = 10
 
 @transaction.commit_manually
 def generate_data():
