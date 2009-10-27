@@ -47,13 +47,19 @@ _skProto = function() {
         }
     };
     
-    this.get_state = function(state_spec) {
+    this.get_state = function(schema, state_spec) {
         if (this._localdb !== null) {
             var state = {};
             
             for (var table in state_spec) {
                 if (! this.table_exists(table)) {
                     state[table] = {};
+                    rows = schema[table];
+                    if (rows != "undefined") {
+                        // Create table
+                    	console.info("Creating table " + table + "(" + rows.join() + ")");
+                        this.execute("CREATE TABLE IF NOT EXISTS " + table + " (" + rows.join() + ");");
+                    }
                     continue;
                 }
                 
@@ -68,14 +74,18 @@ _skProto = function() {
                         var stmt = "SELECT min("+ details.field + ") FROM " + table + ";";
                         var res  = this.execute(stmt);
                         if (res.isValidRow()) {
-                            state[table] = {"min":res.field(0)};
+                        	if (res.field(0) != null) {
+                                state[table] = {"min":res.field(0)};
+                        	}
                         }
                     }
                     else if (details.order == "ASC"){
                         var stmt = "SELECT max("+ details.field + ") FROM " + table + ";";                        
                         var res  = this.execute(stmt);
                         if (res.isValidRow()) {
-                            state[table] = {"max":res.field(0)};
+                        	if (res.field(0) != null) {
+                                state[table] = {"max":res.field(0)};
+                        	}
                         }
                     }
                 }
@@ -90,7 +100,7 @@ _skProto = function() {
     
     this.execute = function(statement, args) {
         if (this._localdb !== null) {
-            return this._localdb.execute(statement, args);                
+          	return this._localdb.execute(statement, args);                
         }
         else {
             console.error("Can't execute query. Local DB is null.");
@@ -144,15 +154,15 @@ _skProto = function() {
                 continue;
             }
             
-            var schema = table_data.schema;
             var table = table_data.results;
             
-            // Create table
-            this.execute("CREATE TABLE IF NOT EXISTS " + tablename + " (" + schema.join() + ");");
+            if (table.length == 0) {
+            	continue;
+            }
             
             // Prepare SQL Statement
             var sqlStatement = "INSERT INTO " + tablename + " VALUES (";
-            for (var z = 0; z<schema.length; z++) {
+            for (var z = 0; z<table[0].length; z++) {
                 sqlStatement += "?,";
             }   
             sqlStatement = sqlStatement.substr(0,sqlStatement.length - 1);

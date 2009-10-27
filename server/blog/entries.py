@@ -24,7 +24,5 @@ def traditional(request):
     })
     return HttpResponse(t.render(c))
 
-def template(request):
-    t = loader.get_template('index_template.html')
-    c = Context({})
-    return HttpResponse(t.render(c))
+def markdone(request):
+    return HttpResponse("OK")

@@ -14,4 +14,5 @@ urlpatterns = patterns('blog',
     (r'^entries$', 'entries.seepage'),
     (r'^traditional$', 'entries.traditional'),
     (r'^template$', 'entries.template'),
+    (r'^markdone$', 'entries.markdone'),
 )

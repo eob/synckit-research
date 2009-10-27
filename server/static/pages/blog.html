@@ -941,6 +941,11 @@ $(function() {
         console.info("Server Response");
         console.info(JSON.stringify(data));    
         window.db.bulkload(data);
+//        var data = window.db.process_data_spec(dataspec);
+//        $('#templated').template(template);
+//        $('#templated').templateData(data);
+//        $('#templated').render();
+
 		  $('#newtemplate').render_new(function() {
 				jQuery.get("/blog/markdone");	
 		  });
@@ -953,18 +958,27 @@ $(function() {
 </script>
 </head>
 <body>                
-   
+    <p>{.field}</p>
+</div>
+    
     
 <div id="loading">
-    <button onclick="">----</button><button onclick="">------</button>
+    <button onclick="window.db.reset();">Reset DB</button><button onclick="window.db.dump();">Dump DB</button>
 </div>
 
 <div id="debug">
 </div>
 <div id="templated">
-<p align="center"><b>--- Loading...</b></p>
+<p align="center"><b>Template Loading...</b></p>
 </div>
- {% block content %}{% endblock %}
+
+<table id="newtemplate" query="SELECT * From Posts LIMIT 10;" as="entry">
+	<tr itemscope="yes" itemtype="Entry" />
+		<td><span itemprop="title">from</span></td>
+		<td><span itemprop="content">content</span></td>
+	</tr>
+</table>
 
 </body>
+
 </html>

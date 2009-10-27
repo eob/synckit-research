@@ -3,24 +3,12 @@
 {% if posts %}
     <ul>
     {% for post in posts %}    							
-						<div class="entry">
+	<div class="entry">
 							<h1>{{post.title}}</h1>
 						   <h2>{{ author.name }}</h2>
 							<p>{{ post.contents }}</p>
 							On {{ date }}
-
-						</div>
-						<div class="excerpt_entry_footer snap_nopreview"><a href="http://www.techcrunch.com/2009/10/24/from-the-3g-industry-summit-in-kunshan-china-16-demos-from-chinese-mobile-startups/" rel="nofollow">Read More</a></div>
-						<div style="clear:both"></div>
-					</div>
-									
-
-				<div class="navigation">
-				<div class="alignright"><a href="http://www.techcrunch.com/page/2/" >Older Entries</a></div>
-				<div class="alignleft"></div>
-				<div style="clear:both"></div>
-
-			</div>
+	</div>
 		
 <!-- end post -->
     {% endfor %}

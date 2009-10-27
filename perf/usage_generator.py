@@ -19,7 +19,7 @@ TO_DATE = datetime.datetime(2010, 05, 07)
 BLOG = OnePageBlog('')
 
 # http://marcua.csail.mit.edu:7000/blog/entries
-TEMPLATE_ENNDPOINT = "/static/tokyo.tmpl"
+TEMPLATE_ENNDPOINT = "/static/pages/blog.html"
 DATA_ENNDPOINT = "/blog/entries"
 PRERENDERED_ENNDPOINT = "/blog/traditional"
 
@@ -89,6 +89,7 @@ def url_strings_for_visit(visit, strategy):
         if visit.last_time == None:
             strings.append(page.url + TEMPLATE_ENNDPOINT)
             strings.append("      %s%s method=POST contents='%s'" % (page.url, DATA_ENNDPOINT, query_for_visit(visit, strategy)))
+            strings.append("      /static/manifest")
         else:
             strings.append("%s%s method=POST contents='%s'" % (page.url, DATA_ENNDPOINT, query_for_visit(visit, strategy)))
     return strings

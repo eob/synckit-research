@@ -32,7 +32,7 @@ jQuery.fn.render = function() {
 	console.timeEnd("Rendering Template");
 }
 
-jQuery.fn.render_new = function() {
+jQuery.fn.render_new = function(callback) {
 	console.time("Rendering SQL Template");
 	var query = this.attr('query');
 	var templates = this.find("[itemscope]");
@@ -57,5 +57,8 @@ jQuery.fn.render_new = function() {
 	});
 
 	console.timeEnd("Rendering SQL Template");
+	if (callback != "undefined") {
+		callback.call();
+	}
 }
 

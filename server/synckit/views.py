@@ -18,7 +18,6 @@ class ViewManager:
             if name in self.views:
                 results[name] = {}
                 results[name]["results"] = self.views[name].results(view_queries)
-                results[name]["schema"] = self.views[name].schema()
             else:
                 results[name] = "no view registered for this query"
         return results
@@ -48,8 +47,6 @@ class BaseView:
                       self.parent_view.queryset(queries)}
             queryset = queryset.filter(**kwargs)
         return queryset
-    def schema(self):
-        raise  NotImplementedError()
     def set_parent(self, parent_view, parent_path):
         self.parent_view = parent_view
         self.parent_path = parent_path
@@ -68,8 +65,6 @@ class SetView(BaseView):
             ids = []
         queryset = self.model.objects.exclude(id__in = ids)
         return queryset 
-    def schema(self):
-        pass
 
 # for more generic stuff, see
 # [f.name for f in model_or_instance._meta.fields]
@@ -104,10 +99,3 @@ class QueueView(BaseView):
         queryset = queryset[:self.limit]
  
         return queryset
-    def schema(self):
-        return ["id integer NOT NULL PRIMARY KEY", \
-                "from_email varchar(200) NOT NULL", \
-                "to_email varchar(200) NOT NULL", \
-                "subject varchar(200) NOT NULL", \
-                "contents text NOT NULL", \
-                "date datetime NOT NULL"] \
