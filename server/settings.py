@@ -2,9 +2,6 @@ from private_settings import *
 
 # Django settings for server project.
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
-
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )
