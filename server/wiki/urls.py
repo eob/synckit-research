@@ -1,7 +1,6 @@
 from django.conf.urls.defaults import *
 
-
-urlpatterns = patterns('blog',
+urlpatterns = patterns('wiki',
     # Example:
     # (r'^server/', include('server.foo.urls')),
 
@@ -11,7 +10,7 @@ urlpatterns = patterns('blog',
 
     # Uncomment the next line to enable the admin:
     # (r'^admin/(.*)', admin.site.root),
-    (r'^page$', 'wiki.pagedata'),
+    (r'^page$', 'wiki.seepage'),
     (r'^traditional$', 'entries.traditional'),
     (r'^template$', 'entries.template'),
     (r'^markdone$', 'entries.markdone'),
