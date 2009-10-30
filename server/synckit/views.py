@@ -59,7 +59,7 @@ class SetView(BaseView):
         self.idfield = idfield
         self.idin = "%s__in" % (self.idfield)
     def queryset_impl(self, query):
-        queryset = none
+        queryset = None
         if "exclude" in query:
             kwargs = {self.idin : query["exclude"]}
             queryset = self.model.objects.exclude(**kwargs)
