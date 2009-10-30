@@ -1,7 +1,7 @@
 # Site Model
 
 import networkx as nx
-from model import *
+from gen_model import *
 from random import *
 import datetime
 import pickle 
@@ -30,7 +30,7 @@ if WIKI_TEST:
     PERCENT_NEW = 0.3
     FROM_DATE = datetime.datetime(2010, 05, 01)
     TO_DATE = datetime.datetime(2010, 05, 07)
-    BLOG = Wiki(0.3)
+    BLOG = Wiki("/", 0.3)
     TEMPLATE_ENNDPOINT = "/static/pages/blog.html"
     DATA_ENNDPOINT = "/blog/entries"
     PRERENDERED_ENNDPOINT = "/blog/traditional"
@@ -157,6 +157,7 @@ now = datetime.datetime.now()
 dirname = now.strftime("%Y-%m-%d.%H:%M:%S")
 
 if BLOG_TEST:
+    print "NOTE! need to make num users 100 and new usrs rate .5"
     write_test_files(dirname, "test_warmup_allnew", NUM_USERS, 1.0, VISIT_RATE, VISIT_UNIT, 1)
     write_test_files(dirname, "test_warmup_nonew", NUM_USERS, 0.0, VISIT_RATE, VISIT_UNIT, 1)
     write_test_files(dirname, "test_numusers_5", 5, 0.5, VISIT_RATE, VISIT_UNIT, 1)
@@ -178,7 +179,7 @@ if BLOG_TEST:
     write_test_files(dirname, "test_freq_0.25_per_day", 20, 0.0, 0.25, "days", 1)
 
 if WIKI_TEST:
-    users = create_users(num_users, percent_new, num_visits, in_period)    
+    users = create_users(2, 0.5, VISIT_RATE, VISIT_UNIT)    
     visits = run_test(BLOG,users)
     for user in users:
         print "User"
