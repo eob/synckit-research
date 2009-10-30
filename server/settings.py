@@ -61,6 +61,5 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'server.emailstubs',
     'server.blog',
+    'server.wiki',
 )
-
-

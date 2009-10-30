@@ -4,10 +4,10 @@ setup_environ(settings)
 
 from django.db import transaction
 from server.blog.models import *
+from text_utils import generate_string
 
 import datetime
 import random
-import string
 import sys
 import traceback
 
@@ -69,10 +69,6 @@ def generate_entries(authors):
         if (itercount % 1000) == 0:
             print "Making entry for %s" % (str(date))
         itercount += 1
-
-def generate_string(length):
-    int_length = int(length)
-    return "".join([random.choice(string.ascii_lowercase) for i in xrange(int_length)])
 
 if __name__ == "__main__":
     generate_data()
