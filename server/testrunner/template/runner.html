@@ -1,0 +1,29 @@
+<html>
+<head>	
+<script type="text/javascript" src="/static/javascripts/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="/static/javascripts/testrunner.js"></script>
+<link rel="stylesheet" href="/static/stylesheets/style.css" />
+<script type="text/javascript">
+function Advance() {
+	$.getScript('/static/javascripts/userLoad1.js');	
+}
+</script>
+</head>
+
+<body>                
+    
+<div id="loading">
+    <button onclick="">RESET CLIENT DB</button><button onclick="Advance(); return false;">ADVANCE TIME -></button>
+</div>
+
+<div id="debug">
+</div>
+<div id="testcontainer">
+</div>
+<br />
+<table id="results" border=1>
+	<tr><th>URL</th><th>Params</th><th>Total Time to Render</th><th>Data Fetch</th><th>Data Bulkload</th><th>Template Parse</th></tr>
+</table>
+
+</body>
+</html>
