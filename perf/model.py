@@ -34,6 +34,10 @@ class User:
             self.next_visit_time = self.last_visit_time + datetime.timedelta(**params)
         else:
             self.next_visit_time += datetime.timedelta(**params)
+    
+    def visits_to_json(self):
+        visits = ",".join([visit.to_json() for visit in self.visits])
+        return "[%s]" % (visits)
         
 class Visit:
     def __init__(self, last_time, this_time, click_trail):
@@ -43,7 +47,9 @@ class Visit:
     
     def __str__(self):
         return str(self.last_time) + ", " + str(self.this_time) + ", " + str(self.click_trail)
-
+    
+    def to_json(self):
+        return '{"time":"%s", "clicktrail":%s}' % (self.this_time, self.click_trail.to_json())
 
 class ClickTrail:
     def __init__(self, path):
@@ -51,6 +57,10 @@ class ClickTrail:
 
     def __str__(self):
         return str([page.name for page in self.path])
+
+    def to_json(self):
+        comma_list = ",".join([('"%s"' % page.name) for page in self.path])
+        return '[%s]' % (comma_list)
 
 class Site:
     def __init__(self, base_url):
