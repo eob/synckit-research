@@ -97,7 +97,7 @@ def url_strings_for_visit(visit, strategy):
     strings = []
 	
     if strategy == 'traditional':
-            strings.append("%s%s?%s" % (page.url, PRERENDERED_ENNDPOINT, query_for_visit(visit, strategy)))
+            strings.append("%s%s method=POST contents='%s'" % (page.url, PRERENDERED_ENNDPOINT, query_for_visit(visit, strategy)))
     else:        
         if visit.last_time == None:
             strings.append(page.url + TEMPLATE_ENNDPOINT)

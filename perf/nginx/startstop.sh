@@ -28,7 +28,7 @@ RUN_AS=www-data
 #
 d_start()
 {
-  start-stop-daemon --start --pidfile $LOG_PATH/django.pid --chuid $RUN_AS --exec /usr/bin/python $DJANGO_PATH/manage.py runfcgi maxchildren=10 maxspare=5 minspare=2 method=prefork socket=$LOG_PATH/django.sock pidfile=$LOG_PATH/django.pid
+  start-stop-daemon --start --pidfile $LOG_PATH/django.pid --chuid $RUN_AS --exec /usr/bin/python $DJANGO_PATH/manage.py runfcgi maxchildren=10 maxspare=5 minspare=2 method=prefork host=127.0.0.1 port=7001 pidfile=$LOG_PATH/django.pid
 
   sleep 1;
 
@@ -40,8 +40,7 @@ d_start()
 #       Function that stops the daemon/service.
 #
 d_stop() {
-  start-stop-daemon --stop --quiet --pidfile $LOG_PATH/nginx.pid \
-                            || echo -n " not running"
+  pkill nginx
   start-stop-daemon --stop --quiet --pidfile $LOG_PATH/django.pid \
                             || echo -n " not running"
 }

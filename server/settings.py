@@ -2,9 +2,6 @@ from private_settings import *
 
 # Django settings for server project.
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
-
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )
@@ -64,7 +61,6 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'server.emailstubs',
     'server.blog',
-	'server.testrunner'
+	'server.testrunner',
+    'server.wiki',
 )
-
-

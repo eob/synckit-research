@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # (r'^admin/(.*)', admin.site.root),
     (r'^email/', include('server.emailstubs.urls')),
+    (r'^wiki/', include('server.wiki.urls')),
     (r'^blog/', include('server.blog.urls')),
     (r'^testrunner/', include('server.testrunner.urls')),
     (r'^performancetest/', include('server.performancetest.urls')),

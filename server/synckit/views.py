@@ -57,13 +57,18 @@ class SetView(BaseView):
     def __init__(self, model, idfield):
         BaseView.__init__(self, model)
         self.idfield = idfield
+        self.idin = "%s__in" % (self.idfield)
     def queryset_impl(self, query):
-        ids = None
-        if "items" in query:
-            ids = query["items"]
+        queryset = None
+        if "exclude" in query:
+            kwargs = {self.idin : query["exclude"]}
+            queryset = self.model.objects.exclude(**kwargs)
+        elif "filter" in query:
+            kwargs = {self.idin : query["filter"]}
+            queryset = self.model.objects.filter(**kwargs)
         else:
-            ids = []
-        queryset = self.model.objects.exclude(id__in = ids)
+            queryset = self.model.objects.all()
+
         return queryset 
 
 # for more generic stuff, see
@@ -86,12 +91,12 @@ class QueueView(BaseView):
         # if we're increasing in ascending direction, we want things
         # greater than the max
         self.gtlt = "gt" if order == "ASC" else "lt"
+        self.fieldcompare = "%s__%s" % (self.sortfield, self.gtlt)
     def queryset_impl(self, query):
         queryset = None
         kwargs = {}
         if self.minmax in query:
-            fieldcompare = "%s__%s" % (self.sortfield, self.gtlt)
-            kwargs[fieldcompare] = query[self.minmax]
+            kwargs[self.fieldcompare] = query[self.minmax]
         if "now" in query:
             kwargs["date__lte"] = query["now"]
         queryset = self.model.objects.filter(**kwargs)
