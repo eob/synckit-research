@@ -2,6 +2,12 @@ import networkx as nx
 from random import *
 import datetime
 
+# Import the Django stuff
+from django.core.management import setup_environ
+import sys
+sys.path.append(('/'.join(__file__.split('/')[:-2])) + '/server')
+import settings
+
 class Page:
     def __init__(self, name, URL):
         self.name = name
@@ -146,3 +152,31 @@ class OnePageBlog(Site):
         Site.__init__(self, base_url)
         self.create_graph(10, 10, 0.0, 1.0)
 
+class Wiki(Site):
+    def __init__(self, base_url, p_leave):
+        Site.__init__(self, base_url)
+        self.build_site()
+        self.p_leave = p_leave
+    
+    def build_site(self):
+        pages = []
+        self.graph = nx.DiGraph()
+        page_cache = {}
+        
+        END = Page("END", "END")
+        self.graph.add_node(END)
+        
+        # Add the pages
+        for page in pages:
+            page_node = Page(page.title, urlroot + '?pageid=' + page.id)
+            page_cache[page.id] = page_node
+            self.graph.add_node(page_node)
+        
+        # Add the nodes
+        for page in pages:
+            linksum = 0
+            for other in page.outlinks:
+                linksum += other.access_probability
+            for other in page.outlinks:
+                self.graph.add_edge(page, other, weight=((other.access_probability / float(linksum)) * (1.0 - self.p_leave))
+            self.graph_add_edge(page, END, weight=self.p_leave)  

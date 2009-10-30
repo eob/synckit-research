@@ -6,7 +6,7 @@ from random import *
 import datetime
 import pickle 
 import datetime
-import os
+
 
 BLOG_TEST = 0
 WIKI_TEST = 1
@@ -30,7 +30,7 @@ if WIKI_TEST:
     PERCENT_NEW = 0.3
     FROM_DATE = datetime.datetime(2010, 05, 01)
     TO_DATE = datetime.datetime(2010, 05, 07)
-    BLOG = OnePageBlog('')
+    BLOG = Wiki(0.3)
     TEMPLATE_ENNDPOINT = "/static/pages/blog.html"
     DATA_ENNDPOINT = "/blog/entries"
     PRERENDERED_ENNDPOINT = "/blog/traditional"
@@ -178,8 +178,16 @@ if BLOG_TEST:
     write_test_files(dirname, "test_freq_0.25_per_day", 20, 0.0, 0.25, "days", 1)
 
 if WIKI_TEST:
-    write_test_files(dirname, "browser_test_freq_5_per_day", 20, 0.0, 5, "days", 0)
-    
+    users = create_users(num_users, percent_new, num_visits, in_period)    
+    visits = run_test(BLOG,users)
+    for user in users:
+        print "User"
+        print "========================="
+        for visit in user.visits:
+            print "Visit"
+            print "--------------------------"
+            print str(visit)
+        
 # if WIKI_TEST:
     
 # PRINT ALL USERS
