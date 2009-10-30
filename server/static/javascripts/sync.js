@@ -8,6 +8,7 @@ _skProto = function() {
     // Member Variables
     // ----------------------------------------------------------------
     this._localdb = null;
+    this._timers = null;
     
     // Methods
     // ----------------------------------------------------------------
@@ -19,6 +20,20 @@ _skProto = function() {
             console.error("Local DB is null.");
         }
     };
+    
+    this.timeStart = function(obj) {
+        this._timers[obj] = null;            
+        this._timers[obj] = (new Date).getTime();
+    }
+    
+    this.timeEnd = function(obj) {
+        if (this._timers[obj]) {
+            var diff = (new Date).getTime() - this._timers[obj];
+            this._timers[obj] = null;            
+            return diff;
+        }
+        return null;
+    }
     
     this.table_exists = function(table) {
         var result = db.execute("SELECT name FROM sqlite_master WHERE type='table' AND name=?;", [table]);
@@ -145,7 +160,7 @@ _skProto = function() {
     
     this.bulkload = function(data) {
         console.info("hey");
-        console.time("Performing Bulkload Insertion");
+        this.timeStart("Performing Bulkload Insertion");
         
         for (var tablename in data) {
             var table_data = data[tablename];
@@ -174,7 +189,7 @@ _skProto = function() {
             }
             
         }
-        console.timeEnd("Performing Bulkload Insertion");
+        this.timeEnd("Performing Bulkload Insertion");
     };
 
     

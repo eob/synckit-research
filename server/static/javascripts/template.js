@@ -20,7 +20,7 @@ jQuery.fn.templateData = function(value) {
 };
 
 jQuery.fn.render = function() {
-	console.time("Rendering Template");
+	window.db.timeStart("Rendering Template");
     var templateString = this.template();
     var value = this.templateData();
     var template = jsontemplate.Template(templateString);
@@ -29,11 +29,11 @@ jQuery.fn.render = function() {
     var rendered = template.expand(value);
     // console.log("Rendered Size: " + rendered.length);
     this.html(rendered);
-	console.timeEnd("Rendering Template");
+	window.db.timeEnd("Rendering Template");
 }
 
 jQuery.fn.render_new = function(callback) {
-	console.time("Rendering SQL Template");
+	window.db.timeStart("Rendering SQL Template");
 	var query = this.attr('query');
 	var templates = this.find("[itemscope]");
 	var res = window.db.execute(query);
@@ -56,7 +56,7 @@ jQuery.fn.render_new = function(callback) {
 		jQuery(this).remove();
 	});
 
-	console.timeEnd("Rendering SQL Template");
+	window.db.timeEnd("Rendering SQL Template");
 	if (callback != "undefined") {
 		callback.call();
 	}
