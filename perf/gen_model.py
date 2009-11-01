@@ -161,7 +161,7 @@ class Wiki(Site):
         self.build_site()  
 
     def build_site(self):
-        pages = wiki.models.Page.objects.all().only('access_probability')
+        pages = wiki.models.Page.objects.all().only('id', 'access_probability')
         self.graph = nx.DiGraph()
         page_cache = {}
         
@@ -179,9 +179,9 @@ class Wiki(Site):
         for page in pages:
             page_node = page_cache[page.id]
             linksum = 0
-            for other in page.outlinks.all():
+            for other in page.outlinks.all().only('id', 'access_probability'):
                 linksum += other.access_probability
-            for other in page.outlinks.all():
+            for other in page.outlinks.all().only('id', 'access_probability'):
                 other_node = page_cache[other.id]
                 self.graph.add_edge(page_node, other_node, weight=((other.access_probability / float(linksum)) * (1.0 - self.p_leave)))
             self.graph.add_edge(page_node, END, weight=self.p_leave)  
