@@ -89,6 +89,7 @@ function advanceClick() {
 
 function runtest() {
     $("#testcontainer").html('<iframe id="testframe" style="width: 100%; height: 500px; border: 4px solid #333;"></iframe>');
+    $("#debug").html('<p><b>Loading: ' + window.currentClick + '</b></p>');
     timeStart('load');
     $('iframe#testframe').attr('src', window.currentClick);
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html manifest="/wiki/manifest">
+<html>
 <head>
 <style type="text/css">
 body {
@@ -980,10 +980,9 @@ $(function() {
 			parent.LogData("flying", window.location.href, JSON.stringify(params), dataTime, bulkloadTime, templateTime);
 		  }
 	}
-
     // var state = {};
 	
-	    endpoint = "/wiki/tokyo";	
+	    endpoint = "/wiki/page";	
 	    params = {"queries":JSON.stringify(state)};    
 	    var dataStart = (new Date).getTime();
 
