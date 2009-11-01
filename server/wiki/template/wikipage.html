@@ -1,0 +1,17 @@
+{% extends "wikigeneric.html" %}
+{% block content %}
+{% if pages %}
+    <ul>
+    {% for page in pages %}    							
+	<div class="entry">
+							<h1>{{page.title}}</h1>
+						   <p>{{ page.contents }}</p>
+	</div>
+		
+<!-- end post -->
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No pages are available.</p>
+{% endif %}
+{% endblock %}
