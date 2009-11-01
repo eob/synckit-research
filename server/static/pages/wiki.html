@@ -658,24 +658,26 @@ _skProto = function() {
 
 							if (! res.isValidRow()) {							
 								// We don't have it
-								state[table] = {"filter":[theid]}
+
+								// Now get exclude list
+								var stmt2 = "SELECT id FROM " + table + ";";
+								var already = [];
+								res2 = this.execute(stmt2);
+								while (res2.isValidRow()) {
+									already.push(res2.field(0));
+									res2.next();
+								}
+							
+								if (already.length > 0) {
+									state[table] = {"filter":[theid], "exclude":already};	
+								}
+								else {
+									state[table] = {"filter":[theid]};			
+								}
+								
 							}
 
 							// Also send exclude
-							var stmt2 = "SELECT id FROM " + table + ";";
-							var already = [];
-							res = this.execute(stmt2);
-							while (res.isValidRow()) {
-								alert('excluding ' + res.field(0));
-								already.push(res.field(0));
-								res.next();
-							}
-							if (already.length > 0) {
-								if (! state[table]) {
-									state[table] = {};
-								}
-								state[table]["exclude"] = already;
-							}
 						}
 					}
                 }
