@@ -922,7 +922,7 @@ function urlParam(name){
 $(function() {
     // console.info("Page Loaded");
     window.db = create_synckit();
-    
+    alert("loading");
     /*
      * TODO: Actively set client schema instead of lazily doing it on server respnse.
      */
@@ -947,6 +947,8 @@ $(function() {
 		remote_views["Pages"]["filter"] = pageid;
 	}
 	
+	alert("Remote views:" + JSON.stringify(remote_views));
+	
 	var schema = {"Pages":["id integer NOT NULL PRIMARY KEY",
 	              		   "title varchar(255)", 
 	              		   "contents text", 
@@ -958,8 +960,9 @@ $(function() {
      * The state represents what elements from the remove_views that the client has, so that the
      * server will not waste resources duplicating information.
      */
+	alert("Getting state");
     var state = window.db.get_state(schema, remote_views);   
-	alert(JSON.stringify(state));
+	alert("State: " + JSON.stringify(state));
     var now = urlParam('now');
 	
 	if (now != 'undefined') {
