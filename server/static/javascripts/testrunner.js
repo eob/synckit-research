@@ -84,7 +84,8 @@ function advanceClick() {
     else {
         window.currentClick = nextClick + "&now=" + window.jikan + "&latency=" + latency + "&bandwidth=" + bandwidth;        
     }
-    window.currentClick = window.currentClick.replace('?', '#');
+    
+    window.currentClick = window.currentClick.replace('html?', 'html#');
 }
 
 function runtest() {
