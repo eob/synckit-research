@@ -3,8 +3,8 @@ import os
 import re
 import sys
 
-LOWERBOUND = 10
-UPPERBOUND = 200
+LOWERBOUND = 40
+UPPERBOUND = 1000
 header = ["file", "rate", "total_requests", "concurrent_connections", "request_rate", "reply_rate_avg", "reply_rate_stdev", "reply_samples", "total_size", "200_statuses", "net_io"]
 
 total_pattern = re.compile("Total: connections \S+ requests (\S+) replies \S+")
@@ -18,11 +18,13 @@ io_pattern = re.compile("Net I/O: (\S+\s+\S+)")
 def runtests(test_dir, output_dir):
     files = os.listdir(test_dir)
     statistics_file = open("%s/statistics.csv" % (output_dir), "w")
-    write_header(statistics_file)
+    rates_file = open("%s/rates.csv" % (output_dir), "w")
+    write_statistics_header(statistics_file)
+    write_rates_header(rates_file)
     for filename in files:
         file = "%s/%s" % (test_dir, filename)
-        (rate, lowerbound, upperbound) = reset_iteration()
-        while not int(lowerbound) == int(upperbound):
+        (rate, highest_rate, avg_data, lowerbound, upperbound) = reset_iteration()
+        while not lowerbound == upperbound:
             runstr = runcommand(rate, file)
             print "Running %s" % (runstr)
             (status, output) = commands.getstatusoutput(runstr)
@@ -32,12 +34,14 @@ def runtests(test_dir, output_dir):
             statistics = extract_statistics(output)
             write_output(filename, rate, output, output_dir)
             write_statistics(statistics_file, statistics, filename, rate)
-            (rate, lowerbound, upperbound) = update_rate(rate, lowerbound, upperbound, statistics)
-        print "Optimal rate for %s is %d" % (filename, rate)
+            (rate, highest_rate, avg_data, lowerbound, upperbound) = \
+                update_rate(rate, highest_rate, avg_data, lowerbound, upperbound, statistics)
+        write_finalrate(rates_file, filename, highest_rate, rate, avg_data)
     statistics_file.close()
+    rates_file.close()
 
 def reset_iteration():
-    return (int(((LOWERBOUND + UPPERBOUND)*1.0)/2), LOWERBOUND, UPPERBOUND)
+    return (int(((LOWERBOUND + UPPERBOUND)*1.0)/2), 0.0, 0.0, LOWERBOUND, UPPERBOUND)
 
 def runcommand(rate, file):
     return "httperf --hog --server marcua.csail.mit.edu --port 7000 --rate %d --wsesslog=10000,0,%s" % (rate, file)
@@ -63,11 +67,18 @@ def extract_data(pattern, val, fields, dict):
         for field in fields:
             dict[field] = "???"
 
-def write_header(statistics_file):
+def write_statistics_header(statistics_file):
     output = ",".join(header)
     print output
     statistics_file.write(output+'\n')
     statistics_file.flush()
+    sys.stdout.flush()
+
+def write_rates_header(rates_file):
+    output = "file,highest_rate,attempted_rate,avg_data"
+    print output
+    rates_file.write(output+'\n')
+    rates_file.flush()
     sys.stdout.flush()
 
 def write_output(file, rate, output, output_dir):
@@ -85,13 +96,32 @@ def write_statistics(statistics_file, statistics, filename, rate):
     statistics_file.flush()
     sys.stdout.flush()
 
-def update_rate(rate, lowerbound, upperbound, statistics):
-    if statistics["200_statuses"] == statistics["total_requests"]:
+def write_finalrate(rates_file, filename, highest_rate, attempted_rate, avg_data):
+    output = "%s,%f,%d,%f" % (filename, highest_rate, attempted_rate, avg_data)
+    print output
+    rates_file.write(output+'\n')
+    rates_file.flush()
+    sys.stdout.flush()
+
+def update_rate(rate, highest_rate, avg_data, lowerbound, upperbound, statistics):
+    if can_handle(rate, statistics):
         lowerbound = rate + 1
+        req_rate = float(statistics["request_rate"])
+        if req_rate > highest_rate:
+            highest_rate = req_rate
+            avg_data = float(statistics["total_size"])
     else:
         upperbound = rate - 1
+    if upperbound < lowerbound:
+        upperbound = lowerbound
     rate = int(((lowerbound + upperbound)*1.0) / 2)
-    return (rate, lowerbound, upperbound)
+    return (rate, highest_rate, avg_data, lowerbound, upperbound)
+
+def can_handle(rate, statistics):
+    diff = float(statistics["request_rate"]) - rate
+    error = (1.0 * diff)/rate
+    return (statistics["200_statuses"] == statistics["total_requests"]) \
+           and (error > -.02) 
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
