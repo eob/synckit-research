@@ -114,7 +114,6 @@ class Prefetcher():
         queryset = queryset.exclude(**kwargs)
         queryset = queryset.only(self.config["probability_field"])
         queryset = queryset.extra(select = self.select_addition)
-        print queryset.count()
         ids = self.pick_objects(object, queryset, perf)
         return self.config["model"].objects.filter(id__in = ids)
    
@@ -125,8 +124,6 @@ class Prefetcher():
             cost = self.calculate_cost(item.object_size, perf)
             cost = cost*(1-getattr(item, self.config["probability_field"]))
             item.benefit -= cost
-            if item.benefit > 0:
-                print item.benefit
         items.sort(benefit_compare)
         return self.additional_items(object, items, perf)
  
