@@ -161,7 +161,7 @@ class Wiki(Site):
         self.build_site()  
 
     def build_site(self):
-        pages = wiki.models.Page.objects.all()
+        pages = wiki.models.Page.objects.all().only('access_probability')
         self.graph = nx.DiGraph()
         page_cache = {}
         
