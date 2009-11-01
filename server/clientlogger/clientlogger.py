@@ -15,8 +15,8 @@ def log(request):
         user=int(request.POST["user"]),
         visit_number=int(request.POST["visit_number"]),
         total_time_to_render=int(request.POST["total_time_to_render"]),
-        latency=int(request.POST["latency"]),
-        bandwidth=int(request.POST["bandwidth"]),
+        latency=float(request.POST["latency"]),
+        bandwidth=float(request.POST["bandwidth"]),
         data_fetch=int(request.POST["data_fetch"]),
         data_bulkload=int(request.POST["data_bulkload"]),
         template_parse=int(request.POST["template_parse"])
