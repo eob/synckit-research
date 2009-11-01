@@ -944,7 +944,7 @@ $(function() {
     };
 
 	if (pageid != 0) {
-		remote_views["Pages"]["filter"] = pageid
+		remote_views["Pages"]["filter"] = pageid;
 	}
 	
 	var schema = {"Pages":["id integer NOT NULL PRIMARY KEY",
@@ -959,6 +959,7 @@ $(function() {
      * server will not waste resources duplicating information.
      */
     var state = window.db.get_state(schema, remote_views);   
+	alert(JSON.stringify(state));
     var now = urlParam('now');
 	
 	if (now != 'undefined') {
