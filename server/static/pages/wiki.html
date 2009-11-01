@@ -640,13 +640,27 @@ _skProto = function() {
                     	// console.info("Creating table " + table + "(" + rows.join() + ")");
                         this.execute("CREATE TABLE IF NOT EXISTS " + table + " (" + rows.join() + ");");
                     }
-                    continue;
+					if (state_spec[table].type != "set") {
+						continue;
+					}
                 }
                 
                 var details = state_spec[table];
                 
                 if (details.type == "set") {
-                    
+                	if (details.style == "open") {
+						// Check for existence
+						var theid = details["filter"];
+						if (theid) {
+							var stmt = "SELECT id FROM " + table + " WHERE id=" + theid + ";";
+							var res = this.execute(stmt);
+
+							if (! res.isValidRow()) {							
+								// We don't have it
+								state[table] = {"filter":[theid]}
+							}
+						}
+					}
                 }
                 else if (details.type == "queue") {
                 
@@ -895,20 +909,25 @@ $(function() {
      * exported to the client. Each one is a table, but a table that is accessed (and thus synced)
      * in a particular way.  
      */
+	var pageid = urlParam('pageid');
+	
     var remote_views = {
-      "Posts":{
-        "type":"queue",
-        "field":"date",
-        "order":"ASC"
+      "Pages":{
+		"type":"set",
+		"style":"open"
       }
     };
 
-	var schema = {"Posts":["id integer NOT NULL PRIMARY KEY",
-	              		   "author varchar(200) NOT NULL", 
-	              		   "title text NOT NULL", 
-	              		   "content varchar(200)", 
+	if (pageid != 0) {
+		remote_views["Pages"]["filter"] = pageid
+	}
+	
+	var schema = {"Pages":["id integer NOT NULL PRIMARY KEY",
+	              		   "title varchar(255)", 
+	              		   "contents text", 
+						   "weight float",
 	              		   "date datetime NOT NULL"]
-	              };
+    };
     
     /*
      * The state represents what elements from the remove_views that the client has, so that the
@@ -916,32 +935,61 @@ $(function() {
      */
     var state = window.db.get_state(schema, remote_views);   
     var now = urlParam('now');
+	
 	if (now != 'undefined') {
 		for (var table in state) {
 			state[table]['now'] = now;
 		}		
 	}
 
-    // var state = {};
-    var endpoint = "/blog/entries";
-    var params = {"queries":JSON.stringify(state)};    
-    var dataStart = (new Date).getTime();
-    $.post(endpoint, params, function(data) {
+	var endpoint = null;
+	var params = null;
+	
+	var callback = function(data) {
 		var endTime = (new Date).getTime();
         var dataTime = endTime - dataStart;
+
+    // console.info("Server Response");
+        // console.info(JSON.stringify(data));    
 	    var bulkloadStart = (new Date).getTime();
-        window.db.bulkload(data);
+		if (data) {
+	        window.db.bulkload(data);			
+		}
 		endTime = (new Date).getTime();
         var bulkloadTime = endTime - bulkloadStart;
-	      var templateStart = (new Date).getTime();
+
+	      $('#newtemplate').attr('query', 'SELECT * from Pages WHERE id = ' + pageid + ';');
+	  	  var templateStart = (new Date).getTime();
 		  $('#newtemplate').render_new();
 		  endTime = (new Date).getTime();
+		
+		
 	      var templateTime = endTime - templateStart;
-	      
-		  if (parent.LogData != "undefined") {
-			parent.LogData(window.location.href, JSON.stringify(params), dataTime, bulkloadTime, templateTime);
+
+		  if (parent.LogData) {
+			if (endpoint == null) {
+				// We didn't hit the server
+				parent.LogData("synckit", "CACHED", "CACHED", 0, 0, templateTime);
+			}
+			else {
+				parent.LogData("synckit", window.location.href, JSON.stringify(params), dataTime, bulkloadTime, templateTime);
+			}
 		  }
-    }, "json");
+	}
+
+    // var state = {};
+	
+	if (state["Pages"]) {
+	    endpoint = "/wiki/page";	
+	    params = {"queries":JSON.stringify(state)};    
+	    var dataStart = (new Date).getTime();
+
+	    $.post(endpoint, params, callback, "json");		
+	}
+	else {
+		var dataStart = (new Date).getTime();
+	    callback.call(null);
+	}
     
 });
 
@@ -959,10 +1007,10 @@ $(function() {
 <p align="center"><b>Template Loading...</b></p>
 </div>
 
-<table id="newtemplate" query="SELECT * From Posts LIMIT 10;" as="entry">
+<table id="newtemplate" query="" as="entry">
 	<tr itemscope="yes" itemtype="Entry" />
 		<td><span itemprop="title">from</span></td>
-		<td><span itemprop="content">content</span></td>
+		<td><span itemprop="contents">content</span></td>
 	</tr>
 </table>
 

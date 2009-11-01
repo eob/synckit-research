@@ -4,21 +4,32 @@ setup_environ(settings)
 
 from django.db import transaction
 from server.blog.models import *
+from text_utils import generate_string
 
 import datetime
 import random
-import string
 import sys
 import traceback
 
+#original
+#NUM_AUTHORS = 10
+#START_DATE = datetime.datetime(2009, 05, 01)
+#ENTRIES_PER_MINUTE = .06666666 # 4 / hour
+#NUM_DAYS = 900
+#ENTRY_LENGTH_MU = 1024
+#ENTRY_LENGTH_SIGMA = 1024
+#TITLE_LENGTH_MU = 50
+#TITLE_LENGTH_SIGMA = 25
+
+#techcrunch
 NUM_AUTHORS = 10
 START_DATE = datetime.datetime(2009, 05, 01)
-ENTRIES_PER_MINUTE = .06666666 # 4 / hour
+ENTRIES_PER_MINUTE = .00873744 # about 1 entry every 2 hours
 NUM_DAYS = 900
-ENTRY_LENGTH_MU = 1024
-ENTRY_LENGTH_SIGMA = 1024
+ENTRY_LENGTH_MU = 5487
+ENTRY_LENGTH_SIGMA = 4349
 TITLE_LENGTH_MU = 50
-TITLE_LENGTH_SIGMA = 25
+TITLE_LENGTH_SIGMA = 10
 
 @transaction.commit_manually
 def generate_data():
@@ -58,10 +69,6 @@ def generate_entries(authors):
         if (itercount % 1000) == 0:
             print "Making entry for %s" % (str(date))
         itercount += 1
-
-def generate_string(length):
-    int_length = int(length)
-    return "".join([random.choice(string.ascii_lowercase) for i in xrange(int_length)])
 
 if __name__ == "__main__":
     generate_data()

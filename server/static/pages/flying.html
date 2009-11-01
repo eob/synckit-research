@@ -606,7 +606,7 @@ _skProto = function() {
     }
     
     this.create_stats_table = function() {
-        console.info("Creating Stats Table");
+        // console.info("Creating Stats Table");
         if (this._localdb !== null) {
             this.execute("CREATE TABLE IF NOT EXISTS sk_stats (entity varchar(255), type varchar(255), state varchar(255));");
         }
@@ -616,7 +616,7 @@ _skProto = function() {
     };
     
     this.reset = function() {
-        console.info("Resetting DB");
+        // console.info("Resetting DB");
         if (this._localdb !== null) {
             this._localdb.remove();
             this.opendb("synckit");
@@ -637,7 +637,7 @@ _skProto = function() {
                     rows = schema[table];
                     if (rows != "undefined") {
                         // Create table
-                    	console.info("Creating table " + table + "(" + rows.join() + ")");
+                    	// console.info("Creating table " + table + "(" + rows.join() + ")");
                         this.execute("CREATE TABLE IF NOT EXISTS " + table + " (" + rows.join() + ");");
                     }
                     continue;
@@ -724,13 +724,13 @@ _skProto = function() {
     }
     
     this.bulkload = function(data) {
-        console.info("hey");
-        console.time("Performing Bulkload Insertion");
+        // console.info("hey");
+        // console.time("Performing Bulkload Insertion");
         
         for (var tablename in data) {
             var table_data = data[tablename];
             if (typeof(table_data) == "string") {
-                console.info("Skipping table " + tablename + " with message: " + table_data);
+                // console.info("Skipping table " + tablename + " with message: " + table_data);
                 continue;
             }
             
@@ -754,7 +754,7 @@ _skProto = function() {
             }
             
         }
-        console.timeEnd("Performing Bulkload Insertion");
+        // console.timeEnd("Performing Bulkload Insertion");
     };
 
     
@@ -766,10 +766,10 @@ _skProto = function() {
             // Get a list of all tables
             var result = this.execute("SELECT name FROM sqlite_master WHERE type='table';");
             while (result.isValidRow()) {
-                console.info("===" + result.field(0) + "===");
+                // console.info("===" + result.field(0) + "===");
                 this.dump_stats(result.field(0));
-                console.info("=============================");
-                console.info("=============================");
+                // console.info("=============================");
+                // console.info("=============================");
                 result.next();
             }
             return result.isValidRow();
@@ -781,10 +781,10 @@ _skProto = function() {
             // Get a list of all tables
             var result = this.execute("SELECT name FROM sqlite_master WHERE type='table';");
             while (result.isValidRow()) {
-                console.info("===" + result.field(0) + "===");
+                // console.info("===" + result.field(0) + "===");
                 this.dump(result.field(0));
-                console.info("=============================");
-                console.info("=============================");
+                // console.info("=============================");
+                // console.info("=============================");
                 result.next();
             }
             return result.isValidRow();
@@ -795,14 +795,14 @@ _skProto = function() {
             var rs = this.execute("SELECT * FROM " + table + ";");
             while (rs.isValidRow()) {
               for (var i=0; i<rs.fieldCount(); i++) {
-                  console.log(rs.fieldName(i) + ": " + rs.field(i));
+                  // console.log(rs.fieldName(i) + ": " + rs.field(i));
               }
-              console.log("----");
+              // console.log("----");
               rs.next();
             }
         }
         else {
-            console.error("Can't dump. Local DB is null.");
+            // console.error("Can't dump. Local DB is null.");
         }
     };
     
@@ -852,16 +852,16 @@ jQuery.fn.templateData = function(value) {
 };
 
 jQuery.fn.render = function() {
-	console.time("Rendering Template");
+	// console.time("Rendering Template");
     var templateString = this.template();
     var value = this.templateData();
     var template = jsontemplate.Template(templateString);
-    // console.log("Template Size: " + templateString.length);
+    // // console.log("Template Size: " + templateString.length);
     // console.log(value);
     var rendered = template.expand(value);
     // console.log("Rendered Size: " + rendered.length);
     this.html(rendered);
-	console.timeEnd("Rendering Template");
+	// console.timeEnd("Rendering Template");
 }
 
 function replacementFieldByName(name) {
@@ -880,7 +880,7 @@ function replacementFieldByName(name) {
 }
 
 jQuery.fn.render_flying = function(data, callback) {
-	console.time("Rendering Flying Template");
+	// console.time("Rendering Flying Template");
 	var templates = this.find("[itemscope]");
 	var map = {};
 	var results = data["Posts"]["results"];
@@ -901,15 +901,12 @@ jQuery.fn.render_flying = function(data, callback) {
 		jQuery(this).remove();
 	});
 
-	console.timeEnd("Rendering SQL Template");
-	if (callback != "undefined") {
-		callback.call();
-	}
+	// console.timeEnd("Rendering SQL Template");
 }
 </script>
 <script>
 $(function() {
-    console.info("Page Loaded");
+    // console.info("Page Loaded");
     window.db = create_synckit();
     
     /*
@@ -944,23 +941,34 @@ $(function() {
          
     // var state = {};
     var endpoint = "/blog/entries";
-
-    var FLYING_STATE = {
-    	"Posts":{"now":"2010-04-29 20:37:11.433831"}
+	var state = {"Posts":{}};
+    var now = urlParam('now');
+	if (now != 'undefined') {
+		for (var table in state) {
+			state[table]['now'] = now;
+		}		
 	}
-    
-    var params = {"queries":JSON.stringify(FLYING_STATE)};    
 
-    console.info("Endpoint: " + endpoint);    
-    console.info("Params: " + JSON.stringify(params));
-    
+    var params = {"queries":JSON.stringify(state)};    
+
+    // console.info("Endpoint: " + endpoint);    
+    // console.info("Params: " + JSON.stringify(params));
+    var dataStart = (new Date).getTime();
     $.post(endpoint, params, function(data) {
+		var endTime = (new Date).getTime();
+        var dataTime = endTime - dataStart;
+	
 //        var data = window.db.process_data_spec(dataspec);
-		
-		  $('#newtemplate').render_flying(data, function() {
-				jQuery.get("/blog/markdone");	
-		  });
-	      // Do the new render
+		 var templateStart = (new Date).getTime();	
+		  $('#newtemplate').render_flying();
+		  endTime = (new Date).getTime();
+	      var templateTime = endTime - templateStart;
+	     
+		  if (parent.LogData) {
+			parent.LogData(window.location.href, JSON.stringify(params), dataTime, 0, templateTime);
+		  }
+	
+	 // Do the new render
 	      
 	      
     }, "json");

@@ -1,0 +1,21 @@
+<html>
+<head>
+<title></title>
+</head>
+
+<body>
+    <form method="POST" action =
+    "http://127.0.0.1:8000/wiki/page">
+        <input name="queries" type="hidden" value='{
+    "Pages":{
+        "filter":["99"],
+        "exclude":["3", "15"]
+    }
+}'>
+        <input name="latency" type="hidden" value='.1'>
+        <input name="bandwidth" type="hidden" value='100000'>
+        <input type="submit">
+    </form>
+</body>
+
+</html>

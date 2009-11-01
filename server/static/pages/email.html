@@ -9,6 +9,14 @@
     <script type="text/javascript" src="/static/javascripts/pretty_json.js"></script>
 
 <script>
+function urlParam(name){
+	var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	if (results) {
+		return results[1].replace(/%20/,' ')
+	}
+	return 0;
+}
+
 $(function() {
     console.info("Page Loaded");
     window.db = create_synckit();
@@ -38,7 +46,8 @@ $(function() {
      * The state represents what elements from the remove_views that the client has, so that the
      * server will not waste resources duplicating information.
      */
-    var state = window.db.get_state(remote_views);        
+    var state = window.db.get_state(remote_views);   
+     
     // var state = {};
     var endpoint = "/email/inbox";
     

@@ -1,0 +1,41 @@
+<html>
+<head>	
+<script type="text/javascript" src="/static/javascripts/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="/static/javascripts/testrunner.js"></script>
+<link rel="stylesheet" href="/static/stylesheets/style.css" />
+<script type="text/javascript">
+function Advance() {
+	alert("About to begin test. Please make sure your browser is newly-opened, your cache/history/Google Gears/etc cleared, and your system has resources free.")
+	$.getScript($('#dsselect').val());	
+}
+</script>
+</head>
+
+<body>                
+    
+<div id="loading">
+	Tester: <input id="tester" name="tester" /> 
+	Comments: <input id="tester_comments" name="tester_comments" />
+	Latency: <input id="latency" name="latency" size=4 />
+	Bandwidth: <input id="bandwidth" name="bandwidth" size=4 />
+    <select id="dsselect">
+		<option selected value="/static/javascripts/userload1.js">Testing Run</option>
+		<option selected value="/static/try1/test_freq_6_per_day_traditional.js">TRY 1 / Wiki - Traditional Hosting</option>
+		<option selected value="/static/try1/test_freq_6_per_day_tokyo.js">TRY 1 / Flying Templates</option>
+		<option selected value="/static/try1/test_freq_6_per_day_synckit.js">TRY 1 / Sync Kit</option>
+	</select>
+	<button onclick="Advance(); return false;">Begin Test</button>
+</div>
+
+<div id="debug">
+</div>
+<div id="testcontainer">
+</div>
+<br />
+<table id="results" border=1>
+	<tr><th>Style</th><th>URL</th><th>Params</th><th>Total Time to Render</th><th>Data Fetch</th><th>Data Bulkload</th><th>Template Parse</th></tr>
+	<tr id="last_result"></tr>
+</table>
+
+</body>
+</html>

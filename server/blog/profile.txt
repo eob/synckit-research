@@ -1,0 +1,18 @@
++import hotshot
++
++
+ # This lives outside of a method so it's only instantiated once per
+ # interpreter instance
+ manager = ViewManager()
+@@ -10,6 +13,14 @@ qv = QueueView(Entry, "date", 10)
+ manager.register("Posts", qv)
+ 
+ def seepage(request):
++    prof = hotshot.Profile('test.prof')
++    prof.start()
++    tmp = profileme(request)
++    prof.stop()
++    prof.close
++    return tmp
++
+
