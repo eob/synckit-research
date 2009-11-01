@@ -18,7 +18,7 @@ class Page:
         self.data = []
     
     def __str__(self):
-        return self.name
+        return self.url
 
 class User:
     def __init__(self, visit_rate, visit_time_unit, last_visit_time):
@@ -43,8 +43,8 @@ class User:
         else:
             self.next_visit_time += datetime.timedelta(**params)
     
-    def visits_to_json(self):
-        visits = ",".join([visit.to_json() for visit in self.visits])
+    def visits_to_json(self, baseurl):
+        visits = ",".join([visit.to_json(baseurl) for visit in self.visits])
         return "[%s]" % (visits)
         
 class Visit:
@@ -56,8 +56,8 @@ class Visit:
     def __str__(self):
         return str(self.last_time) + ", " + str(self.this_time) + ", " + str(self.click_trail)
     
-    def to_json(self):
-        return '{"time":"%s", "clicktrail":%s}' % (self.this_time, self.click_trail.to_json())
+    def to_json(self, baseurl):
+        return '{"time":"%s", "clicktrail":%s}' % (self.this_time, self.click_trail.to_json(baseurl))
 
 class ClickTrail:
     def __init__(self, path):
@@ -66,8 +66,8 @@ class ClickTrail:
     def __str__(self):
         return str([page.name for page in self.path])
 
-    def to_json(self):
-        comma_list = ",".join([('"%s"' % page.name) for page in self.path])
+    def to_json(self, baseurl):
+        comma_list = ",".join([('"%s%s"' % (baseurl, page.url)) for page in self.path])
         return '[%s]' % (comma_list)
 
 class Site:
@@ -172,16 +172,16 @@ class Wiki(Site):
         for page in pages:
             page_node = Page(page.title, self.base_url + '?pageid=' + str(page.id))
             page_node.p_landing = page.access_probability
-            print page_node.p_landing
             page_cache[page.id] = page_node
             self.graph.add_node(page_node)
         
         # Add the nodes
         for page in pages:
+            page_node = page_cache[page.id]
             linksum = 0
             for other in page.outlinks.all():
                 linksum += other.access_probability
             for other in page.outlinks.all():
                 other_node = page_cache[other.id]
-                self.graph.add_edge(page, other_node, weight=((other.access_probability / float(linksum)) * (1.0 - self.p_leave)))
-            self.graph.add_edge(page, END, weight=self.p_leave)  
+                self.graph.add_edge(page_node, other_node, weight=((other.access_probability / float(linksum)) * (1.0 - self.p_leave)))
+            self.graph.add_edge(page_node, END, weight=self.p_leave)  

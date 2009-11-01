@@ -5,7 +5,8 @@
 <link rel="stylesheet" href="/static/stylesheets/style.css" />
 <script type="text/javascript">
 function Advance() {
-	$.getScript('/static/javascripts/userLoad1.js');	
+	alert("About to begin test. Please make sure your browser is newly-opened, your cache/history/Google Gears/etc cleared, and your system has resources free.")
+	$.getScript($('#dsselect').val());	
 }
 </script>
 </head>
@@ -13,7 +14,17 @@ function Advance() {
 <body>                
     
 <div id="loading">
-    <button onclick="">RESET CLIENT DB</button><button onclick="Advance(); return false;">ADVANCE TIME -></button>
+	Tester: <input id="tester" name="tester" /> 
+	Comments: <input id="tester_comments" name="tester_comments" />
+	Latency: <input id="latency" name="latency" size=4 />
+	Bandwidth: <input id="bandwidth" name="bandwidth" size=4 />
+    <select id="dsselect">
+		<option selected value="/static/javascripts/userload1.js">Testing Run</option>
+		<option selected value="/static/try1/test_freq_6_per_day_traditional.js">TRY 1 / Wiki - Traditional Hosting</option>
+		<option selected value="/static/try1/test_freq_6_per_day_tokyo.js">TRY 1 / Flying Templates</option>
+		<option selected value="/static/try1/test_freq_6_per_day_synckit.js">TRY 1 / Sync Kit</option>
+	</select>
+	<button onclick="Advance(); return false;">Begin Test</button>
 </div>
 
 <div id="debug">
@@ -22,7 +33,8 @@ function Advance() {
 </div>
 <br />
 <table id="results" border=1>
-	<tr><th>URL</th><th>Params</th><th>Total Time to Render</th><th>Data Fetch</th><th>Data Bulkload</th><th>Template Parse</th></tr>
+	<tr><th>Style</th><th>URL</th><th>Params</th><th>Total Time to Render</th><th>Data Fetch</th><th>Data Bulkload</th><th>Template Parse</th></tr>
+	<tr id="last_result"></tr>
 </table>
 
 </body>

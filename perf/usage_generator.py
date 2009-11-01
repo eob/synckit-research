@@ -6,7 +6,7 @@ from random import *
 import datetime
 import pickle 
 import datetime
-
+import os
 
 BLOG_TEST = 0
 WIKI_TEST = 1
@@ -18,7 +18,7 @@ if BLOG_TEST:
     PERCENT_NEW = 0.3
     FROM_DATE = datetime.datetime(2010, 05, 01)
     TO_DATE = datetime.datetime(2010, 05, 07)
-    BLOG = OnePageBlog('')
+    SITE = OnePageBlog('')
     TEMPLATE_ENNDPOINT = "/static/pages/blog.html"
     DATA_ENNDPOINT = "/blog/entries"
     PRERENDERED_ENNDPOINT = "/blog/traditional"
@@ -30,7 +30,7 @@ if WIKI_TEST:
     PERCENT_NEW = 0.3
     FROM_DATE = datetime.datetime(2010, 05, 01)
     TO_DATE = datetime.datetime(2010, 05, 07)
-    BLOG = Wiki("/", 0.3)
+    SITE = Wiki("", 0.3)
     TEMPLATE_ENNDPOINT = "/static/pages/blog.html"
     DATA_ENNDPOINT = "/blog/entries"
     PRERENDERED_ENNDPOINT = "/blog/traditional"
@@ -76,7 +76,7 @@ def run_test(site, users):
         # For all users who have a planned visit 
         for user in users:
             if user.next_visit_time <= now:
-                all_visits.append(user.perform_next_visit(BLOG))
+                all_visits.append(user.perform_next_visit(SITE))
         # Advance the clock    
         now += datetime.timedelta(**tick_hash)
     return all_visits
@@ -115,13 +115,12 @@ def write_httperf_file(urls, filename, header=""):
         output.write(url + '\n')
     output.close()
 
-def write_json_file(users, filename, header=""):
+def write_json_file(users, filename, baseurl, header=""):
     output = open(filename, 'wb')
     if len(header) > 0:
         output.write("// %s" % (header) + '\n')
     output.write("runTestWithUsers([\n")
-    visits = [user.visits_to_json() for user in users]
-    print str(visits)
+    visits = [user.visits_to_json(baseurl) for user in users]
     output.write(",".join(visits))
     output.write("]);\n")
     output.close()
@@ -137,21 +136,28 @@ def write_test_files(directory_name, test_name, num_users, percent_new, num_visi
     ensure_directory(directory_name)
     
     users = create_users(num_users, percent_new, num_visits, in_period)    
-    visits = run_test(BLOG,users)
+    visits = run_test(SITE,users)
     
-    if server_oriented:
-        for strategy in ('synckit', 'tokyo', 'traditional'):
-            # Write The Server-Oriented Tests
-            urls = []
-            for visit in visits:
-                urls.extend(url_strings_for_visit(visit, strategy))
-                urls.append("")
-            comments = "# Test Name: %s\n# Strategy: %s\n# Number Users: %s\n# Percent New: %s\n# Number Visits: %s / %s\n" % (test_name, strategy, str(num_users), str(percent_new), str(num_visits), str(in_period))
-            write_httperf_file(urls, "%s/%s_%s.txt" % (directory_name, test_name, strategy), header=comments)
-    else:
-        # Write The Client-Oriented Tests            
-        comments = "# Test Name: %s  # Number Users: %s  # Percent New: %s   # Number Visits: %s / %s\n" % (test_name, str(num_users), str(percent_new), str(num_visits), str(in_period))
-        write_json_file(users, "%s/%s.txt" % (directory_name, test_name), header=comments)
+    for strategy in ('synckit', 'tokyo', 'traditional'):
+        if server_oriented:
+                # Write The Server-Oriented Tests
+                urls = []
+                for visit in visits:
+                    urls.extend(url_strings_for_visit(visit, strategy))
+                    urls.append("")
+                comments = "# Test Name: %s\n# Strategy: %s\n# Number Users: %s\n# Percent New: %s\n# Number Visits: %s / %s\n" % (test_name, strategy, str(num_users), str(percent_new), str(num_visits), str(in_period))
+                write_httperf_file(urls, "%s/%s_%s.txt" % (directory_name, test_name, strategy), header=comments)
+        else:
+            # Write The Client-Oriented Tests  
+            if strategy == 'synckit':
+                url = '/static/pages/wiki.html'
+            elif strategy == 'tokyo':
+                url = '/static/pages/flying-wiki.html'
+            elif strategy == 'traditional':
+                url = '/wiki/traditional'     
+                     
+            comments = "# Test Name: %s  # Strategy: %s # Number Users: %s  # Percent New: %s   # Number Visits: %s / %s\n" % (test_name, strategy, str(num_users), str(percent_new), str(num_visits), str(in_period))
+            write_json_file(users, "%s/%s_%s.txt" % (directory_name, test_name, strategy), url, header=comments)
 
 now = datetime.datetime.now()
 dirname = now.strftime("%Y-%m-%d.%H:%M:%S")
@@ -179,15 +185,7 @@ if BLOG_TEST:
     write_test_files(dirname, "test_freq_0.25_per_day", 20, 0.0, 0.25, "days", 1)
 
 if WIKI_TEST:
-    users = create_users(2, 0.5, VISIT_RATE, VISIT_UNIT)    
-    visits = run_test(BLOG,users)
-    for user in users:
-        print "User"
-        print "========================="
-        for visit in user.visits:
-            print "Visit"
-            print "--------------------------"
-            print str(visit)
+    write_test_files(dirname, "test_freq_6_per_day", 20, 0.0, 7, "days", 0)
         
 # if WIKI_TEST:
     
