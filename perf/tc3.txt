@@ -1,0 +1,572 @@
+file,rate,total_requests,concurrent_connections,request_rate,reply_rate_avg,reply_rate_stdev,reply_samples,total_size,200_statuses,net_io
+file,highest_rate,attempted_rate,avg_data
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_12_per_day_traditional.txt
+test_freq_12_per_day_traditional.txt,520,3888,1020,81.7,81.8,71.1,9,132807.0,3274,10610.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_12_per_day_traditional.txt
+test_freq_12_per_day_traditional.txt,279,5907,1020,98.9,106.8,49.4,11,149748.0,5584,14484.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,tc3/test_freq_12_per_day_traditional.txt
+test_freq_12_per_day_traditional.txt,159,9538,1020,109.6,111.8,46.3,17,158904.0,9515,17027.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 99 --wsesslog=10000,0,tc3/test_freq_12_per_day_traditional.txt
+test_freq_12_per_day_traditional.txt,99,10000,14,99.0,99.0,0.4,20,159303.0,10000,15414.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 129 --wsesslog=10000,0,tc3/test_freq_12_per_day_traditional.txt
+test_freq_12_per_day_traditional.txt,129,10000,68,128.7,128.8,3.0,15,159303.0,10000,20049.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 144 --wsesslog=10000,0,tc3/test_freq_12_per_day_traditional.txt
+test_freq_12_per_day_traditional.txt,144,10000,242,127.2,133.3,27.9,15,159303.0,10000,19801.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 136 --wsesslog=10000,0,tc3/test_freq_12_per_day_traditional.txt
+test_freq_12_per_day_traditional.txt,136,10000,141,135.8,135.4,6.0,14,159303.0,10000,21142.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 140 --wsesslog=10000,0,tc3/test_freq_12_per_day_traditional.txt
+test_freq_12_per_day_traditional.txt,140,10000,42,139.8,139.8,2.6,14,159303.0,10000,21765.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 142 --wsesslog=10000,0,tc3/test_freq_12_per_day_traditional.txt
+test_freq_12_per_day_traditional.txt,142,10000,51,141.6,141.6,2.4,14,159303.0,10000,22052.7 KB/s
+test_freq_12_per_day_traditional.txt,141.600000,143,159303.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_2_per_day_tokyo.txt
+test_freq_2_per_day_tokyo.txt,520,5503,1020,175.8,178.9,85.6,6,56660.0,4945,9546.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_2_per_day_tokyo.txt
+test_freq_2_per_day_tokyo.txt,279,9157,1020,153.4,165.8,91.5,11,61754.0,9157,9273.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,tc3/test_freq_2_per_day_tokyo.txt
+test_freq_2_per_day_tokyo.txt,159,11862,69,188.3,188.3,10.5,12,61758.0,11862,11382.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 219 --wsesslog=10000,0,tc3/test_freq_2_per_day_tokyo.txt
+test_freq_2_per_day_tokyo.txt,219,11441,1020,164.0,175.3,88.6,13,61734.0,11441,9909.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 189 --wsesslog=10000,0,tc3/test_freq_2_per_day_tokyo.txt
+test_freq_2_per_day_tokyo.txt,189,11862,160,203.1,215.5,19.7,11,61758.0,11862,12275.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 204 --wsesslog=10000,0,tc3/test_freq_2_per_day_tokyo.txt
+test_freq_2_per_day_tokyo.txt,204,11862,672,162.6,169.3,96.2,14,61758.0,11862,9827.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 196 --wsesslog=10000,0,tc3/test_freq_2_per_day_tokyo.txt
+test_freq_2_per_day_tokyo.txt,196,11862,322,192.0,197.7,67.4,12,61758.0,11862,11607.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 192 --wsesslog=10000,0,tc3/test_freq_2_per_day_tokyo.txt
+test_freq_2_per_day_tokyo.txt,192,11862,101,225.7,225.4,7.8,10,61758.0,11862,13644.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 194 --wsesslog=10000,0,tc3/test_freq_2_per_day_tokyo.txt
+test_freq_2_per_day_tokyo.txt,194,11862,283,188.9,197.6,66.5,12,61758.0,11862,11419.0 KB/s
+test_freq_2_per_day_tokyo.txt,225.700000,193,61758.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_1_per_day_tokyo.txt
+test_freq_1_per_day_tokyo.txt,520,5330,1020,98.8,106.1,100.0,10,55588.0,5082,5361.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_1_per_day_tokyo.txt
+test_freq_1_per_day_tokyo.txt,279,9555,1020,159.9,172.8,96.6,11,58221.0,9555,9114.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,tc3/test_freq_1_per_day_tokyo.txt
+test_freq_1_per_day_tokyo.txt,159,12024,89,191.0,191.1,7.7,12,58226.0,12024,10887.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 219 --wsesslog=10000,0,tc3/test_freq_1_per_day_tokyo.txt
+test_freq_1_per_day_tokyo.txt,219,11928,1020,171.6,182.9,93.6,13,58236.0,11928,9786.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 189 --wsesslog=10000,0,tc3/test_freq_1_per_day_tokyo.txt
+test_freq_1_per_day_tokyo.txt,189,12024,231,225.8,224.8,17.5,10,58226.0,12024,12871.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 204 --wsesslog=10000,0,tc3/test_freq_1_per_day_tokyo.txt
+test_freq_1_per_day_tokyo.txt,204,12024,536,164.7,171.7,100.2,14,58226.0,12024,9388.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 196 --wsesslog=10000,0,tc3/test_freq_1_per_day_tokyo.txt
+test_freq_1_per_day_tokyo.txt,196,12024,296,185.4,200.3,71.0,12,58226.0,12024,10569.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 192 --wsesslog=10000,0,tc3/test_freq_1_per_day_tokyo.txt
+test_freq_1_per_day_tokyo.txt,192,12024,173,227.4,228.0,10.7,10,58226.0,12024,12960.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 194 --wsesslog=10000,0,tc3/test_freq_1_per_day_tokyo.txt
+test_freq_1_per_day_tokyo.txt,194,12024,121,232.3,231.7,8.7,10,58226.0,12024,13242.3 KB/s
+test_freq_1_per_day_tokyo.txt,232.300000,195,58226.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_0.5_per_day_tokyo.txt
+test_freq_0.5_per_day_tokyo.txt,520,6441,1020,138.1,138.6,127.0,9,53669.0,5984,7147.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_0.5_per_day_tokyo.txt
+test_freq_0.5_per_day_tokyo.txt,279,10287,1020,172.2,186.2,104.3,11,56851.0,10268,9586.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,tc3/test_freq_0.5_per_day_tokyo.txt
+test_freq_0.5_per_day_tokyo.txt,159,13420,47,213.0,214.0,9.9,12,57028.0,13420,11890.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 219 --wsesslog=10000,0,tc3/test_freq_0.5_per_day_tokyo.txt
+test_freq_0.5_per_day_tokyo.txt,219,13258,1020,190.5,203.3,106.2,13,57022.0,13258,10633.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 189 --wsesslog=10000,0,tc3/test_freq_0.5_per_day_tokyo.txt
+test_freq_0.5_per_day_tokyo.txt,189,13420,152,250.9,251.4,12.1,10,57028.0,13420,14008.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 204 --wsesslog=10000,0,tc3/test_freq_0.5_per_day_tokyo.txt
+test_freq_0.5_per_day_tokyo.txt,204,13420,752,184.1,191.5,108.1,14,56995.0,13413,10270.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 196 --wsesslog=10000,0,tc3/test_freq_0.5_per_day_tokyo.txt
+test_freq_0.5_per_day_tokyo.txt,196,13420,253,221.1,223.6,83.1,12,57028.0,13420,12345.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 200 --wsesslog=10000,0,tc3/test_freq_0.5_per_day_tokyo.txt
+test_freq_0.5_per_day_tokyo.txt,200,13420,237,222.2,223.7,93.3,12,57028.0,13420,12406.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 202 --wsesslog=10000,0,tc3/test_freq_0.5_per_day_tokyo.txt
+test_freq_0.5_per_day_tokyo.txt,202,13420,629,182.6,191.6,108.7,14,57015.0,13417,10190.7 KB/s
+test_freq_0.5_per_day_tokyo.txt,250.900000,201,57028.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_2_per_day_traditional.txt
+test_freq_2_per_day_traditional.txt,520,4139,1020,85.4,87.8,75.3,9,132715.0,3620,11078.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_2_per_day_traditional.txt
+test_freq_2_per_day_traditional.txt,279,6256,1020,104.5,112.9,56.5,11,150264.0,6157,15354.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,tc3/test_freq_2_per_day_traditional.txt
+test_freq_2_per_day_traditional.txt,159,10000,573,115.9,117.6,60.4,17,153094.0,9997,17348.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 99 --wsesslog=10000,0,tc3/test_freq_2_per_day_traditional.txt
+test_freq_2_per_day_traditional.txt,99,10000,11,99.0,99.0,0.2,20,153143.0,10000,14817.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 129 --wsesslog=10000,0,tc3/test_freq_2_per_day_traditional.txt
+test_freq_2_per_day_traditional.txt,129,10000,77,128.6,128.6,3.5,15,153143.0,10000,19255.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 144 --wsesslog=10000,0,tc3/test_freq_2_per_day_traditional.txt
+test_freq_2_per_day_traditional.txt,144,10000,99,142.8,142.8,6.0,14,153143.0,10000,21384.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 151 --wsesslog=10000,0,tc3/test_freq_2_per_day_traditional.txt
+test_freq_2_per_day_traditional.txt,151,10000,121,150.4,150.3,6.6,13,153143.0,10000,22515.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 155 --wsesslog=10000,0,tc3/test_freq_2_per_day_traditional.txt
+test_freq_2_per_day_traditional.txt,155,10000,326,114.0,117.6,61.0,17,153143.0,10000,17073.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 153 --wsesslog=10000,0,tc3/test_freq_2_per_day_traditional.txt
+test_freq_2_per_day_traditional.txt,153,10000,169,145.7,150.6,2.9,13,153143.0,10000,21817.4 KB/s
+test_freq_2_per_day_traditional.txt,150.400000,152,153143.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_4_per_day_traditional.txt
+test_freq_4_per_day_traditional.txt,520,3767,1020,65.4,68.3,65.1,11,133937.0,3221,8569.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_4_per_day_traditional.txt
+test_freq_4_per_day_traditional.txt,279,6049,1020,101.7,108.9,53.6,11,155113.0,5945,15420.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,tc3/test_freq_4_per_day_traditional.txt
+test_freq_4_per_day_traditional.txt,159,10000,971,114.9,117.4,52.0,17,157956.0,9989,17742.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 99 --wsesslog=10000,0,tc3/test_freq_4_per_day_traditional.txt
+test_freq_4_per_day_traditional.txt,99,10000,11,99.0,99.0,0.3,20,158130.0,10000,15301.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 129 --wsesslog=10000,0,tc3/test_freq_4_per_day_traditional.txt
+test_freq_4_per_day_traditional.txt,129,10000,62,128.9,128.6,3.8,15,158130.0,10000,19931.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 144 --wsesslog=10000,0,tc3/test_freq_4_per_day_traditional.txt
+test_freq_4_per_day_traditional.txt,144,10000,77,143.8,143.8,4.7,13,158130.0,10000,22235.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 151 --wsesslog=10000,0,tc3/test_freq_4_per_day_traditional.txt
+test_freq_4_per_day_traditional.txt,151,10000,454,112.5,117.6,54.1,17,158130.0,10000,17393.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 147 --wsesslog=10000,0,tc3/test_freq_4_per_day_traditional.txt
+test_freq_4_per_day_traditional.txt,147,10000,199,127.1,133.3,36.1,15,158130.0,10000,19650.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 145 --wsesslog=10000,0,tc3/test_freq_4_per_day_traditional.txt
+test_freq_4_per_day_traditional.txt,145,10000,50,144.4,144.3,2.2,13,158130.0,10000,22321.6 KB/s
+test_freq_4_per_day_traditional.txt,144.400000,146,158130.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_6_per_day_tokyo.txt
+test_freq_6_per_day_tokyo.txt,520,5542,1020,119.2,120.2,107.4,9,61260.0,5107,7125.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_6_per_day_tokyo.txt
+test_freq_6_per_day_tokyo.txt,279,8914,1020,149.7,160.8,88.6,11,66581.0,8876,9742.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,tc3/test_freq_6_per_day_tokyo.txt
+test_freq_6_per_day_tokyo.txt,159,11872,95,187.4,188.4,8.2,12,66753.0,11872,12240.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 219 --wsesslog=10000,0,tc3/test_freq_6_per_day_tokyo.txt
+test_freq_6_per_day_tokyo.txt,219,10990,1020,158.1,167.9,83.7,13,66743.0,10990,10326.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 189 --wsesslog=10000,0,tc3/test_freq_6_per_day_tokyo.txt
+test_freq_6_per_day_tokyo.txt,189,11872,428,154.4,158.2,94.4,15,66753.0,11872,10088.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 174 --wsesslog=10000,0,tc3/test_freq_6_per_day_tokyo.txt
+test_freq_6_per_day_tokyo.txt,174,11872,114,205.7,204.9,6.4,11,66753.0,11872,13437.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 181 --wsesslog=10000,0,tc3/test_freq_6_per_day_tokyo.txt
+test_freq_6_per_day_tokyo.txt,181,11872,124,214.6,214.8,9.6,11,66753.0,11872,14018.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 185 --wsesslog=10000,0,tc3/test_freq_6_per_day_tokyo.txt
+test_freq_6_per_day_tokyo.txt,185,11872,186,197.9,215.0,6.1,11,66753.0,11872,12931.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 187 --wsesslog=10000,0,tc3/test_freq_6_per_day_tokyo.txt
+test_freq_6_per_day_tokyo.txt,187,11872,274,167.6,169.6,88.6,14,66753.0,11872,10950.2 KB/s
+test_freq_6_per_day_tokyo.txt,214.600000,186,66753.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_24_per_day_synckit.txt
+test_freq_24_per_day_synckit.txt,520,12376,894,395.1,412.2,283.5,6,17491.0,12376,6814.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_24_per_day_synckit.txt
+test_freq_24_per_day_synckit.txt,279,12376,83,344.2,343.1,11.0,7,17491.0,12376,5936.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 399 --wsesslog=10000,0,tc3/test_freq_24_per_day_synckit.txt
+test_freq_24_per_day_synckit.txt,399,12376,177,461.1,487.9,10.2,5,17491.0,12376,7953.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 459 --wsesslog=10000,0,tc3/test_freq_24_per_day_synckit.txt
+test_freq_24_per_day_synckit.txt,459,12376,326,520.8,552.4,20.7,4,17491.0,12376,8982.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 489 --wsesslog=10000,0,tc3/test_freq_24_per_day_synckit.txt
+test_freq_24_per_day_synckit.txt,489,12376,471,441.0,495.0,217.8,5,17491.0,12376,7606.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 474 --wsesslog=10000,0,tc3/test_freq_24_per_day_synckit.txt
+test_freq_24_per_day_synckit.txt,474,12376,500,536.3,573.9,26.5,4,17491.0,12376,9251.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 481 --wsesslog=10000,0,tc3/test_freq_24_per_day_synckit.txt
+test_freq_24_per_day_synckit.txt,481,12376,466,404.9,412.5,262.0,6,17491.0,12376,6983.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 477 --wsesslog=10000,0,tc3/test_freq_24_per_day_synckit.txt
+test_freq_24_per_day_synckit.txt,477,12376,646,476.2,494.7,148.4,5,17491.0,12376,8214.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 479 --wsesslog=10000,0,tc3/test_freq_24_per_day_synckit.txt
+test_freq_24_per_day_synckit.txt,479,12376,589,420.8,494.8,190.9,5,17491.0,12374,7258.8 KB/s
+test_freq_24_per_day_synckit.txt,536.300000,478,17491.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_0.05_per_day_traditional.txt
+test_freq_0.05_per_day_traditional.txt,520,4008,1020,85.4,88.5,79.8,9,130015.0,3482,10851.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_0.05_per_day_traditional.txt
+test_freq_0.05_per_day_traditional.txt,279,6337,1020,104.6,105.6,62.0,12,149527.0,6284,15292.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,tc3/test_freq_0.05_per_day_traditional.txt
+test_freq_0.05_per_day_traditional.txt,159,10000,445,115.6,117.6,63.0,17,150958.0,10000,17061.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 99 --wsesslog=10000,0,tc3/test_freq_0.05_per_day_traditional.txt
+test_freq_0.05_per_day_traditional.txt,99,10000,13,99.0,99.0,0.2,20,150958.0,10000,14607.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 129 --wsesslog=10000,0,tc3/test_freq_0.05_per_day_traditional.txt
+test_freq_0.05_per_day_traditional.txt,129,10000,68,128.8,128.8,3.7,15,150958.0,10000,19014.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 144 --wsesslog=10000,0,tc3/test_freq_0.05_per_day_traditional.txt
+test_freq_0.05_per_day_traditional.txt,144,10000,177,143.8,143.3,10.7,13,150958.0,10000,21220.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 151 --wsesslog=10000,0,tc3/test_freq_0.05_per_day_traditional.txt
+test_freq_0.05_per_day_traditional.txt,151,10000,112,150.9,150.9,7.0,13,150958.0,10000,22271.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 155 --wsesslog=10000,0,tc3/test_freq_0.05_per_day_traditional.txt
+test_freq_0.05_per_day_traditional.txt,155,10000,153,143.4,152.7,3.8,13,150958.0,10000,21161.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 153 --wsesslog=10000,0,tc3/test_freq_0.05_per_day_traditional.txt
+test_freq_0.05_per_day_traditional.txt,153,10000,51,152.9,152.9,3.0,13,150958.0,10000,22565.3 KB/s
+test_freq_0.05_per_day_traditional.txt,152.900000,154,150958.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_0.25_per_day_traditional.txt
+test_freq_0.25_per_day_traditional.txt,520,4170,1020,88.5,92.2,80.9,9,132618.0,3709,11475.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_0.25_per_day_traditional.txt
+test_freq_0.25_per_day_traditional.txt,279,6394,1020,107.4,115.5,57.1,11,147245.0,6282,15464.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,tc3/test_freq_0.25_per_day_traditional.txt
+test_freq_0.25_per_day_traditional.txt,159,10000,240,119.4,125.0,61.1,16,150245.0,10000,17540.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 99 --wsesslog=10000,0,tc3/test_freq_0.25_per_day_traditional.txt
+test_freq_0.25_per_day_traditional.txt,99,10000,6,99.0,99.0,0.2,20,150245.0,10000,14538.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 129 --wsesslog=10000,0,tc3/test_freq_0.25_per_day_traditional.txt
+test_freq_0.25_per_day_traditional.txt,129,10000,66,128.7,128.7,2.5,15,150245.0,10000,18901.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 144 --wsesslog=10000,0,tc3/test_freq_0.25_per_day_traditional.txt
+test_freq_0.25_per_day_traditional.txt,144,10000,78,143.8,143.1,4.4,13,150245.0,10000,21120.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 151 --wsesslog=10000,0,tc3/test_freq_0.25_per_day_traditional.txt
+test_freq_0.25_per_day_traditional.txt,151,10000,159,150.1,149.9,8.9,13,150245.0,10000,22039.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 155 --wsesslog=10000,0,tc3/test_freq_0.25_per_day_traditional.txt
+test_freq_0.25_per_day_traditional.txt,155,10000,44,154.7,154.6,2.4,12,150245.0,10000,22718.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 157 --wsesslog=10000,0,tc3/test_freq_0.25_per_day_traditional.txt
+test_freq_0.25_per_day_traditional.txt,157,10000,209,143.7,153.0,6.1,13,150245.0,10000,21103.7 KB/s
+test_freq_0.25_per_day_traditional.txt,154.700000,156,150245.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_4_per_day_synckit.txt
+test_freq_4_per_day_synckit.txt,520,11534,1020,251.0,256.3,269.0,9,21796.0,11534,5385.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_4_per_day_synckit.txt
+test_freq_4_per_day_synckit.txt,279,11764,68,327.0,326.6,7.9,7,21692.0,11764,6983.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 399 --wsesslog=10000,0,tc3/test_freq_4_per_day_synckit.txt
+test_freq_4_per_day_synckit.txt,399,11764,295,463.8,465.7,14.8,5,21692.0,11764,9904.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 459 --wsesslog=10000,0,tc3/test_freq_4_per_day_synckit.txt
+test_freq_4_per_day_synckit.txt,459,11764,315,441.7,470.5,134.2,5,21692.0,11764,9432.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 429 --wsesslog=10000,0,tc3/test_freq_4_per_day_synckit.txt
+test_freq_4_per_day_synckit.txt,429,11764,356,496.9,502.2,35.3,4,21692.0,11764,10611.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 444 --wsesslog=10000,0,tc3/test_freq_4_per_day_synckit.txt
+test_freq_4_per_day_synckit.txt,444,11764,422,509.7,512.1,49.2,4,21692.0,11764,10884.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 451 --wsesslog=10000,0,tc3/test_freq_4_per_day_synckit.txt
+test_freq_4_per_day_synckit.txt,451,11764,412,422.0,469.6,135.7,5,21692.0,11764,9011.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 447 --wsesslog=10000,0,tc3/test_freq_4_per_day_synckit.txt
+test_freq_4_per_day_synckit.txt,447,11764,289,462.3,470.5,100.6,5,21692.0,11764,9872.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 449 --wsesslog=10000,0,tc3/test_freq_4_per_day_synckit.txt
+test_freq_4_per_day_synckit.txt,449,11764,616,421.4,470.0,127.0,5,21686.0,11759,8997.4 KB/s
+test_freq_4_per_day_synckit.txt,509.700000,448,21692.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_1_per_day_synckit.txt
+test_freq_1_per_day_synckit.txt,520,7357,1020,235.6,243.6,125.5,6,38278.0,7058,8815.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_1_per_day_synckit.txt
+test_freq_1_per_day_synckit.txt,279,12024,354,253.7,267.1,117.7,9,39836.0,12024,9910.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,tc3/test_freq_1_per_day_synckit.txt
+test_freq_1_per_day_synckit.txt,159,12024,23,191.2,191.2,5.8,12,39836.0,12024,7469.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 219 --wsesslog=10000,0,tc3/test_freq_1_per_day_synckit.txt
+test_freq_1_per_day_synckit.txt,219,12024,83,262.1,261.4,6.9,9,39836.0,12024,10241.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 249 --wsesslog=10000,0,tc3/test_freq_1_per_day_synckit.txt
+test_freq_1_per_day_synckit.txt,249,12024,152,297.8,297.5,12.3,8,39836.0,12024,11637.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 264 --wsesslog=10000,0,tc3/test_freq_1_per_day_synckit.txt
+test_freq_1_per_day_synckit.txt,264,12024,107,316.1,314.9,7.4,7,39836.0,12024,12352.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 271 --wsesslog=10000,0,tc3/test_freq_1_per_day_synckit.txt
+test_freq_1_per_day_synckit.txt,271,12024,92,323.8,323.8,6.1,7,39836.0,12024,12651.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 275 --wsesslog=10000,0,tc3/test_freq_1_per_day_synckit.txt
+test_freq_1_per_day_synckit.txt,275,12024,318,249.3,267.1,113.6,9,39836.0,12024,9740.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 273 --wsesslog=10000,0,tc3/test_freq_1_per_day_synckit.txt
+test_freq_1_per_day_synckit.txt,273,12024,255,252.2,267.2,113.7,9,39836.0,12024,9852.6 KB/s
+test_freq_1_per_day_synckit.txt,323.800000,272,39836.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_18_per_day_synckit.txt
+test_freq_18_per_day_synckit.txt,520,11656,664,448.8,466.0,241.8,5,13914.0,11656,6176.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_18_per_day_synckit.txt
+test_freq_18_per_day_synckit.txt,279,11656,63,325.2,326.2,9.8,7,13914.0,11656,4475.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 399 --wsesslog=10000,0,tc3/test_freq_18_per_day_synckit.txt
+test_freq_18_per_day_synckit.txt,399,11656,109,465.0,465.1,7.1,5,13914.0,11656,6399.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 459 --wsesslog=10000,0,tc3/test_freq_18_per_day_synckit.txt
+test_freq_18_per_day_synckit.txt,459,11656,137,532.7,532.2,3.4,4,13914.0,11656,7331.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 489 --wsesslog=10000,0,tc3/test_freq_18_per_day_synckit.txt
+test_freq_18_per_day_synckit.txt,489,11656,289,561.7,565.5,22.8,4,13914.0,11656,7729.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 504 --wsesslog=10000,0,tc3/test_freq_18_per_day_synckit.txt
+test_freq_18_per_day_synckit.txt,504,11656,367,516.5,574.8,14.0,4,13914.0,11656,7107.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 512 --wsesslog=10000,0,tc3/test_freq_18_per_day_synckit.txt
+test_freq_18_per_day_synckit.txt,512,11656,498,398.0,466.2,242.4,5,13914.0,11656,5476.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 508 --wsesslog=10000,0,tc3/test_freq_18_per_day_synckit.txt
+test_freq_18_per_day_synckit.txt,508,11656,499,464.0,465.8,240.0,5,13914.0,11656,6385.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 506 --wsesslog=10000,0,tc3/test_freq_18_per_day_synckit.txt
+test_freq_18_per_day_synckit.txt,506,11656,481,462.0,465.8,230.2,5,13914.0,11656,6358.0 KB/s
+test_freq_18_per_day_synckit.txt,561.700000,505,13914.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_0.5_per_day_synckit.txt
+test_freq_0.5_per_day_synckit.txt,520,7502,1020,160.8,164.7,156.1,9,44011.0,7256,6922.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_0.5_per_day_synckit.txt
+test_freq_0.5_per_day_synckit.txt,279,12887,1020,215.8,233.5,139.7,11,45069.0,12887,9532.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,tc3/test_freq_0.5_per_day_synckit.txt
+test_freq_0.5_per_day_synckit.txt,159,13420,26,213.3,214.1,9.8,12,45179.0,13420,9446.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 219 --wsesslog=10000,0,tc3/test_freq_0.5_per_day_synckit.txt
+test_freq_0.5_per_day_synckit.txt,219,13420,377,292.2,292.3,31.4,9,45179.0,13420,12937.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 249 --wsesslog=10000,0,tc3/test_freq_0.5_per_day_synckit.txt
+test_freq_0.5_per_day_synckit.txt,249,13420,394,265.5,268.4,118.4,10,45179.0,13420,11754.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 264 --wsesslog=10000,0,tc3/test_freq_0.5_per_day_synckit.txt
+test_freq_0.5_per_day_synckit.txt,264,12745,1020,206.1,212.2,134.8,12,45171.0,12745,9125.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 256 --wsesslog=10000,0,tc3/test_freq_0.5_per_day_synckit.txt
+test_freq_0.5_per_day_synckit.txt,256,13420,548,225.0,243.9,142.6,11,45179.0,13420,9964.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 252 --wsesslog=10000,0,tc3/test_freq_0.5_per_day_synckit.txt
+test_freq_0.5_per_day_synckit.txt,252,13420,722,212.8,223.5,141.6,12,45179.0,13420,9421.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 250 --wsesslog=10000,0,tc3/test_freq_0.5_per_day_synckit.txt
+test_freq_0.5_per_day_synckit.txt,250,13420,514,215.2,223.6,147.1,12,45179.0,13420,9526.8 KB/s
+test_freq_0.5_per_day_synckit.txt,292.200000,250,45179.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_18_per_day_tokyo.txt
+test_freq_18_per_day_tokyo.txt,520,5002,1020,104.6,108.7,95.5,9,67037.0,4820,6839.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_18_per_day_tokyo.txt
+test_freq_18_per_day_tokyo.txt,279,8543,1020,142.0,142.4,90.1,12,69572.0,8543,9669.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,tc3/test_freq_18_per_day_tokyo.txt
+test_freq_18_per_day_tokyo.txt,159,11656,68,185.0,184.8,5.0,12,69579.0,11656,12598.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 219 --wsesslog=10000,0,tc3/test_freq_18_per_day_tokyo.txt
+test_freq_18_per_day_tokyo.txt,219,10498,1020,152.0,160.7,79.6,13,69559.0,10498,10347.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 189 --wsesslog=10000,0,tc3/test_freq_18_per_day_tokyo.txt
+test_freq_18_per_day_tokyo.txt,189,11656,570,151.8,155.4,89.3,15,69579.0,11656,10333.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 174 --wsesslog=10000,0,tc3/test_freq_18_per_day_tokyo.txt
+test_freq_18_per_day_tokyo.txt,174,11656,107,201.3,200.8,13.2,11,69579.0,11656,13706.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 181 --wsesslog=10000,0,tc3/test_freq_18_per_day_tokyo.txt
+test_freq_18_per_day_tokyo.txt,181,11656,337,147.8,155.4,86.6,15,69579.0,11656,10066.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 177 --wsesslog=10000,0,tc3/test_freq_18_per_day_tokyo.txt
+test_freq_18_per_day_tokyo.txt,177,11656,117,205.9,206.7,8.6,11,69579.0,11656,14017.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 179 --wsesslog=10000,0,tc3/test_freq_18_per_day_tokyo.txt
+test_freq_18_per_day_tokyo.txt,179,11656,77,207.7,208.2,7.7,11,69579.0,11656,14142.5 KB/s
+test_freq_18_per_day_tokyo.txt,207.700000,180,69579.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_12_per_day_tokyo.txt
+test_freq_12_per_day_tokyo.txt,520,5256,1020,111.4,113.6,102.3,9,62440.0,4887,6785.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_12_per_day_tokyo.txt
+test_freq_12_per_day_tokyo.txt,279,8727,1020,145.7,157.4,86.9,11,67006.0,8693,9557.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,tc3/test_freq_12_per_day_tokyo.txt
+test_freq_12_per_day_tokyo.txt,159,11728,68,186.2,185.7,8.5,12,67209.0,11728,12248.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 219 --wsesslog=10000,0,tc3/test_freq_12_per_day_tokyo.txt
+test_freq_12_per_day_tokyo.txt,219,10824,1020,155.6,165.5,82.8,13,67247.0,10824,10242.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 189 --wsesslog=10000,0,tc3/test_freq_12_per_day_tokyo.txt
+test_freq_12_per_day_tokyo.txt,189,11728,390,152.7,156.3,94.0,15,67209.0,11728,10043.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 174 --wsesslog=10000,0,tc3/test_freq_12_per_day_tokyo.txt
+test_freq_12_per_day_tokyo.txt,174,11728,150,203.1,203.4,13.4,11,67209.0,11728,13358.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 181 --wsesslog=10000,0,tc3/test_freq_12_per_day_tokyo.txt
+test_freq_12_per_day_tokyo.txt,181,11728,108,209.3,210.7,6.7,11,67209.0,11728,13767.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 185 --wsesslog=10000,0,tc3/test_freq_12_per_day_tokyo.txt
+test_freq_12_per_day_tokyo.txt,185,11728,182,177.6,180.4,79.1,13,67209.0,11728,11681.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 183 --wsesslog=10000,0,tc3/test_freq_12_per_day_tokyo.txt
+test_freq_12_per_day_tokyo.txt,183,11728,49,213.7,212.9,9.0,10,67209.0,11728,14054.7 KB/s
+test_freq_12_per_day_tokyo.txt,213.700000,184,67209.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_4_per_day_tokyo.txt
+test_freq_4_per_day_tokyo.txt,520,5236,1020,108.8,112.5,100.6,9,64066.0,5083,6825.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_4_per_day_tokyo.txt
+test_freq_4_per_day_tokyo.txt,279,8870,1020,148.3,160.3,89.2,11,66191.0,8870,9608.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,tc3/test_freq_4_per_day_tokyo.txt
+test_freq_4_per_day_tokyo.txt,159,11764,56,186.7,186.2,9.6,12,66142.0,11764,12087.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 219 --wsesslog=10000,0,tc3/test_freq_4_per_day_tokyo.txt
+test_freq_4_per_day_tokyo.txt,219,10956,1020,157.3,167.8,82.2,13,66162.0,10956,10186.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 189 --wsesslog=10000,0,tc3/test_freq_4_per_day_tokyo.txt
+test_freq_4_per_day_tokyo.txt,189,11764,429,158.1,168.1,86.0,14,66142.0,11764,10235.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 174 --wsesslog=10000,0,tc3/test_freq_4_per_day_tokyo.txt
+test_freq_4_per_day_tokyo.txt,174,11764,123,202.9,202.1,8.3,11,66142.0,11764,13132.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 181 --wsesslog=10000,0,tc3/test_freq_4_per_day_tokyo.txt
+test_freq_4_per_day_tokyo.txt,181,11764,109,211.2,210.9,9.9,11,66142.0,11764,13669.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 185 --wsesslog=10000,0,tc3/test_freq_4_per_day_tokyo.txt
+test_freq_4_per_day_tokyo.txt,185,11764,408,178.1,180.9,70.5,13,66142.0,11764,11531.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 183 --wsesslog=10000,0,tc3/test_freq_4_per_day_tokyo.txt
+test_freq_4_per_day_tokyo.txt,183,11764,101,213.6,213.7,9.6,11,66142.0,11764,13830.8 KB/s
+test_freq_4_per_day_tokyo.txt,213.600000,184,66142.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_12_per_day_synckit.txt
+test_freq_12_per_day_synckit.txt,520,11728,542,453.3,468.3,223.6,5,15333.0,11728,6866.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_12_per_day_synckit.txt
+test_freq_12_per_day_synckit.txt,279,11728,59,327.2,325.6,8.4,7,15333.0,11728,4956.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 399 --wsesslog=10000,0,tc3/test_freq_12_per_day_synckit.txt
+test_freq_12_per_day_synckit.txt,399,11728,124,464.3,464.8,6.5,5,15333.0,11728,7032.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 459 --wsesslog=10000,0,tc3/test_freq_12_per_day_synckit.txt
+test_freq_12_per_day_synckit.txt,459,11728,199,473.5,535.1,7.2,4,15333.0,11728,7172.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 489 --wsesslog=10000,0,tc3/test_freq_12_per_day_synckit.txt
+test_freq_12_per_day_synckit.txt,489,11728,551,443.6,468.0,173.0,5,15333.0,11728,6719.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 474 --wsesslog=10000,0,tc3/test_freq_12_per_day_synckit.txt
+test_freq_12_per_day_synckit.txt,474,11728,650,355.4,390.7,238.9,6,15333.0,11728,5383.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 466 --wsesslog=10000,0,tc3/test_freq_12_per_day_synckit.txt
+test_freq_12_per_day_synckit.txt,466,11728,201,543.7,542.8,8.6,4,15333.0,11728,8234.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 470 --wsesslog=10000,0,tc3/test_freq_12_per_day_synckit.txt
+test_freq_12_per_day_synckit.txt,470,11728,258,509.2,539.3,16.3,4,15333.0,11728,7712.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 472 --wsesslog=10000,0,tc3/test_freq_12_per_day_synckit.txt
+test_freq_12_per_day_synckit.txt,472,11728,263,485.0,548.5,27.3,4,15333.0,11728,7345.6 KB/s
+test_freq_12_per_day_synckit.txt,543.700000,473,15333.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_6_per_day_traditional.txt
+test_freq_6_per_day_traditional.txt,520,3936,1020,84.4,86.9,75.8,9,137154.0,3417,11323.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_6_per_day_traditional.txt
+test_freq_6_per_day_traditional.txt,279,5797,1020,97.2,104.5,49.9,11,154883.0,5655,14714.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,tc3/test_freq_6_per_day_traditional.txt
+test_freq_6_per_day_traditional.txt,159,9873,1020,113.8,115.9,48.5,17,158781.0,9854,17663.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 99 --wsesslog=10000,0,tc3/test_freq_6_per_day_traditional.txt
+test_freq_6_per_day_traditional.txt,99,10000,11,99.0,99.0,0.2,20,159091.0,10000,15393.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 129 --wsesslog=10000,0,tc3/test_freq_6_per_day_traditional.txt
+test_freq_6_per_day_traditional.txt,129,10000,71,128.5,128.2,3.9,15,159091.0,10000,19985.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 144 --wsesslog=10000,0,tc3/test_freq_6_per_day_traditional.txt
+test_freq_6_per_day_traditional.txt,144,10000,185,113.6,117.6,53.3,17,159091.0,10000,17667.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 136 --wsesslog=10000,0,tc3/test_freq_6_per_day_traditional.txt
+test_freq_6_per_day_traditional.txt,136,10000,135,135.7,135.4,8.5,14,159091.0,10000,21103.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 140 --wsesslog=10000,0,tc3/test_freq_6_per_day_traditional.txt
+test_freq_6_per_day_traditional.txt,140,10000,48,139.4,139.5,2.7,14,159091.0,10000,21683.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 142 --wsesslog=10000,0,tc3/test_freq_6_per_day_traditional.txt
+test_freq_6_per_day_traditional.txt,142,10000,61,141.6,141.6,2.2,14,159091.0,10000,22028.3 KB/s
+test_freq_6_per_day_traditional.txt,141.600000,143,159091.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_0.5_per_day_traditional.txt
+test_freq_0.5_per_day_traditional.txt,520,4225,1020,88.6,88.8,78.5,9,125492.0,3575,10875.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_0.5_per_day_traditional.txt
+test_freq_0.5_per_day_traditional.txt,279,6455,1020,108.1,116.6,57.9,11,140925.0,6128,14899.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,tc3/test_freq_0.5_per_day_traditional.txt
+test_freq_0.5_per_day_traditional.txt,159,10000,180,146.6,153.6,10.0,13,149513.0,10000,21425.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 99 --wsesslog=10000,0,tc3/test_freq_0.5_per_day_traditional.txt
+test_freq_0.5_per_day_traditional.txt,99,10000,11,99.0,99.0,0.4,20,149513.0,10000,14467.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 129 --wsesslog=10000,0,tc3/test_freq_0.5_per_day_traditional.txt
+test_freq_0.5_per_day_traditional.txt,129,10000,40,128.9,128.6,2.1,15,149513.0,10000,18846.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 144 --wsesslog=10000,0,tc3/test_freq_0.5_per_day_traditional.txt
+test_freq_0.5_per_day_traditional.txt,144,10000,80,143.9,143.9,3.3,13,149513.0,10000,21028.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 151 --wsesslog=10000,0,tc3/test_freq_0.5_per_day_traditional.txt
+test_freq_0.5_per_day_traditional.txt,151,10000,80,150.6,150.4,5.4,13,149513.0,10000,22013.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 155 --wsesslog=10000,0,tc3/test_freq_0.5_per_day_traditional.txt
+test_freq_0.5_per_day_traditional.txt,155,10000,68,154.6,154.3,5.4,12,149513.0,10000,22601.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 157 --wsesslog=10000,0,tc3/test_freq_0.5_per_day_traditional.txt
+test_freq_0.5_per_day_traditional.txt,157,10000,93,155.8,155.6,4.1,12,149513.0,10000,22766.7 KB/s
+test_freq_0.5_per_day_traditional.txt,155.800000,158,149513.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_18_per_day_traditional.txt
+test_freq_18_per_day_traditional.txt,520,3923,1020,84.2,86.0,75.5,9,134221.0,3281,11045.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_18_per_day_traditional.txt
+test_freq_18_per_day_traditional.txt,279,5806,1020,97.0,104.8,49.3,11,153702.0,5537,14570.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,tc3/test_freq_18_per_day_traditional.txt
+test_freq_18_per_day_traditional.txt,159,9338,1020,107.4,109.6,44.7,17,161057.0,9289,16906.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 99 --wsesslog=10000,0,tc3/test_freq_18_per_day_traditional.txt
+test_freq_18_per_day_traditional.txt,99,10000,17,99.0,99.0,0.6,20,161900.0,10000,15664.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 129 --wsesslog=10000,0,tc3/test_freq_18_per_day_traditional.txt
+test_freq_18_per_day_traditional.txt,129,10000,95,128.9,128.7,6.7,15,161900.0,10000,20401.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 144 --wsesslog=10000,0,tc3/test_freq_18_per_day_traditional.txt
+test_freq_18_per_day_traditional.txt,144,10000,375,109.7,111.1,54.1,18,161900.0,10000,17363.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 136 --wsesslog=10000,0,tc3/test_freq_18_per_day_traditional.txt
+test_freq_18_per_day_traditional.txt,136,10000,58,135.6,135.4,3.5,14,161900.0,10000,21462.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 140 --wsesslog=10000,0,tc3/test_freq_18_per_day_traditional.txt
+test_freq_18_per_day_traditional.txt,140,10000,168,120.7,125.0,37.3,16,161900.0,10000,19106.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 138 --wsesslog=10000,0,tc3/test_freq_18_per_day_traditional.txt
+test_freq_18_per_day_traditional.txt,138,10000,58,137.4,137.4,2.6,14,161900.0,10000,21748.9 KB/s
+test_freq_18_per_day_traditional.txt,137.400000,139,161900.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_1_per_day_traditional.txt
+test_freq_1_per_day_traditional.txt,520,3950,1020,82.7,87.0,75.9,9,144949.0,3847,11713.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_1_per_day_traditional.txt
+test_freq_1_per_day_traditional.txt,279,6501,1020,108.8,117.1,58.3,11,142603.0,6231,15167.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,tc3/test_freq_1_per_day_traditional.txt
+test_freq_1_per_day_traditional.txt,159,10000,110,157.3,157.4,3.1,12,149179.0,10000,22944.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 219 --wsesslog=10000,0,tc3/test_freq_1_per_day_traditional.txt
+test_freq_1_per_day_traditional.txt,219,8059,1020,115.9,123.5,55.3,13,149271.0,8059,16908.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 189 --wsesslog=10000,0,tc3/test_freq_1_per_day_traditional.txt
+test_freq_1_per_day_traditional.txt,189,9209,1020,119.2,122.5,57.3,15,149085.0,9198,17379.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 174 --wsesslog=10000,0,tc3/test_freq_1_per_day_traditional.txt
+test_freq_1_per_day_traditional.txt,174,9875,1020,121.6,123.3,57.2,16,149147.0,9871,17724.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 166 --wsesslog=10000,0,tc3/test_freq_1_per_day_traditional.txt
+test_freq_1_per_day_traditional.txt,166,10000,608,119.3,124.8,59.2,16,149179.0,10000,17404.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 162 --wsesslog=10000,0,tc3/test_freq_1_per_day_traditional.txt
+test_freq_1_per_day_traditional.txt,162,10000,323,117.7,125.0,61.7,16,149179.0,10000,17167.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 160 --wsesslog=10000,0,tc3/test_freq_1_per_day_traditional.txt
+test_freq_1_per_day_traditional.txt,160,10000,397,136.1,142.8,37.6,14,149179.0,10000,19846.0 KB/s
+test_freq_1_per_day_traditional.txt,157.300000,160,149179.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_2_per_day_synckit.txt
+test_freq_2_per_day_synckit.txt,520,8609,1020,173.8,190.1,190.7,9,30098.0,8592,5138.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_2_per_day_synckit.txt
+test_freq_2_per_day_synckit.txt,279,11862,142,330.2,328.6,9.0,7,30235.0,11862,9805.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 399 --wsesslog=10000,0,tc3/test_freq_2_per_day_synckit.txt
+test_freq_2_per_day_synckit.txt,399,11438,1020,236.6,254.0,195.0,9,30441.0,11438,7073.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 339 --wsesslog=10000,0,tc3/test_freq_2_per_day_synckit.txt
+test_freq_2_per_day_synckit.txt,339,11862,386,396.6,398.4,36.4,5,30235.0,11862,11778.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 369 --wsesslog=10000,0,tc3/test_freq_2_per_day_synckit.txt
+test_freq_2_per_day_synckit.txt,369,11862,541,230.6,237.2,203.1,10,30235.0,11862,6848.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 354 --wsesslog=10000,0,tc3/test_freq_2_per_day_synckit.txt
+test_freq_2_per_day_synckit.txt,354,11862,103,417.8,417.7,3.4,5,30235.0,11862,12407.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 361 --wsesslog=10000,0,tc3/test_freq_2_per_day_synckit.txt
+test_freq_2_per_day_synckit.txt,361,11842,1020,228.5,236.2,185.0,10,30221.0,11821,6782.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 357 --wsesslog=10000,0,tc3/test_freq_2_per_day_synckit.txt
+test_freq_2_per_day_synckit.txt,357,11862,564,235.1,237.1,196.5,10,30235.0,11862,6981.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 355 --wsesslog=10000,0,tc3/test_freq_2_per_day_synckit.txt
+test_freq_2_per_day_synckit.txt,355,11862,113,417.5,417.3,3.7,5,30235.0,11862,12399.3 KB/s
+test_freq_2_per_day_synckit.txt,417.800000,356,30235.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_0.25_per_day_synckit.txt
+test_freq_0.25_per_day_synckit.txt,520,6934,1020,151.0,152.8,145.0,9,47486.0,6620,6979.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_0.25_per_day_synckit.txt
+test_freq_0.25_per_day_synckit.txt,279,12395,1020,197.7,206.5,138.6,12,49424.0,12395,9569.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,tc3/test_freq_0.25_per_day_synckit.txt
+test_freq_0.25_per_day_synckit.txt,159,14482,24,230.0,229.7,7.1,12,49415.0,14482,11135.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 219 --wsesslog=10000,0,tc3/test_freq_0.25_per_day_synckit.txt
+test_freq_0.25_per_day_synckit.txt,219,14482,266,282.4,289.6,72.8,10,49415.0,14482,13672.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 249 --wsesslog=10000,0,tc3/test_freq_0.25_per_day_synckit.txt
+test_freq_0.25_per_day_synckit.txt,249,14058,1020,219.6,233.7,133.8,12,49439.0,14058,10637.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 234 --wsesslog=10000,0,tc3/test_freq_0.25_per_day_synckit.txt
+test_freq_0.25_per_day_synckit.txt,234,14482,694,217.7,222.7,144.2,13,49415.0,14482,10540.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 226 --wsesslog=10000,0,tc3/test_freq_0.25_per_day_synckit.txt
+test_freq_0.25_per_day_synckit.txt,226,14482,532,212.4,222.8,141.4,13,49415.0,14482,10280.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 222 --wsesslog=10000,0,tc3/test_freq_0.25_per_day_synckit.txt
+test_freq_0.25_per_day_synckit.txt,222,14482,416,210.5,222.6,141.1,13,49415.0,14482,10189.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 220 --wsesslog=10000,0,tc3/test_freq_0.25_per_day_synckit.txt
+test_freq_0.25_per_day_synckit.txt,220,14482,484,209.7,222.5,135.2,13,49415.0,14482,10153.1 KB/s
+test_freq_0.25_per_day_synckit.txt,282.400000,220,49415.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_24_per_day_traditional.txt
+test_freq_24_per_day_traditional.txt,520,3701,1020,76.5,78.2,66.3,9,137588.0,3155,10291.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_24_per_day_traditional.txt
+test_freq_24_per_day_traditional.txt,279,5596,1020,93.0,93.2,50.8,12,161707.0,5559,14704.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,tc3/test_freq_24_per_day_traditional.txt
+test_freq_24_per_day_traditional.txt,159,9282,1020,106.9,109.0,44.1,17,161881.0,9223,16921.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 99 --wsesslog=10000,0,tc3/test_freq_24_per_day_traditional.txt
+test_freq_24_per_day_traditional.txt,99,10000,14,99.0,99.0,0.6,20,162909.0,10000,15762.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 129 --wsesslog=10000,0,tc3/test_freq_24_per_day_traditional.txt
+test_freq_24_per_day_traditional.txt,129,10000,57,128.7,128.8,2.8,15,162909.0,10000,20489.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 144 --wsesslog=10000,0,tc3/test_freq_24_per_day_traditional.txt
+test_freq_24_per_day_traditional.txt,144,10000,503,107.4,111.0,51.5,18,162891.0,9999,17102.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 136 --wsesslog=10000,0,tc3/test_freq_24_per_day_traditional.txt
+test_freq_24_per_day_traditional.txt,136,10000,58,135.6,135.5,2.9,14,162909.0,10000,21587.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 140 --wsesslog=10000,0,tc3/test_freq_24_per_day_traditional.txt
+test_freq_24_per_day_traditional.txt,140,10000,236,120.5,125.0,35.5,16,162909.0,10000,19186.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 138 --wsesslog=10000,0,tc3/test_freq_24_per_day_traditional.txt
+test_freq_24_per_day_traditional.txt,138,10000,75,137.5,137.5,3.9,14,162909.0,10000,21890.5 KB/s
+test_freq_24_per_day_traditional.txt,137.500000,139,162909.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_6_per_day_synckit.txt
+test_freq_6_per_day_synckit.txt,520,11872,623,471.2,473.5,229.3,5,18868.0,11872,8763.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_6_per_day_synckit.txt
+test_freq_6_per_day_synckit.txt,279,11872,70,331.2,329.9,6.5,7,18868.0,11872,6159.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 399 --wsesslog=10000,0,tc3/test_freq_6_per_day_synckit.txt
+test_freq_6_per_day_synckit.txt,399,11872,155,423.2,468.0,12.5,5,18868.0,11872,7870.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 459 --wsesslog=10000,0,tc3/test_freq_6_per_day_synckit.txt
+test_freq_6_per_day_synckit.txt,459,11872,592,391.1,395.7,238.9,6,18868.0,11872,7272.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 429 --wsesslog=10000,0,tc3/test_freq_6_per_day_synckit.txt
+test_freq_6_per_day_synckit.txt,429,11872,434,365.4,395.7,197.5,6,18868.0,11872,6795.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 414 --wsesslog=10000,0,tc3/test_freq_6_per_day_synckit.txt
+test_freq_6_per_day_synckit.txt,414,11872,287,409.9,470.9,29.0,5,18868.0,11872,7623.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 421 --wsesslog=10000,0,tc3/test_freq_6_per_day_synckit.txt
+test_freq_6_per_day_synckit.txt,421,11872,366,498.6,483.7,22.2,4,18868.0,11872,9272.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 425 --wsesslog=10000,0,tc3/test_freq_6_per_day_synckit.txt
+test_freq_6_per_day_synckit.txt,425,11872,174,473.5,474.6,62.6,5,18868.0,11872,8805.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 427 --wsesslog=10000,0,tc3/test_freq_6_per_day_synckit.txt
+test_freq_6_per_day_synckit.txt,427,11872,271,473.3,474.2,67.0,5,18868.0,11872,8801.5 KB/s
+test_freq_6_per_day_synckit.txt,498.600000,428,18868.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_0.05_per_day_synckit.txt
+test_freq_0.05_per_day_synckit.txt,520,7563,1020,228.3,246.2,124.2,6,52284.0,7159,11489.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_0.05_per_day_synckit.txt
+test_freq_0.05_per_day_synckit.txt,279,12937,1020,217.1,233.7,136.8,11,54406.0,12937,11563.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,tc3/test_freq_0.05_per_day_synckit.txt
+test_freq_0.05_per_day_synckit.txt,159,16422,61,260.9,260.9,3.3,12,54295.0,16422,13870.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 219 --wsesslog=10000,0,tc3/test_freq_0.05_per_day_synckit.txt
+test_freq_0.05_per_day_synckit.txt,219,15877,1020,227.9,243.4,127.9,13,54275.0,15877,12113.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 249 --wsesslog=10000,0,tc3/test_freq_0.05_per_day_synckit.txt
+test_freq_0.05_per_day_synckit.txt,249,14264,1020,222.4,236.9,132.6,12,54291.0,14264,11821.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 234 --wsesslog=10000,0,tc3/test_freq_0.05_per_day_synckit.txt
+test_freq_0.05_per_day_synckit.txt,234,14995,1020,224.7,230.2,136.2,13,54249.0,14995,11934.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 226 --wsesslog=10000,0,tc3/test_freq_0.05_per_day_synckit.txt
+test_freq_0.05_per_day_synckit.txt,226,15595,1020,228.0,239.4,132.8,13,54274.0,15595,12116.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 230 --wsesslog=10000,0,tc3/test_freq_0.05_per_day_synckit.txt
+test_freq_0.05_per_day_synckit.txt,230,15430,1020,228.4,236.8,136.0,13,54233.0,15430,12131.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 232 --wsesslog=10000,0,tc3/test_freq_0.05_per_day_synckit.txt
+test_freq_0.05_per_day_synckit.txt,232,15160,1020,225.8,232.8,135.2,13,54245.0,15160,11993.5 KB/s
+test_freq_0.05_per_day_synckit.txt,260.900000,231,54295.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_24_per_day_tokyo.txt
+test_freq_24_per_day_tokyo.txt,520,5719,1020,174.4,186.9,89.0,6,62738.0,5198,10575.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_24_per_day_tokyo.txt
+test_freq_24_per_day_tokyo.txt,279,8737,1020,146.3,157.9,84.2,11,68065.0,8628,9747.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,tc3/test_freq_24_per_day_tokyo.txt
+test_freq_24_per_day_tokyo.txt,159,12376,92,195.8,196.2,9.7,12,68924.0,12376,13208.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 219 --wsesslog=10000,0,tc3/test_freq_24_per_day_tokyo.txt
+test_freq_24_per_day_tokyo.txt,219,11175,1020,160.5,171.1,83.5,13,68961.0,11175,10833.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 189 --wsesslog=10000,0,tc3/test_freq_24_per_day_tokyo.txt
+test_freq_24_per_day_tokyo.txt,189,12376,683,161.4,164.9,92.6,15,68924.0,12376,10888.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 174 --wsesslog=10000,0,tc3/test_freq_24_per_day_tokyo.txt
+test_freq_24_per_day_tokyo.txt,174,12376,68,214.8,214.1,13.1,11,68924.0,12376,14489.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 181 --wsesslog=10000,0,tc3/test_freq_24_per_day_tokyo.txt
+test_freq_24_per_day_tokyo.txt,181,12376,208,202.1,206.2,45.4,12,68924.0,12376,13633.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 185 --wsesslog=10000,0,tc3/test_freq_24_per_day_tokyo.txt
+test_freq_24_per_day_tokyo.txt,185,12376,547,158.5,164.9,91.6,15,68924.0,12376,10693.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 183 --wsesslog=10000,0,tc3/test_freq_24_per_day_tokyo.txt
+test_freq_24_per_day_tokyo.txt,183,12376,346,163.8,165.0,94.5,15,68924.0,12376,11049.8 KB/s
+test_freq_24_per_day_tokyo.txt,214.800000,182,68924.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_0.25_per_day_tokyo.txt
+test_freq_0.25_per_day_tokyo.txt,520,7361,1020,236.1,234.7,120.8,6,51956.0,6525,11560.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_0.25_per_day_tokyo.txt
+test_freq_0.25_per_day_tokyo.txt,279,11285,1020,188.7,203.9,116.6,11,56358.0,11222,10397.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,tc3/test_freq_0.25_per_day_tokyo.txt
+test_freq_0.25_per_day_tokyo.txt,159,14482,61,230.0,229.6,8.5,12,56602.0,14482,12742.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 219 --wsesslog=10000,0,tc3/test_freq_0.25_per_day_tokyo.txt
+test_freq_0.25_per_day_tokyo.txt,219,14181,1020,204.0,217.5,111.7,13,56627.0,14181,11309.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 189 --wsesslog=10000,0,tc3/test_freq_0.25_per_day_tokyo.txt
+test_freq_0.25_per_day_tokyo.txt,189,14482,105,272.9,273.0,9.5,10,56602.0,14482,15120.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 204 --wsesslog=10000,0,tc3/test_freq_0.25_per_day_tokyo.txt
+test_freq_0.25_per_day_tokyo.txt,204,14482,702,199.5,206.8,118.5,14,56602.0,14482,11051.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 196 --wsesslog=10000,0,tc3/test_freq_0.25_per_day_tokyo.txt
+test_freq_0.25_per_day_tokyo.txt,196,14482,241,238.5,241.4,89.3,12,56602.0,14482,13213.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 200 --wsesslog=10000,0,tc3/test_freq_0.25_per_day_tokyo.txt
+test_freq_0.25_per_day_tokyo.txt,200,14482,322,234.1,241.3,95.9,12,56602.0,14482,12971.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 202 --wsesslog=10000,0,tc3/test_freq_0.25_per_day_tokyo.txt
+test_freq_0.25_per_day_tokyo.txt,202,14482,439,199.3,206.9,123.1,14,56602.0,14482,11040.8 KB/s
+test_freq_0.25_per_day_tokyo.txt,272.900000,203,56602.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc3/test_freq_0.05_per_day_tokyo.txt
+test_freq_0.05_per_day_tokyo.txt,520,7428,1020,226.6,241.7,118.6,6,53172.0,6973,11530.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc3/test_freq_0.05_per_day_tokyo.txt
+test_freq_0.05_per_day_tokyo.txt,279,12498,1020,206.3,206.5,136.8,12,54756.0,12247,10963.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,tc3/test_freq_0.05_per_day_tokyo.txt
+test_freq_0.05_per_day_tokyo.txt,159,16422,57,260.7,260.7,4.2,12,55584.0,16422,14182.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 219 --wsesslog=10000,0,tc3/test_freq_0.05_per_day_tokyo.txt
+test_freq_0.05_per_day_tokyo.txt,219,15903,1020,228.9,243.9,127.4,13,55596.0,15903,12459.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 249 --wsesslog=10000,0,tc3/test_freq_0.05_per_day_tokyo.txt
+test_freq_0.05_per_day_tokyo.txt,249,14200,1020,221.4,234.9,131.4,12,55320.0,14089,11961.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 234 --wsesslog=10000,0,tc3/test_freq_0.05_per_day_tokyo.txt
+test_freq_0.05_per_day_tokyo.txt,234,14919,1020,223.7,229.1,135.4,13,55603.0,14919,12174.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 226 --wsesslog=10000,0,tc3/test_freq_0.05_per_day_tokyo.txt
+test_freq_0.05_per_day_tokyo.txt,226,15449,1020,225.9,237.0,131.6,13,55608.0,15449,12294.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 230 --wsesslog=10000,0,tc3/test_freq_0.05_per_day_tokyo.txt
+test_freq_0.05_per_day_tokyo.txt,230,15192,1020,218.4,233.1,133.7,13,55605.0,15192,11889.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 228 --wsesslog=10000,0,tc3/test_freq_0.05_per_day_tokyo.txt
+test_freq_0.05_per_day_tokyo.txt,228,15328,1020,226.1,235.2,132.1,13,55591.0,15328,12301.3 KB/s
+test_freq_0.05_per_day_tokyo.txt,260.700000,229,55584.000000

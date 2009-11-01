@@ -1,0 +1,339 @@
+# Test Name: test_freq_0.05_per_day
+# Strategy: synckit
+# Number Users: 100
+# Percent New: 0.5
+# Number Visits: 0.05 / days
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-27 17:44:45.780219", "max":"2010-04-23 05:52:39.125337"}}'
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-03-01 13:20:29.695509", "max":"2010-02-24 12:27:44.767430"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-27 18:46:24.434999", "max":"2010-04-21 17:42:24.959022"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-03-07 07:30:54.251531", "max":"2010-03-06 23:49:02.267811"}}'
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-26 23:39:36.001090", "max":"2010-04-21 22:08:21.568307"}}'
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-19 15:46:04.268018", "max":"2010-04-18 03:46:03.694986"}}'
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-05 13:23:07.177119", "max":"2010-03-24 12:59:38.869874"}}'
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-27 16:10:43.000054", "max":"2010-04-06 11:39:10.085525"}}'
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-08 10:54:55.446611", "max":"2010-04-03 16:56:55.382334"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-24 06:30:38.729754", "max":"2010-03-22 00:51:53.292017"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-23 05:22:14.359431", "max":"2010-04-06 03:03:27.892241"}}'
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-28 09:59:33.258998", "max":"2010-04-26 09:05:39.559621"}}'
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-03-13 17:12:36.077189", "max":"2010-03-04 07:30:32.136279"}}'
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-01-23 14:24:51.824629", "max":"2010-01-12 07:40:09.057746"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-02-26 19:53:53.219505", "max":"2010-02-23 23:35:06.427437"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-03-27 09:09:19.863781", "max":"2010-03-14 23:06:17.617194"}}'
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-03-29 04:30:42.670290", "max":"2010-03-08 14:31:14.044542"}}'
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-07 11:40:10.162972", "max":"2010-04-04 06:34:33.249319"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-03-15 10:45:14.470727", "max":"2010-03-08 00:03:33.615193"}}'
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-03-17 14:38:19.687354", "max":"2010-03-14 03:12:01.203453"}}'
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-04 04:51:36.858285", "max":"2010-04-02 06:26:49.582230"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-30 07:03:35.068918", "max":"2010-03-26 16:01:03.571511"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-27 21:43:12.337637", "max":"2010-04-25 20:18:40.585209"}}'
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-14 06:33:21.214139", "max":"2010-03-16 03:05:08.739738"}}'
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-04 01:19:50.355796", "max":"2010-03-30 15:51:30.099874"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-28 12:11:35.033140", "max":"2010-04-25 06:27:49.280728"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-01 01:32:41.243092", "max":"2010-03-16 07:47:23.882345"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-29 09:55:12.952973", "max":"2010-04-22 09:33:55.748749"}}'
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-05 14:59:25.930538", "max":"2010-02-19 20:41:35.913962"}}'
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-30 09:06:14.475328", "max":"2010-04-26 02:09:04.620985"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-09 09:51:41.795553", "max":"2010-03-01 13:20:29.695509"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-03-22 19:22:14.435328", "max":"2010-03-07 07:30:54.251531"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-29 00:54:43.693585", "max":"2010-04-19 15:46:04.268018"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-08 03:16:08.908428", "max":"2010-04-05 13:23:07.177119"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 02:51:49.585282", "max":"2010-04-27 16:10:43.000054"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-03-15 19:40:39.906917", "max":"2010-03-13 17:12:36.077189"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 21:31:51.084143", "max":"2010-05-01 00:00:00"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-02-25 03:42:27.953732", "max":"2010-01-23 14:24:51.824629"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-03-20 06:15:00.157080", "max":"2010-02-26 19:53:53.219505"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-04 04:17:06.365788", "max":"2010-03-27 09:09:19.863781"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-08 18:51:30.803274", "max":"2010-03-29 04:30:42.670290"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-20 01:45:46.167382", "max":"2010-04-07 11:40:10.162972"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-01 00:36:34.560201", "max":"2010-03-15 10:45:14.470727"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-02 17:53:00.042332", "max":"2010-03-17 14:38:19.687354"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-01 03:57:58.186483", "max":"2010-04-11 11:43:47.443698"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-08 12:09:36.454064", "max":"2010-04-01 01:32:41.243092"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-09 00:12:28.266733", "max":"2010-04-05 14:59:25.930538"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-23 19:38:53.875805", "max":"2010-04-08 03:16:08.908428"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-02 12:38:25.607412", "max":"2010-04-22 19:54:11.301679"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-04 11:46:55.880182", "max":"2010-03-15 19:40:39.906917"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-03-13 17:00:02.703571", "max":"2010-02-25 03:42:27.953732"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-30 22:51:07.497598", "max":"2010-04-04 04:17:06.365788"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-23 03:35:53.524149", "max":"2010-04-20 01:45:46.167382"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-04 04:01:14.070494", "max":"2010-04-01 00:36:34.560201"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-02 12:44:30.230392", "max":"2010-05-01 00:00:00"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-11 02:24:40.224904", "max":"2010-04-02 17:53:00.042332"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-13 07:14:03.901503", "max":"2010-04-08 12:09:36.454064"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-08 20:57:42.422501", "max":"2010-04-04 11:46:55.880182"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-03-20 00:29:44.216585", "max":"2010-03-13 17:00:02.703571"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-02 01:07:38.966437", "max":"2010-04-30 22:51:07.497598"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-03 05:18:25.954468", "max":"2010-04-08 18:51:30.803274"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-04 08:05:49.447623", "max":"2010-04-04 04:01:14.070494"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-20 00:36:40.031690", "max":"2010-04-11 02:24:40.224904"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-03 12:37:59.516964", "max":"2010-05-01 03:57:58.186483"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-04 02:12:56.420150", "max":"2010-03-22 19:22:14.435328"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-04 17:27:49.195442", "max":"2010-04-23 05:22:14.359431"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-28 11:29:06.241695", "max":"2010-04-08 20:57:42.422501"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-04 12:32:07.064588", "max":"2010-05-01 00:00:00"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-05 13:57:56.197531", "max":"2010-03-20 00:29:44.216585"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-03 14:49:18.202284", "max":"2010-05-02 01:07:38.966437"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-24 11:43:37.980136", "max":"2010-04-20 00:36:40.031690"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-04 19:35:55.389130", "max":"2010-04-27 21:43:12.337637"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-05 22:31:40.488635", "max":"2010-05-01 00:00:00"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-04-06 11:36:54.945295", "max":"2010-04-05 13:57:56.197531"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-05 03:12:53.042855", "max":"2010-03-20 06:15:00.157080"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-05 16:41:33.402927", "max":"2010-05-01 00:00:00"}}'
+
+/blog/entries method=POST contents='queries={"Posts":{"now":"2010-05-05 12:50:07.732224", "max":"2010-04-21 12:27:27.133552"}}'
+
