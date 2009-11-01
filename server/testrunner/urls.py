@@ -10,5 +10,6 @@ urlpatterns = patterns('testrunner',
 
     # Uncomment the next line to enable the admin:
     # (r'^admin/(.*)', admin.site.root),
-    (r'^run$', 'runner.main')
+    (r'^run$', 'runner.main'),
+    (r'^perfgen$', 'runner.perfgen')
 )
