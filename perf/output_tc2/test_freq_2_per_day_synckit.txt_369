@@ -1,0 +1,29 @@
+httperf --hog --client=0/1 --server=marcua.csail.mit.edu --port=7000 --uri=/ --rate=369 --send-buffer=4096 --recv-buffer=16384 --wsesslog=10000,0.000,tc2/test_freq_2_per_day_synckit.txt
+Maximum connect burst length: 3
+
+Total: connections 10000 requests 12052 replies 12052 test-duration 50.322 s
+
+Connection rate: 198.7 conn/s (5.0 ms/conn, <=733 concurrent connections)
+Connection time [ms]: min 8.5 avg 1519.4 max 45020.8 median 346.5 stddev 3877.5
+Connection time [ms]: connect 0.3
+Connection length [replies/conn]: 1.205
+
+Request rate: 239.5 req/s (4.2 ms/req)
+Request size [B]: 173.0
+
+Reply rate [replies/s]: min 0.0 avg 240.9 max 434.0 stddev 202.5 (10 samples)
+Reply time [ms]: response 1307.6 transfer 1.1
+Reply size [B]: header 208.0 content 29776.0 footer 1.0 (total 29985.0)
+Reply status: 1xx=0 2xx=12052 3xx=0 4xx=0 5xx=0
+
+CPU time [s]: user 4.30 system 45.97 (user 8.5% system 91.3% total 99.9%)
+Net I/O: 7053.7 KB/s (57.8*10^6 bps)
+
+Errors: total 0 client-timo 0 socket-timo 0 connrefused 0 connreset 0
+Errors: fd-unavail 0 addrunavail 0 ftab-full 0 other 0
+
+Session rate [sess/s]: min 0.00 avg 198.72 max 355.42 stddev 164.82 (10000/10000)
+Session: avg 1.00 connections/session
+Session lifetime [s]: 1.5
+Session failtime [s]: 0.0
+Session length histogram: 0 8974 0 1026
