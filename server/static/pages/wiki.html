@@ -666,6 +666,7 @@ _skProto = function() {
 							var already = [];
 							res = this.execute(stmt2);
 							while (res.isValidRow()) {
+								alert('excluding ' + res.field(0));
 								already.push(res.field(0));
 								res.next();
 							}
