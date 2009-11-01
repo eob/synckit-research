@@ -10,6 +10,7 @@ urlpatterns = patterns('wiki',
 
     # Uncomment the next line to enable the admin:
     # (r'^admin/(.*)', admin.site.root),
-    (r'^page$', 'wiki.seepage'),
-    (r'^traditional$', 'wiki.traditional'),
+    (r'^page', 'wiki.seepage'),
+    (r'^traditional', 'wiki.traditional'),
+    (r'^manifest', 'wiki.manifest'),
 )

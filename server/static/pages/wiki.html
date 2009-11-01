@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html manifest="/wiki/manifest">
 <head>
 <style type="text/css">
 body {
@@ -888,7 +889,7 @@ jQuery.fn.render_new = function(callback) {
 </script>
 <script>
 function urlParam(name){
-	var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	var results = new RegExp('[#&]' + name + '=([^&#]*)').exec(window.location.href);
 	if (results) {
 		return results[1].replace(/%20/,' ')
 	}
@@ -910,6 +911,8 @@ $(function() {
      * in a particular way.  
      */
 	var pageid = urlParam('pageid');
+	var latency = urlParam('latency');
+	var bandwidth = urlParam('bandwidth');
 	
     var remote_views = {
       "Pages":{
@@ -981,7 +984,7 @@ $(function() {
 	
 	if (state["Pages"]) {
 	    endpoint = "/wiki/page";	
-	    params = {"queries":JSON.stringify(state)};    
+	    params = {"queries":JSON.stringify(state), "latency":latency, "bandwidth":bandwidth};    
 	    var dataStart = (new Date).getTime();
 
 	    $.post(endpoint, params, callback, "json");		
