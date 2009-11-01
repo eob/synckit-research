@@ -658,16 +658,18 @@ _skProto = function() {
 
 							if (! res.isValidRow()) {							
 								// We don't have it
-
+								alert("not valid");
 								// Now get exclude list
 								var stmt2 = "SELECT id FROM " + table + ";";
 								var already = [];
 								res2 = this.execute(stmt2);
+								alert("exec");
 								while (res2.isValidRow()) {
 									already.push(res2.field(0));
 									res2.next();
 								}
-								alert (JSON.stringify(already));
+								alert("done");
+								alert(JSON.stringify(already));
 							
 								if (already.length > 0) {
 									state[table] = {"filter":[theid], "exclude":already};	
