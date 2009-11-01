@@ -24,10 +24,10 @@ if BLOG_TEST:
     PRERENDERED_ENNDPOINT = "/blog/traditional"
 
 if WIKI_TEST:    
-    VISIT_RATE = 4
-    VISIT_UNIT = "days"
-    NUM_USERS  = 20
-    PERCENT_NEW = 0.3
+#    VISIT_RATE = 4
+#    VISIT_UNIT = "days"
+#    NUM_USERS  = 20
+#    PERCENT_NEW = 0.3
     FROM_DATE = datetime.datetime(2010, 05, 01)
     TO_DATE = datetime.datetime(2010, 05, 07)
     SITE = Wiki("", 0.3)
@@ -185,7 +185,7 @@ if BLOG_TEST:
     write_test_files(dirname, "test_freq_0.25_per_day", 20, 0.0, 0.25, "days", 1)
 
 if WIKI_TEST:
-    write_test_files(dirname, "test_freq_6_per_day", 20, 0.0, 7, "days", 0)
+    write_test_files(dirname, "test_freq_6_per_day", 100, 0.5, 6, "days", 0)
         
 # if WIKI_TEST:
     

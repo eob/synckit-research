@@ -5,23 +5,31 @@ from django.template import Context, loader
 
 # This lives outside of a method so it's only instantiated once per
 # interpreter instance
-manager = ViewManager()
-prefetch_config = {"model" : Page,
+synckit_manager = ViewManager()
+synckit_prefetch_config = {"model" : Page,
                    "connected_path" : "inlinks",
                    "probability_field" : "access_probability",
                    "exit_probability" : .5,
                    "size_fields" : ["title", "contents"],
                    "total_time" : .25}
-sv = SetView(Page, "id", prefetch_config)
-manager.register("Pages", sv)
+synckit_sv = SetView(Page, "id", synckit_prefetch_config)
+synckit_manager.register("Pages", synckit_sv)
+
+tokyo_manager = ViewManager()
+tokyo_sv = SetView(Page, "id")
+tokyo_manager.register("Pages", tokyo_sv)
 
 def manifest(request):
     t = loader.get_template('manifest.txt')
     c = Context({})
     return HttpResponse(t.render(c), mimetype="text/cache-manifest")
 
-def seepage(request):
-    results = manager.runqueries(request)
+def synckit(request):
+    results = synckit_manager.runqueries(request)
+    return HttpResponse(json.dumps(results), mimetype='application/json')
+
+def tokyo(request):
+    results = tokyo_manager.runqueries(request)
     return HttpResponse(json.dumps(results), mimetype='application/json')
 
 def traditional(request):
