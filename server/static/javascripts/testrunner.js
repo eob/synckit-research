@@ -84,6 +84,7 @@ function advanceClick() {
     else {
         window.currentClick = nextClick + "&now=" + window.jikan + "&latency=" + latency + "&bandwidth=" + bandwidth;        
     }
+    window.currentClick = window.currentClick.replace('?', '#');
 }
 
 function runtest() {
@@ -96,6 +97,8 @@ function LogData(style, url, params, dataFetch, dataLoad, templateParse) {
     var diff = timeEnd('load');
     var tester = $('#tester').val();
     var tester_comments = $('#tester_comments').val();
+    var latency = $('#latency').val();
+    var bandwidth = $('#bandwidth').val();
     var test_file = $('#dsselect').val();
     var test_description = "ted";
     var user = window.userNum;
@@ -116,6 +119,8 @@ function LogData(style, url, params, dataFetch, dataLoad, templateParse) {
         "total_time_to_render":diff,
         "data_fetch":dataFetch,
         "data_bulkload":dataLoad,
+        "latency":latency,
+        "bandwidth":bandwidth,
         "template_parse":templateParse
     }, function(data) {
         if (advanceTest()) {

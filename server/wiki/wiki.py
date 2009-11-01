@@ -15,6 +15,11 @@ prefetch_config = {"model" : Page,
 sv = SetView(Page, "id", prefetch_config)
 manager.register("Pages", sv)
 
+def manifest(request):
+    t = loader.get_template('manifest.txt')
+    c = Context({})
+    return HttpResponse(t.render(c), mimetype="text/cache-manifest")
+
 def seepage(request):
     results = manager.runqueries(request)
     return HttpResponse(json.dumps(results), mimetype='application/json')
