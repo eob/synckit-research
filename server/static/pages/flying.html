@@ -964,7 +964,7 @@ $(function() {
 		  endTime = (new Date).getTime();
 	      var templateTime = endTime - templateStart;
 	     
-		  if (parent.LogData != "undefined") {
+		  if (parent.LogData) {
 			parent.LogData(window.location.href, JSON.stringify(params), dataTime, 0, templateTime);
 		  }
 	

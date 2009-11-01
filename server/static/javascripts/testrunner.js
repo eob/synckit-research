@@ -19,6 +19,8 @@ window.user_visits = null;
 window.clicktrail = null;
 window.jikan = null;
 window.currentClick = null;
+window.userNum = 0;
+window.visitNum = 0;
 
 function runTestWithUsers(users) {
     window.users = users;
@@ -59,6 +61,8 @@ function advanceTest() {
 
 function advanceUser() {
     ClearDb();
+    window.userNum = window.userNum + 1;
+    window.visitNum = 0;
     window.user_visits = window.users.shift(); 
 }
 
@@ -66,11 +70,20 @@ function advanceVisit() {
     var visit = window.user_visits.shift();
     window.clicktrail = visit["clicktrail"];
     window.jikan = visit["time"];
+    window.visitNum = window.visitNum + 1;
 }
 
 function advanceClick() {
     var nextClick = window.clicktrail.shift();
-    window.currentClick = nextClick + "?now=" + window.jikan;
+    var latency = $('#latency').val();;
+    var bandwidth = $('#bandwidth').val();;
+    if (nextClick.indexOf('?') == -1) {
+        // No ?
+        window.currentClick = nextClick + "?now=" + window.jikan + "&latency=" + latency + "&bandwidth=" + bandwidth;
+    }
+    else {
+        window.currentClick = nextClick + "&now=" + window.jikan + "&latency=" + latency + "&bandwidth=" + bandwidth;        
+    }
 }
 
 function runtest() {
@@ -79,12 +92,36 @@ function runtest() {
     $('iframe#testframe').attr('src', window.currentClick);
 }
 
-function LogData(url, params, dataFetch, dataLoad, templateParse) {
+function LogData(style, url, params, dataFetch, dataLoad, templateParse) {
     var diff = timeEnd('load');
-	$("#results").append("<tr><td>" + url + "</td><td>" + params + "</td><td>" + diff + "</td><td>" + dataFetch + "</td><td>" + dataLoad + "</td><td>" + templateParse + "</td></tr>");
-    if (advanceTest()) {
-        window.setTimeout('runtest()', 1000);
-    }   
+    var tester = $('#tester').val();
+    var tester_comments = $('#tester_comments').val();
+    var test_file = $('#dsselect').val();
+    var test_description = "ted";
+    var user = window.userNum;
+    var visit_number = window.visitNum;
+    
+    url = window.currentClick;
+	$("#last_result").html("<td>" + style + "</td><td>" + url + "</td><td>" + params + "</td><td>" + diff + "</td><td>" + dataFetch + "</td><td>" + dataLoad + "</td><td>" + templateParse + "</td>");
+    $.post("/clientlogger/log", {
+        "tester":tester,
+        "tester_comments":tester_comments,
+        "test_file":test_file,
+        "test_description":test_description,
+        "style":style,
+        "url":url,
+        "params":params,
+        "user":user,
+        "visit_number":visit_number,
+        "total_time_to_render":diff,
+        "data_fetch":dataFetch,
+        "data_bulkload":dataLoad,
+        "template_parse":templateParse
+    }, function(data) {
+        if (advanceTest()) {
+            window.setTimeout('runtest()', 800);
+        }           
+    });
 }
 
 function ClearDb() {

@@ -20,13 +20,12 @@ def seepage(request):
     return HttpResponse(json.dumps(results), mimetype='application/json')
 
 def traditional(request):
-    args = generate_view_args(request)
-    now = args["Posts"]["now"]
-    results = Entry.objects.all().filter(date__lte = now).order_by('-date')[:10]
+    pageid = request.GET.get('pageid')
+    results = Page.objects.all().filter(id = int(pageid))
 
-    t = loader.get_template('index.html')
+    t = loader.get_template('wikipage.html')
     c = Context({
-        'posts': results,
+        'pages': results,
     })
     return HttpResponse(t.render(c))
 

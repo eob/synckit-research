@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 
-urlpatterns = patterns('wiki',
+urlpatterns = patterns('clientlogger',
     # Example:
     # (r'^server/', include('server.foo.urls')),
 
@@ -10,6 +10,5 @@ urlpatterns = patterns('wiki',
 
     # Uncomment the next line to enable the admin:
     # (r'^admin/(.*)', admin.site.root),
-    (r'^page$', 'wiki.seepage'),
-    (r'^traditional$', 'wiki.traditional'),
+    (r'^log$', 'clientlogger.log')
 )
