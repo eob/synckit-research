@@ -31,9 +31,9 @@ if WIKI_TEST:
     FROM_DATE = datetime.datetime(2010, 05, 01)
     TO_DATE = datetime.datetime(2010, 05, 07)
     SITE = Wiki("", 0.3)
-    TEMPLATE_ENNDPOINT = "/static/pages/blog.html"
-    DATA_ENNDPOINT = "/blog/entries"
-    PRERENDERED_ENNDPOINT = "/blog/traditional"
+#    TEMPLATE_ENNDPOINT = "/static/pages/blog.html"
+#    DATA_ENNDPOINT = "/blog/entries"
+#    PRERENDERED_ENNDPOINT = "/blog/traditional"
 
 tick_hash = {VISIT_UNIT : 1}
 
