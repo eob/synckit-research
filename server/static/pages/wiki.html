@@ -655,28 +655,23 @@ _skProto = function() {
 						if (theid) {
 							var stmt = "SELECT id FROM " + table + " WHERE id=" + theid + ";";
 							var res = this.execute(stmt);
-							alert(stmt);
 							if (! res.isValidRow()) {							
 								// We don't have it
-								alert("not valid");
 								// Now get exclude list
 								var stmt2 = "SELECT id FROM " + table + ";";
 								var already = [];
 								res2 = this.execute(stmt2);
-								alert("exec");
+
 								while (res2.isValidRow()) {
 									already.push(res2.field(0));
 									res2.next();
 								}
-								alert("done");
-								alert(JSON.stringify(already));
 							
 								if (already.length > 0) {
 									state[table] = {"filter":[theid], "exclude":already};	
 								}
 								else {
 									state[table] = {"filter":[theid]};	
-									alert("set it without exclude");		
 								}
 								
 							}
@@ -946,9 +941,7 @@ $(function() {
 	if (pageid != 0) {
 		remote_views["Pages"]["filter"] = pageid;
 	}
-	
-	alert("Remote views:" + JSON.stringify(remote_views));
-	
+		
 	var schema = {"Pages":["id integer NOT NULL PRIMARY KEY",
 	              		   "title varchar(255)", 
 	              		   "contents text", 
@@ -960,9 +953,7 @@ $(function() {
      * The state represents what elements from the remove_views that the client has, so that the
      * server will not waste resources duplicating information.
      */
-	alert("Getting state");
     var state = window.db.get_state(schema, remote_views);   
-	alert("State: " + JSON.stringify(state));
     var now = urlParam('now');
 	
 	if (now != 'undefined') {
@@ -1033,7 +1024,7 @@ $(function() {
 <div id="debug">
 </div>
 <div id="templated">
-<p align="center"><b>TTemplate Loading...</b></p>
+<p align="center"><b>Template Loading..!</b></p>
 </div>
 
 <table id="newtemplate" query="" as="entry">
