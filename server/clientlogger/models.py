@@ -17,5 +17,7 @@ class LogEntry(models.Model):
     data_fetch = models.IntegerField()
     data_bulkload = models.IntegerField()
     template_parse = models.IntegerField()
+    latency = models.IntegerField()
+    bandwidth = models.IntegerField()
         
     date = models.DateTimeField(auto_now_add=True)
