@@ -655,7 +655,7 @@ _skProto = function() {
 						if (theid) {
 							var stmt = "SELECT id FROM " + table + " WHERE id=" + theid + ";";
 							var res = this.execute(stmt);
-
+							alert(stmt);
 							if (! res.isValidRow()) {							
 								// We don't have it
 								alert("not valid");
