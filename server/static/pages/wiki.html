@@ -667,6 +667,7 @@ _skProto = function() {
 									already.push(res2.field(0));
 									res2.next();
 								}
+								alert (JSON.stringify(already));
 							
 								if (already.length > 0) {
 									state[table] = {"filter":[theid], "exclude":already};	
