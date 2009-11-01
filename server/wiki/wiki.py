@@ -6,7 +6,13 @@ from django.template import Context, loader
 # This lives outside of a method so it's only instantiated once per
 # interpreter instance
 manager = ViewManager()
-sv = SetView(Page, "id")
+prefetch_config = {"model" : Page,
+                   "connected_path" : "inlinks",
+                   "probability_field" : "access_probability",
+                   "exit_probability" : .5,
+                   "size_fields" : ["title", "contents"],
+                   "total_time" : .25}
+sv = SetView(Page, "id", prefetch_config)
 manager.register("Pages", sv)
 
 def seepage(request):
