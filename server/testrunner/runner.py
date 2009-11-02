@@ -22,6 +22,12 @@ def perfgen(request):
         e.params = e.params.replace('filter":["', 'filter":[')
         e.params = e.params.replace('"],"now','],"now')
         e.url = e.url.replace(' ', '%20')
+        if e.style == 'synckit':
+            e.url = '/wiki/synckit'
+        elif e.style == 'flying':
+            e.url = '/wiki/tokyo'
+        else:
+            e.url = '/wiki/traditional'
         
     entries = []
     cached = 0
