@@ -895,61 +895,51 @@ jQuery.fn.render_new = function(callback) {
 }
 </script>
 <script>
+
+function urlParam(name){
+	var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	if (results) {
+		return results[1].replace(/%20/,' ')
+	}
+	return 0;
+}
+
+
 $(function() {
-    console.info("Page Loaded");
-    window.db = create_synckit();
-    
-    /*
-     * TODO: Actively set client schema instead of lazily doing it on server respnse.
-     */
-    
-    /*
-     * remove_views describes the server-generated managed data structures that are 
-     * exported to the client. Each one is a table, but a table that is accessed (and thus synced)
-     * in a particular way.  
-     */
-    var remote_views = {
-      "Posts":{
-        "type":"queue",
-        "field":"date",
-        "order":"ASC"
-      }
-    };
+    // console.info("Page Loaded");
+	var callback = function(data) {
+		var endTime = (new Date).getTime();
+        var dataTime = endTime - dataStart;
 
-	var schema = {"Posts":["id integer NOT NULL PRIMARY KEY",
-	              		   "author varchar(200) NOT NULL", 
-	              		   "title text NOT NULL", 
-	              		   "content varchar(200)", 
-	              		   "date datetime NOT NULL"]
-	              };
-    
-    /*
-     * The state represents what elements from the remove_views that the client has, so that the
-     * server will not waste resources duplicating information.
-     */
-    var state = window.db.get_state(schema, remote_views);   
-         
+    // console.info("Server Response");
+        // console.info(JSON.stringify(data));    
+	    var bulkloadStart = (new Date).getTime();
+		// if (data) {
+		// 	        window.db.bulkload(data);			
+		// }
+		endTime = (new Date).getTime();
+        var bulkloadTime = endTime - bulkloadStart;
+
+	      // $('#newtemplate').attr('query', 'SELECT * from Pages WHERE id = ' + pageid + ';');
+	  	  var templateStart = (new Date).getTime();
+		  // $('#newtemplate').render_new();
+		  endTime = (new Date).getTime();
+		
+		
+	      var templateTime = endTime - templateStart;
+
+		  if (parent.LogData) {
+			parent.LogData("traditional-blog", "TRAD", "TRAD", 0, 0, 0);
+		  }
+	}
+
     // var state = {};
-    var endpoint = "/blog/entries";
-    
-    var params = {"queries":JSON.stringify(state)};    
-
-    console.info("Endpoint: " + endpoint);    
-    console.info("Params: " + JSON.stringify(params));
-    
-    $.post(endpoint, params, function(data) {
-        console.info("Server Response");
-        console.info(JSON.stringify(data));    
-        window.db.bulkload(data);
-		  $('#newtemplate').render_new(function() {
-				jQuery.get("/blog/markdone");	
-		  });
-	      // Do the new render
-	      
-	      
-    }, "json");
+		var dataStart = (new Date).getTime();
+	    callback.call(null);
     
 });
+
+
 </script>
 </head>
 <body>                

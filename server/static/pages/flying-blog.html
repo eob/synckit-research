@@ -965,7 +965,7 @@ $(function() {
 	      var templateTime = endTime - templateStart;
 	     
 		  if (parent.LogData) {
-			parent.LogData(window.location.href, JSON.stringify(params), dataTime, 0, templateTime);
+			parent.LogData("flying-blog", window.location.href, JSON.stringify(params), dataTime, 0, templateTime);			
 		  }
 	
 	 // Do the new render
