@@ -14,8 +14,8 @@ def seepage(request):
     return HttpResponse(json.dumps(results), mimetype='application/json')
 
 def traditional(request):
-    args = generate_view_args(request)[0]
-    now = args["Posts"]["now"]
+    # args = generate_view_args(request)[0]
+    now = request.GET["now"]
     results = Entry.objects.all().filter(date__lte = now).order_by('-date')[:10]
 
     t = loader.get_template('index.html')
