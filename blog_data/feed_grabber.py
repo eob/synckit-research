@@ -76,10 +76,10 @@ for (site) in feeds:
     
     print site["name"]
     print "-----------------------------"
-    print "Average len of article: %f" % (numpy.average(lengths))
-    print "Standard Dev len of article: %f" % (numpy.std(lengths))
-    print "Average Delta (seconds): %i" % numpy.average(differences)
-    print "Standard Dev (seconds): %i" % (numpy.std(differences))
+    print "Average len of article (kb): %f" % (numpy.average(lengths)/1024.0)
+    print "Standard Dev len of article: %f" % (numpy.std(lengths)/1024.0)
+    print "Average Delta (minutes): %i" % (numpy.average(differences)/60.0)
+    print "Standard Dev: %i" % (numpy.std(differences)/60.0)
     print "Number Posts: %i" % (len(differences) + 1)
     print
     print
