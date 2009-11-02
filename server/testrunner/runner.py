@@ -21,7 +21,8 @@ def perfgen(request):
         e.params = e.params.replace('\\"', '"')
         e.params = e.params.replace('filter":["', 'filter":[')
         e.params = e.params.replace('"],"now','],"now')
-    
+        e.url = e.url.replace(' ', '%20')
+        
     entries = []
     cached = 0
     uncached = 0
