@@ -905,6 +905,15 @@ jQuery.fn.render_flying = function(data, callback) {
 }
 </script>
 <script>
+
+function urlParam(name){
+	var results = new RegExp('[#&]' + name + '=([^&#]*)').exec(window.location.href);
+	if (results) {
+		return results[1].replace(/%20/,' ')
+	}
+	return 0;
+}
+
 $(function() {
     // console.info("Page Loaded");
     window.db = create_synckit();
@@ -960,7 +969,7 @@ $(function() {
 	
 //        var data = window.db.process_data_spec(dataspec);
 		 var templateStart = (new Date).getTime();	
-		  $('#newtemplate').render_flying();
+		  $('#newtemplate').render_flying(data);
 		  endTime = (new Date).getTime();
 	      var templateTime = endTime - templateStart;
 	     
