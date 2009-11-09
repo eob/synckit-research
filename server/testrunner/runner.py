@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from synckit.views import *
 from django.template import Context, loader
 from clientlogger.models import *
+import json
 
 def main(request):
     t = loader.get_template('runner.html')
@@ -20,8 +21,19 @@ def perfgen(request):
     for e in allentries:
         e.params = e.params.replace('\\"', '"')
         e.params = e.params.replace('filter":["', 'filter":[')
-        e.params = e.params.replace('"],"now','],"now')
+        e.params = e.params.replace('"]',']')
         e.url = e.url.replace(' ', '%20')
+        if e.style == 'synckit':
+            e.url = '/wiki/synckit'
+            e.params = e.params.replace("{\"queries\":\"", "queries=")
+            e.params = e.params.replace("\",\"latency\":\"", "&latency=")
+            e.params = e.params.replace("\",\"bandwidth\":\"", "&bandwidth=")
+            e.params = e.params.rstrip("}\"")
+        elif e.style == 'flying':
+            e.params = e.params.replace("{\"queries\":\"", "queries=")
+            e.params = e.params.rstrip("}")
+            e.params = e.params.rstrip("\"")
+            e.url = '/wiki/tokyo'
         
     entries = []
     cached = 0

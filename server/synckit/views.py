@@ -105,20 +105,21 @@ class Prefetcher():
         length_fields = ["length(%s)" % (field) for field in self.config["size_fields"]]
         length_str = "+".join(length_fields)
         self.select_addition = { "object_size" : length_str}
+        self.onlyfields = ["id", self.config["probability_field"]]
     # object is the model object you are sending back.
     # already_have is a list of object ids the client already has.
     def fetch(self, object, already_have, perf):
         kwargs = {self.config["connected_path"] : object}
         queryset = self.config["model"].objects.filter(**kwargs)
-        kwargs = {"id__in" : already_have}
-        queryset = queryset.exclude(**kwargs)
-        queryset = queryset.only(self.config["probability_field"])
+#        kwargs = {"id__in" : already_have}
+#        queryset = queryset.exclude(**kwargs)
+        queryset = queryset.only(*self.onlyfields)
         queryset = queryset.extra(select = self.select_addition)
-        ids = self.pick_objects(object, queryset, perf)
+        ids = self.pick_objects(object, already_have, queryset, perf)
         return self.config["model"].objects.filter(id__in = ids)
    
-    def pick_objects(self, object, queryset, perf):
-        items = self.normalize_probabilities(queryset)
+    def pick_objects(self, object, already_have, queryset, perf):
+        items = self.normalize_probabilities(queryset, already_have)
         for item in items:
             item.benefit = perf["latency"]
             cost = self.calculate_cost(item.object_size, perf)
@@ -132,16 +133,18 @@ class Prefetcher():
         cost += (object_size / perf["bandwidth"])
         return cost
 
-    def normalize_probabilities(self, queryset):
+    def normalize_probabilities(self, queryset, already_have):
         sum = 0.0
         for item in queryset:
             sum += getattr(item, self.config["probability_field"])
         items = []
         denominator = sum/(1-self.config["exit_probability"])
+        already_have = set(already_have)
         for item in queryset:
-            newprob = getattr(item, self.config["probability_field"])
-            setattr(item, self.config["probability_field"], newprob/denominator)
-            items.append(item)
+            if item.id not in already_have:
+                newprob = getattr(item, self.config["probability_field"])
+                setattr(item, self.config["probability_field"], newprob/denominator)
+                items.append(item)
         return items
      
     def additional_items(self, object, items, perf):
