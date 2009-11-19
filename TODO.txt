@@ -1,5 +1,24 @@
-Ted:
-    - Make sure schema loads with the template instead of with the data
-    - Finish implementing the "get set state" thing
+- profile synckit---we never did this seriously
 
-Adam:
+- profile FT---seems like it's slower to query DB than traditional, but perhaps that's necessary to handle generic workload of multiple queries.  because it shares infrastructure with synckit, it would be nice to squeaze slow parts out of both.
+
+- import psyco (that might have gotten rid of a bunch of unoptimized stuff in the code)
+
+- profile prefetching with the fixed prefetch logic to see what's slow
+
+- measure prefetching with a larger number of requests to get a statistically significant result, and make sure Ted's network doesn't add funny variance (or at least understand it)
+
+- prefetching knobs---we should understand the effect of both of these
+  - amount to prefetch (ammt of additional time to wait for stuff sent)
+  - amount threshold of cost before prefetching (not just nonzero cost)
+
+- aggregates---didn't write up or implement (or think about) any of this
+
+- Why aren't the results for wiki better?  What can we vary to make them look better?    E.g., what happens with different branching factors, or with more skewed zipfians? (We may want to think of a benchmark other than the wiki benchmark that would be amenable to prefetching.)
+
+
+- What was up with the high variance on Ted's network?
+
+- What are the components of server performance?  How much time is spent in the database, how much in rendering, how much in the network?  Why do the numbers we had in the table we commented out look the way they do?  In particular, why does is the FT query time greater than the Trad query time?
+
+- It would be great if we can take the time to adapt one of the existing benchmarks [RUBIS or one of the TPC's] (like we had intended on but didn't have time for) so that it will be easier to compare apples to apples.

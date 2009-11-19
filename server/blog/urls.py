@@ -15,4 +15,5 @@ urlpatterns = patterns('blog',
     (r'^traditional$', 'entries.traditional'),
     (r'^template$', 'entries.template'),
     (r'^markdone$', 'entries.markdone'),
+    (r'^report_time$', 'entries.report_time'),
 )
