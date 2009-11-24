@@ -11,8 +11,9 @@ synckit_prefetch_config = {"model" : Page,
                    "probability_field" : "access_probability",
                    "exit_probability" : .5,
                    "size_fields" : ["title", "contents"],
-                   "total_time" : .25}
-synckit_sv = SetView(Page, "id", synckit_prefetch_config)
+                   "total_time" : .1}
+#synckit_sv = SetView(Page, "id", synckit_prefetch_config)
+synckit_sv = SetView(Page, "id")
 synckit_manager.register("Pages", synckit_sv)
 
 tokyo_manager = ViewManager()
