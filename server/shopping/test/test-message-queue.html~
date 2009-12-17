@@ -1,0 +1,17 @@
+<html>
+<head>
+<title></title>
+</head>
+
+<body>
+    <form method="POST" action = "http://marcua.csail.mit.edu:7000/blog/entries">
+        <input name="queries" type="hidden" value='{
+    "Posts":{
+        "now":"2009-05-11 23:07:58.698830"
+    }
+}'>
+        <input type="submit">
+    </form>
+</body>
+
+</html>
