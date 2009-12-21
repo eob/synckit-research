@@ -5,14 +5,14 @@
 
 <body>
     <form method="POST" action =
-    "http://marcua.csail.mit.edu:7000/wiki/synckit">
+    "http://127.0.0.1:8000/wiki/synckit">
         <input name="queries" type="hidden" value='{
     "Pages":{
-        "filter":["99"],
+        "filter":["1"],
         "exclude":[]
     }
 }'>
-        <input name="latency" type="hidden" value='.1'>
+        <input name="latency" type="hidden" value='.01'>
         <input name="bandwidth" type="hidden" value='1000000'>
         <input type="submit">
     </form>

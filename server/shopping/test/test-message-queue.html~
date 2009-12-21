@@ -4,7 +4,7 @@
 </head>
 
 <body>
-    <form method="POST" action = "http://127.0.0.1:8000/blog/entries">
+    <form method="POST" action = "http://marcua.csail.mit.edu:7000/blog/entries">
         <input name="queries" type="hidden" value='{
     "Posts":{
         "now":"2009-05-11 23:07:58.698830"

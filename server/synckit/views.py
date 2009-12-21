@@ -1,5 +1,9 @@
+from django.db.models import Count, Sum, Min, Max
+
 import json
 import itertools
+
+__all__ = ["ViewManager", "SetView", "QueueView", "CubeView"]
 
 def generate_view_args(request):
     queries = request.REQUEST["queries"]
@@ -29,17 +33,32 @@ class ViewManager:
         return results
 
 class BaseView:
+    class ResultFormat:
+        """
+        Specifies the format in which django will return results.  Django
+        usually returns each result as an object with attributes stored in fields.
+        Some query types (e.g., ones that include a values() call) will instead
+        return a dictionary with attributes as keys.
+        """
+        (OBJECT_WITH_FIELDS, DICT_WITH_KEYS) = ("OBJECT_WITH_FIELDS", "DICT_WITH_KEYS")
+
     def __init__(self, model):
         self.model = model
         self.attrs = [f.name for f in model._meta.fields]
         self.parent_view = None
         self.parent_path = None
+        self.result_format = BaseView.ResultFormat.OBJECT_WITH_FIELDS
     def results(self, queries, perf):
         results = []
         queryset = self.queryset(queries, perf)
         # TODO: make this a generator rather than instantiating everything
         for result in queryset:
-            results.append([str(getattr(result, field)) for field in self.attrs])
+            if self.result_format is BaseView.ResultFormat.OBJECT_WITH_FIELDS:
+                results.append([str(getattr(result, field)) for field in self.attrs])
+            elif self.result_format is BaseView.ResultFormat.DICT_WITH_KEYS:
+                results.append([str(result[field]) for field in self.attrs])
+            else:
+                raise TypeError("Invalid result format: %s" % (self.result_format))
         return results
     def queryset(self, queries, perf):
         queryset = self.queryset_impl(queries[self.view_name], perf)
@@ -207,3 +226,63 @@ class QueueView(BaseView):
         queryset = queryset[:self.limit]
  
         return queryset
+
+class CubeView(BaseView):
+    """
+    Aggregates model objects grouped by cube_fields.  Returns the 
+    aggregate_type function over the aggregate_field for each cube_field grouping.
+    Similar to:
+
+    SELECT cube_fields, aggregate_type(aggregate_field) AS aggregate
+    FROM model
+    GROUP BY cube_fields;
+    """
+    
+    class AggType:
+        """
+        Aggregates we handle
+        """
+        (COUNT, SUM, MIN, MAX) = ("COUNT", "SUM", "MIN", "MAX")
+    
+    AGGREGATE = "aggregate"
+    
+    def __init__(self, model, cube_fields, aggregate_type, aggregate_field = "id"):
+        BaseView.__init__(self, model)
+        # We're not returning an array of model objects.  We're instead
+        # returning a set of aggregate values grouped by cube_fields.  As
+        # such, the attributes will be the cube_fields and the aggregate
+        # value.
+        self.attrs = list(cube_fields)
+        self.attrs.append(CubeView.AGGREGATE)
+        self.cube_fields = cube_fields
+        self.aggregate_args = { CubeView.AGGREGATE: \
+                                self.build_agg(aggregate_type, aggregate_field) }
+        # django will return results as a dictionary because we call values()
+        # in the queryset
+        self.result_format = BaseView.ResultFormat.DICT_WITH_KEYS
+    def queryset_impl(self, query, perf):
+        """
+        Returns the aggregate over the grouped fields.  Eventually, we'll have
+        query include the last time the aggregate was requested by the client,
+        and only send updated fields.  Additionally, we'll potentially look
+        at perf to determine how large a datacube the client can handle.
+        """
+        # Include GROUP BY
+        queryset = self.model.objects.values(*self.cube_fields)
+        # Remove any default orderings of the ORM
+        queryset = queryset.order_by()
+        # Include aggregate
+        queryset = queryset.annotate(**self.aggregate_args)
+        return queryset
+
+    def build_agg(self, aggregate_type, aggregate_field):
+        if aggregate_type is CubeView.AggType.COUNT:
+            return Count(aggregate_field)
+        elif aggregate_type is CubeView.AggType.SUM:
+            return Sum(aggregate_field)
+        elif aggregate_type is CubeView.AggType.MIN:
+            return Min(aggregate_field)
+        elif aggregate_type is CubeView.AggType.MAX:
+            return Max(aggregate_field)
+        else:
+            raise TypeError("Invalid aggregate type: %s" % (aggregate_type))

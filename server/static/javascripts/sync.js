@@ -81,10 +81,35 @@ _skProto = function() {
                 var details = state_spec[table];
                 
                 if (details.type == "set") {
-                    
-                }
-                else if (details.type == "queue") {
-                
+                	if (details.style == "open") {
+						// Check for existence
+						var theid = details["filter"];
+						if (theid) {
+							var stmt = "SELECT id FROM " + table + " WHERE id=" + theid + ";";
+							var res = this.execute(stmt);
+							if (! res.isValidRow()) {							
+								// We don't have it
+								// Now get exclude list
+								var stmt2 = "SELECT id FROM " + table + ";";
+								var already = [];
+								res2 = this.execute(stmt2);
+
+								while (res2.isValidRow()) {
+									already.push(res2.field(0));
+									res2.next();
+								}
+							
+								if (already.length > 0) {
+									state[table] = {"filter":[theid], "exclude":already};	
+								}
+								else {
+									state[table] = {"filter":[theid]};	
+								}
+								
+							}
+						}
+					}
+                } else if (details.type == "queue") {
                     if (details.order == "DESC") {
                         var stmt = "SELECT min("+ details.field + ") FROM " + table + ";";
                         var res  = this.execute(stmt);
@@ -92,7 +117,13 @@ _skProto = function() {
                         	if (res.field(0) != null) {
                                 state[table] = {"min":res.field(0)};
                         	}
+							else {
+								state[table] = {};
+							}
                         }
+						else {
+							state[table] = {};
+						}
                     }
                     else if (details.order == "ASC"){
                         var stmt = "SELECT max("+ details.field + ") FROM " + table + ";";                        
@@ -101,7 +132,13 @@ _skProto = function() {
                         	if (res.field(0) != null) {
                                 state[table] = {"max":res.field(0)};
                         	}
+							else {
+								state[table] = {};
+							}
                         }
+						else {
+							state[table] = {};
+						}
                     }
                 }
             }

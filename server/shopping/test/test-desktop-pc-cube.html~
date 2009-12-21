@@ -4,11 +4,9 @@
 </head>
 
 <body>
-    <form method="POST" action = "http://127.0.0.1:8000/blog/entries">
+    <form method="POST" action = "http://127.0.0.1:8000/shopping/pc_cube">
         <input name="queries" type="hidden" value='{
-    "Posts":{
-        "now":"2009-05-11 23:07:58.698830"
-    }
+    "pcs":{}
 }'>
         <input type="submit">
     </form>

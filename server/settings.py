@@ -63,5 +63,6 @@ INSTALLED_APPS = (
     'server.blog',
 	'server.testrunner',
     'server.wiki',
-    'server.clientlogger'
+    'server.shopping',
+    'server.clientlogger',
 )
