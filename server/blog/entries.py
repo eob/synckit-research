@@ -39,7 +39,6 @@ def seepage(request):
     return response
 
 def traditional(request):
-    # args = generate_view_args(request)[0]
     global query_times
     global template_times
     global num_queries
