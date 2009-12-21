@@ -1,5 +1,5 @@
 <style type="text/css">
-<?php include "style.css" ?>
+<?php include "../stylesheets/style.css" ?>
 </style>
 <script type="text/javascript">
 <?php include "../javascripts/gears_init.js" ?>
