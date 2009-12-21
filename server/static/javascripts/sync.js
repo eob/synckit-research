@@ -263,3 +263,12 @@ create_synckit = function() {
     var db = new _skProto();
     return db;
 };
+
+function urlParam(name){
+	var results = new RegExp('[#&]' + name + '=([^&#]*)').exec(window.location.href);
+	if (results) {
+		return results[1].replace(/%20/,' ')
+	}
+	return 0;
+}
+
