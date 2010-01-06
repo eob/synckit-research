@@ -20,6 +20,8 @@ blog-traditional.html
 I can't remember what this file is trying to test. It is loaded out of the static directory, so it shouldn't really be a test
 for a "traditional" blog, which should have dynamic behavior on the server-side. 
 
+Maybe we were using this file to "pretend" to download the template in some of our batch tests. Then for future requests we would just hit the data endpoint.
+
 Delete this file?
 
 test_dom_load.html
