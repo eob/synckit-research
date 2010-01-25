@@ -25,14 +25,6 @@ class ViewManager:
     def runqueries(self, request):
         (view_queries, perf) = generate_view_args(request)
         results = {}
-        """
-        Reverse this order: do it for self.views
-        then look for view_queries
-        if it doesn't exist, load a default query
-        if it does exist, check that the hash matches
-        if it doesn't match, treat it like an empty db
-        if it does match, just send data
-        """
         for name in view_queries.keys():
             if name in self.views:
                 retval = {}
@@ -88,12 +80,12 @@ class BaseView:
         return queryset
     def viewspec_if_necessary(self, query):
         """
-        Looks at query["__vsid"].  If the viewspec version is the same,
+        Looks at query["__vshash"].  If the viewspec version is the same,
         then no extra information is returned.  If it doesn't exist or is different
         than the current viewspec id, then the viewspec is returned
         """
-        if ("__vsid" in query) and \
-           (self.viewspec["id"] == query["__vsid"]):
+        if ("__vshash" in query) and \
+           (self.viewspec["vshash"] == query["__vshash"]):
             return None
         return self.viewspec
     def type_for_field(self, field):
@@ -117,8 +109,8 @@ class BaseView:
         id = m.hexdigest()
         self.viewspec = {
                          "schema" : schema,\
-                         "sync" : sync, \
-                         "id" : id \
+                         "syncspec" : sync, \
+                         "vshash" : id \
                         }
     def schema_spec(self, fields = None):
         if fields is None:
@@ -170,7 +162,7 @@ class SetView(BaseView):
         return queryset
     def sync_spec(self):
         return {
-                '__type' : 'openset',
+                '__type' : 'set',
                 'idfield' : self.idfield,
                }
 
@@ -261,10 +253,20 @@ def benefit_compare(x,y):
     else:
         return 1
 
-# for more generic stuff, see
-# [f.name for f in model_or_instance._meta.fields]
-# /usr/share/python-support/python-django/django/db/backends/creation.py
-# /usr/share/python-support/python-django/django/core/management/sql.py
+"""
+Represents a Queue of items that are based on some model class.  
+sortfield---the field which describes the order of the items (a date or primary key is 
+  usually a good candidate).  
+limit---describes how many of the top items in the queue should be synced to the client.  
+order---this one is not to be confused with SQL ORDER BY ASC and DESC (in fact, it's 
+  usually the opposite of that.  If a new item comes into the queue with a sortfield value
+  greater than the last one, this is an order='ASC' queue.  If the new item comes into the
+  queue with a sortfield value less than the last one, this is an order='DESC' queue.
+  
+For example, the entries in a blog have sortfield=date.  We might want the client to
+cache the last 10 entries of the blog, so limit=10.  A new entry has a larger date than
+the last one, so order='ASC'.
+"""
 class QueueView(BaseView):
     # order = "ASC" or "DESC"
     def __init__(self, model, sortfield, limit, order="ASC"):
