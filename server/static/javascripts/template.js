@@ -19,19 +19,6 @@ jQuery.fn.templateData = function(value) {
     }
 };
 
-jQuery.fn.render = function() {
-	window.db.timeStart("Rendering Template");
-    var templateString = this.template();
-    var value = this.templateData();
-    var template = jsontemplate.Template(templateString);
-    // console.log("Template Size: " + templateString.length);
-    // console.log(value);
-    var rendered = template.expand(value);
-    // console.log("Rendered Size: " + rendered.length);
-    this.html(rendered);
-	window.db.timeEnd("Rendering Template");
-}
-
 jQuery.fn.render_new = function(callback) {
 	window.db.timeStart("Rendering SQL Template");
 	var query = this.attr('query');

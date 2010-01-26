@@ -8,6 +8,7 @@ _skProto = function() {
     // Member Variables
     // ----------------------------------------------------------------
     this._localdb = null;
+    this._timers = null;
     
     // Methods
     // ----------------------------------------------------------------
@@ -19,6 +20,25 @@ _skProto = function() {
             console.error("Local DB is null.");
         }
     };
+    
+    this.timeStart = function(obj) {
+        this._timers[obj] = null;            
+        this._timers[obj] = (new Date).getTime();
+    }
+    
+    this.timeEnd = function(obj) {
+        if (this._timers[obj]) {
+            var diff = (new Date).getTime() - this._timers[obj];
+            this._timers[obj] = null;            
+            return diff;
+        }
+        return null;
+    }
+    
+    this.table_exists = function(table) {
+        var result = db.execute("SELECT name FROM sqlite_master WHERE type='table' AND name=?;", [table]);
+        return result.isValidRow();
+    }
     
     this.create_stats_table = function() {
         console.info("Creating Stats Table");
@@ -42,13 +62,48 @@ _skProto = function() {
         }
     };
     
-    this.get_state = function() {
+    this.get_state = function(schema, state_spec) {
         if (this._localdb !== null) {
-            var res = this.execute("SELECT entity, state FROM sk_stats;");
             var state = {};
-            while (res.isValidRow()) {
-                state[result.field(0)] = result.field(1);
-                result.next();
+            
+            for (var table in state_spec) {
+                if (! this.table_exists(table)) {
+                    state[table] = {};
+                    rows = schema[table];
+                    if (rows != "undefined") {
+                        // Create table
+                    	console.info("Creating table " + table + "(" + rows.join() + ")");
+                        this.execute("CREATE TABLE IF NOT EXISTS " + table + " (" + rows.join() + ");");
+                    }
+                    continue;
+                }
+                
+                var details = state_spec[table];
+                
+                if (details.type == "set") {
+                    
+                }
+                else if (details.type == "queue") {
+                
+                    if (details.order == "DESC") {
+                        var stmt = "SELECT min("+ details.field + ") FROM " + table + ";";
+                        var res  = this.execute(stmt);
+                        if (res.isValidRow()) {
+                        	if (res.field(0) != null) {
+                                state[table] = {"min":res.field(0)};
+                        	}
+                        }
+                    }
+                    else if (details.order == "ASC"){
+                        var stmt = "SELECT max("+ details.field + ") FROM " + table + ";";                        
+                        var res  = this.execute(stmt);
+                        if (res.isValidRow()) {
+                        	if (res.field(0) != null) {
+                                state[table] = {"max":res.field(0)};
+                        	}
+                        }
+                    }
+                }
             }
             return state;
         }
@@ -60,7 +115,7 @@ _skProto = function() {
     
     this.execute = function(statement, args) {
         if (this._localdb !== null) {
-            return this._localdb.execute(statement, args);                
+          	return this._localdb.execute(statement, args);                
         }
         else {
             console.error("Can't execute query. Local DB is null.");
@@ -104,26 +159,37 @@ _skProto = function() {
     }
     
     this.bulkload = function(data) {
-        console.time("Performing Bulkload Insertion");
-        for (var i=0; i<data.length; i++) {
-            var def = data[i];
-            var table = def[0];
-            var schema = def[1];
-            var sqlStatement = "INSERT INTO " + table + " VALUES (";
-            for (var z = 0; z<schema.length; z++) {
+        console.info("hey");
+        this.timeStart("Performing Bulkload Insertion");
+        
+        for (var tablename in data) {
+            var table_data = data[tablename];
+            if (typeof(table_data) == "string") {
+                console.info("Skipping table " + tablename + " with message: " + table_data);
+                continue;
+            }
+            
+            var table = table_data.results;
+            
+            if (table.length == 0) {
+            	continue;
+            }
+            
+            // Prepare SQL Statement
+            var sqlStatement = "INSERT INTO " + tablename + " VALUES (";
+            for (var z = 0; z<table[0].length; z++) {
                 sqlStatement += "?,";
             }   
             sqlStatement = sqlStatement.substr(0,sqlStatement.length - 1);
             sqlStatement += ");";
             
-            this.execute("CREATE TABLE IF NOT EXISTS " + table + " (" + schema.join() + ");");
-            var rows = def[2];
-                for (var j=0; j<rows.length; j++) {
-                    var row = rows[j];  
-                    this.execute(sqlStatement, row);
-                }
+            for (var j=0; j<table.length; j++) {
+                var row = table[j];  
+                this.execute(sqlStatement, row);
+            }
+            
         }
-        console.timeEnd("Performing Bulkload Insertion");
+        this.timeEnd("Performing Bulkload Insertion");
     };
 
     
