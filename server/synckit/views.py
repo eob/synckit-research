@@ -1,7 +1,8 @@
 from django.db.models import Count, Sum, Min, Max
 
-import json
+import hashlib
 import itertools
+import json
 
 __all__ = ["ViewManager", "SetView", "QueueView", "CubeView"]
 
@@ -26,8 +27,13 @@ class ViewManager:
         results = {}
         for name in view_queries.keys():
             if name in self.views:
-                results[name] = {}
-                results[name]["results"] = self.views[name].results(view_queries, perf)
+                retval = {}
+                view = self.views[name]
+                retval["results"] = view.results(view_queries, perf)
+                viewspec = view.viewspec_if_necessary(view_queries[name])
+                if viewspec is not None:
+                    retval["viewspec"] = viewspec
+                results[name] = retval
             else:
                 results[name] = "no view registered for this query"
         return results
@@ -72,6 +78,54 @@ class BaseView:
                       self.parent_view.queryset(queries)}
             queryset = queryset.filter(**kwargs)
         return queryset
+    def viewspec_if_necessary(self, query):
+        """
+        Looks at query["__vshash"].  If the viewspec version is the same,
+        then no extra information is returned.  If it doesn't exist or is different
+        than the current viewspec id, then the viewspec is returned
+        """
+        if ("__vshash" in query) and \
+           (self.viewspec["vshash"] == query["__vshash"]):
+            return None
+        return self.viewspec
+    def type_for_field(self, field):
+        """Returns the type (INT, VARCHAR, etc.) of field.  Since field may be
+        many-to-many, we may have to traverse several tables"""
+        return self.type_for_fieldarr(field.split("__"), self.model)
+    def type_for_fieldarr(self, field_arr, model):
+        (field_object, nextmodel, direct, m2m) = \
+            model._meta.get_field_by_name(field_arr[0])
+        if len(field_arr) == 1:
+            return field_object.db_type()
+        return self.type_for_fieldarr(field_arr[1:], field_object.rel.to)
+    def init_viewspec(self):
+        """Subclasses should call this method once they are ready to have
+        schema_spec and sync_spec called on them"""
+        schema = self.schema_spec()
+        sync = self.sync_spec()
+        m = hashlib.md5()
+        m.update(json.dumps(schema))
+        m.update(json.dumps(sync))
+        id = m.hexdigest()
+        self.viewspec = {
+                         "schema" : schema,\
+                         "syncspec" : sync, \
+                         "vshash" : id \
+                        }
+    def schema_spec(self, fields = None):
+        if fields is None:
+            fields = self.attrs
+        schema = []
+        for field in fields:
+            field_spec = "%s %s" % (field, self.type_for_field(field))
+            schema.append(field_spec)
+        return schema
+    def sync_spec(self):
+        """Returns a dictionary describing the synchronization structure for
+        synchronizing this view.  The only requirement is that this dictionary
+        contain a key '__type' and a unique name describing the synchronization
+        structure (e.g. 'queue' or 'set')"""
+        raise  NotImplementedError()
     def set_parent(self, parent_view, parent_path):
         self.parent_view = parent_view
         self.parent_path = parent_path
@@ -86,6 +140,7 @@ class SetView(BaseView):
         self.prefetcher = None
         if not prefetch_config == None:
             self.prefetcher = Prefetcher(prefetch_config)
+        self.init_viewspec()
 
     def queryset_impl(self, query, perf):
         queryset = self.model.objects
@@ -105,6 +160,11 @@ class SetView(BaseView):
             queryset = itertools.chain(queryset, prefetch_query)
 
         return queryset
+    def sync_spec(self):
+        return {
+                '__type' : 'set',
+                'idfield' : self.idfield,
+               }
 
 # prefetch_config is a dictionary with the following fields:
 #   model (django model)---the related model object to retrieve
@@ -193,10 +253,20 @@ def benefit_compare(x,y):
     else:
         return 1
 
-# for more generic stuff, see
-# [f.name for f in model_or_instance._meta.fields]
-# /usr/share/python-support/python-django/django/db/backends/creation.py
-# /usr/share/python-support/python-django/django/core/management/sql.py
+"""
+Represents a Queue of items that are based on some model class.  
+sortfield---the field which describes the order of the items (a date or primary key is 
+  usually a good candidate).  
+limit---describes how many of the top items in the queue should be synced to the client.  
+order---this one is not to be confused with SQL ORDER BY ASC and DESC (in fact, it's 
+  usually the opposite of that.  If a new item comes into the queue with a sortfield value
+  greater than the last one, this is an order='ASC' queue.  If the new item comes into the
+  queue with a sortfield value less than the last one, this is an order='DESC' queue.
+  
+For example, the entries in a blog have sortfield=date.  We might want the client to
+cache the last 10 entries of the blog, so limit=10.  A new entry has a larger date than
+the last one, so order='ASC'.
+"""
 class QueueView(BaseView):
     # order = "ASC" or "DESC"
     def __init__(self, model, sortfield, limit, order="ASC"):
@@ -214,6 +284,7 @@ class QueueView(BaseView):
         # greater than the max
         self.gtlt = "gt" if order == "ASC" else "lt"
         self.fieldcompare = "%s__%s" % (self.sortfield, self.gtlt)
+        self.init_viewspec()
     def queryset_impl(self, query, perf):
         queryset = None
         kwargs = {}
@@ -226,6 +297,13 @@ class QueueView(BaseView):
         queryset = queryset[:self.limit]
  
         return queryset
+    def sync_spec(self):
+        return {
+                '__type' : 'queue',
+                'order' : self.order,
+                'limit' : self.limit,
+                'sortfield' : self.sortfield,
+               }
 
 class CubeView(BaseView):
     """
@@ -233,7 +311,7 @@ class CubeView(BaseView):
     aggregate_type function over the aggregate_field for each cube_field grouping.
     Similar to:
 
-    SELECT cube_fields, aggregate_type(aggregate_field) AS aggregate
+    SELECT cube_fields, aggregate_type(aggregate_field) AS self.aggregate_field
     FROM model
     GROUP BY cube_fields;
     """
@@ -244,22 +322,24 @@ class CubeView(BaseView):
         """
         (COUNT, SUM, MIN, MAX) = ("COUNT", "SUM", "MIN", "MAX")
     
-    AGGREGATE = "aggregate"
-    
     def __init__(self, model, cube_fields, aggregate_type, aggregate_field = "id"):
         BaseView.__init__(self, model)
+        self.aggregate_type = aggregate_type
+        self.aggregate_field = "%s__%s" % (aggregate_type, aggregate_field)
+        self.cube_fields = cube_fields
         # We're not returning an array of model objects.  We're instead
         # returning a set of aggregate values grouped by cube_fields.  As
         # such, the attributes will be the cube_fields and the aggregate
         # value.
         self.attrs = list(cube_fields)
-        self.attrs.append(CubeView.AGGREGATE)
-        self.cube_fields = cube_fields
-        self.aggregate_args = { CubeView.AGGREGATE: \
+        self.attrs.append(self.aggregate_field)
+        self.aggregate_args = { self.aggregate_field: \
                                 self.build_agg(aggregate_type, aggregate_field) }
+        self.aggregate_db_spec = self.aggregate_spec(aggregate_type, aggregate_field)
         # django will return results as a dictionary because we call values()
         # in the queryset
         self.result_format = BaseView.ResultFormat.DICT_WITH_KEYS
+        self.init_viewspec()
     def queryset_impl(self, query, perf):
         """
         Returns the aggregate over the grouped fields.  Eventually, we'll have
@@ -274,7 +354,13 @@ class CubeView(BaseView):
         # Include aggregate
         queryset = queryset.annotate(**self.aggregate_args)
         return queryset
-
+    def schema_spec(self, fields = None):
+        """Override BaseView's schema_spec
+        Call basic schema_spec on the GROUP BY columns, and append the
+        aggregate field"""
+        schema = BaseView.schema_spec(self, self.cube_fields)
+        schema.append(self.aggregate_db_spec)
+        return schema
     def build_agg(self, aggregate_type, aggregate_field):
         if aggregate_type is CubeView.AggType.COUNT:
             return Count(aggregate_field)
@@ -286,3 +372,24 @@ class CubeView(BaseView):
             return Max(aggregate_field)
         else:
             raise TypeError("Invalid aggregate type: %s" % (aggregate_type))
+    def aggregate_spec(self, aggregate_type, aggregate_field):
+        db_type = None
+        if aggregate_type is CubeView.AggType.COUNT:
+            db_type = "integer"
+        elif aggregate_type is CubeView.AggType.SUM:
+            db_type = self.type_for_field(aggregate_field)
+        elif aggregate_type is CubeView.AggType.MIN:
+            db_type = self.type_for_field(aggregate_field)
+        elif aggregate_type is CubeView.AggType.MAX:
+            db_type = self.type_for_field(aggregate_field)
+        else:
+            raise TypeError("Invalid aggregate type: %s" % (aggregate_type))
+
+        return "%s %s" % (self.aggregate_field, db_type)
+    def sync_spec(self):
+        return {
+                '__type' : 'cube',
+                'cube_fields' : self.cube_fields,
+                'aggregate_type' : self.aggregate_type,
+                'aggregate_field' : self.aggregate_field,
+               }

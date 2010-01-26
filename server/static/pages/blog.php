@@ -5,65 +5,44 @@
 <script>
 $(function() {
     // console.info("Page Loaded");
-    window.db = create_synckit();
-    
+    window.db = create_synckit(); 
+    var endpoint = "http://127.0.0.1:8000/blog/entries";
+
     /*
-     * TODO: Actively set client schema instead of lazily doing it on server respnse.
-     */
-    
-    /*
-     * remove_views describes the server-generated managed data structures that are 
+     * remote_views describes the server-generated managed data structures that are 
      * exported to the client. Each one is a table, but a table that is accessed (and thus synced)
      * in a particular way.  
      */
-    var remote_views = {
-      "Posts":{
-        "type":"queue",
-        "field":"date",
-        "order":"ASC"
-      }
+    var viewspec = {
+        "vshash": "92ec2eb0d74d31ee0ca0763c2e52f7fa",
+        "syncspec": {
+            "limit": 10, 
+            "__type": "queue",
+            "order": "ASC", 
+            "sortfield": "date"
+        }, 
+        "schema": ["id integer", "author integer", "title varchar(200)", "contents text", "date datetime"]
     };
+    window.db.build_view(endpoint, "Posts", viewspec);
 
-	var schema = {"Posts":["id integer NOT NULL PRIMARY KEY",
-	              		   "author varchar(200) NOT NULL", 
-	              		   "title text NOT NULL", 
-	              		   "content varchar(200)", 
-	              		   "date datetime NOT NULL"]
-	              };
-    
-    /*
-     * The state represents what elements from the remove_views that the client has, so that the
-     * server will not waste resources duplicating information.
-     */
-    var state = window.db.get_state(schema, remote_views);   
+    // 'now' is a parameter used for time-travel through the posts
+    var extra_view_params = {};
     var now = urlParam('now');
 	if (now != 'undefined') {
-		for (var table in state) {
-			state[table]['now'] = now;
-		}		
+	    extra_view_params.Posts = {"now": now};
 	}
-
-    // var state = {};
-    var endpoint = "/blog/entries";
-    var params = {"queries":JSON.stringify(state)};    
-    var dataStart = (new Date).getTime();
-    $.post(endpoint, params, function(data) {
-		var endTime = (new Date).getTime();
-        var dataTime = endTime - dataStart;
-	    var bulkloadStart = (new Date).getTime();
-        window.db.bulkload(data);
-		endTime = (new Date).getTime();
-        var bulkloadTime = endTime - bulkloadStart;
-	      var templateStart = (new Date).getTime();
-		  $('#newtemplate').render_new();
-		  endTime = (new Date).getTime();
-	      var templateTime = endTime - templateStart;
-	      
-		  if (parent.LogData != "undefined") {
-			parent.LogData("synckit-blog", window.location.href, JSON.stringify(params), dataTime, bulkloadTime, templateTime);
-		  }
-    }, "json");
     
+    var callback = function() {
+        var templateStart = (new Date).getTime();
+		$('#newtemplate').render_new();
+		endTime = (new Date).getTime();
+	    var templateTime = endTime - templateStart;
+    };
+
+    window.db.sync(endpoint, ["Posts"], extra_view_params, {}, callback);
+/*		  if (parent.LogData != "undefined") {
+			parent.LogData("synckit-blog", window.location.href, JSON.stringify(params), dataTime, bulkloadTime, templateTime);
+		  }*/ 
 });
 
 </script>
