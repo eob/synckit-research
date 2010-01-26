@@ -6,7 +6,7 @@
 $(function() {
     // console.info("Page Loaded");
     window.db = create_synckit(); 
-    var endpoint = "/blog/entries";
+    var endpoint = "http://127.0.0.1:8000/blog/entries";
 
     /*
      * remote_views describes the server-generated managed data structures that are 
@@ -29,7 +29,7 @@ $(function() {
     var extra_view_params = {};
     var now = urlParam('now');
 	if (now != 'undefined') {
-	    extra_view_params.Posts.now = now;
+	    extra_view_params.Posts = {"now": now};
 	}
     
     var callback = function() {
