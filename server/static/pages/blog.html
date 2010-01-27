@@ -615,105 +615,106 @@ _skProto = function() {
     // ----------------------------------------------------------------
     if ( !(this instanceof _skProto) ) 
        return new _skProto();
-       
+
+    var _me = this;
+
     // Member Variables
     // ----------------------------------------------------------------
-    this._localdb = null;
-    this._timers = null;
+    _me._localdb = null;
+    _me._timers = null;
     
     // Methods
     // ----------------------------------------------------------------
-    this.opendb = function(name) {
-        if (this._localdb !== null) {
-            this._localdb.open(name);
+    _me.opendb = function(name) {
+        if (_me._localdb !== null) {
+            _me._localdb.open(name);
         }
         else {
             console.error("Local DB is null.");
         }
     };
     
-    this.timeStart = function(obj) {
-        this._timers[obj] = null;            
-        this._timers[obj] = (new Date).getTime();
+    _me.timeStart = function(obj) {
+        _me._timers[obj] = (new Date).getTime();
     };
     
-    this.timeEnd = function(obj) {
-        if (this._timers[obj]) {
-            var diff = (new Date).getTime() - this._timers[obj];
-            this._timers[obj] = null;            
+    _me.timeEnd = function(obj) {
+        if (_me._timers[obj]) {
+            var diff = (new Date).getTime() - _me._timers[obj];
+            _me._timers[obj] = null;            
             return diff;
         }
         return null;
     };
     
-    this.table_exists = function(table) {
+    _me.table_exists = function(table) {
         var result = db.execute("SELECT name FROM sqlite_master WHERE type='table' AND name=?;", [table]);
         var retval = result.isValidRow();
         result.close();
         return retval;
     };
     
-    this.create_tables = function() {
-        console.info("Creating Stats Table");
-        if (this._localdb !== null) {
-            this.execute("CREATE TABLE IF NOT EXISTS sk_endpoints (id integer PRIMARY KEY AUTOINCREMENT, endpoint_uri varchar(512), UNIQUE (endpoint_uri));").close();
-            this.execute("CREATE TABLE IF NOT EXISTS sk_views (endpoint_id integer REFERENCES sk_endpoints(id), name varchar(128), schema text, syncspec text, vshash varchar(32), UNIQUE (endpoint_id, name));").close();
+    _me.create_tables = function() {
+//        console.info("Creating Stats Table");
+        if (_me._localdb !== null) {
+            _me.execute("CREATE TABLE IF NOT EXISTS sk_endpoints (id integer PRIMARY KEY AUTOINCREMENT, endpoint_uri varchar(512), UNIQUE (endpoint_uri));").close();
+            _me.execute("CREATE TABLE IF NOT EXISTS sk_views (endpoint_id integer REFERENCES sk_endpoints(id), name varchar(128), schema text, syncspec text, vshash varchar(32), UNIQUE (endpoint_id, name));").close();
         } else {
             console.error("Could not create stats table. Local DB is null.");
         }        
     };
     
-    this.reset = function() {
+    _me.reset = function() {
         console.info("Resetting DB");
-        if (this._localdb !== null) {
-            this._localdb.remove();
-            this.opendb("synckit");
-            this.create_tables();
+        if (_me._localdb !== null) {
+            _me._localdb.remove();
+            _me.opendb("synckit");
+            _me.create_tables();
         }
         else {
             console.error("Local DB is null.");
         }
     };
 
-    /* When this function completes, the given endpoint will update the
+    /* When _me function completes, the given endpoint will update the
      * sk_endpoints and sk_views tables to contain the most up-to-date
      * information on the view with name viewname and viewspec.  If the old
      * view is out of date (the view's stored vshash is not the one in the
      * viewspec), the table will be updated with the new viewspec
      * information, the old view will be dropped, and a new view will be
      * created in its stead. */
-    this.build_view = function(endpoint, viewname, viewspec) {
-        var endpoint_id = this.get_or_create_endpoint_id(endpoint);
-        var view_res = this.execute("SELECT vshash FROM sk_views WHERE endpoint_id = ? and name = ?;", [endpoint_id, viewname]);
+    _me.build_view = function(endpoint, viewname, viewspec) {
+        var endpoint_id = _me.get_or_create_endpoint_id(endpoint);
+        var view_res = _me.execute("SELECT vshash FROM sk_views WHERE endpoint_id = ? and name = ?;", [endpoint_id, viewname]);
         if (!view_res.isValidRow()) {
             view_res.close();
             // if it doesn't exist, create it.
             // create an entry in sk_views
-            this.execute("INSERT INTO sk_views (endpoint_id, name, schema, syncspec, vshash) VALUES (?, ?, ?, ?, ?);", [endpoint_id, viewname, JSON.stringify(viewspec.schema), JSON.stringify(viewspec.syncspec), viewspec.vshash]).close();
+            _me.execute("INSERT INTO sk_views (endpoint_id, name, schema, syncspec, vshash) VALUES (?, ?, ?, ?, ?);", [endpoint_id, viewname, JSON.stringify(viewspec.schema), JSON.stringify(viewspec.syncspec), viewspec.vshash]).close();
             // create a table for the view
-            this.create_view_table(this.view_table_name(endpoint_id, viewname), viewspec.schema, viewspec.syncspec)
+            _me.create_view_table(_me.view_table_name(endpoint_id, viewname), viewspec.schema, viewspec.syncspec)
         } else if (viewspec.vshash != view_res.fieldByName('vshash')) {
             view_res.close();
             // if it exists, but had an outdated id, re-create it
             // update the entry in sk_views
-            this.execute("UPDATE sk_views SET schema = ?, syncspec = ?, vshash = ? WHERE endpoint_id = ? AND name = ?;", [JSON.stringify(viewspec.schema), JSON.stringify(viewspec.syncspec), viewspec.vshash, endpoint_id, viewname]).close();
-            var view_table_name = this.view_table_name(endpoint_id, viewname);
+            _me.execute("UPDATE sk_views SET schema = ?, syncspec = ?, vshash = ? WHERE endpoint_id = ? AND name = ?;", [JSON.stringify(viewspec.schema), JSON.stringify(viewspec.syncspec), viewspec.vshash, endpoint_id, viewname]).close();
+            var view_table_name = _me.view_table_name(endpoint_id, viewname);
             // drop the old view's table
-            this.execute("DROP TABLE IF EXISTS " + view_table_name + ";").close();
+            _me.execute("DROP TABLE IF EXISTS " + view_table_name + ";").close();
             // create the new view's table
-            this.create_view_table(view_table_name, viewspec.schema, viewspec.syncspec)
+            _me.create_view_table(view_table_name, viewspec.schema, viewspec.syncspec)
         }
     };
 
     /* Returns the ID of the endpoint uri, creating an entry if one doesn't
      * exist.*/
-    this.get_or_create_endpoint_id = function(endpoint) {
-        endpoint_res = this.execute("SELECT id FROM sk_endpoints WHERE endpoint_uri = ?;", [endpoint]);
+    _me.get_or_create_endpoint_id = function(endpoint) {
+        endpoint_res = _me.execute("SELECT id FROM sk_endpoints WHERE endpoint_uri = ?;", [endpoint]);
         endpoint_id = 0;
         if (!endpoint_res.isValidRow()) {
             endpoint_res.close();
-            this.execute("INSERT INTO sk_endpoints (endpoint_uri) VALUES (?);", [endpoint]).close();
-            endpoint_res = this.execute("SELECT id FROM sk_endpoints WHERE endpoint_uri = ?;", [endpoint]);
+            _me.execute("INSERT INTO sk_endpoints (endpoint_uri) VALUES (?);", [endpoint]).close();
+            endpoint_res = _me.execute("SELECT id FROM sk_endpoints WHERE endpoint_uri = ?;", [endpoint]);
         }
         var retval = endpoint_res.fieldByName('id');
         endpoint_res.close();
@@ -722,7 +723,7 @@ _skProto = function() {
 
     /* Returns the name of the view (table) in the database for the view
      * named viewname in the endpoint specified */
-    this.view_table_name = function(endpoint_id, viewname) {
+    _me.view_table_name = function(endpoint_id, viewname) {
         return "sk_" + viewname + endpoint_id;
     };
    
@@ -732,14 +733,14 @@ _skProto = function() {
      * "syncspec" "vshash and "schema". 
      * NOTE: SQL Injection Hack possible if 'fields' contains illegal field
      * names.  Make sure to only call with safe field names.*/
-    this.get_view_info = function(endpoint_id, viewname, fields) {
+    _me.get_view_info = function(endpoint_id, viewname, fields) {
         var sql = "SELECT ";
         for (var fieldnum in fields) {
             sql += fields[fieldnum] + ",";
         }
         sql = sql.substr(0, sql.length - 1);
         sql += " FROM sk_views WHERE endpoint_id = ? AND name = ?;";
-        var res = this.execute(sql, [endpoint_id, viewname]);
+        var res = _me.execute(sql, [endpoint_id, viewname]);
         var ret = {}
         if (res.isValidRow()) {
             for (var fieldnum = 0; fieldnum < fields.length; fieldnum++) {
@@ -761,8 +762,8 @@ _skProto = function() {
      * depending on the type of syncspec specified. 
      * NOTE/potential sql injection attack: because we can't use prepared 
      * statements for CREATE TABLE statements, be careful what table/field 
-     * names you pass into this.*/
-    this.create_view_table = function(view_table_name, schema, syncspec) {
+     * names you pass into this function.*/
+    _me.create_view_table = function(view_table_name, schema, syncspec) {
         var sql = "CREATE TABLE " + view_table_name + " ("; 
         for (var i = 0; i < schema.length; i++) {
             sql += schema[i] + ",";
@@ -775,7 +776,7 @@ _skProto = function() {
         }
         // TODO: do we need to index cube fields?
         sql += ");";
-        this.execute(sql).close();
+        _me.execute(sql).close();
     };
     
     /* Synchronizes the local database with endpoint_uri.
@@ -790,33 +791,33 @@ _skProto = function() {
      *     that will be appended to the query dictionary and apply
      *     query-wide.  arguments such as "__latency" and "__bandwidth"
      *     should be added to this dictionary. */
-    this.sync = function(endpoint_uri, views_to_sync, extra_view_params, extra_query_params, callback) {
-        var endpoint_id = this.get_or_create_endpoint_id(endpoint_uri);
-        var query = this.generate_query(endpoint_id, views_to_sync, extra_view_params);
-        this.issue_query(endpoint_uri, endpoint_id, query, extra_query_params, callback);
+    _me.sync = function(endpoint_uri, views_to_sync, extra_view_params, extra_query_params, callback) {
+        var endpoint_id = _me.get_or_create_endpoint_id(endpoint_uri);
+        var query = _me.generate_query(endpoint_id, views_to_sync, extra_view_params);
+        _me.issue_query(endpoint_uri, endpoint_id, query, extra_query_params, callback);
     };
 
-    /* Returns the state of each of the views for a given endpoint.  This
+    /* Returns the state of each of the views for a given endpoint.  _me
      * can be sent to the server to receive an updated state.  endpoint_id
      * represents the URI of the endpoint being queried. views_to_sync and
-     * extra_view_params are documented in this.sync. */
-    this.generate_query = function(endpoint_id, views_to_sync, extra_view_params) {
-        if (this._localdb !== null) {
+     * extra_view_params are documented in _me.sync. */
+    _me.generate_query = function(endpoint_id, views_to_sync, extra_view_params) {
+        if (_me._localdb !== null) {
             var query = {};
             // loop through the views we wish to sync.
             for (var viewnum in views_to_sync) {
                 var viewname = views_to_sync[viewnum];
-                var view_info = this.get_view_info(endpoint_id, viewname, ['syncspec', 'vshash']);
+                var view_info = _me.get_view_info(endpoint_id, viewname, ['syncspec', 'vshash']);
                 var syncspec = view_info.syncspec
                 var vshash = view_info.vshash
                 if (syncspec.__type == "set") {
-                    this.set_query(endpoint_id, viewname, syncspec, extra_view_params[viewname], query);
+                    _me.set_query(endpoint_id, viewname, syncspec, extra_view_params[viewname], query);
                 }
                 else if (syncspec.__type == "queue") {
-                    this.queue_query(endpoint_id, viewname, syncspec, extra_view_params[viewname], query);
+                    _me.queue_query(endpoint_id, viewname, syncspec, extra_view_params[viewname], query);
                 }
                 else if (syncspec.__type == "cube") {
-                    this.cube_query(endpoint_id, viewname, syncspec, extra_view_params[viewname], query);
+                    _me.cube_query(endpoint_id, viewname, syncspec, extra_view_params[viewname], query);
                 }
 
                 if (viewname in query) {
@@ -838,7 +839,7 @@ _skProto = function() {
      * ask for specifically.  'query' will only be updated if there is no
      * 'filter' parameter, or if the id specified by the 'filter' parameter
      * does not exist in the current view. */
-    this.set_query = function(endpoint_id, viewname, syncspec, extra_params, query) {
+    _me.set_query = function(endpoint_id, viewname, syncspec, extra_params, query) {
         if (syncspec.__type != "set") {
             console.log("Configuring a set that isn't: " + view_name);
             return;
@@ -848,8 +849,8 @@ _skProto = function() {
         // Do we want to filter only a specific row?
         if (extra_params && ('filter' in extra_params)) {
             var theid = extra_params.filter;
-            var table = this.view_table_name(endpoint_id, viewname);
-            var res = this.execute("SELECT ? FROM ? WHERE ?=?;", [syncspec.idfield, table, syncspec.idfield, theid]);
+            var table = _me.view_table_name(endpoint_id, viewname);
+            var res = _me.execute("SELECT ? FROM ? WHERE ?=?;", [syncspec.idfield, table, syncspec.idfield, theid]);
             // If the row doesn't already exist, we continue with the query.
             // Otherwise, we've got the row, and don't send the query.
             if (! res.isValidRow()) {
@@ -865,7 +866,7 @@ _skProto = function() {
         if (send_query) {
             // generate a list of ids we already have and add those to the
             // query.
-            var res = this.execute("SELECT ? FROM ?", [syncspec.idfield, table]);
+            var res = _me.execute("SELECT ? FROM ?", [syncspec.idfield, table]);
             var already = [];
             while (res.isValidRow()) {
                 already.push(res.field(0));
@@ -886,7 +887,7 @@ _skProto = function() {
      * testing.  'now' can be set to the date at which to display the
      * queue, to facilitate time-travel: no row with sortfield greater than
      * the 'now' value will be displayed. */
-    this.queue_query = function(endpoint_id, viewname, syncspec, extra_params, query) {
+    _me.queue_query = function(endpoint_id, viewname, syncspec, extra_params, query) {
         if (syncspec.__type != "queue") {
             console.log("Configuring a queue that isn't: " + view_name);
             return;
@@ -900,10 +901,10 @@ _skProto = function() {
         else if (syncspec.order == "ASC") {
             minmax = "max";
         }
-        var table = this.view_table_name(endpoint_id, viewname);
+        var table = _me.view_table_name(endpoint_id, viewname);
         var stmt = "SELECT " + minmax;
         stmt += "(" + syncspec.sortfield + ") FROM " + table + ";";
-        var res  = this.execute(stmt);
+        var res  = _me.execute(stmt);
         if (res.isValidRow() && (res.field(0) != null)) {
             sq[minmax] = res.field(0);
         }
@@ -919,7 +920,7 @@ _skProto = function() {
      * contains sync information for this cube.  Currently, there is no
      * special functionality of the state of the cube, so an empty query is
      * always sent for the view. */
-    this.cube_query = function(endpoint_id, viewname, syncspec, extra_params, query) {
+    _me.cube_query = function(endpoint_id, viewname, syncspec, extra_params, query) {
         if (syncspec.__type != "cube") {
             console.log("Configuring a cube that isn't: " + view_name);
             return;
@@ -928,26 +929,24 @@ _skProto = function() {
     };
     
     /* Sends the query to the endpoint after appending extra_query_params
-     * to it.  Once a response comes back, this.bulkload will be called
+     * to it.  Once a response comes back, _me.bulkload will be called
      * asynchronously, which will call the callback that the user specified
      * after properly syncing the local database. */
-    this.issue_query = function(endpoint_uri, endpoint_id, query, extra_query_params, callback) {
+    _me.issue_query = function(endpoint_uri, endpoint_id, query, extra_query_params, callback) {
         var params = {"queries":JSON.stringify(query)};
         for (var key in extra_query_params) {
             params[key] = extra_query_params[key];
         }
-        
-        var bl_func = this.bulkload;
         jQuery.post(endpoint_uri, params, function(response) {
-            bl_func(response, endpoint_id, endpoint_uri, callback);
-        });
+            _me.bulkload(response, endpoint_id, endpoint_uri, callback);
+        }, "json");
     };
 
-    this.execute = function(statement, args) {
-        if (this._localdb !== null) {
-            console.log("$$$" + statement);
-            console.log(args);
-            return this._localdb.execute(statement, args);                
+    _me.execute = function(statement, args) {
+        if (_me._localdb !== null) {
+            //console.log("$$$" + statement);
+            //console.log(args);
+            return _me._localdb.execute(statement, args);                
         }
         else {
             console.error("Can't execute query. Local DB is null.");
@@ -955,9 +954,9 @@ _skProto = function() {
     };
 
     // Returns the result of a query as a JSON statement
-    this.json_results_for = function(statement, args) {
-        if (this._localdb !== null) {
-            var res = this._localdb.execute(statement, args);
+    _me.json_results_for = function(statement, args) {
+        if (_me._localdb !== null) {
+            var res = _me._localdb.execute(statement, args);
             var ans = [];
             while (res.isValidRow()) {
                 var obj = {};
@@ -977,22 +976,22 @@ _skProto = function() {
 
     // Takes a hash table where keys are the label
     // and values are the sql statements
-    this.process_data_spec = function(data_spec) {
+    _me.process_data_spec = function(data_spec) {
         var ret = {};
         for (var key in data_spec) {
             var val = data_spec[key];
             if (typeof(val) == "string") {
-                ret[key] = this.json_results_for(val);
+                ret[key] = _me.json_results_for(val);
             }
             else if (typeof(val) == "object") {
-                ret[key] = this.process_data_spec(val);
+                ret[key] = _me.process_data_spec(val);
             }
         }
         return ret;
     };
     
-    this.bulkload = function(response, endpoint_id, endpoint_uri, callback) {
-        this.timeStart("Performing Bulkload Insertion"); 
+    _me.bulkload = function(response, endpoint_id, endpoint_uri, callback) {
+        _me.timeStart("Performing Bulkload Insertion");
         for (var viewname in response) {
             var viewdata = response[viewname];
             if (typeof(viewdata) == "string") {
@@ -1003,7 +1002,7 @@ _skProto = function() {
             // if a viewspec comes back, the server is signalling that we
             // might have a new schema for this view.  try to rebuild the view.
             if ("viewspec" in viewdata) {
-                this.build_view(endpoint_uri, viewname, viewdata.viewspec);
+                _me.build_view(endpoint_uri, viewname, viewdata.viewspec);
             }
 
             // Insert the results into the view if any exist
@@ -1011,7 +1010,7 @@ _skProto = function() {
             if (results.length == 0) {
             	continue;
             }
-            var viewtable = view_table_name(endpoint_id, viewname);
+            var viewtable = _me.view_table_name(endpoint_id, viewname);
             var sqlStatement = "INSERT INTO " + viewtable + " VALUES (";
             for (var z = 0; z<results[0].length; z++) {
                 sqlStatement += "?,";
@@ -1019,28 +1018,28 @@ _skProto = function() {
             sqlStatement = sqlStatement.substr(0,sqlStatement.length - 1);
             sqlStatement += ");";
             
-            this.execute("BEGIN");
-            for (var row in results) {
-                this.execute(sqlStatement, row);
+        //    _me.execute("BEGIN;");
+            for (var rownum in results) {
+                _me.execute(sqlStatement, results[rownum]);
             }
-            this.execute("COMMIT").close();
+        //    _me.execute("COMMIT;");
         }
         // Alert the sync requester that the job is done.
         callback();
-        this.timeEnd("Performing Bulkload Insertion");
+        _me.timeEnd("Performing Bulkload Insertion");
     };
 
     
     // Debugging Methods
     // ----------------------------------------------------------------
     // 
-    this.dump_stats = function(table) {
+    _me.dump_stats = function(table) {
         if (typeof(table) == "undefined") {
             // Get a list of all tables
-            var result = this.execute("SELECT name FROM sqlite_master WHERE type='table';");
+            var result = _me.execute("SELECT name FROM sqlite_master WHERE type='table';");
             while (result.isValidRow()) {
                 console.info("===" + result.field(0) + "===");
-                this.dump_stats(result.field(0));
+                _me.dump_stats(result.field(0));
                 console.info("=============================");
                 console.info("=============================");
                 result.next();
@@ -1051,13 +1050,13 @@ _skProto = function() {
         }
     };
     
-    this.dump = function(table) {
+    _me.dump = function(table) {
         if (typeof(table) == "undefined") {
             // Get a list of all tables
-            var result = this.execute("SELECT name FROM sqlite_master WHERE type='table';");
+            var result = _me.execute("SELECT name FROM sqlite_master WHERE type='table';");
             while (result.isValidRow()) {
                 console.info("===" + result.field(0) + "===");
-                this.dump(result.field(0));
+                _me.dump(result.field(0));
                 console.info("=============================");
                 console.info("=============================");
                 result.next();
@@ -1068,8 +1067,8 @@ _skProto = function() {
             
         }
         
-        if (this._localdb !== null) {
-            var rs = this.execute("SELECT * FROM " + table + ";");
+        if (_me._localdb !== null) {
+            var rs = _me.execute("SELECT * FROM " + table + ";");
             while (rs.isValidRow()) {
               for (var i=0; i<rs.fieldCount(); i++) {
                   console.log(rs.fieldName(i) + ": " + rs.field(i));
@@ -1090,12 +1089,13 @@ _skProto = function() {
     if ((typeof(google) != "undefined") &&
         (typeof(google.gears) != "undefined")) {
         
-        this._localdb = google.gears.factory.create('beta.database');   
-        this.opendb("synckit"); 
-        this.create_tables();
+        _me._localdb = google.gears.factory.create('beta.database');
+        _me._timers = {};
+        _me.opendb("synckit"); 
+        _me.create_tables();
     }
     else {
-        this._localdb = null;
+        _me._localdb = null;
         console.error("Google Gears not found.");
     }
     
@@ -1175,7 +1175,7 @@ jQuery.fn.render_new = function(callback) {
 	});
 
 	window.db.timeEnd("Rendering SQL Template");
-	if (callback != "undefined") {
+	if (callback !== undefined) {
 		callback.call();
 	}
 }
@@ -1184,7 +1184,7 @@ jQuery.fn.render_new = function(callback) {
 $(function() {
     // console.info("Page Loaded");
     window.db = create_synckit(); 
-    var endpoint = "http://127.0.0.1:8000/blog/entries";
+    var endpoint = "/blog/entries";
 
     /*
      * remote_views describes the server-generated managed data structures that are 
@@ -1213,7 +1213,7 @@ $(function() {
     var callback = function() {
         var templateStart = (new Date).getTime();
 		$('#newtemplate').render_new();
-		endTime = (new Date).getTime();
+		var endTime = (new Date).getTime();
 	    var templateTime = endTime - templateStart;
     };
 
@@ -1237,10 +1237,10 @@ $(function() {
 <p align="center"><b>Template Loading...</b></p>
 </div>
 
-<table id="newtemplate" query="SELECT * From Posts LIMIT 10;" as="entry">
+<table id="newtemplate" query="SELECT * From sk_Posts1 LIMIT 10;" as="entry">
 	<tr itemscope="yes" itemtype="Entry" />
 		<td><span itemprop="title">from</span></td>
-		<td><span itemprop="content">content</span></td>
+		<td><span itemprop="contents">content</span></td>
 	</tr>
 </table>
 
