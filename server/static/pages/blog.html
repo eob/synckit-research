@@ -1018,11 +1018,11 @@ _skProto = function() {
             sqlStatement = sqlStatement.substr(0,sqlStatement.length - 1);
             sqlStatement += ");";
             
-        //    _me.execute("BEGIN;");
+            _me.execute("BEGIN;");
             for (var rownum in results) {
                 _me.execute(sqlStatement, results[rownum]);
             }
-        //    _me.execute("COMMIT;");
+            _me.execute("COMMIT;");
         }
         // Alert the sync requester that the job is done.
         callback();

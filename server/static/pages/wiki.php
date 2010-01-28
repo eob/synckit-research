@@ -6,76 +6,41 @@
 $(function() {
     // console.info("Page Loaded");
     window.db = create_synckit();
-    $('#debug').append("loading");
-    /*
-     * TODO: Actively set client schema instead of lazily doing it on server respnse.
-     */
+	var endpoint = "/wiki/synckit";	
+     
+    var viewspec = {
+        "vshash": "435836f4ea590bd397a6d6ce9784fd5d",
+        "syncspec": {
+            "idfield": "id",
+            "__type": "set"
+        },
+        "schema": ["id integer", "title text", "contents text", "access_probability real", "date datetime"]
+    };
+    window.db.build_view(endpoint, "Pages", viewspec);
+	
     
-    /*
-     * remove_views describes the server-generated managed data structures that are 
-     * exported to the client. Each one is a table, but a table that is accessed (and thus synced)
-     * in a particular way.  
-     */
-	var pageid = urlParam('pageid');
 	var latency = urlParam('latency');
 	var bandwidth = urlParam('bandwidth');
-	
-    var remote_views = {
-      "Pages":{
-		"type":"set",
-		"style":"open"
-      }
-    };
-
-	if (pageid != 0) {
-		remote_views["Pages"]["filter"] = pageid;
-	}
-		
-	var schema = {"Pages":["id integer NOT NULL PRIMARY KEY",
-	              		   "title varchar(255)", 
-	              		   "contents text", 
-						   "weight float",
-	              		   "date datetime NOT NULL"]
-    };
-    
-    /*
-     * The state represents what elements from the remove_views that the client has, so that the
-     * server will not waste resources duplicating information.
-     */
-    var state = window.db.get_state(schema, remote_views);   
+	var pageid = urlParam('pageid');
     var now = urlParam('now');
-	
+    var extra_view_params = {};
+	if (pageid != 0) {
+		extra_view_params.filter = pageid;
+	}	
 	if (now != 'undefined') {
-		for (var table in state) {
-			state[table]['now'] = now;
-		}		
-	}
+	    extra_view_params.now = now;
+    }
+    extra_view_params = {"Pages" : extra_view_params};
+    extra_query_params = {"latency" : latency, "bandwidth" : bandwidth};
 
-	var endpoint = null;
-	var params = null;
-	
 	var callback = function(data) {
-		var endTime = (new Date).getTime();
-        var dataTime = endTime - dataStart;
-
-    // console.info("Server Response");
-        // console.info(JSON.stringify(data));    
-	    var bulkloadStart = (new Date).getTime();
-		if (data) {
-	        window.db.bulkload(data);			
-		}
-		endTime = (new Date).getTime();
-        var bulkloadTime = endTime - bulkloadStart;
-
-	      $('#newtemplate').attr('query', 'SELECT * from Pages WHERE id = ' + pageid + ';');
+	      $('#newtemplate').attr('query', 'SELECT * from sk_Pages1 WHERE id = ' + pageid + ';');
 	  	  var templateStart = (new Date).getTime();
 		  $('#newtemplate').render_new();
-		  endTime = (new Date).getTime();
-		
-		
+		  var endTime = (new Date).getTime();
 	      var templateTime = endTime - templateStart;
 
-		  if (parent.LogData) {
+/*		  if (parent.LogData) {
 			if (endpoint == null) {
 				// We didn't hit the server
 				parent.LogData("synckit", "CACHED", "CACHED", 0, 0, templateTime);
@@ -83,23 +48,10 @@ $(function() {
 			else {
 				parent.LogData("synckit", window.location.href, JSON.stringify(params), dataTime, bulkloadTime, templateTime);
 			}
-		  }
+		  }*/
 	}
 
-    // var state = {};
-	
-	if (state["Pages"]) {
-	    endpoint = "/wiki/synckit";	
-	    params = {"queries":JSON.stringify(state), "latency":latency, "bandwidth":bandwidth};    
-	    var dataStart = (new Date).getTime();
-
-	    $.post(endpoint, params, callback, "json");		
-	}
-	else {
-		var dataStart = (new Date).getTime();
-	    callback.call(null);
-	}
-    
+    window.db.sync(endpoint, ["Pages"], extra_view_params, extra_query_params, callback); 
 });
 
 </script>

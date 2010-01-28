@@ -8,11 +8,6 @@ $(function() {
     window.db = create_synckit(); 
     var endpoint = "/blog/entries";
 
-    /*
-     * remote_views describes the server-generated managed data structures that are 
-     * exported to the client. Each one is a table, but a table that is accessed (and thus synced)
-     * in a particular way.  
-     */
     var viewspec = {
         "vshash": "92ec2eb0d74d31ee0ca0763c2e52f7fa",
         "syncspec": {

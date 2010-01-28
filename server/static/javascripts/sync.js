@@ -239,11 +239,13 @@ _skProto = function() {
         if (extra_params && ('filter' in extra_params)) {
             var theid = extra_params.filter;
             var table = _me.view_table_name(endpoint_id, viewname);
-            var res = _me.execute("SELECT ? FROM ? WHERE ?=?;", [syncspec.idfield, table, syncspec.idfield, theid]);
+            var sql = "SELECT " + syncspec.idfield + " FROM " + table;
+            sql += " WHERE " + syncspec.idfield + "=?;";
+            var res = _me.execute(sql, [theid]);
             // If the row doesn't already exist, we continue with the query.
             // Otherwise, we've got the row, and don't send the query.
             if (! res.isValidRow()) {
-                sq.filter = theid;
+                sq.filter = [theid];
             } else {
                 send_query = false;
             }
@@ -255,7 +257,8 @@ _skProto = function() {
         if (send_query) {
             // generate a list of ids we already have and add those to the
             // query.
-            var res = _me.execute("SELECT ? FROM ?", [syncspec.idfield, table]);
+            var sql = "SELECT " + syncspec.idfield + " FROM " + table + ";";
+            var res = _me.execute(sql);
             var already = [];
             while (res.isValidRow()) {
                 already.push(res.field(0));
@@ -322,19 +325,28 @@ _skProto = function() {
      * asynchronously, which will call the callback that the user specified
      * after properly syncing the local database. */
     _me.issue_query = function(endpoint_uri, endpoint_id, query, extra_query_params, callback) {
-        var params = {"queries":JSON.stringify(query)};
-        for (var key in extra_query_params) {
-            params[key] = extra_query_params[key];
+        var numViews = 0;
+        for (view in query) {
+            numViews++;
         }
-        jQuery.post(endpoint_uri, params, function(response) {
-            _me.bulkload(response, endpoint_id, endpoint_uri, callback);
-        }, "json");
+        if (numViews > 0) {
+            var params = {"queries":JSON.stringify(query)};
+            for (var key in extra_query_params) {
+                params[key] = extra_query_params[key];
+            }
+            jQuery.post(endpoint_uri, params, function(response) {
+                         _me.bulkload(response, endpoint_id, endpoint_uri, callback);
+                    }, "json");
+        } else {
+            callback();
+        }
+
     };
 
     _me.execute = function(statement, args) {
         if (_me._localdb !== null) {
-            //console.log("$$$" + statement);
-            //console.log(args);
+//            console.log("$$$" + statement);
+//            console.log(args);
             return _me._localdb.execute(statement, args);                
         }
         else {
@@ -407,11 +419,11 @@ _skProto = function() {
             sqlStatement = sqlStatement.substr(0,sqlStatement.length - 1);
             sqlStatement += ");";
             
-        //    _me.execute("BEGIN;");
+            //_me.execute("BEGIN;");
             for (var rownum in results) {
                 _me.execute(sqlStatement, results[rownum]);
             }
-        //    _me.execute("COMMIT;");
+            //_me.execute("COMMIT;");
         }
         // Alert the sync requester that the job is done.
         callback();
