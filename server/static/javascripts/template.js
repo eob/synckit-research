@@ -44,7 +44,7 @@ jQuery.fn.render_new = function(callback) {
 	});
 
 	window.db.timeEnd("Rendering SQL Template");
-	if (callback != "undefined") {
+	if (callback !== undefined) {
 		callback.call();
 	}
 }

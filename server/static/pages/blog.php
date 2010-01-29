@@ -6,13 +6,8 @@
 $(function() {
     // console.info("Page Loaded");
     window.db = create_synckit(); 
-    var endpoint = "http://127.0.0.1:8000/blog/entries";
+    var endpoint = "/blog/entries";
 
-    /*
-     * remote_views describes the server-generated managed data structures that are 
-     * exported to the client. Each one is a table, but a table that is accessed (and thus synced)
-     * in a particular way.  
-     */
     var viewspec = {
         "vshash": "92ec2eb0d74d31ee0ca0763c2e52f7fa",
         "syncspec": {
@@ -35,7 +30,7 @@ $(function() {
     var callback = function() {
         var templateStart = (new Date).getTime();
 		$('#newtemplate').render_new();
-		endTime = (new Date).getTime();
+		var endTime = (new Date).getTime();
 	    var templateTime = endTime - templateStart;
     };
 
@@ -59,10 +54,10 @@ $(function() {
 <p align="center"><b>Template Loading...</b></p>
 </div>
 
-<table id="newtemplate" query="SELECT * From Posts LIMIT 10;" as="entry">
+<table id="newtemplate" query="SELECT * From sk_Posts1 LIMIT 10;" as="entry">
 	<tr itemscope="yes" itemtype="Entry" />
 		<td><span itemprop="title">from</span></td>
-		<td><span itemprop="content">content</span></td>
+		<td><span itemprop="contents">content</span></td>
 	</tr>
 </table>
 
