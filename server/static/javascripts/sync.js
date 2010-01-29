@@ -20,7 +20,7 @@ _skProto = function() {
             console.error("Local DB is null.");
         }
     };
-    
+        
     this.timeStart = function(obj) {
         this._timers[obj] = null;            
         this._timers[obj] = (new Date).getTime();
