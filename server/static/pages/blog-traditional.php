@@ -4,9 +4,9 @@
 <script>
 $(function() {
 	var callback = function(data) {
-		  if (parent.LogData) {
-			parent.LogData("traditional-blog-test-load", "TRAD", "TRAD", 0, 0, 0);
-		  }
+        if (parent.LogData != "undefined") {
+            	parent.LogData("Blog", "Traditional", window.location.href, JSON.stringify(params));
+        }	      
 	}
    callback.call(null);    
 });

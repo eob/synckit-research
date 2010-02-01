@@ -55,36 +55,19 @@ $(function() {
 	var params = {"queries":JSON.stringify(state)};    
 	
 	var callback = function(data) {
-		var endTime = (new Date).getTime();
-        var dataTime = endTime - dataStart;
-
-    // console.info("Server Response");
-        // console.info(JSON.stringify(data));    
-	    var bulkloadStart = (new Date).getTime();
-		// if (data) {
-		// 	        window.db.bulkload(data);			
-		// }
-		endTime = (new Date).getTime();
-        var bulkloadTime = endTime - bulkloadStart;
-
-	      // $('#newtemplate').attr('query', 'SELECT * from Pages WHERE id = ' + pageid + ';');
-	  	  var templateStart = (new Date).getTime();
-		  $('#newtemplate').render_flying(data);
-		  endTime = (new Date).getTime();
-		
-	      var templateTime = endTime - templateStart;
-
-		  if (parent.LogData) {
-			parent.LogData("flying", window.location.href, JSON.stringify(params), dataTime, bulkloadTime, templateTime);
-		  }
+	    window.db._dataTransferTime = window.db.endTime("dataFetch");;
+        window.db.startTime("template");
+        $('#newtemplate').render_flying(data);
+        window.db._templateTime = window.db.endTime("template");
+        if (parent.LogData != "undefined") {
+            	parent.LogData("Wiki", "Flying Templates", window.location.href, JSON.stringify(params));
+        }	      
 	}
-    // var state = {};
-	
-	    endpoint = "/wiki/tokyo";	
-	    params = {"queries":JSON.stringify(state)};    
-	    var dataStart = (new Date).getTime();
+    endpoint = "/wiki/tokyo";	
+    params = {"queries":JSON.stringify(state)};    
 
-	    $.post(endpoint, params, callback, "json");		
+    window.db.startTime("dataFetch");
+    $.post(endpoint, params, callback, "json");		
     
 });
 

@@ -37,7 +37,7 @@ $(function() {
     //var state = window.db.get_state(schema, remote_views);   
          
     // var state = {};
-    var endpoint = "/blog/entries";
+    var endpoint = "/blog/flying_entries";
 	var state = {"Posts":{}};
     var now = urlParam('now');
 	if (now != 'undefined') {
@@ -48,26 +48,16 @@ $(function() {
 
     var params = {"queries":JSON.stringify(state)};    
 
-    // console.info("Endpoint: " + endpoint);    
-    // console.info("Params: " + JSON.stringify(params));
-    var dataStart = (new Date).getTime();
+    window.db.startTime("dataFetch");
     $.post(endpoint, params, function(data) {
-		var endTime = (new Date).getTime();
-        var dataTime = endTime - dataStart;
-	
-//        var data = window.db.process_data_spec(dataspec);
-		 var templateStart = (new Date).getTime();	
-		  $('#newtemplate').render_flying(data);
-		  endTime = (new Date).getTime();
-	      var templateTime = endTime - templateStart;
-	     
-		  if (parent.LogData) {
-			parent.LogData("flying-blog", window.location.href, JSON.stringify(params), dataTime, 0, templateTime);			
-		  }
-	
-	 // Do the new render
-	      
-	      
+	    window.db._dataTransferTime = window.db.endTime("dataFetch");;
+        window.db.startTime("template");
+        $('#newtemplate').render_flying(data);
+        window.db._templateTime = window.db.endTime("template");;
+
+        if (parent.LogData != "undefined") {
+            	parent.LogData("Blog", "Flying Templates", window.location.href, JSON.stringify(params));
+        }	      
     }, "json");
     
 });

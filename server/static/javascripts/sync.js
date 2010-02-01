@@ -11,6 +11,10 @@ _skProto = function() {
     // ----------------------------------------------------------------
     _me._localdb = null;
     _me._timers = null;
+
+    _me._bulkloadTime = 0;
+    _me._dataTransferTime = 0;
+    _me._templateTime = 0;
     
     // Methods
     // ----------------------------------------------------------------
@@ -334,9 +338,12 @@ _skProto = function() {
             for (var key in extra_query_params) {
                 params[key] = extra_query_params[key];
             }
+            
+            _me.timeStart("xfer");
             jQuery.post(endpoint_uri, params, function(response) {
-                         _me.bulkload(response, endpoint_id, endpoint_uri, callback);
-                    }, "json");
+                _me._dataTransferTime = _me.timeEnd("xfer");
+                _me.bulkload(response, endpoint_id, endpoint_uri, callback);
+            }, "json");
         } else {
             callback();
         }
@@ -392,7 +399,7 @@ _skProto = function() {
     };
     
     _me.bulkload = function(response, endpoint_id, endpoint_uri, callback) {
-        _me.timeStart("Performing Bulkload Insertion");
+        _me.timeStart("bulkload");
         for (var viewname in response) {
             var viewdata = response[viewname];
             if (typeof(viewdata) == "string") {
@@ -426,8 +433,8 @@ _skProto = function() {
             //_me.execute("COMMIT;");
         }
         // Alert the sync requester that the job is done.
+        _me._bulkloadTime = _me.timeEnd("bulkload");
         callback();
-        _me.timeEnd("Performing Bulkload Insertion");
     };
 
     

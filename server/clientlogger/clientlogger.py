@@ -5,11 +5,11 @@ from models import *
 
 def log(request):
     new_one = LogEntry(
-        tester=request.POST["tester"],
-        tester_comments=request.POST["tester_comments"],
+        test_batch_name=request.POST["test_batch_name"],
+        test_name=request.POST["test_name"],
         test_file=request.POST["test_file"],
-        test_description=request.POST["test_description"],
-        style=request.POST["style"],
+        test_style=request.POST["test_style"],
+        page_name=request.POST["page_name"],
         url=request.POST["url"],
         params=request.POST["params"],
         user=int(request.POST["user"]),

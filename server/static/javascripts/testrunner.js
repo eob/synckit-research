@@ -128,10 +128,15 @@ function runtest() {
     $('iframe#testframe').attr('src', window.currentClick);
 }
 
-function LogData(style, url, params, dataFetch, dataLoad, templateParse) {
+function LogData(page_name, style, url, params) {
     var diff = timeEnd('load');
-    var tester = window.dataSources[window.currentDataSource][0];
-    var tester_comments = "";
+    var dataFetch = window.db._dataTransferTime;
+    var dataLoad = window.db._bulkloadTime;
+    var templateParse = window.db._templateTime;
+
+    var test_batch_name = $('#test_batch_name').val();
+    var test_name = window.dataSources[window.currentDataSource][1];
+
     var latency = $('#latency').val();
     var bandwidth = $('#bandwidth').val();
     var test_file = $('#dsselect').val();
@@ -142,11 +147,11 @@ function LogData(style, url, params, dataFetch, dataLoad, templateParse) {
     url = window.currentClick;
 	$("#last_result").html("<td>" + style + "</td><td>" + url + "</td><td>" + params + "</td><td>" + diff + "</td><td>" + dataFetch + "</td><td>" + dataLoad + "</td><td>" + templateParse + "</td>");
     $.post("/clientlogger/log", {
-        "tester":tester,
-        "tester_comments":tester_comments,
+        "test_batch_name":test_batch_name,
+        "test_name":test_name,
+        "page_name":page_name,
         "test_file":test_file,
-        "test_description":test_description,
-        "style":style,
+        "test_style":style,
         "url":url,
         "params":params,
         "user":user,
