@@ -8,7 +8,7 @@ def log(request):
         test_batch_name=request.POST["test_batch_name"],
         test_name=request.POST["test_name"],
         test_file=request.POST["test_file"],
-        test_style=request.POST["test_style"],
+        style=request.POST["test_style"],
         page_name=request.POST["page_name"],
         url=request.POST["url"],
         params=request.POST["params"],
