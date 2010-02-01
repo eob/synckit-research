@@ -130,9 +130,9 @@ function runtest() {
 
 function LogData(page_name, style, url, params) {
     var diff = timeEnd('load');
-    var dataFetch = window.db._dataTransferTime;
-    var dataLoad = window.db._bulkloadTime;
-    var templateParse = window.db._templateTime;
+    var dataFetch = window.synckit._dataTransferTime;
+    var dataLoad = window.synckit._bulkloadTime;
+    var templateParse = window.synckit._templateTime;
 
     var test_batch_name = $('#test_batch_name').val();
     var test_name = window.dataSources[window.currentDataSource][1];

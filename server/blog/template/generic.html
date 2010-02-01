@@ -868,7 +868,7 @@ jQuery.fn.render_new = function(callback) {
 	console.time("Rendering SQL Template");
 	var query = this.attr('query');
 	var templates = this.find("[itemscope]");
-	var res = window.db.execute(query);
+	var res = window.synckit.execute(query);
 	var map = {};
 	
 	while (res.isValidRow()) {
@@ -915,7 +915,7 @@ $(function() {
         // console.info(JSON.stringify(data));    
 	    var bulkloadStart = (new Date).getTime();
 		// if (data) {
-		// 	        window.db.bulkload(data);			
+		// 	        window.synckit.bulkload(data);			
 		// }
 		endTime = (new Date).getTime();
         var bulkloadTime = endTime - bulkloadStart;

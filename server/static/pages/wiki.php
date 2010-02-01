@@ -5,7 +5,7 @@
 <script>
 $(function() {
     // console.info("Page Loaded");
-    window.db = create_synckit();
+    window.synckit = create_synckit();
 	var endpoint = "/wiki/synckit";	
      
     var viewspec = {
@@ -16,7 +16,7 @@ $(function() {
         },
         "schema": ["id integer", "title text", "contents text", "access_probability real", "date datetime"]
     };
-    window.db.build_view(endpoint, "Pages", viewspec);
+    window.synckit.build_view(endpoint, "Pages", viewspec);
 	
     
 	var latency = urlParam('latency');
@@ -34,16 +34,16 @@ $(function() {
     extra_query_params = {"latency" : latency, "bandwidth" : bandwidth};
 
 	var callback = function(data) {
-        window.db.startTime("template");
+        window.synckit.startTime("template");
 	      $('#newtemplate').attr('query', 'SELECT * from sk_Pages1 WHERE id = ' + pageid + ';');
 		  $('#newtemplate').render_new();
-    	  window.db._templateTime = window.db.endTime("template");;
+    	  window.synckit._templateTime = window.synckit.endTime("template");;
           if (parent.LogData != "undefined") {
               	parent.LogData("Wiki", "Sync Kit", window.location.href, JSON.stringify(params));
           }
 	}
 
-    window.db.sync(endpoint, ["Pages"], extra_view_params, extra_query_params, callback); 
+    window.synckit.sync(endpoint, ["Pages"], extra_view_params, extra_query_params, callback); 
 });
 
 </script>
@@ -51,7 +51,7 @@ $(function() {
 <body>  
     
 <div id="loading">
-    <button id="clearButton" onclick="window.db.reset();">Reset DB</button><button onclick="window.db.dump();">Dump DB</button>
+    <button id="clearButton" onclick="window.synckit.reset();">Reset DB</button><button onclick="window.synckit.dump();">Dump DB</button>
 </div>
 
 <div id="debug">

@@ -5,7 +5,7 @@
 <script>
 $(function() {
     // console.info("Page Loaded");
-    window.db = create_synckit();
+    window.synckit = create_synckit();
     
     /*
      * TODO: Actively set client schema instead of lazily doing it on server respnse.
@@ -35,7 +35,7 @@ $(function() {
      * The state represents what elements from the remove_views that the client has, so that the
      * server will not waste resources duplicating information.
      */
-    var state = window.db.get_state(schema, remote_views);   
+    var state = window.synckit.get_state(schema, remote_views);   
     var now = urlParam('now');
 	if (now != 'undefined') {
 		for (var table in state) {
@@ -53,7 +53,7 @@ $(function() {
 		var endTime = (new Date).getTime();
         var dataTime = endTime - dataStart;
 	    var bulkloadStart = (new Date).getTime();
-        window.db.bulkload(data);
+        window.synckit.bulkload(data);
 		endTime = (new Date).getTime();
         var bulkloadTime = endTime - bulkloadStart;
 	      var templateStart = (new Date).getTime();
@@ -73,7 +73,7 @@ $(function() {
 <body>  
     
 <div id="loading">
-    <button id="clearButton" onclick="window.db.reset();">Reset DB</button><button onclick="window.db.dump();">Dump DB</button>
+    <button id="clearButton" onclick="window.synckit.reset();">Reset DB</button><button onclick="window.synckit.dump();">Dump DB</button>
 </div>
 
 <div id="debug">
