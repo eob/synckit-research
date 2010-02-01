@@ -48,12 +48,12 @@ $(function() {
 
     var params = {"queries":JSON.stringify(state)};    
 
-    window.synckit.startTime("dataFetch");
+    window.synckit.timeStart("dataFetch");
     $.post(endpoint, params, function(data) {
-	    window.synckit._dataTransferTime = window.synckit.endTime("dataFetch");;
-        window.synckit.startTime("template");
+	    window.synckit._dataTransferTime = window.synckit.timeEnd("dataFetch");;
+        window.synckit.timeStart("template");
         $('#newtemplate').render_flying(data);
-        window.synckit._templateTime = window.synckit.endTime("template");;
+        window.synckit._templateTime = window.synckit.timeEnd("template");;
 
         if (parent.LogData != "undefined") {
             	parent.LogData("Blog", "Flying Templates", window.location.href, JSON.stringify(params));

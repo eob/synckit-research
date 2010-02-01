@@ -1212,9 +1212,9 @@ $(function() {
 	}
     
     var callback = function() {
-        window.synckit.startTime("template");
+        window.synckit.timeStart("template");
 		$('#newtemplate').render_new();
-	    window.synckit._templateTime = window.synckit.endTime("template");;
+	    window.synckit._templateTime = window.synckit.timeEnd("template");;
         if (parent.LogData != "undefined") {
         	parent.LogData("Blog", "Sync Kit", window.location.href, JSON.stringify(params));
         }
