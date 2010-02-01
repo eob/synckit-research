@@ -1,6 +1,6 @@
-<!DOCTYPE html>
 <html>
 <head>
+<script>
 <style type="text/css">
 body {
     margin: 40px 50px 50px;
@@ -1186,61 +1186,84 @@ jQuery.fn.render_new = function(callback) {
 	}
 }
 
-</script><script>
-$(function() {
+</script>$(function() {
     // console.info("Page Loaded");
-    window.db = create_synckit(); 
-    var endpoint = "/blog/entries";
-
-    var viewspec = {
-        "vshash": "92ec2eb0d74d31ee0ca0763c2e52f7fa",
-        "syncspec": {
-            "limit": 10, 
-            "__type": "queue",
-            "order": "ASC", 
-            "sortfield": "date"
-        }, 
-        "schema": ["id integer", "author integer", "title varchar(200)", "contents text", "date datetime"]
+    window.db = create_synckit();
+    
+    /*
+     * TODO: Actively set client schema instead of lazily doing it on server respnse.
+     */
+    
+    /*
+     * remove_views describes the server-generated managed data structures that are 
+     * exported to the client. Each one is a table, but a table that is accessed (and thus synced)
+     * in a particular way.  
+     */
+    var remote_views = {
+      "Posts":{
+        "type":"queue",
+        "field":"date",
+        "order":"ASC"
+      }
     };
-    window.db.build_view(endpoint, "Posts", viewspec);
 
-    // 'now' is a parameter used for time-travel through the posts
-    var extra_view_params = {};
+//	var schema = {"Posts":["id integer NOT NULL PRIMARY KEY",
+//	              		   "author varchar(200) NOT NULL", 
+//	              		   "title text NOT NULL", 
+//	              		   "content varchar(200)", 
+//	              		   "date datetime NOT NULL"]
+//	              };
+    
+    /*
+     * The state represents what elements from the remove_views that the client has, so that the
+     * server will not waste resources duplicating information.
+     */
+    //var state = window.db.get_state(schema, remote_views);   
+         
+    // var state = {};
+    var endpoint = "/blog/flying_entries";
+	var state = {"Posts":{}};
     var now = urlParam('now');
 	if (now != 'undefined') {
-	    extra_view_params.Posts = {"now": now};
+		for (var table in state) {
+			state[table]['now'] = now;
+		}		
 	}
-    
-    var callback = function() {
+
+    var params = {"queries":JSON.stringify(state)};    
+
+    window.db.startTime("dataFetch");
+    $.post(endpoint, params, function(data) {
+	    window.db._dataTransferTime = window.db.endTime("dataFetch");;
         window.db.startTime("template");
-		$('#newtemplate').render_new();
-	    window.db._templateTime = window.db.endTime("template");;
+        $('#newtemplate').render_flying(data);
+        window.db._templateTime = window.db.endTime("template");;
+
         if (parent.LogData != "undefined") {
-        	parent.LogData("Blog", "Sync Kit", window.location.href, JSON.stringify(params));
-        }
-    };
-
-    window.db.sync(endpoint, ["Posts"], extra_view_params, {}, callback);
+            	parent.LogData("Blog", "Flying Templates", window.location.href, JSON.stringify(params));
+        }	      
+    }, "json");
+    
 });
-
 </script>
 </head>
-<body>  
+<body>
+    
     
 <div id="loading">
-    <button id="clearButton" onclick="window.db.reset();">Reset DB</button><button onclick="window.db.dump();">Dump DB</button>
+    <button onclick=";">--(no op)--</button><button onclick="">--(no op)--</button>
 </div>
 
 <div id="debug">
 </div>
 <div id="templated">
-<p align="center"><b>Template Loading...</b></p>
+<p align="center"><b>FLYING TEMPLATES</b></p>
 </div>
 
-<table id="newtemplate" query="SELECT * From sk_Posts1 LIMIT 10;" as="entry">
+<table id="newtemplate" query="SELECT * From Posts LIMIT 10;" as="entry">
 	<tr itemscope="yes" itemtype="Entry" />
 		<td><span itemprop="title">from</span></td>
-		<td><span itemprop="contents">content</span></td>
+		<td><span itemprop="content">content</span></td>
 	</tr>
 </table>
 

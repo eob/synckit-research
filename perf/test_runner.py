@@ -75,7 +75,7 @@ def write_statistics_header(statistics_file):
     sys.stdout.flush()
 
 def write_rates_header(rates_file):
-    output = "file,highest_rate,attempted_rate,avg_data"
+    output = "file,strategy,frequency,highest_rate,attempted_rate,avg_data"
     print output
     rates_file.write(output+'\n')
     rates_file.flush()
@@ -97,7 +97,23 @@ def write_statistics(statistics_file, statistics, filename, rate):
     sys.stdout.flush()
 
 def write_finalrate(rates_file, filename, highest_rate, attempted_rate, avg_data):
-    output = "%s,%f,%d,%f" % (filename, highest_rate, attempted_rate, avg_data)
+    # We're going to depend on the file having a predictable
+    # name to extract the hosting style and the frequency from
+    # the filename
+    # i,e,
+    # test_freq_12_per_day_traditional.txt
+    # test_freq_2_per_day_tokyo.txt
+    # test_freq_24_per_day_synckit.txt
+    strategy = filename.split("_")[5].split(".")[0]    
+    frequency = filename.split("_")[2]
+    
+    if strategy == "synckit":
+        strategy = "Sync Kit"
+    elif strategy == "traditional":
+        strategy = "Traditional"
+    elif strategy == "tokyo":
+        strategy = "Flying Templates"
+    output = "%s,%s,%s,%f,%d,%f" % (filename, strategy, frequency, highest_rate, attempted_rate, avg_data)
     print output
     rates_file.write(output+'\n')
     rates_file.flush()

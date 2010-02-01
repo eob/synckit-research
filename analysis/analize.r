@@ -18,6 +18,8 @@ testName <- "one"
 pageName <- "blog"
 # ============================================================================
 
+pdf(file="client_time_breakdown.pdf", height=3.5, width=5)
+
 # Filter the table for only rows where the frequency count was 1
 # NOTE: In real data set, should also filter for other things, like 
 # test and page
@@ -34,7 +36,6 @@ freqOneAgg <- aggregate(freqOne,
                         FUN=mean, 
                         na.rm=TRUE)
 
-# Add a new column that is eqal to the TTR minus the others
 # Note: Group.1 is the name of the aggregation bucket. 
 # It would be nice if we could rename this in the 
 # aggregate params back to "strategy"
@@ -105,7 +106,7 @@ bandwidthTable = data.frame(
 plot_colors <- c(rgb(r=0.0,g=0.0,b=0.9), "red", "forestgreen")
 
 # Start PDF device driver to save output to figure.pdf
-# pdf(file="theoretical_bandwidth.pdf", height=3.5, width=5)
+pdf(file="theoretical_bandwidth.pdf", height=3.5, width=5)
 
 # Trim off excess margin space (bottom, left, top, right)par(mar=c(4.2, 3.8, 0.2, 0.2))
 par(mar=c(4.2, 3.8, 0.2, 0.2))
@@ -153,4 +154,3 @@ dev.off()
 
 # Restore default margins
 par(mar=c(5, 4, 4, 2) + 0.1)
-
