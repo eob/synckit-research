@@ -32,7 +32,9 @@ $(function() {
 		$('#newtemplate').render_new();
 	    window.synckit._templateTime = window.synckit.timeEnd("template");;
         if (parent.LogData != "undefined") {
-        	parent.LogData("Blog", "Sync Kit", window.location.href, JSON.stringify(params));
+            var x = "";
+            // the x arg used to be: JSON.stringify(params)
+        	parent.LogData("Blog", "Sync Kit", window.location.href, x);
         }
     };
 
