@@ -22,7 +22,7 @@ _skProto = function() {
             console.error("Local DB is null.");
         }
     };
-    
+
     _me.timeStart = function(obj) {
         _me._timers[obj] = (new Date).getTime();
     };
