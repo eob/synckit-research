@@ -1157,10 +1157,10 @@ jQuery.fn.templateData = function(value) {
 };
 
 jQuery.fn.render_new = function(callback) {
-	window.db.timeStart("Rendering SQL Template");
+	window.synckit.timeStart("Rendering SQL Template");
 	var query = this.attr('query');
 	var templates = this.find("[itemscope]");
-	var res = window.db.execute(query);
+	var res = window.synckit.execute(query);
 	var map = {};
 	
 	while (res.isValidRow()) {
@@ -1180,7 +1180,7 @@ jQuery.fn.render_new = function(callback) {
 		jQuery(this).remove();
 	});
 
-	window.db.timeEnd("Rendering SQL Template");
+	window.synckit.timeEnd("Rendering SQL Template");
 	if (callback !== undefined) {
 		callback.call();
 	}
@@ -1188,7 +1188,7 @@ jQuery.fn.render_new = function(callback) {
 
 </script>$(function() {
     // console.info("Page Loaded");
-    window.db = create_synckit();
+    window.synckit = create_synckit();
     
     /*
      * TODO: Actively set client schema instead of lazily doing it on server respnse.
@@ -1218,7 +1218,7 @@ jQuery.fn.render_new = function(callback) {
      * The state represents what elements from the remove_views that the client has, so that the
      * server will not waste resources duplicating information.
      */
-    //var state = window.db.get_state(schema, remote_views);   
+    //var state = window.synckit.get_state(schema, remote_views);   
          
     // var state = {};
     var endpoint = "/blog/flying_entries";
@@ -1232,12 +1232,12 @@ jQuery.fn.render_new = function(callback) {
 
     var params = {"queries":JSON.stringify(state)};    
 
-    window.db.startTime("dataFetch");
+    window.synckit.startTime("dataFetch");
     $.post(endpoint, params, function(data) {
-	    window.db._dataTransferTime = window.db.endTime("dataFetch");;
-        window.db.startTime("template");
+	    window.synckit._dataTransferTime = window.synckit.endTime("dataFetch");;
+        window.synckit.startTime("template");
         $('#newtemplate').render_flying(data);
-        window.db._templateTime = window.db.endTime("template");;
+        window.synckit._templateTime = window.synckit.endTime("template");;
 
         if (parent.LogData != "undefined") {
             	parent.LogData("Blog", "Flying Templates", window.location.href, JSON.stringify(params));

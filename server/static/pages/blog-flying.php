@@ -4,7 +4,7 @@
 <?php include "synckit-header.php" ?>
 $(function() {
     // console.info("Page Loaded");
-    window.db = create_synckit();
+    window.synckit = create_synckit();
     
     /*
      * TODO: Actively set client schema instead of lazily doing it on server respnse.
@@ -34,7 +34,7 @@ $(function() {
      * The state represents what elements from the remove_views that the client has, so that the
      * server will not waste resources duplicating information.
      */
-    //var state = window.db.get_state(schema, remote_views);   
+    //var state = window.synckit.get_state(schema, remote_views);   
          
     // var state = {};
     var endpoint = "/blog/flying_entries";
@@ -48,12 +48,12 @@ $(function() {
 
     var params = {"queries":JSON.stringify(state)};    
 
-    window.db.startTime("dataFetch");
+    window.synckit.startTime("dataFetch");
     $.post(endpoint, params, function(data) {
-	    window.db._dataTransferTime = window.db.endTime("dataFetch");;
-        window.db.startTime("template");
+	    window.synckit._dataTransferTime = window.synckit.endTime("dataFetch");;
+        window.synckit.startTime("template");
         $('#newtemplate').render_flying(data);
-        window.db._templateTime = window.db.endTime("template");;
+        window.synckit._templateTime = window.synckit.endTime("template");;
 
         if (parent.LogData != "undefined") {
             	parent.LogData("Blog", "Flying Templates", window.location.href, JSON.stringify(params));
