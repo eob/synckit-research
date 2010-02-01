@@ -5,7 +5,7 @@
 $(function() {
 	var callback = function(data) {
         if (parent.LogData != "undefined") {
-            	parent.LogData("Blog", "Traditional", window.location.href, "TRAD");
+            	parent.LogData("Wiki", "Traditional", window.location.href, "TRAD");
         }	      
 	}
    callback.call(null);    
