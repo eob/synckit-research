@@ -16,19 +16,19 @@ function timeEnd(obj) {
 
 window.dataSources = [
 ["/static/javascripts/userLoad1.js","Testing Run"],
-["/static/wiki1/traditional_1_a.js","Wiki Test 1(a) - Traditional Hosting"],
-["/static/wiki1/tokyo_1_a.js","Wiki Test 1(a) - Flying Templates"],
-["/static/wiki1/synckit_1_a.js","Wiki Test 1(a) - Sync Kit"],
-["/static/wiki2/traditional_1_b.js","Wiki Test 1(b) - Traditional Hosting"],
-["/static/wiki2/tokyo_1_b.js","Wiki Test 1(b) - Flying Templates"],
-["/static/wiki2/synckit_1_b.js","Wiki Test 1(b) - Sync Kit"],
-["/static/wiki3/traditional_1_c.js","Wiki Test 1(c) - Traditional Hosting"],
-["/static/wiki3/tokyo_1_c.js","Wiki Test 1(c) - Flying Templates"],
-["/static/wiki3/synckit_1_c.js","Wiki Test 1(c) - Sync Kit"],
-["/static/blog1/traditional_2_a.js","Blog Test 2(a) - Traditional Hosting"],
-["/static/blog1/tokyo_2_a.js","Blog Test 2(a) - Flying Templates"],
-["/static/blog1/synckit_2_a.js","Blog Test 2(a) - Sync Kit"],
-["/static/test_dom/testdom.js","Test DOM Load and JS Startup"]
+// ["/static/wiki1/traditional_1_a.js","Wiki Test 1(a) - Traditional Hosting"],
+// ["/static/wiki1/tokyo_1_a.js","Wiki Test 1(a) - Flying Templates"],
+// ["/static/wiki1/synckit_1_a.js","Wiki Test 1(a) - Sync Kit"],
+// ["/static/wiki2/traditional_1_b.js","Wiki Test 1(b) - Traditional Hosting"],
+// ["/static/wiki2/tokyo_1_b.js","Wiki Test 1(b) - Flying Templates"],
+// ["/static/wiki2/synckit_1_b.js","Wiki Test 1(b) - Sync Kit"],
+// ["/static/wiki3/traditional_1_c.js","Wiki Test 1(c) - Traditional Hosting"],
+// ["/static/wiki3/tokyo_1_c.js","Wiki Test 1(c) - Flying Templates"],
+// ["/static/wiki3/synckit_1_c.js","Wiki Test 1(c) - Sync Kit"],
+// ["/static/blog1/traditional_2_a.js","Blog Test 2(a) - Traditional Hosting"],
+// ["/static/blog1/tokyo_2_a.js","Blog Test 2(a) - Flying Templates"],
+// ["/static/blog1/synckit_2_a.js","Blog Test 2(a) - Sync Kit"],
+// ["/static/test_dom/testdom.js","Test DOM Load and JS Startup"]
 ];
 
 window.users = null;
