@@ -15,7 +15,7 @@ function timeEnd(obj) {
 }
 
 window.dataSources = [
-["/static/javascripts/userload1.js","Testing Run"],
+["/static/javascripts/userLoad1.js","Testing Run"],
 ["/static/wiki1/traditional_1_a.js","Wiki Test 1(a) - Traditional Hosting"],
 ["/static/wiki1/tokyo_1_a.js","Wiki Test 1(a) - Flying Templates"],
 ["/static/wiki1/synckit_1_a.js","Wiki Test 1(a) - Sync Kit"],
