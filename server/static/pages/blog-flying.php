@@ -50,10 +50,10 @@ $(function() {
 
     window.synckit.startTime("dataFetch");
     $.post(endpoint, params, function(data) {
-	    window.synckit._dataTransferTime = window.db.endTime("dataFetch");;
+	    window.synckit._dataTransferTime = window.synckit.endTime("dataFetch");;
         window.synckit.startTime("template");
         $('#newtemplate').render_flying(data);
-        window.synckit._templateTime = window.db.endTime("template");;
+        window.synckit._templateTime = window.synckit.endTime("template");;
 
         if (parent.LogData != "undefined") {
             	parent.LogData("Blog", "Flying Templates", window.location.href, JSON.stringify(params));
