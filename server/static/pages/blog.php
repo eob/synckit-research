@@ -28,16 +28,15 @@ $(function() {
 	}
     
     var callback = function() {
-        var templateStart = (new Date).getTime();
+        window.db.startTime("template");
 		$('#newtemplate').render_new();
-		var endTime = (new Date).getTime();
-	    var templateTime = endTime - templateStart;
+	    window.db._templateTime = window.db.endTime("template");;
+        if (parent.LogData != "undefined") {
+        	parent.LogData("Blog", "Sync Kit", window.location.href, JSON.stringify(params));
+        }
     };
 
     window.db.sync(endpoint, ["Posts"], extra_view_params, {}, callback);
-/*		  if (parent.LogData != "undefined") {
-			parent.LogData("synckit-blog", window.location.href, JSON.stringify(params), dataTime, bulkloadTime, templateTime);
-		  }*/ 
 });
 
 </script>

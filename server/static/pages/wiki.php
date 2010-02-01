@@ -34,21 +34,13 @@ $(function() {
     extra_query_params = {"latency" : latency, "bandwidth" : bandwidth};
 
 	var callback = function(data) {
+        window.db.startTime("template");
 	      $('#newtemplate').attr('query', 'SELECT * from sk_Pages1 WHERE id = ' + pageid + ';');
-	  	  var templateStart = (new Date).getTime();
 		  $('#newtemplate').render_new();
-		  var endTime = (new Date).getTime();
-	      var templateTime = endTime - templateStart;
-
-/*		  if (parent.LogData) {
-			if (endpoint == null) {
-				// We didn't hit the server
-				parent.LogData("synckit", "CACHED", "CACHED", 0, 0, templateTime);
-			}
-			else {
-				parent.LogData("synckit", window.location.href, JSON.stringify(params), dataTime, bulkloadTime, templateTime);
-			}
-		  }*/
+    	  window.db._templateTime = window.db.endTime("template");;
+          if (parent.LogData != "undefined") {
+              	parent.LogData("Wiki", "Sync Kit", window.location.href, JSON.stringify(params));
+          }
 	}
 
     window.db.sync(endpoint, ["Pages"], extra_view_params, extra_query_params, callback); 
