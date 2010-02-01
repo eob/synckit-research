@@ -17,8 +17,14 @@ def generate_view_args(request):
     return (views, perf)
 
 class ViewManager:
-    def __init__(self):
+    class SyncType:
+        """
+        Are we syncing with a Sync Kit-style client, or a flying templates-style one?
+        """
+        (SYNC_KIT, FLYING_TEMPLATES) = ("SYNC_KIT", "FLYING_TEMPLATES")
+    def __init__(self, sync_type=SyncType.SYNC_KIT):
         self.views = {}
+        self.sync_type = sync_type
     def register(self, name, view):
         self.views[name] = view
         view.set_name(name)
@@ -30,13 +36,15 @@ class ViewManager:
                 retval = {}
                 view = self.views[name]
                 retval["results"] = view.results(view_queries, perf)
-                viewspec = view.viewspec_if_necessary(view_queries[name])
-                if viewspec is not None:
-                    retval["viewspec"] = viewspec
+                if self.sync_type is ViewManager.SyncType.SYNC_KIT:
+                    viewspec = view.viewspec_if_necessary(view_queries[name])
+                    if viewspec is not None :
+                        retval["viewspec"] = viewspec
                 results[name] = retval
             else:
                 results[name] = "no view registered for this query"
         return results
+
 
 class BaseView:
     class ResultFormat:
@@ -66,6 +74,7 @@ class BaseView:
             else:
                 raise TypeError("Invalid result format: %s" % (self.result_format))
         return results
+    
     def queryset(self, queries, perf):
         queryset = self.queryset_impl(queries[self.view_name], perf)
         queryset = self.limit_to_parent(queryset, queries, perf)

@@ -7,9 +7,13 @@ import time
 
 # This lives outside of a method so it's only instantiated once per
 # interpreter instance
-manager = ViewManager()
-qv = QueueView(Entry, "date", 10)
-manager.register("Posts", qv)
+sk_manager = ViewManager()
+sk_qv = QueueView(Entry, "date", 10)
+sk_manager.register("Posts", sk_qv)
+
+ft_manager = ViewManager(ViewManager.SyncType.FLYING_TEMPLATES)
+ft_qv = QueueView(Entry, "date", 10)
+ft_manager.register("Posts", ft_qv)
 
 query_times = 0.0
 template_times = 0.0
@@ -22,43 +26,49 @@ def report_time(request):
     return HttpResponse("queries=%f,templates=%f,num_queries=%d,entries_returned=%d"%(query_times,template_times,num_queries,entries_returned))
 
 def seepage(request):
-    global query_times
-    global template_times
-    global num_queries
-    global entries_returned
-    num_queries += 1
-    start = time.time()
-    results = manager.runqueries(request)
-    end = time.time()
-    entries_returned += len(results["Posts"]["results"])
-    query_times += end-start
-    start = time.time()
+#    global query_times
+#    global template_times
+#    global num_queries
+#    global entries_returned
+#    num_queries += 1
+#    start = time.time()
+    results = sk_manager.runqueries(request)
+#    end = time.time()
+#    entries_returned += len(results["Posts"]["results"])
+#    query_times += end-start
+#    start = time.time()
     response = HttpResponse(json.dumps(results), mimetype='application/json')
-    end = time.time()
-    template_times += end-start
+#    end = time.time()
+#    template_times += end-start
+    return response
+
+def tokyo(request):
+    results = ft_manager.runqueries(request)
+    response = HttpResponse(json.dumps(results), mimetype='application/json')
     return response
 
 def traditional(request):
-    global query_times
-    global template_times
-    global num_queries
-    global entries_returned
-    num_queries += 1
-    start = time.time()
+#    global query_times
+#    global template_times
+#    global num_queries
+#    global entries_returned
+#    num_queries += 1
+#    start = time.time()
     now = request.GET["now"]
-    results = list(Entry.objects.all().filter(date__lte = now).order_by('-date')[:10])
-    end = time.time()
-    query_times += end-start
-    entries_returned += len(results)
+    results = Entry.objects.all().filter(date__lte = now).order_by('-date')[:10]
+#    results = list(Entry.objects.all().filter(date__lte = now).order_by('-date')[:10])
+#    end = time.time()
+#    query_times += end-start
+#    entries_returned += len(results)
 
-    start = time.time()
+#    start = time.time()
     t = loader.get_template('index.html')
     c = Context({
         'posts': results,
     })
     response = HttpResponse(t.render(c))
-    end = time.time()
-    template_times += end-start
+#    end = time.time()
+#    template_times += end-start
     return response
 
 def markdone(request):
