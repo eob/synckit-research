@@ -1,6 +1,5 @@
 <html>
 <head>
-<script>
 <style type="text/css">
 body {
     margin: 40px 50px 50px;
@@ -1186,7 +1185,8 @@ jQuery.fn.render_new = function(callback) {
 	}
 }
 
-</script>$(function() {
+</script><script>
+$(function() {
     // console.info("Page Loaded");
     window.synckit = create_synckit();
     
@@ -1240,7 +1240,9 @@ jQuery.fn.render_new = function(callback) {
         window.synckit._templateTime = window.synckit.timeEnd("template");;
 
         if (parent.LogData != "undefined") {
-            	parent.LogData("Blog", "Flying Templates", window.location.href, JSON.stringify(params));
+                var x = "";
+                // the x arg used to be: JSON.stringify(params)
+            	parent.LogData("Blog", "Flying Templates", window.location.href, x);
         }	      
     }, "json");
     
