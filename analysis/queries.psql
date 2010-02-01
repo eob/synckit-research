@@ -1,0 +1,21 @@
+\f ',' 
+\a 
+\t 
+\o output1.csv 
+SELECT tester_comments AS test, 
+       test_description AS page, 
+       style as strategy, 
+       visit_number as visitNumber,
+       total_time_to_render as ttr,
+       data_fetch as dataFetch,
+       data_bulkload as dataBulkload,
+       template_parse as templateParse,
+       latency as latency,
+       bandwidth as bandwidth
+FROM
+       clientlogger_logentry
+WHERE
+       tester_comments = 'home_imac_sk_1_a'
+;
+\o 
+\q
