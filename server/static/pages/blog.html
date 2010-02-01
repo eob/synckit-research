@@ -1157,10 +1157,10 @@ jQuery.fn.templateData = function(value) {
 };
 
 jQuery.fn.render_new = function(callback) {
-	window.db.timeStart("Rendering SQL Template");
+	window.synckit.timeStart("Rendering SQL Template");
 	var query = this.attr('query');
 	var templates = this.find("[itemscope]");
-	var res = window.db.execute(query);
+	var res = window.synckit.execute(query);
 	var map = {};
 	
 	while (res.isValidRow()) {
@@ -1180,7 +1180,7 @@ jQuery.fn.render_new = function(callback) {
 		jQuery(this).remove();
 	});
 
-	window.db.timeEnd("Rendering SQL Template");
+	window.synckit.timeEnd("Rendering SQL Template");
 	if (callback !== undefined) {
 		callback.call();
 	}
