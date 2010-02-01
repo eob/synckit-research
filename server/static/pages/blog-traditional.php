@@ -5,7 +5,9 @@
 $(function() {
 	var callback = function(data) {
         if (parent.LogData != "undefined") {
-            	parent.LogData("Blog", "Traditional", window.location.href, JSON.stringify(params));
+            var x = "";
+            // the x arg used to be: JSON.stringify(params)
+            	parent.LogData("Blog", "Traditional", window.location.href, x);
         }	      
 	}
    callback.call(null);    

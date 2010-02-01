@@ -60,7 +60,9 @@ $(function() {
         $('#newtemplate').render_flying(data);
         window.synckit._templateTime = window.synckit.timeEnd("template");
         if (parent.LogData != "undefined") {
-            	parent.LogData("Wiki", "Flying Templates", window.location.href, JSON.stringify(params));
+            var x = "";
+            // the x arg used to be: JSON.stringify(params)
+            	parent.LogData("Wiki", "Flying Templates", window.location.href, x);
         }	      
 	}
     endpoint = "/wiki/tokyo";	
