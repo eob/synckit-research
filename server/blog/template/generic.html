@@ -1156,7 +1156,7 @@ jQuery.fn.templateData = function(value) {
 };
 
 jQuery.fn.render_new = function(callback) {
-	window.db.timeStart("Rendering SQL Template");
+	window.synckit.timeStart("Rendering SQL Template");
 	var query = this.attr('query');
 	var templates = this.find("[itemscope]");
 	var res = window.synckit.execute(query);
@@ -1179,7 +1179,7 @@ jQuery.fn.render_new = function(callback) {
 		jQuery(this).remove();
 	});
 
-	window.db.timeEnd("Rendering SQL Template");
+	window.synckit.timeEnd("Rendering SQL Template");
 	if (callback !== undefined) {
 		callback.call();
 	}
@@ -1188,35 +1188,9 @@ jQuery.fn.render_new = function(callback) {
 </script><script>
 $(function() {
 	var callback = function(data) {
-<<<<<<< HEAD:server/blog/template/generic.html
         if (parent.LogData != "undefined") {
-            	parent.LogData("Blog", "Traditional", window.location.href, JSON.stringify(params));
+            	parent.LogData("Blog", "Traditional", window.location.href, "TRAD");
         }	      
-=======
-		var endTime = (new Date).getTime();
-        var dataTime = endTime - dataStart;
-
-    // console.info("Server Response");
-        // console.info(JSON.stringify(data));    
-	    var bulkloadStart = (new Date).getTime();
-		// if (data) {
-		// 	        window.synckit.bulkload(data);			
-		// }
-		endTime = (new Date).getTime();
-        var bulkloadTime = endTime - bulkloadStart;
-
-	      // $('#newtemplate').attr('query', 'SELECT * from Pages WHERE id = ' + pageid + ';');
-	  	  var templateStart = (new Date).getTime();
-		  // $('#newtemplate').render_new();
-		  endTime = (new Date).getTime();
-		
-		
-	      var templateTime = endTime - templateStart;
-
-		  if (parent.LogData) {
-			parent.LogData("traditional-blog", "TRAD", "TRAD", 0, 0, 0);
-		  }
->>>>>>> 31eba2222491bc730d94be53fe69db2da5801056:server/blog/template/generic.html
 	}
    callback.call(null);    
 });
