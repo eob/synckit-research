@@ -1212,7 +1212,7 @@ $(function() {
 	}
     
     var callback = function() {
-        window.synckit.startTime("template");
+        window.synckit.timeStart("template");
 		$('#newtemplate').render_new();
 	    window.synckit._templateTime = window.synckit.endTime("template");;
         if (parent.LogData != "undefined") {

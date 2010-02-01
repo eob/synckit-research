@@ -34,10 +34,10 @@ $(function() {
     extra_query_params = {"latency" : latency, "bandwidth" : bandwidth};
 
 	var callback = function(data) {
-        window.synckit.startTime("template");
+        window.synckit.timeStart("template");
 	      $('#newtemplate').attr('query', 'SELECT * from sk_Pages1 WHERE id = ' + pageid + ';');
 		  $('#newtemplate').render_new();
-    	  window.synckit._templateTime = window.synckit.endTime("template");;
+    	  window.synckit._templateTime = window.synckit.timeEnd("template");;
           if (parent.LogData != "undefined") {
               	parent.LogData("Wiki", "Sync Kit", window.location.href, JSON.stringify(params));
           }
