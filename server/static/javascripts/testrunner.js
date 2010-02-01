@@ -14,9 +14,27 @@ function timeEnd(obj) {
     return null;
 }
 
+window.dataSources = [
+["/static/javascripts/userload1.js","Testing Run"],
+["/static/wiki1/traditional_1_a.js","Wiki Test 1(a) - Traditional Hosting"],
+["/static/wiki1/tokyo_1_a.js","Wiki Test 1(a) - Flying Templates"],
+["/static/wiki1/synckit_1_a.js","Wiki Test 1(a) - Sync Kit"],
+["/static/wiki2/traditional_1_b.js","Wiki Test 1(b) - Traditional Hosting"],
+["/static/wiki2/tokyo_1_b.js","Wiki Test 1(b) - Flying Templates"],
+["/static/wiki2/synckit_1_b.js","Wiki Test 1(b) - Sync Kit"],
+["/static/wiki3/traditional_1_c.js","Wiki Test 1(c) - Traditional Hosting"],
+["/static/wiki3/tokyo_1_c.js","Wiki Test 1(c) - Flying Templates"],
+["/static/wiki3/synckit_1_c.js","Wiki Test 1(c) - Sync Kit"],
+["/static/blog1/traditional_2_a.js","Blog Test 2(a) - Traditional Hosting"],
+["/static/blog1/tokyo_2_a.js","Blog Test 2(a) - Flying Templates"],
+["/static/blog1/synckit_2_a.js","Blog Test 2(a) - Sync Kit"],
+["/static/test_dom/testdom.js","Test DOM Load and JS Startup"]
+];
+
 window.users = null;
 window.user_visits = null;
 window.clicktrail = null;
+window.currentDataSource = -1;
 window.jikan = null;
 window.currentClick = null;
 window.userNum = 0;
@@ -27,6 +45,9 @@ function runTestWithUsers(users) {
     if (advanceTest()) {
         runtest();
     }
+    else {
+        // Go to next test file
+    }
 }
 
 function advanceTest() {
@@ -35,9 +56,16 @@ function advanceTest() {
         if ((window.user_visits == null) || (window.user_visits.length == 0)) {
             // We're done with this particular user
             if ((window.users == null) || (window.users.length == 0)) {
-                // We're done with the whole test!
-                alert("Test Finished!");
-                return false;
+                // We're done with this test file
+                if (window.currentDataSource >= (window.dataSources.length - 1)) {
+                    // We're done with the batch!
+                    alert("Test Finished!");
+                    return false;
+                }
+                else {
+                    // Start new batch
+                    advanceTestFile();
+                }
             }
             else {
                 advanceUser();
@@ -57,6 +85,11 @@ function advanceTest() {
         advanceClick();
         return true;
     }
+}
+
+function advanceTestFile() {
+    window.currentDataSource = window.currentDataSource + 1;
+    $.getScript(window.dataSources[window.currentDataSource][0]);	
 }
 
 function advanceUser() {
@@ -97,8 +130,8 @@ function runtest() {
 
 function LogData(style, url, params, dataFetch, dataLoad, templateParse) {
     var diff = timeEnd('load');
-    var tester = $('#tester').val();
-    var tester_comments = $('#tester_comments').val();
+    var tester = window.dataSources[window.currentDataSource][0];
+    var tester_comments = "";
     var latency = $('#latency').val();
     var bandwidth = $('#bandwidth').val();
     var test_file = $('#dsselect').val();

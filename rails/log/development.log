@@ -4140,3 +4140,468 @@ Got request with params:<?xml version="1.0" encoding="UTF-8"?>
 </hash>
 Rendering cached/item
 Completed in 8ms (View: 6, DB: 0) | 200 OK [http://localhost/cached/item]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-11-30 16:09:38) [GET]
+
+NoMethodError (undefined method `accelerates' for PostsController:Class):
+  app/controllers/posts_controller.rb:2
+
+Rendered rescues/_trace (27.1ms)
+Rendered rescues/_request_and_response (1.0ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 16:09:50) [GET]
+Rendering posts/index
+Completed in 6ms (View: 5, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-11-30 16:10:31) [GET]
+
+NoMethodError (undefined method `accelerates' for PostsController:Class):
+  app/controllers/posts_controller.rb:2
+
+Rendered rescues/_trace (27.3ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 16:10:39) [GET]
+Rendering posts/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 16:12:42) [GET]
+Rendering posts/index
+
+ArgumentError (wrong number of arguments (0 for 1)):
+  
+
+Rendered rescues/_trace (29.2ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 16:13:06) [GET]
+Rendering posts/index
+
+NameError (undefined local variable or method `controller' for #<PostsController:0x1033ee910>):
+  app/controllers/application_controller.rb:12:in `accelerate'
+
+Rendered rescues/_trace (92.5ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 16:13:10) [GET]
+Rendering posts/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 16:13:19) [GET]
+Rendering posts/index
+Completed in 8ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 16:13:29) [GET]
+Rendering posts/index
+Completed in 4ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 16:13:33) [GET]
+Rendering posts/index
+Completed in 4ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 16:13:40) [GET]
+Rendering posts/index
+
+NoMethodError (undefined method `head' for #<ActionController::Response:0x1034d5f40>):
+  app/controllers/application_controller.rb:12:in `accelerate'
+
+Rendered rescues/_trace (28.7ms)
+Rendered rescues/_request_and_response (0.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 16:13:44) [GET]
+Rendering posts/index
+Completed in 4ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 16:15:02) [GET]
+Rendering posts/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 16:15:07) [GET]
+Rendering posts/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 16:16:06) [GET]
+Rendering posts/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 16:16:16) [GET]
+Rendering posts/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 16:16:32) [GET]
+Rendering posts/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 16:16:40) [GET]
+Rendering posts/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 17:37:38) [GET]
+Rendering posts/index
+
+NameError (undefined local variable or method `added_text' for #<PostsController:0x1034f9238>):
+  app/controllers/application_controller.rb:13:in `accelerate'
+
+Rendered rescues/_trace (29.5ms)
+Rendered rescues/_request_and_response (1.0ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 17:37:39) [GET]
+Rendering posts/index
+
+NameError (undefined local variable or method `added_text' for #<PostsController:0x1033150e8>):
+  app/controllers/application_controller.rb:13:in `accelerate'
+
+Rendered rescues/_trace (30.2ms)
+Rendered rescues/_request_and_response (0.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 17:37:51) [GET]
+Rendering posts/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 17:40:16) [GET]
+Rendering posts/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 17:41:16) [GET]
+Rendering posts/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 17:41:27) [GET]
+Rendering posts/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 17:41:39) [GET]
+Rendering posts/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 17:41:52) [GET]
+Rendering posts/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 17:42:14) [GET]
+Rendering posts/index
+Completed in 60ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 17:46:42) [GET]
+Rendering posts/index
+Completed in 4ms (View: 3, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 17:46:46) [GET]
+Rendering posts/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 17:46:50) [GET]
+Rendering posts/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 17:46:51) [GET]
+Rendering posts/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 17:46:52) [GET]
+Rendering posts/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 17:46:52) [GET]
+Rendering posts/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 17:47:20) [GET]
+Rendering posts/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 17:47:41) [GET]
+Rendering posts/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 17:47:53) [GET]
+Rendering posts/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 17:48:17) [GET]
+Rendering posts/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (0.9ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreatePosts (20091130210437)
+  [4;36;1mSQL (0.4ms)[0m   [0;1mCREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "body" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091130210437')[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("posts")[0m
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 17:50:58) [GET]
+Rendering posts/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 17:51:00) [GET]
+Rendering posts/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-11-30 18:29:41) [GET]
+
+NameError (uninitialized constant PostsController::Post):
+  app/controllers/posts_controller.rb:6:in `index'
+
+Rendered rescues/_trace (28.6ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-12-01 00:55:49) [GET]
+
+NameError (uninitialized constant PostsController::Post):
+  app/controllers/posts_controller.rb:6:in `index'
+
+Rendered rescues/_trace (88.2ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-12-01 00:56:15) [GET]
+  [4;36;1mPosts Load (0.5ms)[0m   [0;1mSELECT * FROM "posts" [0m
+Rendering posts/index
+
+NoMethodError (undefined method `po' for #<PostsController:0x1036ec360>):
+  app/controllers/application_controller.rb:12:in `accelerate'
+
+Rendered rescues/_trace (29.1ms)
+Rendered rescues/_request_and_response (0.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-12-01 00:56:22) [GET]
+  [4;35;1mPosts Load (0.5ms)[0m   [0mSELECT * FROM "posts" [0m
+Rendering posts/index
+Completed in 6ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-12-01 00:56:59) [GET]
+  [4;36;1mPosts Load (0.4ms)[0m   [0;1mSELECT * FROM "posts" [0m
+Rendering posts/index
+Completed in 6ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-12-01 00:57:38) [GET]
+  [4;35;1mPosts Load (0.4ms)[0m   [0mSELECT * FROM "posts" [0m
+Rendering posts/index
+Completed in 6ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-12-01 00:58:56) [GET]
+  [4;36;1mPosts Load (0.5ms)[0m   [0;1mSELECT * FROM "posts" [0m
+Rendering posts/index
+Completed in 7ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-12-01 00:59:16) [GET]
+  [4;35;1mPosts Load (0.4ms)[0m   [0mSELECT * FROM "posts" [0m
+Rendering posts/index
+Completed in 7ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-12-01 01:01:04) [GET]
+  [4;36;1mPosts Load (0.5ms)[0m   [0;1mSELECT * FROM "posts" [0m
+Rendering posts/index
+Completed in 7ms (View: 1, DB: 1) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-12-01 01:01:27) [GET]
+  [4;35;1mPosts Load (0.5ms)[0m   [0mSELECT * FROM "posts" [0m
+Rendering posts/index
+Completed in 7ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-12-01 14:27:47) [GET]
+  [4;36;1mPosts Load (0.4ms)[0m   [0;1mSELECT * FROM "posts" [0m
+Rendering posts/index
+
+NoMethodError (undefined method `accelerate' for #<PostsController:0x1035068e8>):
+  
+
+Rendered rescues/_trace (28.5ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-12-01 14:27:58) [GET]
+  [4;35;1mPosts Load (0.4ms)[0m   [0mSELECT * FROM "posts" [0m
+Rendering posts/index
+Completed in 4ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-12-01 14:28:00) [GET]
+  [4;36;1mPosts Load (0.5ms)[0m   [0;1mSELECT * FROM "posts" [0m
+Rendering posts/index
+Completed in 4ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-12-01 14:28:24) [GET]
+  [4;35;1mPosts Load (0.5ms)[0m   [0mSELECT * FROM "posts" [0m
+Rendering posts/index
+Completed in 4ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-12-01 14:28:33) [GET]
+  [4;36;1mPosts Load (0.4ms)[0m   [0;1mSELECT * FROM "posts" [0m
+Rendering posts/index
+Completed in 6ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-12-01 14:28:57) [GET]
+  [4;35;1mPosts Load (0.4ms)[0m   [0mSELECT * FROM "posts" [0m
+Rendering posts/index
+Completed in 4ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-12-01 14:29:12) [GET]
+  [4;36;1mPosts Load (0.4ms)[0m   [0;1mSELECT * FROM "posts" [0m
+Rendering posts/index
+Completed in 6ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-12-01 14:33:49) [GET]
+  [4;35;1mPosts Load (0.5ms)[0m   [0mSELECT * FROM "posts" [0m
+Rendering posts/index
+Completed in 4ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-12-01 14:54:47) [GET]
+  [4;36;1mPosts Load (0.4ms)[0m   [0;1mSELECT * FROM "posts" [0m
+Rendering posts/index
+Completed in 4ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-12-01 15:04:53) [GET]
+  [4;35;1mPosts Load (0.4ms)[0m   [0mSELECT * FROM "posts" [0m
+Rendering posts/index
+Completed in 6ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-12-01 15:04:56) [GET]
+  [4;36;1mPosts Load (0.4ms)[0m   [0;1mSELECT * FROM "posts" [0m
+Rendering posts/index
+Completed in 4ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-12-01 15:05:22) [GET]
+  [4;35;1mPosts Load (0.4ms)[0m   [0mSELECT * FROM "posts" [0m
+Rendering posts/index
+Completed in 4ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-12-01 15:09:12) [GET]
+
+ArgumentError (wrong number of arguments (1 for 2)):
+  app/controllers/posts_controller.rb:3:in `syncs'
+  app/controllers/posts_controller.rb:3
+
+Rendered rescues/_trace (26.8ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-12-01 15:09:24) [GET]
+
+ArgumentError (wrong number of arguments (1 for 2)):
+  app/controllers/posts_controller.rb:3:in `syncs'
+  app/controllers/posts_controller.rb:3
+
+Rendered rescues/_trace (26.7ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-12-01 15:09:25) [GET]
+
+ArgumentError (wrong number of arguments (1 for 2)):
+  app/controllers/posts_controller.rb:3:in `syncs'
+  app/controllers/posts_controller.rb:3
+
+Rendered rescues/_trace (88.0ms)
+Rendered rescues/_request_and_response (0.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-12-01 15:09:30) [GET]
+  [4;36;1mPosts Load (0.4ms)[0m   [0;1mSELECT * FROM "posts" [0m
+Rendering posts/index
+Completed in 6ms (View: 1, DB: 0) | 200 OK [http://localhost/posts]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2009-12-08 15:06:16) [GET]
+
+ActionController::RoutingError (No route matches "/poss" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing PostsController#index (for 127.0.0.1 at 2009-12-08 15:06:18) [GET]
+  [4;36;1mPosts Load (0.8ms)[0m   [0;1mSELECT * FROM "posts" [0m
+Rendering posts/index
+Completed in 15ms (View: 7, DB: 1) | 200 OK [http://localhost/posts]
