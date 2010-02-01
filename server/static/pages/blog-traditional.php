@@ -26,6 +26,7 @@ $(function() {
 	<div class="entry">
 	</div>
 		
+ {% block content %}{% endblock %}
 <!-- end post -->
     </ul>
 </body>
