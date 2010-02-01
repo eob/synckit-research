@@ -122,7 +122,7 @@ function advanceClick() {
 }
 
 function runtest() {
-    $("#testcontainer").html('<iframe id="testframe" style="width: 100%; height: 500px; border: 4px solid #333;"></iframe>');
+    $("#testcontainer").html('<iframe id="testframe" name="testframe" style="width: 100%; height: 500px; border: 4px solid #333;"></iframe>');
     $("#debug").html('<p><b>Loading: ' + window.currentClick + '</b></p>');
     timeStart('load');
     $('iframe#testframe').attr('src', window.currentClick);
@@ -130,9 +130,9 @@ function runtest() {
 
 function LogData(page_name, style, url, params) {
     var diff = timeEnd('load');
-    var dataFetch = window.synckit._dataTransferTime;
-    var dataLoad = window.synckit._bulkloadTime;
-    var templateParse = window.synckit._templateTime;
+    var dataFetch = window.testframe.synckit._dataTransferTime;
+    var dataLoad = window.testframe.synckit._bulkloadTime;
+    var templateParse = window.testframe.synckit._templateTime;
 
     var test_batch_name = $('#test_batch_name').val();
     var test_name = window.dataSources[window.currentDataSource][1];
