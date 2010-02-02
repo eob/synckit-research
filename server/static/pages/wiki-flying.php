@@ -57,7 +57,7 @@ $(function() {
 	var callback = function(data) {
 	    window.synckit._dataTransferTime = window.synckit.timeEnd("dataFetch");;
         window.synckit.timeStart("template");
-        $('#newtemplate').render_flying(data);
+        $('#newtemplate').render_flying(data["Pages"]["results"]);
         window.synckit._templateTime = window.synckit.timeEnd("template");
         if (parent.LogData != "undefined") {
             var x = "";
