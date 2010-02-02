@@ -128,11 +128,11 @@ function runtest() {
     $('iframe#testframe').attr('src', window.currentClick);
 }
 
-function LogData(page_name, style, url, params) {
+function LogData(page_name, style, url, params, synckit) {
     var diff = timeEnd('load');
-    var dataFetch = window.testframe.synckit._dataTransferTime;
-    var dataLoad = window.testframe.synckit._bulkloadTime;
-    var templateParse = window.testframe.synckit._templateTime;
+    var dataFetch = synckit._dataTransferTime;
+    var dataLoad = synckit._bulkloadTime;
+    var templateParse = synckit._templateTime;
 
     var test_batch_name = $('#test_batch_name').val();
     var test_name = window.dataSources[window.currentDataSource][1];

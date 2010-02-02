@@ -1186,6 +1186,31 @@ jQuery.fn.render_new = function(callback) {
 	}
 }
 
+jQuery.fn.render_flying = function(results) { 
+    
+	var templates = this.find("[itemscope]");
+	var map = {};
+	
+	for (var i=0; i<results.length; i++) {
+		// Loop over each item to do
+		templates.each(function(i) {
+			jQuery(this).find("[itemprop]").each(function(j) {
+				var prop = jQuery(this).attr("itemprop");
+				var val = results[i][replacementFieldByName(prop)];
+				jQuery(this).html(val);
+			});
+			jQuery(this).before(jQuery(this).clone());
+		});
+    }
+
+	templates.each(function(i) {
+		jQuery(this).remove();
+	});
+}
+
+
+
+
 </script><script>
 $(function() {
     // console.info("Page Loaded");
@@ -1216,7 +1241,9 @@ $(function() {
 		$('#newtemplate').render_new();
 	    window.synckit._templateTime = window.synckit.timeEnd("template");;
         if (parent.LogData != "undefined") {
-        	parent.LogData("Blog", "Sync Kit", window.location.href, JSON.stringify(params));
+            var x = "";
+            // the x arg used to be: JSON.stringify(params)
+        	parent.LogData("Blog", "Sync Kit", window.location.href, x, synckit);
         }
     };
 
