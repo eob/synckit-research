@@ -8,8 +8,8 @@ import pickle
 import datetime
 import os
 
-BLOG_TEST = 0
-WIKI_TEST = 1
+BLOG_TEST = 1
+WIKI_TEST = 0
 
 if BLOG_TEST:    
     VISIT_RATE = 4
@@ -149,11 +149,11 @@ def write_test_files(directory_name, test_name, num_users, percent_new, num_visi
 
         # Write The Client-Oriented Tests  
         if strategy == 'synckit':
-            url = '/static/pages/wiki.html'
+            url = '/static/pages/blog.html'
         elif strategy == 'tokyo':
-            url = '/static/pages/flying-wiki.html'
+            url = '/static/pages/blog-flying.html'
         elif strategy == 'traditional':
-            url = '/wiki/traditional'     
+            url = '/blog/traditional'     
                      
         comments = "# Test Name: %s  # Strategy: %s # Number Users: %s  # Percent New: %s   # Number Visits: %s / %s\n" % (test_name, strategy, str(num_users), str(percent_new), str(num_visits), str(in_period))
         write_json_file(users, "%s/%s_%s.js" % (directory_name, test_name, strategy), url, header=comments)
