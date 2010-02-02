@@ -75,6 +75,7 @@ def write_statistics_header(statistics_file):
     sys.stdout.flush()
 
 def write_rates_header(rates_file):
+    # Note the addition of strategy and frequency here.
     output = "file,strategy,frequency,highest_rate,attempted_rate,avg_data"
     print output
     rates_file.write(output+'\n')

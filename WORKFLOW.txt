@@ -23,3 +23,14 @@ file with the GET params that SK was using when it made the request. 2 problems:
 GET params necessary to talk to SK; also, we're not passing params anymore.. but this is just a matter of replacing the 
 "X" in the php files with meaningful data. As a shortcut, we could just set the params to the GET serialization of them.
 We might have had escape issues.. maybe not. Ahh, javascript.
+
+Then we hit something like this:
+http://marcua.csail.mit.edu:7000/testrunner/perfgen?test_batch_name=Ted&test_file=3
+
+But the right values inserted into the two param names.
+
+This will give us a web page with:
+1) A title & summary
+2) The %-age of cached hits in the file 
+3) A text area containing the HTTPERF configuration to be copy-pasted
+
