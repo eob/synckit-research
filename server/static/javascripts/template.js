@@ -49,11 +49,11 @@ jQuery.fn.render_new = function(callback) {
 	}
 }
 
-jQuery.fn.render_flying = function(data) {
+jQuery.fn.render_flying = function(results) { 
+    
 	var templates = this.find("[itemscope]");
 	var map = {};
 	
-	var results = data["Pages"]["results"];
 	for (var i=0; i<results.length; i++) {
 		// Loop over each item to do
 		templates.each(function(i) {
