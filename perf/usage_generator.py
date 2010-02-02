@@ -132,60 +132,50 @@ def ensure_directory(dir):
     if not os.path.exists(dir):
         os.makedirs(dir)
 
-def write_test_files(directory_name, test_name, num_users, percent_new, num_visits, in_period, server_oriented):
+def write_test_files(directory_name, test_name, num_users, percent_new, num_visits, in_period):
     ensure_directory(directory_name)
     
     users = create_users(num_users, percent_new, num_visits, in_period)    
     visits = run_test(SITE,users)
     
     for strategy in ('synckit', 'tokyo', 'traditional'):
-        if server_oriented:
-                # Write The Server-Oriented Tests
-                urls = []
-                for visit in visits:
-                    urls.extend(url_strings_for_visit(visit, strategy))
-                    urls.append("")
-                comments = "# Test Name: %s\n# Strategy: %s\n# Number Users: %s\n# Percent New: %s\n# Number Visits: %s / %s\n" % (test_name, strategy, str(num_users), str(percent_new), str(num_visits), str(in_period))
-                write_httperf_file(urls, "%s/%s_%s.txt" % (directory_name, test_name, strategy), header=comments)
-        else:
-            # Write The Client-Oriented Tests  
-            if strategy == 'synckit':
-                url = '/static/pages/wiki.html'
-            elif strategy == 'tokyo':
-                url = '/static/pages/flying-wiki.html'
-            elif strategy == 'traditional':
-                url = '/wiki/traditional'     
+        # Write The Server-Oriented Tests
+        urls = []
+        for visit in visits:
+            urls.extend(url_strings_for_visit(visit, strategy))
+            urls.append("")
+        comments = "# Test Name: %s\n# Strategy: %s\n# Number Users: %s\n# Percent New: %s\n# Number Visits: %s / %s\n" % (test_name, strategy, str(num_users), str(percent_new), str(num_visits), str(in_period))
+        write_httperf_file(urls, "%s/%s_%s.txt" % (directory_name, test_name, strategy), header=comments)
+
+        # Write The Client-Oriented Tests  
+        if strategy == 'synckit':
+            url = '/static/pages/wiki.html'
+        elif strategy == 'tokyo':
+            url = '/static/pages/flying-wiki.html'
+        elif strategy == 'traditional':
+            url = '/wiki/traditional'     
                      
-            comments = "# Test Name: %s  # Strategy: %s # Number Users: %s  # Percent New: %s   # Number Visits: %s / %s\n" % (test_name, strategy, str(num_users), str(percent_new), str(num_visits), str(in_period))
-            write_json_file(users, "%s/%s_%s.txt" % (directory_name, test_name, strategy), url, header=comments)
+        comments = "# Test Name: %s  # Strategy: %s # Number Users: %s  # Percent New: %s   # Number Visits: %s / %s\n" % (test_name, strategy, str(num_users), str(percent_new), str(num_visits), str(in_period))
+        write_json_file(users, "%s/%s_%s.js" % (directory_name, test_name, strategy), url, header=comments)
 
 now = datetime.datetime.now()
 dirname = now.strftime("%Y-%m-%d.%H:%M:%S")
 
 if BLOG_TEST:
-    print "NOTE! need to make num users 100 and new usrs rate .5"
-    write_test_files(dirname, "test_warmup_allnew", NUM_USERS, 1.0, VISIT_RATE, VISIT_UNIT, 1)
-    write_test_files(dirname, "test_warmup_nonew", NUM_USERS, 0.0, VISIT_RATE, VISIT_UNIT, 1)
-    write_test_files(dirname, "test_numusers_5", 5, 0.5, VISIT_RATE, VISIT_UNIT, 1)
-    write_test_files(dirname, "test_numusers_10", 10, 0.5, VISIT_RATE, VISIT_UNIT, 1)
-    write_test_files(dirname, "test_numusers_100", 100, 0.5, VISIT_RATE, VISIT_UNIT, 1)
-    write_test_files(dirname, "test_freq_24_per_day", 20, 0.0, 24, "days", 1)
-    write_test_files(dirname, "test_freq_12_per_day", 20, 0.0, 20, "days", 1)
-    write_test_files(dirname, "test_freq_12_per_day", 20, 0.0, 16, "days", 1)
-    write_test_files(dirname, "test_freq_12_per_day", 20, 0.0, 12, "days", 1)
-    write_test_files(dirname, "test_freq_6_per_day", 20, 0.0, 8, "days", 1)
-    write_test_files(dirname, "test_freq_6_per_day", 20, 0.0, 7, "days", 1)
-    write_test_files(dirname, "test_freq_6_per_day", 20, 0.0, 6, "days", 1)
-    write_test_files(dirname, "test_freq_5_per_day", 20, 0.0, 5, "days", 1)
-    write_test_files(dirname, "test_freq_4_per_day", 20, 0.0, 4, "days", 1)
-    write_test_files(dirname, "test_freq_3_per_day", 20, 0.0, 3, "days", 1)
-    write_test_files(dirname, "test_freq_2_per_day", 20, 0.0, 2, "days", 1)
-    write_test_files(dirname, "test_freq_1_per_day", 20, 0.0, 1, "days", 1)
-    write_test_files(dirname, "test_freq_0.5_per_day", 20, 0.0, 0.5, "days", 1)
-    write_test_files(dirname, "test_freq_0.25_per_day", 20, 0.0, 0.25, "days", 1)
+    # print "NOTE! need to make num users 100 and new usrs rate .5"
+    write_test_files(dirname, "test_freq_4_per_update", 100, 0.5, 48, "days")
+    write_test_files(dirname, "test_freq_3_per_update", 100, 0.5, 36, "days")
+    write_test_files(dirname, "test_freq_2_per_update", 100, 0.5, 24, "days")
+    write_test_files(dirname, "test_freq_1_per_update", 100, 0.5, 12, "days")
+    write_test_files(dirname, "test_freq_0.5_per_update", 100, 0.5, 6, "days")
+    write_test_files(dirname, "test_freq_0.42_per_update", 100, 0.5, 5, "days")
+    write_test_files(dirname, "test_freq_0.33_per_update", 100, 0.5, 4, "days")
+    write_test_files(dirname, "test_freq_0.25_per_update", 100, 0.5, 3, "days")
+    write_test_files(dirname, "test_freq_0.16_per_update", 100, 0.5, 2, "days")
+    write_test_files(dirname, "test_freq_0.08_per_update", 100, 0.5, 1, "days")
 
 if WIKI_TEST:
-    write_test_files(dirname, "test_freq_6_per_day", 40, 0.0, 1, "days", 0)
+    write_test_files(dirname, "test_freq_6_per_day", 40, 0.0, 1, "days")
         
 # if WIKI_TEST:
     
