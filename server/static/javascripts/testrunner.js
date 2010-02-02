@@ -15,10 +15,10 @@ function timeEnd(obj) {
 }
 
 window.dataSources = [
-/*["/static/blog_feb1/test_freq_0.08_per_update_synckit.js","Feb 2"],
-["static/blog_feb1/test_freq_0.25_per_update_synckit.js","Feb 2"],*/
+["/static/blog_feb1/test_freq_0.08_per_update_synckit.js","Feb 2"],
+["static/blog_feb1/test_freq_0.25_per_update_synckit.js","Feb 2"],
 ["/static/blog_feb1/test_freq_0.42_per_update_synckit.js","Feb 2"],
-/*["/static/blog_feb1/test_freq_1_per_update_synckit.js","Feb 2"],
+["/static/blog_feb1/test_freq_1_per_update_synckit.js","Feb 2"],
 ["/static/blog_feb1/test_freq_3_per_update_synckit.js","Feb 2"],
 ["/static/blog_feb1/test_freq_0.08_per_update_tokyo.js","Feb 2"],
 ["/static/blog_feb1/test_freq_0.25_per_update_tokyo.js","Feb 2"],
@@ -53,7 +53,7 @@ window.dataSources = [
 ["/static/wiki2/traditional_1_b.js","Wiki Feb 2"],
 ["/static/wiki3/synckit_1_c.js","Wiki Feb 2"],
 ["/static/wiki3/tokyo_1_c.js","Wiki Feb 2"],
-["/static/wiki3/traditional_1_c.js","Wiki Feb 2"]*/
+["/static/wiki3/traditional_1_c.js","Wiki Feb 2"]
 ];
 
 window.users = null;
