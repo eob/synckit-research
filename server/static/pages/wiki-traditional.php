@@ -5,7 +5,9 @@
 $(function() {
 	var callback = function(data) {
         if (parent.LogData != "undefined") {
-            	parent.LogData("Wiki", "Traditional", window.location.href, "TRAD");
+            var x = "";
+            // the x arg used to be: JSON.stringify(params, synckit)
+            parent.LogData("Wiki", "Traditional", window.location.href, x, window.synckit);
         }	      
 	}
    callback.call(null);    

@@ -7,7 +7,7 @@ $(function() {
         if (parent.LogData != "undefined") {
             var x = "";
             // the x arg used to be: JSON.stringify(params, synckit)
-            	parent.LogData("Blog", "Traditional", window.location.href, x);
+            	parent.LogData("Blog", "Traditional", window.location.href, x, window.synckit);
         }	      
 	}
    callback.call(null);    
