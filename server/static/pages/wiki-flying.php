@@ -3,6 +3,15 @@
 <head>
 <?php include "synckit-header.php" ?>
 <script>
+function replacementFieldByName(name) {
+	if (name == "title") {
+		return 1;
+	}
+	else if (name == "contents") {
+		return 2;
+	}
+}
+
 $(function() {
     // console.info("Page Loaded");
     window.synckit = create_synckit();
