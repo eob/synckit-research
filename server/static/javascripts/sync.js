@@ -239,10 +239,11 @@ _skProto = function() {
         }
         var send_query = true;
         var sq = {};
+        var table = _me.view_table_name(endpoint_id, viewname);
+
         // Do we want to filter only a specific row?
         if (extra_params && ('filter' in extra_params)) {
             var theid = extra_params.filter;
-            var table = _me.view_table_name(endpoint_id, viewname);
             var sql = "SELECT " + syncspec.idfield + " FROM " + table;
             sql += " WHERE " + syncspec.idfield + "=?;";
             var res = _me.execute(sql, [theid]);
