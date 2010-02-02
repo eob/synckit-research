@@ -164,7 +164,7 @@ function LogData(page_name, style, url, params, synckit) {
 
     var latency = $('#latency').val();
     var bandwidth = $('#bandwidth').val();
-    var test_file = $('#dsselect').val();
+    var test_file = window.dataSources[window.currentDataSource][0];
     var test_description = "ted";
     var user = window.userNum;
     var visit_number = window.visitNum;
