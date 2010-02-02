@@ -49,3 +49,28 @@ jQuery.fn.render_new = function(callback) {
 	}
 }
 
+jQuery.fn.render_flying = function(data) {
+	var templates = this.find("[itemscope]");
+	var map = {};
+	
+	var results = data["Pages"]["results"];
+	for (var i=0; i<results.length; i++) {
+		// Loop over each item to do
+		templates.each(function(i) {
+			jQuery(this).find("[itemprop]").each(function(j) {
+				var prop = jQuery(this).attr("itemprop");
+				var val = results[i][replacementFieldByName(prop)];
+				jQuery(this).html(val);
+			});
+			jQuery(this).before(jQuery(this).clone());
+		});
+    }
+
+	templates.each(function(i) {
+		jQuery(this).remove();
+	});
+}
+
+
+
+
