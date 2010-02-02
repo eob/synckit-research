@@ -1,7 +1,7 @@
 <html>
 <head>
-<script>
 <?php include "synckit-header.php" ?>
+<script>
 $(function() {
     // console.info("Page Loaded");
     window.synckit = create_synckit();
