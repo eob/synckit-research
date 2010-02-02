@@ -12,6 +12,7 @@ urlpatterns = patterns('blog',
     # Uncomment the next line to enable the admin:
     # (r'^admin/(.*)', admin.site.root),
     (r'^entries$', 'entries.seepage'),
+    (r'^flying_entries$', 'entries.tokyo'),
     (r'^traditional$', 'entries.traditional'),
     (r'^template$', 'entries.template'),
     (r'^markdone$', 'entries.markdone'),

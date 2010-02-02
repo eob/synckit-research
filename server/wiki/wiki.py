@@ -17,7 +17,7 @@ synckit_prefetch_config = {"model" : Page,
 synckit_sv = SetView(Page, "id")
 synckit_manager.register("Pages", synckit_sv)
 
-tokyo_manager = ViewManager()
+tokyo_manager = ViewManager(ViewManager.SyncType.FLYING_TEMPLATES)
 tokyo_sv = SetView(Page, "id")
 tokyo_manager.register("Pages", tokyo_sv)
 

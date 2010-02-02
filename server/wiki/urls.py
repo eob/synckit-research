@@ -14,4 +14,6 @@ urlpatterns = patterns('wiki',
     (r'^tokyo', 'wiki.tokyo'),
     (r'^traditional', 'wiki.traditional'),
     (r'^manifest', 'wiki.manifest'),
+    (r'^profiling_on', 'wiki.profiling_on'),
+    (r'^profiling_off', 'wiki.profiling_off'),
 )
