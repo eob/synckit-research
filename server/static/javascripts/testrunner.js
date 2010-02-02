@@ -80,6 +80,7 @@ function advanceTest() {
         // We're done with this particular visit. Try to bump the user
         if ((window.user_visits == null) || (window.user_visits.length == 0)) {
             // We're done with this particular user
+          
             if ((window.users == null) || (window.users.length == 0)) {
                 // We're done with this test file
                 if (window.currentDataSource >= (window.dataSources.length - 1)) {
@@ -88,21 +89,26 @@ function advanceTest() {
                     return false;
                 }
                 else {
-                    // Start new batch
+                    // Start new batch. The test file javascript should
+                    // take care of kicking everything off again.
                     advanceTestFile();
+                    return false;
                 }
             }
             else {
                 advanceUser();
-                advanceVisit();
-                advanceClick();
+                advanceTest();
+                // advanceVisit();
+                // advanceClick();
                 return true;
             }
+            
         }
         else {
             // We're still going with this user
             advanceVisit();
-            advanceClick();
+            advanceTest();
+            // advanceClick();
             return true;
         }
     }
