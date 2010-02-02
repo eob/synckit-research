@@ -3,6 +3,7 @@
 <?php include "synckit-header.php" ?>
 <script>
 $(function() {
+    window.synckit = create_synckit();
 	var callback = function(data) {
         if (parent.LogData != "undefined") {
             var x = "";
