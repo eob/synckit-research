@@ -71,7 +71,7 @@ $(function() {
         if (parent.LogData != "undefined") {
             var x = "";
             // the x arg used to be: JSON.stringify(params)
-            	parent.LogData("Wiki", "Flying Templates", window.location.href, x, synckit);
+            	parent.LogData("Wiki", "Flying Templates", window.location.href, x, window.synckit);
         }	      
 	}
     endpoint = "/wiki/tokyo";	

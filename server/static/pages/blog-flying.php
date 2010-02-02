@@ -73,7 +73,7 @@ $(function() {
         if (parent.LogData != "undefined") {
                 var x = "";
                 // the x arg used to be: JSON.stringify(params)
-            	parent.LogData("Blog", "Flying Templates", window.location.href, x, synckit);
+            	parent.LogData("Blog", "Flying Templates", window.location.href, x, window.synckit);
         }	      
     }, "json");
     
