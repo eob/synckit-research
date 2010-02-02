@@ -5,7 +5,9 @@
 $(function() {
 	var callback = function(data) {
         if (parent.LogData != "undefined") {
-            	parent.LogData("Blog", "Traditional", window.location.href, "TRAD");
+            var x = "";
+            // the x arg used to be: JSON.stringify(params, synckit)
+            	parent.LogData("Blog", "Traditional", window.location.href, x);
         }	      
 	}
    callback.call(null);    
@@ -31,3 +33,4 @@ $(function() {
     </ul>
 </body>
 </html>
+    
