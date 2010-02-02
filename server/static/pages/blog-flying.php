@@ -2,6 +2,21 @@
 <head>
 <?php include "synckit-header.php" ?>
 <script>
+function replacementFieldByName(name) {
+	if (name == "id") {
+		return 0;
+	}
+	if (name == "title") {
+		return 2;
+	}
+	else if (name == "author") {
+		return 1;
+	}
+	else if (name == "content") {
+		return 3;
+	}
+}
+
 $(function() {
     // console.info("Page Loaded");
     window.synckit = create_synckit();
