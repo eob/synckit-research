@@ -1,0 +1,36 @@
+
+Let's say testrunner does its stuff, then what.
+==================================================
+
+
+- client makes requests
+- some of them meet with a server
+- we munge the data to extract cache misses
+- for throughput, pound server with cache miss data
+- then multiply the results by some fraction
+
+
+Note: when we multiply it, this makes sense for throughput (i.e., clients happy rather than physically served by the server thanks to caching), but we have to be careful describing what it means for KB transferred. Do we graph KB transfered? Or KB "displayed" on the client-side. Just make sure we say clearly in the text.
+
+look in /perfgen for the script to extract the "fixed" wiki data
+You pass it a parameter id=X, where X is the id of *any* page that was served 
+****** We need to change the the way this works to take the name of the run and the test file instead of an id
+****** See line 44 of runner.py in testrunner. We need to modify the client so that if a bulkload was not performed, it sets a bit. Then the wiki test .php files need to look for this bit, and when they call LogData, they pass in CACHED as the params value. This is how the server identifies that the request never hit the server. 
+**********-> Better way?: don't change anything except for runner.py. Instead of looking for the text CACHED, look for a bulkload value of 0 and a data transfer time of 0. All cached page loads will have 0s here. None of the cache misses should. Note: traditional has zeros in both, flying templates has nonzero data xfer but zero bulkload -- so we need to be careful to take this into account.. so also need to add the "style" as a condition (e.g. style == "Sync Kit" or whatever).
+
+*** In runner.py we do a bunch of RegEx to change the JSON params into GET params so taht we can write out the httperf
+file with the GET params that SK was using when it made the request. 2 problems: we need to update this for the new 
+GET params necessary to talk to SK; also, we're not passing params anymore.. but this is just a matter of replacing the 
+"X" in the php files with meaningful data. As a shortcut, we could just set the params to the GET serialization of them.
+We might have had escape issues.. maybe not. Ahh, javascript.
+
+Then we hit something like this:
+http://marcua.csail.mit.edu:7000/testrunner/perfgen?test_batch_name=Ted&test_file=3
+
+But the right values inserted into the two param names.
+
+This will give us a web page with:
+1) A title & summary
+2) The %-age of cached hits in the file 
+3) A text area containing the HTTPERF configuration to be copy-pasted
+
