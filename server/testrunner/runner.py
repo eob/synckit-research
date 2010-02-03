@@ -15,7 +15,7 @@ def perfgen(request):
     test_batch_name = request.GET["test_batch_name"]
     test_file = request.GET["test_file"]
     
-    allentries = LogEntry.objects.all().filter(test_batch_name = test_batch_name).filter(test_name = test_name)
+    allentries = LogEntry.objects.all().filter(test_batch_name = test_batch_name).filter(test_file = test_file)
     """allentries = LogEntry.objects.all().filter(
         tester = entry.tester, 
         tester_comments = entry.tester_comments,
@@ -43,7 +43,7 @@ def perfgen(request):
     cached = 0
     uncached = 0
     for e in allentries:
-        if (e.params == 'CACHED'):
+        if (e.style == 'Sync Kit' and e.data_fetch == 0 and e.data_bulkload == 0):
             cached = cached + 1
         else:
             uncached = uncached + 1
