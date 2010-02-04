@@ -626,6 +626,7 @@ _skProto = function() {
     _me._bulkloadTime = 0;
     _me._dataTransferTime = 0;
     _me._templateTime = 0;
+    _me._queryParams = {};
     
     // Methods
     // ----------------------------------------------------------------
@@ -951,6 +952,7 @@ _skProto = function() {
                 params[key] = extra_query_params[key];
             }
             
+            _me.queryParams = params;            
             _me.timeStart("xfer");
             jQuery.post(endpoint_uri, params, function(response) {
                 _me._dataTransferTime = _me.timeEnd("xfer");
@@ -1219,15 +1221,16 @@ $(function() {
     var endpoint = "/blog/entries";
 
     var viewspec = {
-        "vshash": "92ec2eb0d74d31ee0ca0763c2e52f7fa",
+        "vshash": "3c9977be25383449119b351ce5388e81",
         "syncspec": {
-            "limit": 10, 
-            "__type": "queue",
-            "order": "ASC", 
-            "sortfield": "date"
-        }, 
-        "schema": ["id integer", "author integer", "title varchar(200)", "contents text", "date datetime"]
+             "limit": 10,
+             "__type": "queue",
+             "order": "ASC",
+             "sortfield": "date"
+            }, 
+        "schema": ["id serial", "author integer", "title varchar(200)", "contents text", "date timestamp with time zone"]
     };
+
     window.synckit.build_view(endpoint, "Posts", viewspec);
 
     // 'now' is a parameter used for time-travel through the posts
@@ -1242,9 +1245,7 @@ $(function() {
 		$('#newtemplate').render_new();
 	    window.synckit._templateTime = window.synckit.timeEnd("template");;
         if (parent.LogData != "undefined") {
-            var x = "";
-            // the x arg used to be: JSON.stringify(params)
-        	parent.LogData("Blog", "Sync Kit", window.location.href, x, window.synckit);
+        	parent.LogData("Blog", "Sync Kit", window.location.href, JSON.stringify(window.synckit._queryParams), window.synckit);
         }
     };
 

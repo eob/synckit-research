@@ -44,7 +44,11 @@ def reset_iteration():
     return (int(((LOWERBOUND + UPPERBOUND)*1.0)/2), 0.0, 0.0, LOWERBOUND, UPPERBOUND)
 
 def runcommand(rate, file):
+#Profiling workload:
+#    return "httperf --hog --server marcua.csail.mit.edu --port 7000 --rate %d --wsesslog=1000,0,%s" % (rate, file)
+# Real workload:
     return "httperf --hog --server marcua.csail.mit.edu --port 7000 --rate %d --wsesslog=10000,0,%s" % (rate, file)
+# For testing:
 #    return "httperf --hog --server marcua.csail.mit.edu --port 7000 --rate %d --wsesslog=5,0,%s" % (rate, file)
 
 def extract_statistics(output):

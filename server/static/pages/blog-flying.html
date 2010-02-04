@@ -625,6 +625,7 @@ _skProto = function() {
     _me._bulkloadTime = 0;
     _me._dataTransferTime = 0;
     _me._templateTime = 0;
+    _me._queryParams = {};
     
     // Methods
     // ----------------------------------------------------------------
@@ -849,10 +850,11 @@ _skProto = function() {
         }
         var send_query = true;
         var sq = {};
+        var table = _me.view_table_name(endpoint_id, viewname);
+
         // Do we want to filter only a specific row?
         if (extra_params && ('filter' in extra_params)) {
             var theid = extra_params.filter;
-            var table = _me.view_table_name(endpoint_id, viewname);
             var sql = "SELECT " + syncspec.idfield + " FROM " + table;
             sql += " WHERE " + syncspec.idfield + "=?;";
             var res = _me.execute(sql, [theid]);
@@ -949,6 +951,7 @@ _skProto = function() {
                 params[key] = extra_query_params[key];
             }
             
+            _me.queryParams = params;            
             _me.timeStart("xfer");
             jQuery.post(endpoint_uri, params, function(response) {
                 _me._dataTransferTime = _me.timeEnd("xfer");
@@ -1280,9 +1283,7 @@ $(function() {
         window.synckit._templateTime = window.synckit.timeEnd("template");;
 
         if (parent.LogData != "undefined") {
-                var x = "";
-                // the x arg used to be: JSON.stringify(params)
-            	parent.LogData("Blog", "Flying Templates", window.location.href, x, synckit);
+            	parent.LogData("Blog", "Flying Templates", window.location.href, JSON.stringify(params), window.synckit);
         }	      
     }, "json");
     
