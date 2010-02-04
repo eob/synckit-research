@@ -146,9 +146,10 @@ def write_test_files(directory_name, test_name, num_users, percent_new, num_visi
     visits = run_test(SITE,users)
     
     for strategy in ('synckit', 'tokyo', 'traditional'):
-        # Write The Server-Oriented Tests
+        # Write The Server-Oriented Tests---write less than 1000 sessions
+        # since httperf can't handle more
         urls = []
-        for visit in visits:
+        for visit in visits[:998]:
             urls.extend(url_strings_for_visit(visit, strategy))
             urls.append("")
         comments = "# Test Name: %s\n# Strategy: %s\n# Number Users: %s\n# Percent New: %s\n# Number Visits: %s / %s\n" % (test_name, strategy, str(num_users), str(percent_new), str(num_visits), str(in_period))
@@ -170,16 +171,16 @@ dirname = now.strftime("%Y-%m-%d.%H:%M:%S")
 
 if BLOG_TEST:
     # print "NOTE! need to make num users 100 and new usrs rate .5"
-    write_test_files(dirname, "test_freq_4_per_update", 20, 0.5, 48, "days")
-    write_test_files(dirname, "test_freq_3_per_update", 20, 0.5, 36, "days")
-    write_test_files(dirname, "test_freq_2_per_update", 20, 0.5, 24, "days")
-    write_test_files(dirname, "test_freq_1_per_update", 20, 0.5, 12, "days")
-    write_test_files(dirname, "test_freq_0.5_per_update", 20, 0.5, 6, "days")
-    write_test_files(dirname, "test_freq_0.42_per_update", 20, 0.5, 5, "days")
-    write_test_files(dirname, "test_freq_0.33_per_update", 20, 0.5, 4, "days")
-    write_test_files(dirname, "test_freq_0.25_per_update", 20, 0.5, 3, "days")
-    write_test_files(dirname, "test_freq_0.16_per_update", 20, 0.5, 2, "days")
-    write_test_files(dirname, "test_freq_0.08_per_update", 20, 0.5, 1, "days")
+    write_test_files(dirname, "test_freq_4_per_update", 100, 0.5, 48, "days")
+    write_test_files(dirname, "test_freq_3_per_update", 100, 0.5, 36, "days")
+    write_test_files(dirname, "test_freq_2_per_update", 100, 0.5, 24, "days")
+    write_test_files(dirname, "test_freq_1_per_update", 100, 0.5, 12, "days")
+    write_test_files(dirname, "test_freq_0.5_per_update", 100, 0.5, 6, "days")
+    write_test_files(dirname, "test_freq_0.42_per_update", 100, 0.5, 5, "days")
+    write_test_files(dirname, "test_freq_0.33_per_update", 100, 0.5, 4, "days")
+    write_test_files(dirname, "test_freq_0.25_per_update", 100, 0.5, 3, "days")
+    write_test_files(dirname, "test_freq_0.16_per_update", 100, 0.5, 2, "days")
+    write_test_files(dirname, "test_freq_0.08_per_update", 100, 0.5, 1, "days")
 
 if WIKI_TEST:
     write_test_files(dirname, "test_freq_6_per_day", 40, 0.0, 1, "days")
