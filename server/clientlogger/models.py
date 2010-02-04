@@ -3,11 +3,10 @@ from django.db import models
 # Create your models here.
 
 class LogEntry(models.Model):
-    tester = models.TextField()
-    tester_comments = models.TextField()
+    test_batch_name = models.TextField()
+    test_name = models.TextField()
+    page_name = models.TextField()
     test_file = models.TextField()
-    test_description = models.TextField()
-
     style = models.TextField()
     url = models.TextField()
     params = models.TextField()
@@ -19,5 +18,4 @@ class LogEntry(models.Model):
     template_parse = models.IntegerField()
     latency = models.FloatField()
     bandwidth = models.FloatField()
-        
     date = models.DateTimeField(auto_now_add=True)

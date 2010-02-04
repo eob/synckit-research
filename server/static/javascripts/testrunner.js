@@ -14,9 +14,52 @@ function timeEnd(obj) {
     return null;
 }
 
+window.dataSources = [
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_0.08_per_update_synckit.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_0.25_per_update_synckit.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_0.42_per_update_synckit.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_1_per_update_synckit.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_3_per_update_synckit.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_0.08_per_update_tokyo.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_0.25_per_update_tokyo.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_0.42_per_update_tokyo.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_1_per_update_tokyo.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_3_per_update_tokyo.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_0.08_per_update_traditional.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_0.25_per_update_traditional.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_0.42_per_update_traditional.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_1_per_update_traditional.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_3_per_update_traditional.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_0.16_per_update_synckit.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_0.33_per_update_synckit.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_0.5_per_update_synckit.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_2_per_update_synckit.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_4_per_update_synckit.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_0.16_per_update_tokyo.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_0.33_per_update_tokyo.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_0.5_per_update_tokyo.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_2_per_update_tokyo.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_4_per_update_tokyo.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_0.16_per_update_traditional.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_0.33_per_update_traditional.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_0.5_per_update_traditional.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_2_per_update_traditional.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/blog_feb1/test_freq_4_per_update_traditional.js","Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/wiki1/synckit_1_a.js","Wiki Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/wiki1/tokyo_1_a.js","Wiki Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/wiki1/traditional_1_a.js","Wiki Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/wiki2/synckit_1_b.js","Wiki Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/wiki2/tokyo_1_b.js","Wiki Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/wiki2/traditional_1_b.js","Wiki Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/wiki3/synckit_1_c.js","Wiki Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/wiki3/tokyo_1_c.js","Wiki Feb 2"],
+["http://marcua.csail.mit.edu:7000/static/wiki3/traditional_1_c.js","Wiki Feb 2"]
+];
+
 window.users = null;
 window.user_visits = null;
 window.clicktrail = null;
+window.currentDataSource = -1;
 window.jikan = null;
 window.currentClick = null;
 window.userNum = 0;
@@ -27,6 +70,9 @@ function runTestWithUsers(users) {
     if (advanceTest()) {
         runtest();
     }
+    else {
+        // Go to next test file
+    }
 }
 
 function advanceTest() {
@@ -34,22 +80,35 @@ function advanceTest() {
         // We're done with this particular visit. Try to bump the user
         if ((window.user_visits == null) || (window.user_visits.length == 0)) {
             // We're done with this particular user
+          
             if ((window.users == null) || (window.users.length == 0)) {
-                // We're done with the whole test!
-                alert("Test Finished!");
-                return false;
+                // We're done with this test file
+                if (window.currentDataSource >= (window.dataSources.length - 1)) {
+                    // We're done with the batch!
+                    alert("Test Finished!");
+                    return false;
+                }
+                else {
+                    // Start new batch. The test file javascript should
+                    // take care of kicking everything off again.
+                    advanceTestFile();
+                    return false;
+                }
             }
             else {
                 advanceUser();
-                advanceVisit();
-                advanceClick();
+                advanceTest();
+                // advanceVisit();
+                // advanceClick();
                 return true;
             }
+            
         }
         else {
             // We're still going with this user
             advanceVisit();
-            advanceClick();
+            advanceTest();
+            // advanceClick();
             return true;
         }
     }
@@ -57,6 +116,11 @@ function advanceTest() {
         advanceClick();
         return true;
     }
+}
+
+function advanceTestFile() {
+    window.currentDataSource = window.currentDataSource + 1;
+    $.getScript(window.dataSources[window.currentDataSource][0]);	
 }
 
 function advanceUser() {
@@ -89,19 +153,24 @@ function advanceClick() {
 }
 
 function runtest() {
-    $("#testcontainer").html('<iframe id="testframe" style="width: 100%; height: 500px; border: 4px solid #333;"></iframe>');
+    $("#testcontainer").html('<iframe id="testframe" name="testframe" style="width: 100%; height: 500px; border: 4px solid #333;"></iframe>');
     $("#debug").html('<p><b>Loading: ' + window.currentClick + '</b></p>');
     timeStart('load');
     $('iframe#testframe').attr('src', window.currentClick);
 }
 
-function LogData(style, url, params, dataFetch, dataLoad, templateParse) {
+function LogData(page_name, style, url, params, synckit) {
     var diff = timeEnd('load');
-    var tester = $('#tester').val();
-    var tester_comments = $('#tester_comments').val();
+    var dataFetch = synckit._dataTransferTime;
+    var dataLoad = synckit._bulkloadTime;
+    var templateParse = synckit._templateTime;
+
+    var test_batch_name = $('#test_batch_name').val();
+    var test_name = window.dataSources[window.currentDataSource][1];
+
     var latency = $('#latency').val();
     var bandwidth = $('#bandwidth').val();
-    var test_file = $('#dsselect').val();
+    var test_file = window.dataSources[window.currentDataSource][0];
     var test_description = "ted";
     var user = window.userNum;
     var visit_number = window.visitNum;
@@ -109,11 +178,11 @@ function LogData(style, url, params, dataFetch, dataLoad, templateParse) {
     url = window.currentClick;
 	$("#last_result").html("<td>" + style + "</td><td>" + url + "</td><td>" + params + "</td><td>" + diff + "</td><td>" + dataFetch + "</td><td>" + dataLoad + "</td><td>" + templateParse + "</td>");
     $.post("/clientlogger/log", {
-        "tester":tester,
-        "tester_comments":tester_comments,
+        "test_batch_name":test_batch_name,
+        "test_name":test_name,
+        "page_name":page_name,
         "test_file":test_file,
-        "test_description":test_description,
-        "style":style,
+        "test_style":style,
         "url":url,
         "params":params,
         "user":user,

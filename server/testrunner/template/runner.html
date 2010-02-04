@@ -4,35 +4,23 @@
 <script type="text/javascript" src="/static/javascripts/testrunner.js"></script>
 <link rel="stylesheet" href="/static/stylesheets/style.css" />
 <script type="text/javascript">
+
 function Advance() {
 	alert("About to begin test. Please make sure your browser is newly-opened, your cache/history/Google Gears/etc cleared, and your system has resources free.")
-	$.getScript($('#dsselect').val());	
+	advanceTest();
 }
+
+
 </script>
 </head>
 
 <body>                
     
 <div id="loading">
-	Tester: <input id="tester" name="tester" /> 
-	Comments: <input id="tester_comments" name="tester_comments" />
+	Batch Name: <input id="test_batch_name" name="test_batch_name" /> 
 	Latency (s): <input id="latency" name="latency" size=4 />
 	Bandwidth (b/s): <input id="bandwidth" name="bandwidth" size=4 />
-    <select id="dsselect">
-		<option selected value="/static/javascripts/userload1.js">Testing Run</option>
-		<option selected value="/static/wiki1/traditional_1_a.js">Wiki Test 1(a) - Traditional Hosting</option>
-		<option selected value="/static/wiki1/tokyo_1_a.js">Wiki Test 1(a) - Flying Templates</option>
-		<option selected value="/static/wiki1/synckit_1_a.js">Wiki Test 1(a) - Sync Kit</option>
-		<option selected value="/static/wiki2/traditional_1_b.js">Wiki Test 1(b) - Traditional Hosting</option>
-		<option selected value="/static/wiki2/tokyo_1_b.js">Wiki Test 1(b) - Flying Templates</option>
-		<option selected value="/static/wiki2/synckit_1_b.js">Wiki Test 1(b) - Sync Kit</option>
-		<option selected value="/static/wiki3/traditional_1_c.js">Wiki Test 1(c) - Traditional Hosting</option>
-		<option selected value="/static/wiki3/tokyo_1_c.js">Wiki Test 1(c) - Flying Templates</option>
-		<option selected value="/static/wiki3/synckit_1_c.js">Wiki Test 1(c) - Sync Kit</option>
-		<option selected value="/static/blog1/traditional_2_a.js">Blog Test 2(a) - Traditional Hosting</option>
-		<option selected value="/static/blog1/tokyo_2_a.js">Blog Test 2(a) - Flying Templates</option>
-		<option selected value="/static/blog1/synckit_2_a.js">Blog Test 2(a) - Sync Kit</option>
-	</select>
+    TestName: <span id="testname">___</span>
 	<button onclick="Advance(); return false;">Begin Test</button>
 </div>
 

@@ -19,24 +19,11 @@ jQuery.fn.templateData = function(value) {
     }
 };
 
-jQuery.fn.render = function() {
-	window.db.timeStart("Rendering Template");
-    var templateString = this.template();
-    var value = this.templateData();
-    var template = jsontemplate.Template(templateString);
-    // console.log("Template Size: " + templateString.length);
-    // console.log(value);
-    var rendered = template.expand(value);
-    // console.log("Rendered Size: " + rendered.length);
-    this.html(rendered);
-	window.db.timeEnd("Rendering Template");
-}
-
 jQuery.fn.render_new = function(callback) {
-	window.db.timeStart("Rendering SQL Template");
+	window.synckit.timeStart("Rendering SQL Template");
 	var query = this.attr('query');
 	var templates = this.find("[itemscope]");
-	var res = window.db.execute(query);
+	var res = window.synckit.execute(query);
 	var map = {};
 	
 	while (res.isValidRow()) {
@@ -56,9 +43,34 @@ jQuery.fn.render_new = function(callback) {
 		jQuery(this).remove();
 	});
 
-	window.db.timeEnd("Rendering SQL Template");
-	if (callback != "undefined") {
+	window.synckit.timeEnd("Rendering SQL Template");
+	if (callback !== undefined) {
 		callback.call();
 	}
 }
+
+jQuery.fn.render_flying = function(results) { 
+    
+	var templates = this.find("[itemscope]");
+	var map = {};
+	
+	for (var i=0; i<results.length; i++) {
+		// Loop over each item to do
+		templates.each(function(i) {
+			jQuery(this).find("[itemprop]").each(function(j) {
+				var prop = jQuery(this).attr("itemprop");
+				var val = results[i][replacementFieldByName(prop)];
+				jQuery(this).html(val);
+			});
+			jQuery(this).before(jQuery(this).clone());
+		});
+    }
+
+	templates.each(function(i) {
+		jQuery(this).remove();
+	});
+}
+
+
+
 

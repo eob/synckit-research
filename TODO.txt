@@ -2,6 +2,8 @@
 
 - profile FT---seems like it's slower to query DB than traditional, but perhaps that's necessary to handle generic workload of multiple queries.  because it shares infrastructure with synckit, it would be nice to squeaze slow parts out of both.
 
+- verify that nginx is actually doing compression
+
 - import psyco (that might have gotten rid of a bunch of unoptimized stuff in the code)
 
 - profile prefetching with the fixed prefetch logic to see what's slow

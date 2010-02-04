@@ -9,27 +9,31 @@ def main(request):
     c = Context({})
     return HttpResponse(t.render(c))
 
+# 
+#
 def perfgen(request):
-    pageid = request.GET["id"]
-    entry = LogEntry.objects.all().filter(id = int(pageid))[0]
-    allentries = LogEntry.objects.all().filter(
+    test_batch_name = request.GET["test_batch_name"]
+    test_file = request.GET["test_file"]
+    
+    allentries = LogEntry.objects.all().filter(test_batch_name = test_batch_name).filter(test_file = test_file)
+    """allentries = LogEntry.objects.all().filter(
         tester = entry.tester, 
         tester_comments = entry.tester_comments,
         test_file = entry.test_file,
         style = entry.style
-    )
+    )"""
     for e in allentries:
         e.params = e.params.replace('\\"', '"')
         e.params = e.params.replace('filter":["', 'filter":[')
         e.params = e.params.replace('"]',']')
         e.url = e.url.replace(' ', '%20')
-        if e.style == 'synckit':
+        if e.style == 'Sync Kit':
             e.url = '/wiki/synckit'
             e.params = e.params.replace("{\"queries\":\"", "queries=")
             e.params = e.params.replace("\",\"latency\":\"", "&latency=")
             e.params = e.params.replace("\",\"bandwidth\":\"", "&bandwidth=")
             e.params = e.params.rstrip("}\"")
-        elif e.style == 'flying':
+        elif e.style == 'Flying Templates':
             e.params = e.params.replace("{\"queries\":\"", "queries=")
             e.params = e.params.rstrip("}")
             e.params = e.params.rstrip("\"")
@@ -39,7 +43,7 @@ def perfgen(request):
     cached = 0
     uncached = 0
     for e in allentries:
-        if (e.params == 'CACHED'):
+        if (e.style == 'Sync Kit' and e.data_fetch == 0 and e.data_bulkload == 0):
             cached = cached + 1
         else:
             uncached = uncached + 1
