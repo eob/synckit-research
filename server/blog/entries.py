@@ -54,7 +54,7 @@ def traditional(request):
 #    global entries_returned
 #    num_queries += 1
 #    start = time.time()
-    now = request.GET["now"]
+    now = request.REQUEST["now"]
     results = Entry.objects.all().filter(date__lte = now).order_by('-date')[:10]
 #    results = list(Entry.objects.all().filter(date__lte = now).order_by('-date')[:10])
 #    end = time.time()

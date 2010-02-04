@@ -1,0 +1,311 @@
+# Test Name: test_freq_0.08_per_update
+# Strategy: tokyo
+# Number Users: 20
+# Percent New: 0.5
+# Number Visits: 1 / days
+/static/pages/blog.html
+      /blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/static/pages/blog.html
+      /blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-04-29 18:09:39.165266"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-04-29 23:55:18.908099"}}'
+
+/static/pages/blog.html
+      /blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-04-30 22:44:04.087757"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-04-30 23:42:19.312573"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-04-30 14:28:31.066425"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-04-30 22:18:08.249935"}}'
+
+/static/pages/blog.html
+      /blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-01 00:00:00"}}'
+      /static/manifest
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-04-29 10:51:01.626503"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-04-30 20:21:57.882805"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-04-30 06:25:55.879270"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-04-30 21:21:16.981260"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-04-29 22:50:20.738845"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-04-30 08:41:57.252442"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-04-30 00:52:39.308494"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-04-30 01:12:04.790416"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-04-30 07:36:28.593239"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-04-30 09:19:51.879060"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-04-30 20:48:33.415530"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-01 01:05:20.353883"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-01 01:07:33.722580"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-01 03:24:59.082839"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-01 06:57:02.606832"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-01 07:06:48.223201"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-01 07:46:24.353185"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-01 09:00:55.129033"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-01 09:53:13.815420"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-01 10:17:22.343849"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-01 10:47:43.599787"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-01 11:50:35.518942"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-01 12:55:39.560249"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-01 13:57:14.427847"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-01 15:41:47.200987"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-01 15:59:58.468018"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-01 16:18:17.714325"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-01 22:53:30.043774"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-02 00:03:36.038583"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-02 00:41:58.233163"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-02 00:53:50.440697"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-02 02:02:55.476921"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-02 02:35:05.607258"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-02 03:07:57.868093"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-02 03:38:45.119980"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-02 04:50:23.359933"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-02 05:50:53.346493"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-02 08:37:33.718069"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-02 09:06:51.799645"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-02 09:19:01.320936"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-02 09:42:31.508617"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-02 10:25:46.395131"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-02 11:15:25.944940"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-02 11:16:00.024725"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-02 11:44:32.244245"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-02 13:02:34.705017"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-02 14:03:17.752675"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-02 14:12:42.271880"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-02 15:59:03.149836"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-02 17:04:58.522132"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-02 19:10:48.588554"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-02 19:20:57.217625"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-02 19:33:52.543497"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-02 23:33:14.882237"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-03 01:31:58.616770"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-03 04:15:33.377617"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-03 04:18:19.906408"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-03 04:47:57.192880"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-03 09:06:50.761795"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-03 10:23:42.550272"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-03 10:48:16.059034"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-03 11:47:23.364537"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-03 12:03:13.401474"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-03 12:44:25.506105"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-03 14:11:07.678822"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-03 14:17:38.028704"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-03 15:30:01.791121"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-03 15:44:38.517422"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-03 15:47:50.512693"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-03 15:57:46.110044"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-03 18:08:36.645869"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-03 19:45:24.431837"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-03 21:07:04.209241"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-03 21:50:22.685869"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-03 21:54:10.038793"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-04 00:58:27.918271"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-04 01:05:20.297461"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-04 01:22:30.316439"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-04 02:11:47.390899"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-04 03:43:44.276957"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-04 05:32:12.006599"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-04 05:48:09.339885"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-04 08:14:30.852163"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-04 08:29:09.108065"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-04 12:01:20.378226"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-04 12:41:58.357109"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-04 13:32:25.915862"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-04 13:34:02.104723"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-04 15:38:02.575089"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-04 16:44:07.044348"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-04 17:09:24.778797"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-04 17:55:27.967298"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-04 18:45:34.382522"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-04 21:27:34.263932"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-04 22:29:31.897959"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-04 23:44:58.666062"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-05 00:47:09.303135"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-05 01:30:02.584472"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-05 02:07:15.443150"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-05 02:56:34.227621"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-05 04:43:51.551533"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-05 05:51:28.075121"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-05 05:59:35.344507"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-05 08:45:56.825777"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-05 10:35:11.054112"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-05 10:55:39.462851"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-05 11:35:39.045269"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-05 12:22:26.694729"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-05 13:29:41.938955"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-05 14:00:11.602323"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-05 14:03:23.272887"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-05 14:56:26.881998"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-05 16:53:38.735934"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-05 18:41:33.769031"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-05 19:23:54.408202"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-05 20:11:09.052359"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-05 22:14:28.850651"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-05 22:19:21.413798"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-06 00:05:43.029713"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-06 00:31:04.919860"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-06 01:53:16.055789"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-06 03:07:38.342165"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-06 04:33:29.233001"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-06 07:09:15.134896"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-06 08:03:36.557390"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-06 08:21:44.251164"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-06 10:09:23.137399"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-06 13:32:34.485914"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-06 15:33:17.787337"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-06 17:59:00.939998"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-06 18:15:20.557943"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-06 18:41:17.302130"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-06 19:23:54.353772"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-06 19:35:15.708744"}}'
+
+/blog/flying_entries method=POST contents='queries={"Posts":{"now":"2010-05-06 19:55:11.150919"}}'
+

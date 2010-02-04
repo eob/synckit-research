@@ -37,8 +37,8 @@ class User:
     
     def plan_next_visit(self):
         # Don't sample.. just use the visit rate
-        # time_delta = expovariate(self.visit_rate)
-        time_delta = self.visit_rate
+        time_delta = expovariate(self.visit_rate)
+        #time_delta = 1/float(self.visit_rate)
         params = {self.visit_time_unit : time_delta}
         if (self.next_visit_time == None):
             self.next_visit_time = self.last_visit_time + datetime.timedelta(**params)
