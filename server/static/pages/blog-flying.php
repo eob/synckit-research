@@ -71,9 +71,7 @@ $(function() {
         window.synckit._templateTime = window.synckit.timeEnd("template");;
 
         if (parent.LogData != "undefined") {
-                var x = "";
-                // the x arg used to be: JSON.stringify(params)
-            	parent.LogData("Blog", "Flying Templates", window.location.href, x, window.synckit);
+            	parent.LogData("Blog", "Flying Templates", window.location.href, JSON.stringify(params), window.synckit);
         }	      
     }, "json");
     
