@@ -20,7 +20,8 @@ if BLOG_TEST:
     TO_DATE = datetime.datetime(2010, 05, 07)
     SITE = OnePageBlog('')
     TEMPLATE_ENNDPOINT = "/static/pages/blog.html"
-    DATA_ENNDPOINT = "/blog/entries"
+    SYNCKIT_ENNDPOINT = "/blog/entries"
+    TOKYO_ENNDPOINT = "/blog/flying_entries"
     PRERENDERED_ENNDPOINT = "/blog/traditional"
 
 if WIKI_TEST:    
@@ -35,11 +36,13 @@ if WIKI_TEST:
 #    DATA_ENNDPOINT = "/blog/entries"
 #    PRERENDERED_ENNDPOINT = "/blog/traditional"
 
-tick_hash = {VISIT_UNIT : 1}
+#tick_hash = {VISIT_UNIT : 1}
+tick_hash = {"minutes" : 1}
 
 def create_users(number, percent_new, visit_rate, visit_unit):
     # Generate the users
     users = []
+    print "%d, %d, %s" % (number, visit_rate, visit_unit)
     for i in range(number):
         last_time = None
         if (random() >= percent_new):        
@@ -85,12 +88,13 @@ def query_for_visit(visit, strategy):
     if strategy == 'tokyo':
         return 'queries={"Posts":{"now":"%s"}}' % (str(visit.this_time))
     elif strategy == 'traditional':
-        return 'queries={"Posts":{"now":"%s"}}' % (str(visit.this_time))        
+#        return 'queries={"Posts":{"now":"%s"}}' % (str(visit.this_time))
+        return 'now=%s' % (str(visit.this_time))
     else:
         if visit.last_time == None:
-            return 'queries={"Posts":{"now":"%s"}}' % (str(visit.this_time))
+            return 'queries={"Posts":{"now":"%s", "__vshash":"3c9977be25383449119b351ce5388e81"}}' % (str(visit.this_time))
         else:
-            return 'queries={"Posts":{"now":"%s", "max":"%s"}}' % (str(visit.this_time), str(visit.last_time))        
+            return 'queries={"Posts":{"now":"%s", "max":"%s", "__vshash":"3c9977be25383449119b351ce5388e81"}}' % (str(visit.this_time), str(visit.last_time))        
 
 def url_strings_for_visit(visit, strategy):
     page = visit.click_trail.path[0]
@@ -98,7 +102,10 @@ def url_strings_for_visit(visit, strategy):
 	
     if strategy == 'traditional':
             strings.append("%s%s method=POST contents='%s'" % (page.url, PRERENDERED_ENNDPOINT, query_for_visit(visit, strategy)))
-    else:        
+    else: 
+        DATA_ENNDPOINT = TOKYO_ENNDPOINT
+        if strategy == 'synckit':
+            DATA_ENNDPOINT = SYNCKIT_ENNDPOINT       
         if visit.last_time == None:
             strings.append(page.url + TEMPLATE_ENNDPOINT)
             strings.append("      %s%s method=POST contents='%s'" % (page.url, DATA_ENNDPOINT, query_for_visit(visit, strategy)))
@@ -163,16 +170,16 @@ dirname = now.strftime("%Y-%m-%d.%H:%M:%S")
 
 if BLOG_TEST:
     # print "NOTE! need to make num users 100 and new usrs rate .5"
-    write_test_files(dirname, "test_freq_4_per_update", 100, 0.5, 48, "days")
-    write_test_files(dirname, "test_freq_3_per_update", 100, 0.5, 36, "days")
-    write_test_files(dirname, "test_freq_2_per_update", 100, 0.5, 24, "days")
-    write_test_files(dirname, "test_freq_1_per_update", 100, 0.5, 12, "days")
-    write_test_files(dirname, "test_freq_0.5_per_update", 100, 0.5, 6, "days")
-    write_test_files(dirname, "test_freq_0.42_per_update", 100, 0.5, 5, "days")
-    write_test_files(dirname, "test_freq_0.33_per_update", 100, 0.5, 4, "days")
-    write_test_files(dirname, "test_freq_0.25_per_update", 100, 0.5, 3, "days")
-    write_test_files(dirname, "test_freq_0.16_per_update", 100, 0.5, 2, "days")
-    write_test_files(dirname, "test_freq_0.08_per_update", 100, 0.5, 1, "days")
+    write_test_files(dirname, "test_freq_4_per_update", 20, 0.5, 48, "days")
+    write_test_files(dirname, "test_freq_3_per_update", 20, 0.5, 36, "days")
+    write_test_files(dirname, "test_freq_2_per_update", 20, 0.5, 24, "days")
+    write_test_files(dirname, "test_freq_1_per_update", 20, 0.5, 12, "days")
+    write_test_files(dirname, "test_freq_0.5_per_update", 20, 0.5, 6, "days")
+    write_test_files(dirname, "test_freq_0.42_per_update", 20, 0.5, 5, "days")
+    write_test_files(dirname, "test_freq_0.33_per_update", 20, 0.5, 4, "days")
+    write_test_files(dirname, "test_freq_0.25_per_update", 20, 0.5, 3, "days")
+    write_test_files(dirname, "test_freq_0.16_per_update", 20, 0.5, 2, "days")
+    write_test_files(dirname, "test_freq_0.08_per_update", 20, 0.5, 1, "days")
 
 if WIKI_TEST:
     write_test_files(dirname, "test_freq_6_per_day", 40, 0.0, 1, "days")
