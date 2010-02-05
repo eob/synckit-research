@@ -1281,9 +1281,9 @@ $(function() {
         window.synckit.timeStart("template");
         $('#newtemplate').render_flying(data["Posts"]["results"]);
         window.synckit._templateTime = window.synckit.timeEnd("template");;
-
+        window.synckit._queryParams = params;
         if (parent.LogData != "undefined") {
-            	parent.LogData("Blog", "Flying Templates", window.location.href, JSON.stringify(params), window.synckit);
+            	parent.LogData("Blog", "Flying Templates", window.location.href, window.synckit);
         }	      
     }, "json");
     

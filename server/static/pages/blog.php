@@ -33,7 +33,7 @@ $(function() {
 		$('#newtemplate').render_new();
 	    window.synckit._templateTime = window.synckit.timeEnd("template");;
         if (parent.LogData != "undefined") {
-        	parent.LogData("Blog", "Sync Kit", window.location.href, JSON.stringify(window.synckit._queryParams), window.synckit);
+        	parent.LogData("Blog", "Sync Kit", window.location.href, window.synckit);
         }
     };
 

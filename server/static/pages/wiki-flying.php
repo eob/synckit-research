@@ -68,8 +68,9 @@ $(function() {
         window.synckit.timeStart("template");
         $('#newtemplate').render_flying(data["Pages"]["results"]);
         window.synckit._templateTime = window.synckit.timeEnd("template");
+        window.synckit._queryParams = params;
         if (parent.LogData != "undefined") {
-            	parent.LogData("Wiki", "Flying Templates", window.location.href, JSON.stringify(params), window.synckit);
+            	parent.LogData("Wiki", "Flying Templates", window.location.href, window.synckit);
         }	      
 	}
 
