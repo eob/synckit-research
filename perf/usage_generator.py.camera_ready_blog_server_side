@@ -171,6 +171,7 @@ dirname = now.strftime("%Y-%m-%d.%H:%M:%S")
 
 if BLOG_TEST:
     # print "NOTE! need to make num users 100 and new usrs rate .5"
+    """
     write_test_files(dirname, "test_freq_4_per_update", 100, 0.5, 48, "days")
     write_test_files(dirname, "test_freq_3_per_update", 100, 0.5, 36, "days")
     write_test_files(dirname, "test_freq_2_per_update", 100, 0.5, 24, "days")
@@ -181,6 +182,8 @@ if BLOG_TEST:
     write_test_files(dirname, "test_freq_0.25_per_update", 100, 0.5, 3, "days")
     write_test_files(dirname, "test_freq_0.16_per_update", 100, 0.5, 2, "days")
     write_test_files(dirname, "test_freq_0.08_per_update", 100, 0.5, 1, "days")
+    """
+    write_test_files(dirname, "test_freq_0.008_per_update", 100, 0.5, .1, "days")
 
 if WIKI_TEST:
     write_test_files(dirname, "test_freq_6_per_day", 40, 0.0, 1, "days")
