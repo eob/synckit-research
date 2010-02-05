@@ -14,7 +14,6 @@ def main(request):
 def perfgen(request):
     test_batch_name = request.GET["test_batch_name"]
     test_file = request.GET["test_file"]
-    
     allentries = LogEntry.objects.all().filter(test_batch_name = test_batch_name).filter(test_file = test_file)
     """allentries = LogEntry.objects.all().filter(
         tester = entry.tester, 
@@ -54,7 +53,7 @@ def perfgen(request):
         "cached":cached,
         "total":(uncached+cached),
         "cpercnet":(float(cached)/(float(cached)+float(uncached))),
-        "entry":entry,
+        "entry":allentries[0],
         "entries":entries
     })
     return HttpResponse(t.render(c))
