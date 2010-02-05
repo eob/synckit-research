@@ -952,7 +952,7 @@ _skProto = function() {
                 params[key] = extra_query_params[key];
             }
             
-            _me.queryParams = params;            
+            _me._queryParams = params;            
             _me.timeStart("xfer");
             jQuery.post(endpoint_uri, params, function(response) {
                 _me._dataTransferTime = _me.timeEnd("xfer");
