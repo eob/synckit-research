@@ -15,6 +15,7 @@ _skProto = function() {
     _me._bulkloadTime = 0;
     _me._dataTransferTime = 0;
     _me._templateTime = 0;
+    _me._queryParams = {};
     
     // Methods
     // ----------------------------------------------------------------
@@ -340,6 +341,7 @@ _skProto = function() {
                 params[key] = extra_query_params[key];
             }
             
+            _me._queryParams = params;            
             _me.timeStart("xfer");
             jQuery.post(endpoint_uri, params, function(response) {
                 _me._dataTransferTime = _me.timeEnd("xfer");

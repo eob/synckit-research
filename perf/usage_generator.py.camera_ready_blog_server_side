@@ -8,8 +8,8 @@ import pickle
 import datetime
 import os
 
-BLOG_TEST = 0
-WIKI_TEST = 1
+BLOG_TEST = 1
+WIKI_TEST = 0
 
 if BLOG_TEST:    
     VISIT_RATE = 4
@@ -32,10 +32,9 @@ if WIKI_TEST:
     FROM_DATE = datetime.datetime(2010, 05, 01)
     TO_DATE = datetime.datetime(2010, 05, 15)
     SITE = Wiki("", 0.5)
-    TEMPLATE_ENNDPOINT = "/static/pages/wiki.html"
-    SYNCKIT_ENNDPOINT = "/wiki/synckit"
-    TOKYO_ENNDPOINT = "/wiki/tokyo"
-    PRERENDERED_ENNDPOINT = "/wiki/traditional"
+#    TEMPLATE_ENNDPOINT = "/static/pages/blog.html"
+#    DATA_ENNDPOINT = "/blog/entries"
+#    PRERENDERED_ENNDPOINT = "/blog/traditional"
 
 #tick_hash = {VISIT_UNIT : 1}
 tick_hash = {"minutes" : 1}
@@ -158,11 +157,11 @@ def write_test_files(directory_name, test_name, num_users, percent_new, num_visi
 
         # Write The Client-Oriented Tests  
         if strategy == 'synckit':
-            url = '/static/pages/wiki.html'
+            url = '/static/pages/blog.html'
         elif strategy == 'tokyo':
-            url = '/static/pages/flying-wiki.html'
+            url = '/static/pages/blog-flying.html'
         elif strategy == 'traditional':
-            url = '/wiki/traditional'     
+            url = '/blog/traditional'     
                      
         comments = "# Test Name: %s  # Strategy: %s # Number Users: %s  # Percent New: %s   # Number Visits: %s / %s\n" % (test_name, strategy, str(num_users), str(percent_new), str(num_visits), str(in_period))
         write_json_file(users, "%s/%s_%s.js" % (directory_name, test_name, strategy), url, header=comments)
@@ -172,6 +171,7 @@ dirname = now.strftime("%Y-%m-%d.%H:%M:%S")
 
 if BLOG_TEST:
     # print "NOTE! need to make num users 100 and new usrs rate .5"
+    """
     write_test_files(dirname, "test_freq_4_per_update", 100, 0.5, 48, "days")
     write_test_files(dirname, "test_freq_3_per_update", 100, 0.5, 36, "days")
     write_test_files(dirname, "test_freq_2_per_update", 100, 0.5, 24, "days")
@@ -182,9 +182,11 @@ if BLOG_TEST:
     write_test_files(dirname, "test_freq_0.25_per_update", 100, 0.5, 3, "days")
     write_test_files(dirname, "test_freq_0.16_per_update", 100, 0.5, 2, "days")
     write_test_files(dirname, "test_freq_0.08_per_update", 100, 0.5, 1, "days")
+    """
+    write_test_files(dirname, "test_freq_0.008_per_update", 100, 0.5, .1, "days")
 
 if WIKI_TEST:
-    write_test_files(dirname, "test_freq_1_per_day", 40, 0.0, 1, "days")
+    write_test_files(dirname, "test_freq_6_per_day", 40, 0.0, 1, "days")
         
 # if WIKI_TEST:
     

@@ -6,9 +6,7 @@ $(function() {
     window.synckit = create_synckit();
 	var callback = function(data) {
         if (parent.LogData != "undefined") {
-            var x = "";
-            // the x arg used to be: JSON.stringify(params, synckit)
-            parent.LogData("Wiki", "Traditional", window.location.href, x, window.synckit);
+            parent.LogData("Wiki", "Traditional", window.location.href, window.synckit);
         }	      
 	}
    callback.call(null);    

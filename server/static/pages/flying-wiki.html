@@ -1215,41 +1215,80 @@ jQuery.fn.render_flying = function(results) {
 
 
 </script><script>
+function replacementFieldByName(name) {
+	if (name == "title") {
+		return 1;
+	}
+	else if (name == "contents") {
+		return 2;
+	}
+}
+
 $(function() {
     // console.info("Page Loaded");
-    window.synckit = create_synckit(); 
-    var endpoint = "/blog/entries";
-
-    var viewspec = {
-        "vshash": "3c9977be25383449119b351ce5388e81",
-        "syncspec": {
-             "limit": 10,
-             "__type": "queue",
-             "order": "ASC",
-             "sortfield": "date"
-            }, 
-        "schema": ["id serial", "author integer", "title varchar(200)", "contents text", "date timestamp with time zone"]
-    };
-
-    window.synckit.build_view(endpoint, "Posts", viewspec);
-
-    // 'now' is a parameter used for time-travel through the posts
-    var extra_view_params = {};
-    var now = urlParam('now');
-	if (now != 'undefined') {
-	    extra_view_params.Posts = {"now": now};
-	}
+    window.synckit = create_synckit();
     
-    var callback = function() {
-        window.synckit.timeStart("template");
-		$('#newtemplate').render_new();
-	    window.synckit._templateTime = window.synckit.timeEnd("template");;
-        if (parent.LogData != "undefined") {
-        	parent.LogData("Blog", "Sync Kit", window.location.href, window.synckit);
-        }
+    /*
+     * TODO: Actively set client schema instead of lazily doing it on server respnse.
+     */
+    
+    /*
+     * remove_views describes the server-generated managed data structures that are 
+     * exported to the client. Each one is a table, but a table that is accessed (and thus synced)
+     * in a particular way.  
+     */
+	var pageid = urlParam('pageid');
+	
+    var remote_views = {
+      "Pages":{
+		"type":"set",
+		"style":"open"
+      }
     };
 
-    window.synckit.sync(endpoint, ["Posts"], extra_view_params, {}, callback);
+	// if (pageid != 0) {
+	// 	remote_views["Pages"]["filter"] = pageid
+	// }
+	
+	// // var schema = {"Pages":["id integer NOT NULL PRIMARY KEY",
+	// //               		   "title varchar(255)", 
+	// //               		   "contents text", 
+	// // 					   "weight float",
+	// //               		   "date datetime NOT NULL"]
+	//     };
+    
+    /*
+     * The state represents what elements from the remove_views that the client has, so that the
+     * server will not waste resources duplicating information.
+     */
+    // var state = window.synckit.get_state(schema, remote_views);   
+	var state = {"Pages":{"filter":[pageid]}};
+
+    var now = urlParam('now');
+	
+	if (now != 'undefined') {
+		for (var table in state) {
+			state[table]['now'] = now;
+		}		
+	}
+
+    endpoint = "/wiki/tokyo";
+	var params = {"queries":JSON.stringify(state)};    
+	
+	var callback = function(data) {
+	    window.synckit._dataTransferTime = window.synckit.timeEnd("dataFetch");;
+        window.synckit.timeStart("template");
+        $('#newtemplate').render_flying(data["Pages"]["results"]);
+        window.synckit._templateTime = window.synckit.timeEnd("template");
+        window.synckit._queryParams = params;
+        if (parent.LogData != "undefined") {
+            	parent.LogData("Wiki", "Flying Templates", window.location.href, window.synckit);
+        }	      
+	}
+
+    window.synckit.timeStart("dataFetch");
+    $.post(endpoint, params, callback, "json");		
+    
 });
 
 </script>
@@ -1266,7 +1305,7 @@ $(function() {
 <p align="center"><b>Template Loading...</b></p>
 </div>
 
-<table id="newtemplate" query="SELECT * From sk_Posts1 LIMIT 10;" as="entry">
+<table id="newtemplate" query="" as="entry">
 	<tr itemscope="yes" itemtype="Entry" />
 		<td><span itemprop="title">from</span></td>
 		<td><span itemprop="contents">content</span></td>
