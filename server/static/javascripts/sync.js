@@ -59,7 +59,7 @@ _skProto = function() {
     };
     
     _me.reset = function() {
-        console.info("Resetting DB");
+//        console.info("Resetting DB");
         if (_me._localdb !== null) {
             _me._localdb.remove();
             _me.opendb("synckit");
