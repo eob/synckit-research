@@ -1,0 +1,143 @@
+file,rate,total_requests,concurrent_connections,request_rate,reply_rate_avg,reply_rate_stdev,reply_samples,total_size,200_statuses,net_io
+file,highest_rate,attempted_rate,avg_data
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,wiki-server/synckit_1.txt
+synckit_1.txt,520,10000,28,519.9,519.9,0.2,3,398.0,0,337.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,wiki-server/synckit_1.txt
+synckit_1.txt,279,10000,4,279.0,279.0,0.1,7,398.0,0,181.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,wiki-server/synckit_1.txt
+synckit_1.txt,159,10000,4,159.0,159.0,0.1,12,398.0,0,103.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 99 --wsesslog=10000,0,wiki-server/synckit_1.txt
+synckit_1.txt,99,10000,2,99.0,99.0,0.0,20,398.0,0,64.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 69 --wsesslog=10000,0,wiki-server/synckit_1.txt
+synckit_1.txt,69,10000,2,69.0,69.0,0.0,28,398.0,0,44.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 54 --wsesslog=10000,0,wiki-server/synckit_1.txt
+synckit_1.txt,54,10000,1,54.0,54.0,0.0,37,398.0,0,35.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 46 --wsesslog=10000,0,wiki-server/synckit_1.txt
+synckit_1.txt,46,10000,1,46.0,46.0,0.0,43,398.0,0,29.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 42 --wsesslog=10000,0,wiki-server/synckit_1.txt
+synckit_1.txt,42,10000,1,42.0,42.0,0.0,47,398.0,0,27.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 40 --wsesslog=10000,0,wiki-server/synckit_1.txt
+synckit_1.txt,40,10000,1,40.0,40.0,0.0,49,398.0,0,26.0 KB/s
+synckit_1.txt,0.000000,40,0.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,wiki-server/flying_3.txt
+flying_3.txt,520,10000,12,519.9,519.9,0.3,3,398.0,0,291.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,wiki-server/flying_3.txt
+flying_3.txt,279,10000,5,279.0,279.0,0.1,7,398.0,0,156.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,wiki-server/flying_3.txt
+flying_3.txt,159,10000,3,159.0,159.0,0.1,12,398.0,0,89.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 99 --wsesslog=10000,0,wiki-server/flying_3.txt
+flying_3.txt,99,10000,2,99.0,99.0,0.0,20,398.0,0,55.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 69 --wsesslog=10000,0,wiki-server/flying_3.txt
+flying_3.txt,69,10000,1,69.0,69.0,0.0,28,398.0,0,38.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 54 --wsesslog=10000,0,wiki-server/flying_3.txt
+flying_3.txt,54,10000,1,54.0,54.0,0.0,37,398.0,0,30.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 46 --wsesslog=10000,0,wiki-server/flying_3.txt
+flying_3.txt,46,10000,1,46.0,46.0,0.0,43,398.0,0,25.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 42 --wsesslog=10000,0,wiki-server/flying_3.txt
+flying_3.txt,42,10000,1,42.0,42.0,0.0,47,398.0,0,23.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 40 --wsesslog=10000,0,wiki-server/flying_3.txt
+flying_3.txt,40,10000,1,40.0,40.0,0.0,49,398.0,0,22.4 KB/s
+flying_3.txt,0.000000,40,0.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,wiki-server/flying_2.txt
+flying_2.txt,520,10000,12,519.9,519.9,0.1,3,398.0,0,291.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,wiki-server/flying_2.txt
+flying_2.txt,279,10000,4,279.0,279.0,0.1,7,398.0,0,156.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,wiki-server/flying_2.txt
+flying_2.txt,159,10000,3,159.0,159.0,0.1,12,398.0,0,89.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 99 --wsesslog=10000,0,wiki-server/flying_2.txt
+flying_2.txt,99,10000,2,99.0,99.0,0.0,20,398.0,0,55.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 69 --wsesslog=10000,0,wiki-server/flying_2.txt
+flying_2.txt,69,10000,1,69.0,69.0,0.0,28,398.0,0,38.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 54 --wsesslog=10000,0,wiki-server/flying_2.txt
+flying_2.txt,54,10000,1,54.0,54.0,0.0,37,398.0,0,30.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 46 --wsesslog=10000,0,wiki-server/flying_2.txt
+flying_2.txt,46,10000,1,46.0,46.0,0.0,43,398.0,0,25.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 42 --wsesslog=10000,0,wiki-server/flying_2.txt
+flying_2.txt,42,10000,1,42.0,42.0,0.0,47,398.0,0,23.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 40 --wsesslog=10000,0,wiki-server/flying_2.txt
+flying_2.txt,40,10000,1,40.0,40.0,0.0,49,398.0,0,22.4 KB/s
+flying_2.txt,0.000000,40,0.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,wiki-server/traditional_3.txt
+traditional_3.txt,520,4190,1020,133.4,139.2,59.9,6,128977.0,3727,16822.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,wiki-server/traditional_3.txt
+traditional_3.txt,279,6601,1020,110.2,119.0,59.7,11,143747.0,6510,15492.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,wiki-server/traditional_3.txt
+traditional_3.txt,159,10000,107,158.6,158.5,3.4,12,146354.0,10000,22694.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 219 --wsesslog=10000,0,wiki-server/traditional_3.txt
+traditional_3.txt,219,8227,1020,118.0,125.9,58.0,13,146076.0,8227,16856.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 189 --wsesslog=10000,0,wiki-server/traditional_3.txt
+traditional_3.txt,189,9491,1020,123.4,126.3,60.2,15,146357.0,9486,17655.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 174 --wsesslog=10000,0,wiki-server/traditional_3.txt
+traditional_3.txt,174,10000,887,122.8,124.9,61.9,16,146300.0,9996,17559.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 166 --wsesslog=10000,0,wiki-server/traditional_3.txt
+traditional_3.txt,166,10000,393,119.1,125.0,64.1,16,146354.0,10000,17049.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 162 --wsesslog=10000,0,wiki-server/traditional_3.txt
+traditional_3.txt,162,10000,110,161.0,160.9,6.2,12,146354.0,10000,23040.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 164 --wsesslog=10000,0,wiki-server/traditional_3.txt
+traditional_3.txt,164,10000,71,163.1,162.9,1.6,12,146354.0,10000,23334.4 KB/s
+traditional_3.txt,163.100000,165,146354.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,wiki-server/traditional_1.txt
+traditional_1.txt,520,3915,1020,82.3,83.5,72.7,9,131542.0,3476,10586.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,wiki-server/traditional_1.txt
+traditional_1.txt,279,6515,1020,103.9,108.6,64.2,12,146044.0,6417,14833.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,wiki-server/traditional_1.txt
+traditional_1.txt,159,10000,314,115.9,117.6,64.0,17,148593.0,10000,16836.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 99 --wsesslog=10000,0,wiki-server/traditional_1.txt
+traditional_1.txt,99,10000,15,98.9,99.0,0.9,20,148593.0,10000,14376.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 129 --wsesslog=10000,0,wiki-server/traditional_1.txt
+traditional_1.txt,129,10000,38,128.9,128.9,2.5,15,148593.0,10000,18726.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 144 --wsesslog=10000,0,wiki-server/traditional_1.txt
+traditional_1.txt,144,10000,81,143.6,143.7,3.5,13,148593.0,10000,20868.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 151 --wsesslog=10000,0,wiki-server/traditional_1.txt
+traditional_1.txt,151,10000,57,150.7,150.7,3.1,13,148593.0,10000,21896.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 155 --wsesslog=10000,0,wiki-server/traditional_1.txt
+traditional_1.txt,155,10000,124,154.8,154.1,6.8,12,148593.0,10000,22496.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 157 --wsesslog=10000,0,wiki-server/traditional_1.txt
+traditional_1.txt,157,10000,112,156.5,155.9,5.4,12,148593.0,10000,22742.2 KB/s
+traditional_1.txt,156.500000,158,148593.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,wiki-server/flying_1.txt
+flying_1.txt,520,10000,17,519.1,519.9,0.3,3,398.0,0,291.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,wiki-server/flying_1.txt
+flying_1.txt,279,10000,5,279.0,279.0,0.1,7,398.0,0,156.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,wiki-server/flying_1.txt
+flying_1.txt,159,10000,3,159.0,159.0,0.1,12,398.0,0,89.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 99 --wsesslog=10000,0,wiki-server/flying_1.txt
+flying_1.txt,99,10000,2,99.0,99.0,0.0,20,398.0,0,55.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 69 --wsesslog=10000,0,wiki-server/flying_1.txt
+flying_1.txt,69,10000,1,69.0,69.0,0.0,28,398.0,0,38.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 54 --wsesslog=10000,0,wiki-server/flying_1.txt
+flying_1.txt,54,10000,1,54.0,54.0,0.0,37,398.0,0,30.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 46 --wsesslog=10000,0,wiki-server/flying_1.txt
+flying_1.txt,46,9777,4,45.0,45.0,5.0,43,398.0,0,25.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 42 --wsesslog=10000,0,wiki-server/flying_1.txt
+flying_1.txt,42,10000,1,42.0,42.0,0.0,47,398.0,0,23.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 40 --wsesslog=10000,0,wiki-server/flying_1.txt
+flying_1.txt,40,9314,5,37.3,37.2,8.0,50,35792.0,0,1307.4 KB/s
+flying_1.txt,0.000000,40,0.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,wiki-server/synckit_3.txt
+synckit_3.txt,520,2520,1020,40.2,40.9,36.0,12,46791.0,0,1847.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,wiki-server/synckit_3.txt
+synckit_3.txt,279,3707,1020,59.2,61.8,24.3,12,48298.0,0,2808.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,wiki-server/synckit_3.txt
+synckit_3.txt,159,5315,1020,59.3,62.4,22.3,17,49893.0,0,2904.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 99 --wsesslog=10000,0,wiki-server/synckit_3.txt
+synckit_3.txt,99,8104,1020,61.3,62.3,20.4,26,50700.0,0,3050.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 69 --wsesslog=10000,0,wiki-server/synckit_3.txt
+synckit_3.txt,69,10000,221,59.7,60.6,19.8,33,53397.0,0,3127.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 54 --wsesslog=10000,0,wiki-server/synckit_3.txt
+synckit_3.txt,54,10000,7,54.0,54.0,0.1,37,53397.0,0,2829.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 46 --wsesslog=10000,0,wiki-server/synckit_3.txt
+synckit_3.txt,46,10000,6,46.0,46.0,0.1,43,53397.0,0,2410.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 42 --wsesslog=10000,0,wiki-server/synckit_3.txt
+synckit_3.txt,42,10000,5,42.0,42.0,0.1,47,53397.0,0,2200.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 40 --wsesslog=10000,0,wiki-server/synckit_3.txt
+synckit_3.txt,40,10000,5,40.0,40.0,0.1,50,53397.0,0,2095.9 KB/s
+synckit_3.txt,0.000000,40,0.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,wiki-server/traditional_2.txt
+traditional_2.txt,520,4209,1020,89.7,91.9,79.6,9,133807.0,3857,11734.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,wiki-server/traditional_2.txt
+traditional_2.txt,279,6647,1020,106.4,110.6,65.6,12,145512.0,6647,15143.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,wiki-server/traditional_2.txt
+traditional_2.txt,159,10000,190,146.1,153.4,11.0,13,146351.0,10000,20911.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 99 --wsesslog=10000,0,wiki-server/traditional_2.txt
+traditional_2.txt,99,10000,15,99.0,99.0,0.7,20,146351.0,10000,14164.6 KB/s

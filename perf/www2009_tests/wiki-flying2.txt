@@ -1,0 +1,59 @@
+file,rate,total_requests,concurrent_connections,request_rate,reply_rate_avg,reply_rate_stdev,reply_samples,total_size,200_statuses,net_io
+file,highest_rate,attempted_rate,avg_data
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,wiki-flying/flying_3.txt
+flying_3.txt,520,6668,1020,136.1,147.3,137.7,9,59570.0,6607,7942.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,wiki-flying/flying_3.txt
+flying_3.txt,279,10000,118,276.6,278.2,5.4,7,59827.0,10000,16207.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 399 --wsesslog=10000,0,wiki-flying/flying_3.txt
+flying_3.txt,399,8712,1020,178.2,192.6,145.3,9,59075.0,8624,10308.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 339 --wsesslog=10000,0,wiki-flying/flying_3.txt
+flying_3.txt,339,10000,661,187.9,199.9,153.3,10,59827.0,10000,11007.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 309 --wsesslog=10000,0,wiki-flying/flying_3.txt
+flying_3.txt,309,10000,162,307.2,307.2,11.8,6,59827.0,10000,17998.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 324 --wsesslog=10000,0,wiki-flying/flying_3.txt
+flying_3.txt,324,10000,413,186.7,200.0,148.7,10,59827.0,10000,10937.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 316 --wsesslog=10000,0,wiki-flying/flying_3.txt
+flying_3.txt,316,10000,245,312.5,312.1,19.2,6,59827.0,10000,18311.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 320 --wsesslog=10000,0,wiki-flying/flying_3.txt
+flying_3.txt,320,10000,398,232.3,249.8,118.9,8,59827.0,10000,13611.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 318 --wsesslog=10000,0,wiki-flying/flying_3.txt
+flying_3.txt,318,10000,291,316.1,315.9,26.9,6,59827.0,10000,18522.3 KB/s
+flying_3.txt,316.100000,319,59827.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,wiki-flying/flying_2.txt
+flying_2.txt,520,6597,1020,140.7,145.1,140.6,9,62591.0,6585,8623.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,wiki-flying/flying_2.txt
+flying_2.txt,279,10000,100,278.3,278.0,6.3,7,62049.0,10000,16909.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 399 --wsesslog=10000,0,wiki-flying/flying_2.txt
+flying_2.txt,399,8264,1020,169.0,182.8,135.0,9,62196.0,8264,10290.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 339 --wsesslog=10000,0,wiki-flying/flying_2.txt
+flying_2.txt,339,10000,643,188.0,199.9,153.6,10,62049.0,10000,11421.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 309 --wsesslog=10000,0,wiki-flying/flying_2.txt
+flying_2.txt,309,10000,117,308.4,307.0,8.4,6,62049.0,10000,18740.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 324 --wsesslog=10000,0,wiki-flying/flying_2.txt
+flying_2.txt,324,10000,260,243.4,249.9,124.7,8,62049.0,10000,14791.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 316 --wsesslog=10000,0,wiki-flying/flying_2.txt
+flying_2.txt,316,10000,556,186.0,199.6,135.9,10,62049.0,10000,11300.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 312 --wsesslog=10000,0,wiki-flying/flying_2.txt
+flying_2.txt,312,10000,191,274.0,285.6,55.9,7,62049.0,10000,16649.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 310 --wsesslog=10000,0,wiki-flying/flying_2.txt
+flying_2.txt,310,10000,112,309.1,307.9,8.4,6,62049.0,10000,18784.0 KB/s
+flying_2.txt,309.100000,311,62049.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,wiki-flying/flying_1.txt
+flying_1.txt,520,6862,1020,219.7,228.3,123.3,6,59595.0,6836,12825.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,wiki-flying/flying_1.txt
+flying_1.txt,279,10000,129,278.2,276.7,6.6,7,59751.0,10000,16281.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 399 --wsesslog=10000,0,wiki-flying/flying_1.txt
+flying_1.txt,399,8944,1020,182.5,198.1,148.4,9,59658.0,8944,10661.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 339 --wsesslog=10000,0,wiki-flying/flying_1.txt
+flying_1.txt,339,9730,1020,182.0,194.0,137.4,10,59700.0,9730,10644.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 309 --wsesslog=10000,0,wiki-flying/flying_1.txt
+flying_1.txt,309,10000,196,306.1,304.4,17.8,6,59751.0,10000,17911.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 324 --wsesslog=10000,0,wiki-flying/flying_1.txt
+flying_1.txt,324,10000,217,300.4,318.7,14.0,6,59751.0,10000,17577.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 316 --wsesslog=10000,0,wiki-flying/flying_1.txt
+flying_1.txt,316,10000,108,314.3,314.0,8.6,6,59751.0,10000,18391.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 320 --wsesslog=10000,0,wiki-flying/flying_1.txt
+flying_1.txt,320,10000,228,295.7,314.8,5.0,6,59751.0,10000,17304.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 318 --wsesslog=10000,0,wiki-flying/flying_1.txt
+flying_1.txt,318,10000,182,315.8,317.4,17.3,6,59751.0,10000,18477.6 KB/s
+flying_1.txt,315.800000,319,59751.000000
