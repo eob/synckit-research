@@ -1,0 +1,12 @@
+For the techcrunch tests, we label frequencies as .008 client checks/server
+update or 4 client checks/server update.  This was based on a server update
+rate of one post every 120 minutes.  In truth, the update value was one
+post every 114 minutes.
+
+So in fact, all frequencies should be divided by 12 (the almost true number
+of server updates per day based on one update/2 hours) and multiplied by
+12.631578947 (the true value based on one update/114 minutes).
+
+So Freq 4 checks/update = (4*12)/12.631578947 = 3.8.
+
+When plotting, corrext these issues
