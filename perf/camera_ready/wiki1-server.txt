@@ -1,0 +1,59 @@
+file,rate,total_requests,concurrent_connections,request_rate,reply_rate_avg,reply_rate_stdev,reply_samples,total_size,200_statuses,net_io
+file,strategy,frequency,highest_rate,attempted_rate,avg_data
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,wiki1-server/test_freq_1_per_day_tokyo.txt
+test_freq_1_per_day_tokyo.txt,520,10000,152,450.0,499.4,37.9,4,3571.0,10000,1644.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,wiki1-server/test_freq_1_per_day_tokyo.txt
+test_freq_1_per_day_tokyo.txt,279,10000,3,279.0,279.0,0.1,7,3571.0,10000,1019.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 399 --wsesslog=10000,0,wiki1-server/test_freq_1_per_day_tokyo.txt
+test_freq_1_per_day_tokyo.txt,399,10000,38,399.0,398.9,1.4,5,3571.0,10000,1457.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 459 --wsesslog=10000,0,wiki1-server/test_freq_1_per_day_tokyo.txt
+test_freq_1_per_day_tokyo.txt,459,10000,48,459.0,458.9,0.1,4,3571.0,10000,1677.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 489 --wsesslog=10000,0,wiki1-server/test_freq_1_per_day_tokyo.txt
+test_freq_1_per_day_tokyo.txt,489,10000,106,488.6,487.3,4.9,4,3571.0,10000,1785.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 504 --wsesslog=10000,0,wiki1-server/test_freq_1_per_day_tokyo.txt
+test_freq_1_per_day_tokyo.txt,504,10000,67,504.0,503.9,3.4,3,3571.0,10000,1841.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 512 --wsesslog=10000,0,wiki1-server/test_freq_1_per_day_tokyo.txt
+test_freq_1_per_day_tokyo.txt,512,10000,154,508.0,508.5,6.3,3,3571.0,10000,1856.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 516 --wsesslog=10000,0,wiki1-server/test_freq_1_per_day_tokyo.txt
+test_freq_1_per_day_tokyo.txt,516,10000,110,512.3,511.8,7.4,3,3571.0,10000,1871.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 518 --wsesslog=10000,0,wiki1-server/test_freq_1_per_day_tokyo.txt
+test_freq_1_per_day_tokyo.txt,518,10000,127,515.4,514.1,6.4,3,3571.0,10000,1883.2 KB/s
+test_freq_1_per_day_tokyo.txt,Flying Templates,1,515.400000,519,3571.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,wiki1-server/test_freq_1_per_day_synckit.txt
+test_freq_1_per_day_synckit.txt,520,10000,907,294.8,332.8,221.4,6,3568.0,9995,1103.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,wiki1-server/test_freq_1_per_day_synckit.txt
+test_freq_1_per_day_synckit.txt,279,10000,4,279.0,279.0,0.1,7,3572.0,10000,1044.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 399 --wsesslog=10000,0,wiki1-server/test_freq_1_per_day_synckit.txt
+test_freq_1_per_day_synckit.txt,399,10000,22,399.0,398.9,0.1,5,3572.0,10000,1493.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 459 --wsesslog=10000,0,wiki1-server/test_freq_1_per_day_synckit.txt
+test_freq_1_per_day_synckit.txt,459,10000,113,456.6,458.0,5.3,4,3572.0,10000,1709.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 489 --wsesslog=10000,0,wiki1-server/test_freq_1_per_day_synckit.txt
+test_freq_1_per_day_synckit.txt,489,10000,592,352.7,399.8,137.1,5,3572.0,10000,1320.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 474 --wsesslog=10000,0,wiki1-server/test_freq_1_per_day_synckit.txt
+test_freq_1_per_day_synckit.txt,474,10000,135,467.2,469.2,6.3,4,3572.0,10000,1749.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 481 --wsesslog=10000,0,wiki1-server/test_freq_1_per_day_synckit.txt
+test_freq_1_per_day_synckit.txt,481,10000,301,383.0,399.9,155.4,5,3572.0,10000,1433.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 477 --wsesslog=10000,0,wiki1-server/test_freq_1_per_day_synckit.txt
+test_freq_1_per_day_synckit.txt,477,10000,267,406.4,467.7,17.4,4,3572.0,10000,1521.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 475 --wsesslog=10000,0,wiki1-server/test_freq_1_per_day_synckit.txt
+test_freq_1_per_day_synckit.txt,475,10000,391,373.5,400.0,144.2,5,3572.0,10000,1398.1 KB/s
+test_freq_1_per_day_synckit.txt,Sync Kit,1,467.200000,475,3572.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,wiki1-server/test_freq_1_per_day_traditional.txt
+test_freq_1_per_day_traditional.txt,520,5173,1020,109.4,113.7,99.3,9,104333.0,5164,11162.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,wiki1-server/test_freq_1_per_day_traditional.txt
+test_freq_1_per_day_traditional.txt,279,10000,796,168.1,181.6,118.4,11,104615.0,10000,17197.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,wiki1-server/test_freq_1_per_day_traditional.txt
+test_freq_1_per_day_traditional.txt,159,10000,6,159.0,159.0,0.1,12,104615.0,10000,16269.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 219 --wsesslog=10000,0,wiki1-server/test_freq_1_per_day_traditional.txt
+test_freq_1_per_day_traditional.txt,219,10000,42,218.4,218.5,4.0,9,104615.0,10000,22346.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 249 --wsesslog=10000,0,wiki1-server/test_freq_1_per_day_traditional.txt
+test_freq_1_per_day_traditional.txt,249,10000,138,247.0,246.1,6.5,8,104615.0,10000,25281.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 264 --wsesslog=10000,0,wiki1-server/test_freq_1_per_day_traditional.txt
+test_freq_1_per_day_traditional.txt,264,10000,693,163.4,166.6,114.7,12,104615.0,10000,16718.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 256 --wsesslog=10000,0,wiki1-server/test_freq_1_per_day_traditional.txt
+test_freq_1_per_day_traditional.txt,256,10000,535,164.6,166.6,113.3,12,104615.0,10000,16841.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 252 --wsesslog=10000,0,wiki1-server/test_freq_1_per_day_traditional.txt
+test_freq_1_per_day_traditional.txt,252,10000,192,248.5,248.4,11.6,8,104615.0,10000,25429.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 254 --wsesslog=10000,0,wiki1-server/test_freq_1_per_day_traditional.txt
+test_freq_1_per_day_traditional.txt,254,10000,176,237.0,249.3,12.2,8,104615.0,10000,24254.9 KB/s
+test_freq_1_per_day_traditional.txt,Traditional,1,248.500000,253,104615.000000

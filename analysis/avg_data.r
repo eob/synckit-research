@@ -1,7 +1,7 @@
 
 # ============================================================================
 # PLOT 3
-# Create a line graph of measured server throughput
+# Create a line graph of measured data transfer in bytes
 # ----------------------------------------------------------------------------
 # Parameters
 #
@@ -29,7 +29,7 @@ tpAgg <- aggregate(tp,
 plot_colors <- c(rgb(r=0.0,g=0.0,b=0.9), "red", "forestgreen")
 
 # Start PDF device driver to save output to figure.pdf
-pdf(file="throughput.pdf", height=3.5, width=5)
+pdf(file="avg_data.pdf", height=3.5, width=5)
 
 # Trim off excess margin space (bottom, left, top, right)par(mar=c(4.2, 3.8, 0.2, 0.2))
 par(mar=c(4.2, 3.8, 0.2, 0.2))
@@ -40,13 +40,13 @@ par(mar=c(4.2, 3.8, 0.2, 0.2))
 # line widths.
 plot(
     x=tpAgg[tpAgg$Group.2 == "Traditional",]$frequency, 
-    y=tpAgg[tpAgg$Group.2 == "Traditional",]$highest_rate, 
+    y=tpAgg[tpAgg$Group.2 == "Traditional",]$avg_data, 
     type="l", 
        col=plot_colors[1], 
-       ylim=range(tpAgg$highest_rate), 
+       ylim=range(tpAgg$avg_data), 
        ann=T, 
        xlab="Visit Frequency (relative to update)",
-       ylab="Server Throughput (Pages/s)", 
+       ylab="Average data transferred per request (bytes)", 
        cex.lab=0.8, 
        lwd=2
 )
@@ -64,7 +64,7 @@ box()
 # # Graph FT with thicker red dashed line
 lines(
     tpAgg[tpAgg$Group.2 == "Flying Templates",]$frequency,
-    tpAgg[tpAgg$Group.2 == "Flying Templates",]$highest_rate,
+    tpAgg[tpAgg$Group.2 == "Flying Templates",]$avg_data,
     type="l", 
     lty=1, 
     lwd=2, 
@@ -74,7 +74,7 @@ lines(
 # # Graph SK with thicker green dotted line
 lines(
     tpAgg[tpAgg$Group.2 == "Sync Kit",]$frequency,
-    tpAgg[tpAgg$Group.2 == "Sync Kit",]$highest_rate,
+    tpAgg[tpAgg$Group.2 == "Sync Kit",]$avg_data,
     type="l", 
     lty=1, 
     lwd=2, 
@@ -83,8 +83,7 @@ lines(
 
 # Create a legend in the top-left corner that is slightly  
 # smaller and has no border
-legend(3, 460, c("Traditional", "Flying Templates", "Sync Kit"), cex=0.6, col=plot_colors, 
-   lty=1, lwd=2, bty="n");
+legend(2.8, 170000, c("Traditional", "Flying Templates", "Sync Kit"), cex=0.6, col=plot_colors, lty=1, lwd=2, bty="n");
   
 # Turn off device driver (to flush output to PDF)
 dev.off()
