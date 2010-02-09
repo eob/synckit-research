@@ -9,13 +9,14 @@ $(function() {
 	var endpoint = "/wiki/synckit";	
      
     var viewspec = {
-        "vshash": "435836f4ea590bd397a6d6ce9784fd5d",
+        "vshash": "4398b2b55a17d6cc99c5da03f1832a56",
         "syncspec": {
             "idfield": "id",
             "__type": "set"
         },
-        "schema": ["id integer", "title text", "contents text", "access_probability real", "date datetime"]
+        "schema": ["id serial", "title text", "contents text", "access_probability double precision", "date timestamp with time zone"]
     };
+
     window.synckit.build_view(endpoint, "Pages", viewspec);
 	
     
@@ -39,9 +40,7 @@ $(function() {
 		  $('#newtemplate').render_new();
     	  window.synckit._templateTime = window.synckit.timeEnd("template");;
           if (parent.LogData != "undefined") {
-              var x = "";
-              // the x arg used to be: JSON.stringify(params)
-              	parent.LogData("Wiki", "Sync Kit", window.location.href, x, window.synckit);
+              	parent.LogData("Wiki", "Sync Kit", window.location.href, window.synckit);
           }
 	}
 

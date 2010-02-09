@@ -69,11 +69,9 @@ $(function() {
         window.synckit.timeStart("template");
         $('#newtemplate').render_flying(data["Posts"]["results"]);
         window.synckit._templateTime = window.synckit.timeEnd("template");;
-
+        window.synckit._queryParams = params;
         if (parent.LogData != "undefined") {
-                var x = "";
-                // the x arg used to be: JSON.stringify(params)
-            	parent.LogData("Blog", "Flying Templates", window.location.href, x, window.synckit);
+            	parent.LogData("Blog", "Flying Templates", window.location.href, window.synckit);
         }	      
     }, "json");
     

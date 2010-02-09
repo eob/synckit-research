@@ -60,7 +60,7 @@ $(function() {
 		}		
 	}
 
-	var endpoint = null;
+    endpoint = "/wiki/tokyo";
 	var params = {"queries":JSON.stringify(state)};    
 	
 	var callback = function(data) {
@@ -68,14 +68,11 @@ $(function() {
         window.synckit.timeStart("template");
         $('#newtemplate').render_flying(data["Pages"]["results"]);
         window.synckit._templateTime = window.synckit.timeEnd("template");
+        window.synckit._queryParams = params;
         if (parent.LogData != "undefined") {
-            var x = "";
-            // the x arg used to be: JSON.stringify(params)
-            	parent.LogData("Wiki", "Flying Templates", window.location.href, x, window.synckit);
+            	parent.LogData("Wiki", "Flying Templates", window.location.href, window.synckit);
         }	      
 	}
-    endpoint = "/wiki/tokyo";	
-    params = {"queries":JSON.stringify(state)};    
 
     window.synckit.timeStart("dataFetch");
     $.post(endpoint, params, callback, "json");		
