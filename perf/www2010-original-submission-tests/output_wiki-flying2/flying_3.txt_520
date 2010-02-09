@@ -1,0 +1,29 @@
+httperf --hog --client=0/1 --server=marcua.csail.mit.edu --port=7000 --uri=/ --rate=520 --send-buffer=4096 --recv-buffer=16384 --wsesslog=10000,0.000,wiki-flying/flying_3.txt
+Maximum connect burst length: 2
+
+Total: connections 6668 requests 6668 replies 6668 test-duration 48.981 s
+
+Connection rate: 136.1 conn/s (7.3 ms/conn, <=1020 concurrent connections)
+Connection time [ms]: min 0.7 avg 3583.5 max 45135.6 median 496.5 stddev 6320.5
+Connection time [ms]: connect 0.4
+Connection length [replies/conn]: 1.000
+
+Request rate: 136.1 req/s (7.3 ms/req)
+Request size [B]: 172.0
+
+Reply rate [replies/s]: min 0.0 avg 147.3 max 321.0 stddev 137.7 (9 samples)
+Reply time [ms]: response 3579.7 transfer 3.4
+Reply size [B]: header 185.0 content 59384.0 footer 1.0 (total 59570.0)
+Reply status: 1xx=0 2xx=6607 3xx=0 4xx=0 5xx=61
+
+CPU time [s]: user 2.97 system 45.98 (user 6.1% system 93.9% total 99.9%)
+Net I/O: 7942.4 KB/s (65.1*10^6 bps)
+
+Errors: total 3332 client-timo 0 socket-timo 0 connrefused 0 connreset 0
+Errors: fd-unavail 3332 addrunavail 0 ftab-full 0 other 0
+
+Session rate [sess/s]: min 0.00 avg 136.13 max 320.99 stddev 137.67 (6668/10000)
+Session: avg 1.00 connections/session
+Session lifetime [s]: 3.6
+Session failtime [s]: 0.0
+Session length histogram: 3332 6668

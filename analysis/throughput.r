@@ -22,7 +22,7 @@ tp <- read.csv("apache.csv",
 
 # Average the data across each strategy
 tpAgg <- aggregate(tp, 
-                   by=list(tp$file, tp$strategy), 
+                   by=list(tp$file, tp$strategy, tp$frequency), 
                    FUN=mean, 
                    na.rm=TRUE)
 
@@ -39,9 +39,9 @@ par(mar=c(4.2, 3.8, 0.2, 0.2))
 # in autos_data. Label axes with smaller font and use larger 
 # line widths.
 plot(
-    x=tpAgg[tpAgg$Group.2 == "Traditional",]$freq, 
+    x=tpAgg[tpAgg$Group.2 == "Traditional",]$frequency, 
     y=tpAgg[tpAgg$Group.2 == "Traditional",]$highest_rate, 
-    type="p", 
+    type="l", 
        col=plot_colors[1], 
        ylim=range(tpAgg$highest_rate), 
        ann=T, 
@@ -63,9 +63,9 @@ box()
 # 
 # # Graph FT with thicker red dashed line
 lines(
-    tpAgg[tpAgg$Group.2 == "Flying Templates",]$freq,
+    tpAgg[tpAgg$Group.2 == "Flying Templates",]$frequency,
     tpAgg[tpAgg$Group.2 == "Flying Templates",]$highest_rate,
-    type="p", 
+    type="l", 
     lty=1, 
     lwd=2, 
     col=plot_colors[2]
@@ -73,9 +73,9 @@ lines(
 # 
 # # Graph SK with thicker green dotted line
 lines(
-    tpAgg[tpAgg$Group.2 == "Sync Kit",]$freq,
+    tpAgg[tpAgg$Group.2 == "Sync Kit",]$frequency,
     tpAgg[tpAgg$Group.2 == "Sync Kit",]$highest_rate,
-    type="p", 
+    type="l", 
     lty=1, 
     lwd=2, 
     col=plot_colors[3]
@@ -83,7 +83,7 @@ lines(
 
 # Create a legend in the top-left corner that is slightly  
 # smaller and has no border
-legend("topleft", c("Traditional", "Flying Templates", "Sync Kit"), cex=0.8, col=plot_colors, 
+legend(3, 460, c("Traditional", "Flying Templates", "Sync Kit"), cex=0.6, col=plot_colors, 
    lty=1, lwd=2, bty="n");
   
 # Turn off device driver (to flush output to PDF)

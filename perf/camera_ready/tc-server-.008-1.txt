@@ -1,0 +1,68 @@
+file,rate,total_requests,concurrent_connections,request_rate,reply_rate_avg,reply_rate_stdev,reply_samples,total_size,200_statuses,net_io
+file,strategy,frequency,highest_rate,attempted_rate,avg_data
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_traditional.txt
+test_freq_0.008_per_update_traditional.txt,520,3376,1020,53.2,56.0,50.7,12,157905.0,3214,8208.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_traditional.txt
+test_freq_0.008_per_update_traditional.txt,279,4846,1020,69.6,74.1,45.5,13,165197.0,4817,11230.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_traditional.txt
+test_freq_0.008_per_update_traditional.txt,159,8036,1020,83.8,84.6,45.2,19,165530.0,7988,13562.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 99 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_traditional.txt
+test_freq_0.008_per_update_traditional.txt,99,10000,24,98.9,99.0,2.0,20,166412.0,10000,16090.7 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 129 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_traditional.txt
+test_freq_0.008_per_update_traditional.txt,129,10000,316,101.5,105.3,45.3,19,166412.0,10000,16507.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 114 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_traditional.txt
+test_freq_0.008_per_update_traditional.txt,114,10000,35,113.8,113.8,0.9,17,166412.0,10000,18507.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 121 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_traditional.txt
+test_freq_0.008_per_update_traditional.txt,121,10000,39,120.8,120.7,1.7,16,166412.0,10000,19644.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 125 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_traditional.txt
+test_freq_0.008_per_update_traditional.txt,125,10000,136,123.4,123.5,3.7,16,166412.0,10000,20072.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 127 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_traditional.txt
+test_freq_0.008_per_update_traditional.txt,127,10000,186,112.6,117.6,30.5,17,166412.0,10000,18314.5 KB/s
+test_freq_0.008_per_update_traditional.txt,Traditional,0.008,123.400000,126,166412.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_traditional.js
+ERROR on tc-server-.008-1/test_freq_0.008_per_update_traditional.js with rate 520
+test_freq_0.008_per_update_traditional.js,Traditional,0.008,0.000000,520,0.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_tokyo.js
+ERROR on tc-server-.008-1/test_freq_0.008_per_update_tokyo.js with rate 520
+test_freq_0.008_per_update_tokyo.js,Flying Templates,0.008,0.000000,520,0.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_tokyo.txt
+test_freq_0.008_per_update_tokyo.txt,520,6985,1020,130.2,130.2,141.3,10,53861.0,6078,6492.3 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_tokyo.txt
+test_freq_0.008_per_update_tokyo.txt,279,10434,1020,145.8,148.1,117.0,14,58694.0,10314,8323.0 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_tokyo.txt
+test_freq_0.008_per_update_tokyo.txt,159,17374,296,237.1,248.2,68.0,14,59097.0,17374,13715.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 219 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_tokyo.txt
+test_freq_0.008_per_update_tokyo.txt,219,13391,1020,125.3,127.5,125.9,21,58887.0,13342,7220.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 189 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_tokyo.txt
+test_freq_0.008_per_update_tokyo.txt,189,14553,1020,139.4,145.5,118.2,20,58911.0,14514,8037.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 174 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_tokyo.txt
+test_freq_0.008_per_update_tokyo.txt,174,17374,788,208.5,216.9,113.8,16,59097.0,17374,12061.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 181 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_tokyo.txt
+test_freq_0.008_per_update_tokyo.txt,181,16495,1020,159.7,164.9,125.1,20,58975.0,16471,9218.6 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 177 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_tokyo.txt
+test_freq_0.008_per_update_tokyo.txt,177,17374,991,209.5,217.1,111.3,16,59094.0,17373,12115.4 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 175 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_tokyo.txt
+test_freq_0.008_per_update_tokyo.txt,175,17374,761,212.2,217.0,118.3,16,59097.0,17374,12273.9 KB/s
+test_freq_0.008_per_update_tokyo.txt,Flying Templates,0.008,237.100000,176,59097.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_synckit.js
+ERROR on tc-server-.008-1/test_freq_0.008_per_update_synckit.js with rate 520
+test_freq_0.008_per_update_synckit.js,Sync Kit,0.008,0.000000,520,0.000000
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 520 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_synckit.txt
+test_freq_0.008_per_update_synckit.txt,520,6535,1020,125.8,129.2,124.5,10,56739.0,6495,6976.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 279 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_synckit.txt
+test_freq_0.008_per_update_synckit.txt,279,10714,1020,146.6,153.0,122.3,14,57158.0,10714,8208.8 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 159 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_synckit.txt
+test_freq_0.008_per_update_synckit.txt,159,17374,103,273.5,273.9,4.5,12,57112.0,17374,15298.5 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 219 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_synckit.txt
+test_freq_0.008_per_update_synckit.txt,219,12994,1020,135.7,136.8,123.8,19,56931.0,12962,7565.9 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 189 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_synckit.txt
+test_freq_0.008_per_update_synckit.txt,189,16090,1020,194.9,201.1,117.3,16,57098.0,16089,10902.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 174 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_synckit.txt
+test_freq_0.008_per_update_synckit.txt,174,17374,607,220.5,231.6,110.2,15,57112.0,17374,12333.1 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 181 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_synckit.txt
+test_freq_0.008_per_update_synckit.txt,181,17374,989,211.5,217.0,115.6,16,57061.0,17361,11821.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 177 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_synckit.txt
+test_freq_0.008_per_update_synckit.txt,177,17363,1020,209.9,216.8,113.0,16,57105.0,17359,11740.2 KB/s
+Running httperf --hog --server marcua.csail.mit.edu --port 7000 --rate 175 --wsesslog=10000,0,tc-server-.008-1/test_freq_0.008_per_update_synckit.txt
+test_freq_0.008_per_update_synckit.txt,175,17374,618,215.8,217.1,122.3,16,57112.0,17374,12072.1 KB/s
+test_freq_0.008_per_update_synckit.txt,Sync Kit,0.008,273.500000,176,57112.000000
