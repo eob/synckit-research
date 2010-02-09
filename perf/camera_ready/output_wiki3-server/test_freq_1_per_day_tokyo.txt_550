@@ -1,0 +1,29 @@
+httperf --hog --client=0/1 --server=marcua.csail.mit.edu --port=7000 --uri=/ --rate=550 --send-buffer=4096 --recv-buffer=16384 --wsesslog=10000,0.000,wiki3-server/test_freq_1_per_day_tokyo.txt
+Maximum connect burst length: 3
+
+Total: connections 10000 requests 10000 replies 10000 test-duration 18.412 s
+
+Connection rate: 543.1 conn/s (1.8 ms/conn, <=257 concurrent connections)
+Connection time [ms]: min 3.0 avg 195.1 max 3424.9 median 133.5 stddev 412.1
+Connection time [ms]: connect 0.2
+Connection length [replies/conn]: 1.000
+
+Request rate: 543.1 req/s (1.8 ms/req)
+Request size [B]: 172.0
+
+Reply rate [replies/s]: min 505.0 avg 549.0 max 581.6 stddev 39.6 (3 samples)
+Reply time [ms]: response 194.7 transfer 0.2
+Reply size [B]: header 186.0 content 3383.0 footer 2.0 (total 3571.0)
+Reply status: 1xx=0 2xx=10000 3xx=0 4xx=0 5xx=0
+
+CPU time [s]: user 2.56 system 15.83 (user 13.9% system 86.0% total 99.9%)
+Net I/O: 1984.8 KB/s (16.3*10^6 bps)
+
+Errors: total 0 client-timo 0 socket-timo 0 connrefused 0 connreset 0
+Errors: fd-unavail 0 addrunavail 0 ftab-full 0 other 0
+
+Session rate [sess/s]: min 504.96 avg 543.14 max 581.64 stddev 39.60 (10000/10000)
+Session: avg 1.00 connections/session
+Session lifetime [s]: 0.2
+Session failtime [s]: 0.0
+Session length histogram: 0 10000
