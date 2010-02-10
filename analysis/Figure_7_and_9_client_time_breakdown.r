@@ -4,9 +4,11 @@
 # ----------------------------------------------------------------------------
 # Parameters
 #
-dataFile <- "breakdown_test.csv"
-test <- "Feb 2"
-page <- "Blog"
+#dataFile <- "breakdown_test.csv"
+#test <- "Feb 2"
+dataFile <- "combined-output.csv"
+test <- "Test"
+page <- "Wiki"
 # ============================================================================
 #
 # The file looks like this
@@ -22,13 +24,13 @@ data <- read.csv(dataFile,
                 na.strings=c('XXXXXXX')
 )
 
-# pdf(file="client_time_breakdown.pdf", height=3.5, width=5)
+pdf(file="client_time_breakdown.pdf", height=3.5, width=5)
 
 # ----------------------------------------------------------------------------
 # FILTER THE DATA SET FOR ONLY THE SPECIFIED TEST AND PAGE
 # ----------------------------------------------------------------------------
 
-filtered <- data[data$test == test,]      
+#filtered <- data[data$test == test,]      
 filtered <- data[data$page == page,]      
 
 # Average the data across each strategy
@@ -87,7 +89,7 @@ if (page == "Blog") {
 #
 # ----------------------------------------------------------------------------
 
-toGraph["Net RTT"] = c(30,30,30)
+toGraph["Net RTT"] = c(3,3,3)
 
 # ----------------------------------------------------------------------------
 # ----------------------------------------------------------------------------
@@ -165,4 +167,10 @@ barplot(t(data.matrix(toGraph[2:6])),
 # The second arg is the y position. In this case, we'll make it the top
 bar_parts <- names(toGraph[2:6])
 
-legend(length(toGraph$Strategy)+0.4, 200, bar_parts, cex=0.8, fill=rainbow(length(colnames(toGraph))));
+legend(length(toGraph$Strategy)+0.4, 200, bar_parts, cex=0.8, fill=rainbow(length(colnames(toGraph))))
+
+# Turn off device driver (to flush output to PDF)
+dev.off()
+
+# Restore default margins
+par(mar=c(5, 4, 4, 2) + 0.1)
