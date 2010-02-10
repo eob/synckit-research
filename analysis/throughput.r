@@ -39,9 +39,9 @@ par(mar=c(4.2, 3.8, 0.2, 0.2))
 # in autos_data. Label axes with smaller font and use larger 
 # line widths.
 plot(
-    x=tpAgg[tpAgg$Group.2 == "Traditional",]$frequency, 
+    x=tpAgg[tpAgg$Group.2 == "Traditional",]$frequency*12/12.631578947, 
     y=tpAgg[tpAgg$Group.2 == "Traditional",]$highest_rate, 
-    type="l", 
+    type="o", 
        col=plot_colors[1], 
        ylim=range(tpAgg$highest_rate), 
        ann=T, 
@@ -63,9 +63,9 @@ box()
 # 
 # # Graph FT with thicker red dashed line
 lines(
-    tpAgg[tpAgg$Group.2 == "Flying Templates",]$frequency,
+    tpAgg[tpAgg$Group.2 == "Flying Templates",]$frequency*12/12.631578947,
     tpAgg[tpAgg$Group.2 == "Flying Templates",]$highest_rate,
-    type="l", 
+    type="o", 
     lty=1, 
     lwd=2, 
     col=plot_colors[2]
@@ -73,9 +73,9 @@ lines(
 # 
 # # Graph SK with thicker green dotted line
 lines(
-    tpAgg[tpAgg$Group.2 == "Sync Kit",]$frequency,
+    tpAgg[tpAgg$Group.2 == "Sync Kit",]$frequency*12/12.631578947,
     tpAgg[tpAgg$Group.2 == "Sync Kit",]$highest_rate,
-    type="l", 
+    type="o", 
     lty=1, 
     lwd=2, 
     col=plot_colors[3]
