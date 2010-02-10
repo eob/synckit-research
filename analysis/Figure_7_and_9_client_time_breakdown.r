@@ -8,7 +8,7 @@
 #test <- "Feb 2"
 dataFile <- "combined-output.csv"
 test <- "Test"
-page <- "Wiki"
+page <- "Blog"
 # ============================================================================
 #
 # The file looks like this
@@ -24,7 +24,7 @@ data <- read.csv(dataFile,
                 na.strings=c('XXXXXXX')
 )
 
-pdf(file="client_time_breakdown.pdf", height=3.5, width=5)
+pdf(file="Figure_7_client_time_breakdown.pdf", height=3.5, width=5)
 
 # ----------------------------------------------------------------------------
 # FILTER THE DATA SET FOR ONLY THE SPECIFIED TEST AND PAGE
@@ -66,17 +66,18 @@ colnames(toGraph)[5] <- "TTR"
 # Trad. 80
 # ----------------------------------------------------------------------------
 
-if (page == "Blog") {
+#if (page == "Blog") {
     # The Blog
-    toGraph[toGraph$Strategy == 'Traditional',"DOM Load"] = 80
-    toGraph[toGraph$Strategy == 'Flying Templates',"DOM Load"] = 99.504
-    toGraph[toGraph$Strategy == 'Sync Kit',"DOM Load"] = 102.411
-} else {
+#    toGraph[toGraph$Strategy == 'Traditional',"DOM Load"] = 80
+#    toGraph[toGraph$Strategy == 'Flying Templates',"DOM Load"] = 99.504
+#    toGraph[toGraph$Strategy == 'Sync Kit',"DOM Load"] = 102.411
+#} else {
     # The Wiki
-    toGraph[toGraph$Strategy == 'Traditional',"DOM Load"] = 100
-    toGraph[toGraph$Strategy == 'Flying Templates',"DOM Load"] = 114.408
-    toGraph[toGraph$Strategy == 'Sync Kit',"DOM Load"] = 118.7
-}
+#    toGraph[toGraph$Strategy == 'Traditional',"DOM Load"] = 100
+#    toGraph[toGraph$Strategy == 'Flying Templates',"DOM Load"] = 114.408
+#    toGraph[toGraph$Strategy == 'Sync Kit',"DOM Load"] = 118.7
+#}
+toGraph["DOM Load"] = c(258,258,258)
 
 # ----------------------------------------------------------------------------
 # ----------------------------------------------------------------------------
@@ -143,16 +144,16 @@ toGraph <- toGraph[c("Strategy", "DOM Load", "Server", "Net RTT", "Client DB", "
 
 
 # Expand right side of clipping rect to make room for the legend
-par(xpd=T,  # Clip plotting to the figure region, rather than the device region
-    mar=par()$mar+c(0,0,0,5) # Move out the right-hand margin by 10 lines
-    )
+#par(xpd=T,  # Clip plotting to the figure region, rather than the device region
+#    mar=par()$mar+c(0,0,0,5) # Move out the right-hand margin by 10 lines
+#    )
+par(xpd=T, mar=c(2, 3.9, 0.2, 5.8))
 
 # Plot them in a stacked bar
 # data.matrix converts the data frame into a matrix
 # We only extract colums 2-4 because col1 is the strategy name
 # We use the transposed column 1 for the names in the argument below
 barplot(t(data.matrix(toGraph[2:6])), 
-        main="Client-side Time", 
         ylab="Total Time (ms)", 
         col=rainbow(length(colnames(toGraph))),
         space=0.1, 

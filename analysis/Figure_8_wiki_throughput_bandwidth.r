@@ -42,25 +42,27 @@ plotColors <- c(rgb(r=0.0,g=0.0,b=0.9), "red", "forestgreen")
 # Group.1 is the strategy because it was aggregated
 #agg[agg$Group.1 == "Sync Kit","highest_rate"] <- agg[agg$Group.1 == "Sync Kit","highest_rate"]  * synckitThroughputMultiplier
 
-pdf(file="figure_8a_wiki_throughput.pdf", height=3.5, width=5)
+pdf(file="Figure_8a_wiki_throughput.pdf", height=3.5, width=5)
+
+par(mar=c(4, 3.9, 0.2, 0.2))
 
 graphPoints <- barplot(agg$"highest_rate", 
-    main="Wiki Throughput",    
     ylab="Pages / Second",
     names.arg=agg$Group.1,
     col=plotColors
 )
-text(graphPoints, agg$"highest_rate", agg$"highest_rate")
 
 dev.off()
 
-pdf(file="figure_8b_wiki_bandwidth.pdf", height=3.5, width=5)
+pdf(file="Figure_8b_wiki_bandwidth.pdf", height=3.5, width=5)
 
 barplot(agg$"avg_data"/1024, 
-    main="Wiki Bandwidth",    
     ylab="KB / Request",
     names.arg=agg$Group.1,
     col=plotColors
 )
 
 dev.off()
+
+# Restore default margins
+par(mar=c(5, 4, 4, 2) + 0.1)
