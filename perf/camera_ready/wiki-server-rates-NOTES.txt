@@ -1,0 +1,10 @@
+The synckit rates and bandwidths are adjusted by the values in
+wiki-server-synckit-cacherate.txt.
+
+Whatever httperf shows as the requests/second doesn't include the local
+cache hits, so
+adjusted RPS = reported RPS / (1-hit rate)
+
+Whatever httperf shows as bytes/request is an average, but in expectation,
+we will see:
+bytes per request = reported bpr*(1-hit rate) + 0*( hit rate)

@@ -25,6 +25,74 @@ WHERE
 \o 
 \q
 
+test_batch_name values:
+(Wiki Camera Ready)---for Wiki Flying Templates, Traditional
+SELECT 'Test' AS test, 
+       page_name AS page, 
+       style as strategy, 
+       visit_number as visitNumber,
+       total_time_to_render as ttr,
+       data_fetch as dataFetch,
+       data_bulkload as dataBulkload,
+       template_parse as templateParse,
+       latency as latency,
+       bandwidth as bandwidth,
+       date as date
+FROM
+       clientlogger_logentry
+WHERE test_batch_name = 'Wiki Camera Ready' AND (style = 'Flying Templates' OR style = 'Traditional')
+;
+
+(Blog Camera Ready 1)---for Blog Flying Templates, Traditional
+SELECT 'Test' AS test, 
+       page_name AS page, 
+       style as strategy, 
+       visit_number as visitNumber,
+       total_time_to_render as ttr,
+       data_fetch as dataFetch,
+       data_bulkload as dataBulkload,
+       template_parse as templateParse,
+       latency as latency,
+       bandwidth as bandwidth,
+       date as date
+FROM
+       clientlogger_logentry
+WHERE test_batch_name = 'Blog Camera Ready 1' AND (style = 'Flying Templates' OR style = 'Traditional')
+;
+
+(Blog/Wiki Synckit Camera Ready)---for Wiki and Blog Sync Kit
+SELECT 'Test' AS test, 
+       page_name AS page, 
+       style as strategy, 
+       visit_number as visitNumber,
+       total_time_to_render as ttr,
+       data_fetch as dataFetch,
+       data_bulkload as dataBulkload,
+       template_parse as templateParse,
+       latency as latency,
+       bandwidth as bandwidth,
+       date as date
+FROM
+       clientlogger_logentry
+WHERE test_batch_name = 'Blog/Wiki Synckit Camera Ready' AND style = 'Sync Kit'
+;
+
+Blog outliers attempt
+SELECT 'Test' AS test, 
+       page_name AS page, 
+       style as strategy, 
+       visit_number as visitNumber,
+       total_time_to_render as ttr,
+       data_fetch as dataFetch,
+       data_bulkload as dataBulkload,
+       template_parse as templateParse,
+       latency as latency,
+       bandwidth as bandwidth,
+       date as date
+FROM
+       clientlogger_logentry
+WHERE test_batch_name = 'Blog Sync Kit Camera Ready Outliers';
+
 2) SCP the file into the analysis directory
 
 3) *** REMOVE THE LAST LINE OF THE CSV FILE -- this is a summary printed by the DB
