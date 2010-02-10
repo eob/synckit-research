@@ -7,8 +7,8 @@
 # ----------------------------------------------------------------------------
 # Parameters
 
-synckitPercentageCached <- 0.3 # The percent of SyncKit served pages that were cached
-dataFileName <- "apache.csv.example"
+#synckitPercentageCached <- 0.3 # The percent of SyncKit served pages that were cached
+dataFileName <- "wiki-server-rates.txt"
 
 #
 # file,highest_rate,attempted_rate,avg_data
@@ -18,7 +18,7 @@ dataFileName <- "apache.csv.example"
 #
 # ============================================================================
 
-synckitThroughputMultiplier <- 1/(1-synckitPercentageCached)
+#synckitThroughputMultiplier <- 1/(1-synckitPercentageCached)
 
 tp <- read.csv(dataFileName,
     header=T,
@@ -40,22 +40,25 @@ plotColors <- c(rgb(r=0.0,g=0.0,b=0.9), "red", "forestgreen")
 # treat throughput for SyncKit as "clients served" rather than "pages served" since
 # some of the pages "served" never actually result in an HTTP request.
 # Group.1 is the strategy because it was aggregated
-agg[agg$Group.1 == "Sync Kit","highest_rate"] <- agg[agg$Group.1 == "Sync Kit","highest_rate"]  * synckitThroughputMultiplier
+#agg[agg$Group.1 == "Sync Kit","highest_rate"] <- agg[agg$Group.1 == "Sync Kit","highest_rate"]  * synckitThroughputMultiplier
 
 pdf(file="figure_8a_wiki_throughput.pdf", height=3.5, width=5)
 
-barplot(agg$"highest_rate", 
+graphPoints <- barplot(agg$"highest_rate", 
     main="Wiki Throughput",    
     ylab="Pages / Second",
     names.arg=agg$Group.1,
-    col=plotColors 
+    col=plotColors
 )
+text(graphPoints, agg$"highest_rate", agg$"highest_rate")
+
+dev.off()
 
 pdf(file="figure_8b_wiki_bandwidth.pdf", height=3.5, width=5)
 
-barplot(agg$"avg_data" / 1000, 
+barplot(agg$"avg_data"/1024, 
     main="Wiki Bandwidth",    
-    ylab="Kb / Request",
+    ylab="KB / Request",
     names.arg=agg$Group.1,
     col=plotColors
 )

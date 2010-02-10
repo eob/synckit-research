@@ -1,12 +1,9 @@
 
 # ============================================================================
 # PLOT 3
-# Create a line graph of measured server throughput
+# Create a line graph of measured data transfer in bytes
 # ----------------------------------------------------------------------------
 # Parameters
-
-updateFrequency <- 4 # Updates per day
-
 #
 # file,highest_rate,attempted_rate,avg_data
 # test_freq_12_per_day_traditional.txt,133.600000,135,159456.000000
@@ -15,7 +12,7 @@ updateFrequency <- 4 # Updates per day
 #
 # ============================================================================
 
-tp <- read.csv("apache.csv.example",
+tp <- read.csv("apache.csv",
     header=T,
     dec='.',
     na.strings=c('XXXXXXX')
@@ -25,32 +22,31 @@ tp <- read.csv("apache.csv.example",
 
 # Average the data across each strategy
 tpAgg <- aggregate(tp, 
-                   by=list(tp$file, tp$strategy), 
+                   by=list(tp$file, tp$strategy, tp$frequency), 
                    FUN=mean, 
                    na.rm=TRUE)
-
-print(tpAgg)
 
 plot_colors <- c(rgb(r=0.0,g=0.0,b=0.9), "red", "forestgreen")
 
 # Start PDF device driver to save output to figure.pdf
-pdf(file="bytes_transfered.pdf", height=3.5, width=5)
+pdf(file="avg_data.pdf", height=3.5, width=5)
 
 # Trim off excess margin space (bottom, left, top, right)par(mar=c(4.2, 3.8, 0.2, 0.2))
-par(mar=c(4.2, 3.8, 0.2, 0.2))  
+par(mar=c(4.2, 3.8, 0.2, 0.2))
+
 
 # Graph autos using a y axis that uses the full range of value
 # in autos_data. Label axes with smaller font and use larger 
 # line widths.
 plot(
-    x=tpAgg[tpAgg$Group.2 == "Traditional",]$freq / updateFrequency, 
-    y=tpAgg[tpAgg$Group.2 == "Traditional",]$"avg_data" / 1000, 
-    type="p",  # Type p is point, l is line, o is point+line
+    x=tpAgg[tpAgg$Group.2 == "Traditional",]$frequency*12/12.631578947,
+    y=tpAgg[tpAgg$Group.2 == "Traditional",]$avg_data, 
+    type="o", 
        col=plot_colors[1], 
-       ylim=range(tpAgg$"avg_data" / 1000), 
+       ylim=range(tpAgg$avg_data), 
        ann=T, 
        xlab="Visit Frequency (relative to update)",
-       ylab="Byest Transfered (Kb/Request)", 
+       ylab="Data Transferred (Bytes/Request)", 
        cex.lab=0.8, 
        lwd=2
 )
@@ -64,24 +60,22 @@ plot(
 
 # Create box around plot
 box()
-
 # 
 # # Graph FT with thicker red dashed line
 lines(
-    tpAgg[tpAgg$Group.2 == "Flying Templates",]$freq / updateFrequency,
-    tpAgg[tpAgg$Group.2 == "Flying Templates",]$"avg_data" / 1000,
-    type="p", 
+    tpAgg[tpAgg$Group.2 == "Flying Templates",]$frequency*12/12.631578947,
+    tpAgg[tpAgg$Group.2 == "Flying Templates",]$avg_data,
+    type="o", 
     lty=1, 
     lwd=2, 
     col=plot_colors[2]
 )
-
 # 
 # # Graph SK with thicker green dotted line
 lines(
-    tpAgg[tpAgg$Group.2 == "Sync Kit",]$freq / updateFrequency,
-    tpAgg[tpAgg$Group.2 == "Sync Kit",]$"avg_data" / 1000,
-    type="p", 
+    tpAgg[tpAgg$Group.2 == "Sync Kit",]$frequency*12/12.631578947,
+    tpAgg[tpAgg$Group.2 == "Sync Kit",]$avg_data,
+    type="o", 
     lty=1, 
     lwd=2, 
     col=plot_colors[3]
@@ -89,11 +83,11 @@ lines(
 
 # Create a legend in the top-left corner that is slightly  
 # smaller and has no border
-legend("bottom", c("Traditional", "Flying Templates", "Sync Kit"), cex=0.8, col=plot_colors, 
-   lty=1, lwd=2, bty="n", horiz=T);
+legend(2.8, 170000, c("Traditional", "Flying Templates", "Sync Kit"), cex=0.6, col=plot_colors, lty=1, lwd=2, bty="n");
   
 # Turn off device driver (to flush output to PDF)
 dev.off()
+
 
 # Restore default margins
 par(mar=c(5, 4, 4, 2) + 0.1)

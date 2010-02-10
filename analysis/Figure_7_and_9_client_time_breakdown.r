@@ -159,7 +159,7 @@ barplot(t(data.matrix(toGraph[2:6])),
         cex.axis=0.8, 
         las=1,
         names.arg=toGraph$Strategy, # Group.1 is the name of the strategy 
-        cex=0.8)
+        cex=0.7)
 
 # Legend
 # The first arg is the x position -- in this case one category past the 
