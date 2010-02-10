@@ -93,6 +93,20 @@ FROM
        clientlogger_logentry
 WHERE test_batch_name = 'Blog Sync Kit Camera Ready Outliers';
 
+SELECT 'Test' AS test, 
+       page_name AS page, 
+       style as strategy, 
+       visit_number as visitNumber,
+       total_time_to_render as ttr,
+       data_fetch as dataFetch,
+       data_bulkload as dataBulkload,
+       template_parse as templateParse,
+       latency as latency,
+       bandwidth as bandwidth,
+       date as date
+FROM
+       clientlogger_logentry
+WHERE test_batch_name = 'Blog Traditional Camera Ready Outliers 1';
 2) SCP the file into the analysis directory
 
 3) *** REMOVE THE LAST LINE OF THE CSV FILE -- this is a summary printed by the DB
