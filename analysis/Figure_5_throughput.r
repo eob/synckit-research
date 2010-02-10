@@ -32,7 +32,7 @@ plot_colors <- c(rgb(r=0.0,g=0.0,b=0.9), "red", "forestgreen")
 pdf(file="Figure_5_throughput.pdf", height=3.5, width=5)
 
 # Trim off excess margin space (bottom, left, top, right)par(mar=c(4.2, 3.8, 0.2, 0.2))
-par(mar=c(4.2, 3.8, 0.2, 0.2))
+par(mar=c(4.3, 4, 0.2, 0.2))
 
 
 # Graph autos using a y axis that uses the full range of value
@@ -45,9 +45,9 @@ plot(
        col=plot_colors[1], 
        ylim=range(tpAgg$highest_rate), 
        ann=T, 
-       xlab="Visit Frequency (relative to update)",
+       xlab="Visit-per-post Frequency",
        ylab="Server Throughput (Pages/s)", 
-       cex.lab=0.8, 
+       cex.lab=1, 
        lwd=2
 )
 
@@ -83,7 +83,7 @@ lines(
 
 # Create a legend in the top-left corner that is slightly  
 # smaller and has no border
-legend(2.7, 460, c("Traditional", "Flying Templates", "Sync Kit"), cex=0.6, col=plot_colors, 
+legend(2.3, 460, c("Traditional", "Flying Templates", "Sync Kit"), cex=0.8, col=plot_colors, 
    lty=1, lwd=2, bty="n");
   
 # Turn off device driver (to flush output to PDF)

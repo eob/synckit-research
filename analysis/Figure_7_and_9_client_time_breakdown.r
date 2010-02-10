@@ -8,7 +8,7 @@
 #test <- "Feb 2"
 dataFile <- "combined-output.csv"
 test <- "Test"
-page <- "Blog"
+page <- "Wiki"
 # ============================================================================
 #
 # The file looks like this
@@ -24,7 +24,7 @@ data <- read.csv(dataFile,
                 na.strings=c('XXXXXXX')
 )
 
-pdf(file="Figure_7_client_time_breakdown.pdf", height=3.5, width=5)
+pdf(file="Figure_9_client_time_breakdown.pdf", height=3.5, width=5)
 
 # ----------------------------------------------------------------------------
 # FILTER THE DATA SET FOR ONLY THE SPECIFIED TEST AND PAGE
@@ -64,20 +64,33 @@ colnames(toGraph)[5] <- "TTR"
 # FT    99.50463822
 # SyncKit   102.4118738
 # Trad. 80
+#-----------------------------------------
+# Where do the 
+#    toGraph["DOM Load"] = c(262,262,262)
+#    toGraph["DOM Load"] = c(257,257,257)
+# values come from?  Run Flying Templates for wiki and blog, and inside flying-*.html,
+# comment out anything that actually causes the data to be requested.  Instead,
+# call parent.LogData(...) BEFORE any data is requested.  This will cause the
+# total time to render to be the time it took for the DOM to load.  Then go to
+# the clientlogger DB, and get the average time to load:
+# select avg(total_time_to_render) from clientlogger_logentry where test_batch_name = 'Wiki Flying DOM Load';
+# select avg(total_time_to_render) from clientlogger_logentry where test_batch_name = 'Flying Blog DOM Load';
 # ----------------------------------------------------------------------------
 
-#if (page == "Blog") {
+if (page == "Blog") {
     # The Blog
 #    toGraph[toGraph$Strategy == 'Traditional',"DOM Load"] = 80
 #    toGraph[toGraph$Strategy == 'Flying Templates',"DOM Load"] = 99.504
 #    toGraph[toGraph$Strategy == 'Sync Kit',"DOM Load"] = 102.411
-#} else {
+    toGraph["DOM Load"] = c(262,262,262)
+} else {
+    toGraph["DOM Load"] = c(257,257,257)
     # The Wiki
 #    toGraph[toGraph$Strategy == 'Traditional',"DOM Load"] = 100
 #    toGraph[toGraph$Strategy == 'Flying Templates',"DOM Load"] = 114.408
 #    toGraph[toGraph$Strategy == 'Sync Kit',"DOM Load"] = 118.7
-#}
-toGraph["DOM Load"] = c(258,258,258)
+}
+
 
 # ----------------------------------------------------------------------------
 # ----------------------------------------------------------------------------
@@ -157,10 +170,10 @@ barplot(t(data.matrix(toGraph[2:6])),
         ylab="Total Time (ms)", 
         col=rainbow(length(colnames(toGraph))),
         space=0.1, 
-        cex.axis=0.8, 
+        cex.axis=0.7, 
         las=1,
         names.arg=toGraph$Strategy, # Group.1 is the name of the strategy 
-        cex=0.7)
+        cex=0.8)
 
 # Legend
 # The first arg is the x position -- in this case one category past the 

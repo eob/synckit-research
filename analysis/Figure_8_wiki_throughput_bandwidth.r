@@ -44,10 +44,10 @@ plotColors <- c(rgb(r=0.0,g=0.0,b=0.9), "red", "forestgreen")
 
 pdf(file="Figure_8a_wiki_throughput.pdf", height=3.5, width=5)
 
-par(mar=c(4, 3.9, 0.2, 0.2))
+par(mar=c(2.8, 3.9, 0.2, 0.2))
 
 graphPoints <- barplot(agg$"highest_rate", 
-    ylab="Pages / Second",
+    ylab="Server Throughput (Pages/s)",
     names.arg=agg$Group.1,
     col=plotColors
 )
@@ -55,9 +55,9 @@ graphPoints <- barplot(agg$"highest_rate",
 dev.off()
 
 pdf(file="Figure_8b_wiki_bandwidth.pdf", height=3.5, width=5)
-
+par(mar=c(2.8, 3.9, 0.5, 0.2))
 barplot(agg$"avg_data"/1024, 
-    ylab="KB / Request",
+    ylab="Data Transferred (KB/Request)", 
     names.arg=agg$Group.1,
     col=plotColors
 )
