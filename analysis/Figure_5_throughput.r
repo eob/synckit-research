@@ -48,7 +48,8 @@ plot(
        xlab="Visit-per-post Frequency",
        ylab="Server Throughput (Pages/s)", 
        cex.lab=1, 
-       lwd=2
+       lwd=2,
+       lty=3
 )
 
 # # Make x axis tick marks without labels
@@ -66,7 +67,7 @@ lines(
     tpAgg[tpAgg$Group.2 == "Flying Templates",]$frequency*12/12.631578947,
     tpAgg[tpAgg$Group.2 == "Flying Templates",]$highest_rate,
     type="o", 
-    lty=1, 
+    lty=2, 
     lwd=2, 
     col=plot_colors[2]
 )
@@ -84,7 +85,7 @@ lines(
 # Create a legend in the top-left corner that is slightly  
 # smaller and has no border
 legend(2.3, 460, c("Traditional", "Flying Templates", "Sync Kit"), cex=0.8, col=plot_colors, 
-   lty=1, lwd=2, bty="n");
+   lty=c(3,2,1), lwd=2, bty="n");
   
 # Turn off device driver (to flush output to PDF)
 dev.off()

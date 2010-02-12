@@ -162,13 +162,16 @@ toGraph <- toGraph[c("Strategy", "DOM Load", "Server", "Net RTT", "Client DB", "
 #    )
 par(xpd=T, mar=c(2, 3.9, 0.2, 5.8))
 
+colors <- c("gray", "royalblue", "coral3", "aquamarine", "yellow")
+rcolors <- c("yellow", "aquamarine", "coral3", "royalblue", "gray")
+
 # Plot them in a stacked bar
 # data.matrix converts the data frame into a matrix
 # We only extract colums 2-4 because col1 is the strategy name
 # We use the transposed column 1 for the names in the argument below
 barplot(t(data.matrix(toGraph[2:6])), 
         ylab="Total Time (ms)", 
-        col=rainbow(length(colnames(toGraph))),
+        col=colors,
         space=0.1, 
         cex.axis=0.7, 
         las=1,
@@ -179,9 +182,9 @@ barplot(t(data.matrix(toGraph[2:6])),
 # The first arg is the x position -- in this case one category past the 
 # number of styles.
 # The second arg is the y position. In this case, we'll make it the top
-bar_parts <- names(toGraph[2:6])
+bar_parts <- names(toGraph[6:2])
 
-legend(length(toGraph$Strategy)+0.4, 200, bar_parts, cex=0.8, fill=rainbow(length(colnames(toGraph))))
+legend(length(toGraph$Strategy)+0.4, 200, bar_parts, cex=0.8, fill=rcolors)
 
 # Turn off device driver (to flush output to PDF)
 dev.off()
