@@ -144,9 +144,30 @@ SELECT 'Test' AS test,
        date as date
 FROM
        clientlogger_logentry
-WHERE test_batch_name = 'Wiki Sync Kit Camera Ready Outliers Last Time';
+WHERE test_batch_name = 'Wiki Sync Kit Camera Ready Outlier Last Time';
 \o 
 \q
+
+\f ',' 
+\a 
+\o ../perf/camera_ready/output-clientside/blog_tokyo_outliers.csv
+SELECT 'Test' AS test, 
+       page_name AS page, 
+       style as strategy, 
+       visit_number as visitNumber,
+       total_time_to_render as ttr,
+       data_fetch as dataFetch,
+       data_bulkload as dataBulkload,
+       template_parse as templateParse,
+       latency as latency,
+       bandwidth as bandwidth,
+       date as date
+FROM
+       clientlogger_logentry
+WHERE test_batch_name = 'Blog Flying Templates Camera Ready Last One!';
+\o 
+\q
+
 
 2) SCP the file into the analysis directory
 
