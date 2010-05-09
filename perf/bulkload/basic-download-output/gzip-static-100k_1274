@@ -1,0 +1,30 @@
+httperf: connection failed with unexpected error 98
+httperf --hog --client=0/1 --server=marcua.csail.mit.edu --port=7002 --uri=/ --rate=1274 --send-buffer=4096 --recv-buffer=16384 --add-header='Accept-Encoding: gzip, deflate\n' --wsesslog=10000,0.000,basic-download/gzip-static-100k
+Maximum connect burst length: 43
+
+Total: connections 10000 requests 4721 replies 4721 test-duration 7.848 s
+
+Connection rate: 1274.2 conn/s (0.8 ms/conn, <=72 concurrent connections)
+Connection time [ms]: min 2.5 avg 6.4 max 69.7 median 4.5 stddev 7.6
+Connection time [ms]: connect 0.8
+Connection length [replies/conn]: 1.000
+
+Request rate: 601.6 req/s (1.7 ms/req)
+Request size [B]: 125.0
+
+Reply rate [replies/s]: min 944.2 avg 944.2 max 944.2 stddev 0.0 (1 samples)
+Reply time [ms]: response 1.0 transfer 4.6
+Reply size [B]: header 245.0 content 76983.0 footer 0.0 (total 77228.0)
+Reply status: 1xx=0 2xx=4721 3xx=0 4xx=0 5xx=0
+
+CPU time [s]: user 2.33 system 5.51 (user 29.6% system 70.2% total 99.8%)
+Net I/O: 45441.3 KB/s (372.3*10^6 bps)
+
+Errors: total 5279 client-timo 0 socket-timo 0 connrefused 0 connreset 0
+Errors: fd-unavail 0 addrunavail 0 ftab-full 0 other 5279
+
+Session rate [sess/s]: min 944.16 avg 601.55 max 944.16 stddev 0.00 (4721/10000)
+Session: avg 1.00 connections/session
+Session lifetime [s]: 0.0
+Session failtime [s]: 0.0
+Session length histogram: 5279 4721

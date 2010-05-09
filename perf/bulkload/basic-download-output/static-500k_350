@@ -1,0 +1,29 @@
+httperf --hog --client=0/1 --server=marcua.csail.mit.edu --port=7002 --uri=/ --rate=350 --send-buffer=4096 --recv-buffer=16384 --add-header='Accept-Encoding: gzip, deflate\n' --wsesslog=10000,0.000,basic-download/static-500k
+Maximum connect burst length: 3
+
+Total: connections 10000 requests 10000 replies 10000 test-duration 39.364 s
+
+Connection rate: 254.0 conn/s (3.9 ms/conn, <=2121 concurrent connections)
+Connection time [ms]: min 34.4 avg 4426.6 max 21020.1 median 4467.5 stddev 3540.1
+Connection time [ms]: connect 90.3
+Connection length [replies/conn]: 1.000
+
+Request rate: 254.0 req/s (3.9 ms/req)
+Request size [B]: 120.0
+
+Reply rate [replies/s]: min 215.0 avg 285.6 max 343.6 stddev 49.8 (7 samples)
+Reply time [ms]: response 81.6 transfer 4254.7
+Reply size [B]: header 223.0 content 386659.0 footer 0.0 (total 386882.0)
+Reply status: 1xx=0 2xx=7551 3xx=0 4xx=0 5xx=2449
+
+CPU time [s]: user 2.84 system 36.50 (user 7.2% system 92.7% total 99.9%)
+Net I/O: 96010.7 KB/s (786.5*10^6 bps)
+
+Errors: total 0 client-timo 0 socket-timo 0 connrefused 0 connreset 0
+Errors: fd-unavail 0 addrunavail 0 ftab-full 0 other 0
+
+Session rate [sess/s]: min 214.99 avg 254.04 max 343.63 stddev 49.80 (10000/10000)
+Session: avg 1.00 connections/session
+Session lifetime [s]: 4.4
+Session failtime [s]: 0.0
+Session length histogram: 0 10000

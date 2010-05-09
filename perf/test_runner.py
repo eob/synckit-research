@@ -4,7 +4,7 @@ import re
 import sys
 
 LOWERBOUND = 40
-UPPERBOUND = 1000
+UPPERBOUND = 10000
 header = ["file", "rate", "total_requests", "concurrent_connections", "request_rate", "reply_rate_avg", "reply_rate_stdev", "reply_samples", "total_size", "200_statuses", "net_io"]
 
 total_pattern = re.compile("Total: connections \S+ requests (\S+) replies \S+")
@@ -15,7 +15,7 @@ size_pattern = re.compile("Reply size \[B\]: header \S+ content \S+ footer \S+ \
 status_pattern = re.compile("Reply status: 1xx=\S+ 2xx=(\S+)")
 io_pattern = re.compile("Net I/O: (\S+\s+\S+)")
 
-def runtests(test_dir, output_dir):
+def runtests(test_dir, output_dir, httperf_command_file):
     files = os.listdir(test_dir)
     statistics_file = open("%s/statistics.csv" % (output_dir), "w")
     rates_file = open("%s/rates.csv" % (output_dir), "w")
@@ -25,8 +25,9 @@ def runtests(test_dir, output_dir):
         file = "%s/%s" % (test_dir, filename)
         (rate, highest_rate, avg_data, lowerbound, upperbound) = reset_iteration()
         while not lowerbound == upperbound:
-            runstr = runcommand(rate, file)
-            print "Running %s" % (runstr)
+            runstr = runcommand(rate, file, httperf_command_file)
+            print "Running ---%s---" % (runstr)
+            sys.stdout.flush()
             (status, output) = commands.getstatusoutput(runstr)
             if status != 0:
                 print "ERROR on %s with rate %d" % (file, rate)
@@ -43,11 +44,15 @@ def runtests(test_dir, output_dir):
 def reset_iteration():
     return (int(((LOWERBOUND + UPPERBOUND)*1.0)/2), 0.0, 0.0, LOWERBOUND, UPPERBOUND)
 
-def runcommand(rate, file):
+def runcommand(rate, file, httperf_command_file):
+    command_file = open(httperf_command_file)
+    command = command_file.readline().strip()
+    command_file.close()
+    return command % (rate, file)
 #Profiling workload:
 #    return "httperf --hog --server marcua.csail.mit.edu --port 7000 --rate %d --wsesslog=1000,0,%s" % (rate, file)
 # Real workload:
-    return "httperf --hog --server marcua.csail.mit.edu --port 7000 --rate %d --wsesslog=10000,0,%s" % (rate, file)
+#    return "httperf --hog --server marcua.csail.mit.edu --port 7000 --rate %d --wsesslog=10000,0,%s" % (rate, file)
 # For testing:
 #    return "httperf --hog --server marcua.csail.mit.edu --port 7000 --rate %d --wsesslog=5,0,%s" % (rate, file)
 
@@ -109,8 +114,8 @@ def write_finalrate(rates_file, filename, highest_rate, attempted_rate, avg_data
     # test_freq_12_per_day_traditional.txt
     # test_freq_2_per_day_tokyo.txt
     # test_freq_24_per_day_synckit.txt
-    strategy = filename.split("_")[5].split(".")[0]    
-    frequency = filename.split("_")[2]
+    strategy = "blah"#filename.split("_")[5].split(".")[0]    
+    frequency = "blah"#filename.split("_")[2]
     
     if strategy == "synckit":
         strategy = "Sync Kit"
@@ -145,7 +150,7 @@ def can_handle(rate, statistics):
            and (error > -.02) 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print "arguments: test-file-dir output-dir"
+    if len(sys.argv) != 4:
+        print "arguments: test-file-dir output-dir httperf-command-file"
         sys.exit(0)
-    runtests(sys.argv[1], sys.argv[2])
+    runtests(sys.argv[1], sys.argv[2], sys.argv[3])

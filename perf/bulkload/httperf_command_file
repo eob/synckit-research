@@ -1,0 +1,1 @@
+httperf --add-header="Accept-Encoding: gzip, deflate\n" --hog --server marcua.csail.mit.edu --port 7002 --rate %d --wsesslog=10000,0,%s
