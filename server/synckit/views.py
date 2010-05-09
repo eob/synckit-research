@@ -175,6 +175,25 @@ class SetView(BaseView):
                 'idfield' : self.idfield,
                }
 
+"""
+Works with any arbitrary query
+"""               
+class AutoView:
+   def __init__(self, query):
+       self.query = query
+       self.init_viewspec()
+
+   def init_viewspec():
+       pass
+
+
+
+   def sync_spec(self):
+       return {
+               '__type' : 'auto',
+               'idfield' : self.idfield,
+              }
+
 # prefetch_config is a dictionary with the following fields:
 #   model (django model)---the related model object to retrieve
 #   connected_path (string)---the path from the related object to the set's
