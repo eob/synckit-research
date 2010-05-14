@@ -217,9 +217,9 @@ class AutoSync:
         queries = self.generate_queries(params)
         results = {}
         cursor = connection.cursor()    
-
         for table,query in queries.items():
             result_arr = []
+            # print query
             cursor.execute(query)
             for row in cursor.fetchall() :
                 result_arr.append([str(item) for item in row])
