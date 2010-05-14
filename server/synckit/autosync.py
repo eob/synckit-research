@@ -194,7 +194,9 @@ class AutoSync:
             else:
                 where_additions.append("(1=1)")
         where_addition = " OR ".join(where_additions)
-        now_addition = " OR ".join(now_additions)
+        now_addition = "(1=1)"
+        if (len(now_additions) > 0):
+            now_addition = " OR ".join(now_additions)
         
         for table in self.tables:
             fields = ", ".join([t[0] for t in self.table_fields[table]])
