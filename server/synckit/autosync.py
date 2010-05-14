@@ -1,11 +1,14 @@
+# from django.db import connection, transaction
+
 class AutoSync:
-    query = ""
-    tables = {}
-    fields = {}
-    parts = {}
-    table_fields = {}
     
     def __init__(self, query, version_field = None):
+        self.query = ""
+        self.tables = {}
+        self.fields = {}
+        self.parts = {}
+        self.table_fields = {}
+
         self.query = query
         self.version_field = version_field
         self.extract_clauses()
@@ -18,7 +21,8 @@ class AutoSync:
         print "== Clauses ====================================="
         print "SELECT: %s" % self.parts["SELECT"]
         print "FROM: %s" % self.parts["FROM"]
-        print "WHERE: %s" % self.parts["WHERE"]
+        if "WHERE" in self.parts:
+            print "WHERE: %s" % self.parts["WHERE"]
         print
         print "== Tables ======================================"
         for table in self.tables:
@@ -97,6 +101,8 @@ class AutoSync:
         # TODO: Make this query the DB
         if (field[-2:].lower() == "id"):
             return "integer"
+        elif field[-4:].lower() == "date":
+            return "date"
         else:
             return "text"
         
@@ -117,10 +123,11 @@ class AutoSync:
                 field = orig_field
             self.add_variable(field, True)
         # Now add all the ones in the where clause
-        for token in self.parts["WHERE"].split(" "):
-            if token.upper() not in ["AND", "OR", "=", ">", "<", "-", "+", ">=", "<="]:
-                # we have a field
-                self.add_variable(token, False) 
+        if "WHERE" in self.parts:
+            for token in self.parts["WHERE"].split(" "):
+                if token.upper() not in ["AND", "OR", "=", ">", "<", "-", "+", ">=", "<="]:
+                    # we have a field
+                    self.add_variable(token, False) 
     
     # (field, materialized, certain)
     def add_variable(self, field, materialized):
@@ -173,27 +180,66 @@ class AutoSync:
         queries = {}
         
         where_additions = []
+        now_additions = []
         for proj,table in self.tables.items():
             if proj in versions:
-                where_additions.append("(%s.version > %s)" % (proj, versions[proj]))
+                if "min" in versions[proj]:
+                    where_additions.append("(%s.version > %s)" % (proj, versions[proj]["min"]))
+                if "max" in versions[proj]:
+                    where_additions.append("(%s.version < %s)" % (proj, versions[proj]["max"]))                    
+                if "now" in versions[proj]:
+                    now_additions.append("(%s.version < %s)" % (proj, versions[proj]["now"]))                    
             else:
-                where_additions.append("(TRUE)")
-
+                where_additions.append("(1)")
         where_addition = " OR ".join(where_additions)
+        now_addition = " OR ".join(now_additions)
         
         for table in self.tables:
             fields = ", ".join([t[0] for t in self.table_fields[table]])
-            queries[table] = "SELECT %s FROM %s WHERE (%s) AND (%s)" % (fields, self.parts["FROM"], self.parts["WHERE"], where_addition)
+            q = "SELECT %s FROM %s " % (fields, self.parts["FROM"])
+            if "WHERE" in self.parts:
+                q += "WHERE (%s) AND (%s) AND (%s)" % (self.parts["WHERE"], where_addition, now_addition)
+            else:
+                q += "WHERE (%s) AND (%s)" % (where_addition, now_addition)
+            if "ORDER" in self.parts:
+                q += " ORDER %s" % self.parts["ORDER"]
+            if "LIMIT" in self.parts:
+                q += " LIMIT %s" % self.parts["LIMIT"]
+            queries[table] = q
+            
         return queries
+        
+
+    def runqueries(self, request):
+        # Extract the version numbers
+        
+        return self.get_results(versions)
+        
+    def get_results(self, versions):
+        cursor = connection.cursor()    
+        
+        queries = self.generate_queries(versions)
+        results = {}
+        for table,query in queries.items():
+            result_arr = []
+            cursor.execute(query)
+            for row in cursor.fetchall() :
+                result_arr.append([str(item) for item in row])
+            results[table] = result_arr
+        return results
         
     def runqueries(self, request):
         return {}
 
 def main():
-    query = "SELECT tags.name FROM tags, tags_posts, posts WHERE posts.post_id = tags_posts.posts_id AND tags_posts.tag_id = tags.id;"
-    versions = {"tags": 3, "posts": 10, "tags_posts": 100}
+    query = "SELECT blog_entry.id, blog_entry.title, blog_entry.contents, blog_entry.date FROM blog_entry LIMIT 10;"
 
-    qr = QueryRewriter(query)
+    versions = {"blog_entry":{
+        "min":"version",
+        "now":"now"
+    }}
+
+    qr = AutoSync(query)
 
     qr.extract_clauses()
     qr.identify_tables()

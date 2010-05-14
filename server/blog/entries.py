@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from models import *
 from synckit.views import *
+from synckit.autosync import *
 from django.template import Context, loader
 import json
 import time
@@ -14,6 +15,8 @@ sk_manager.register("Posts", sk_qv)
 ft_manager = ViewManager(ViewManager.SyncType.FLYING_TEMPLATES)
 ft_qv = QueueView(Entry, "date", 10)
 ft_manager.register("Posts", ft_qv)
+
+auto_manager = AutoSync("SELECT posts.id, posts.title, posts.body, posts.date FROM posts ORDER BY date DESC LIMIT 10;", "date")
 
 query_times = 0.0
 template_times = 0.0
@@ -40,6 +43,11 @@ def seepage(request):
     response = HttpResponse(json.dumps(results), mimetype='application/json')
 #    end = time.time()
 #    template_times += end-start
+    return response
+
+def autosync(request):
+    results = auto_manager.runqueries(request)
+    response = HttpResponse(json.dumps(results), mimetype='application/json')
     return response
 
 def tokyo(request):
