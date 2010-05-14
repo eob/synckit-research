@@ -15,45 +15,25 @@ function timeEnd(obj) {
 }
 
 window.dataSources = [
-["/static/blog_feb1/test_freq_0.08_per_update_synckit.js","Feb 2"],
-["/static/blog_feb1/test_freq_0.25_per_update_synckit.js","Feb 2"],
-["/static/blog_feb1/test_freq_0.42_per_update_synckit.js","Feb 2"],
-["/static/blog_feb1/test_freq_1_per_update_synckit.js","Feb 2"],
-["/static/blog_feb1/test_freq_3_per_update_synckit.js","Feb 2"],
-["/static/blog_feb1/test_freq_0.08_per_update_tokyo.js","Feb 2"],
-["/static/blog_feb1/test_freq_0.25_per_update_tokyo.js","Feb 2"],
-["/static/blog_feb1/test_freq_0.42_per_update_tokyo.js","Feb 2"],
-["/static/blog_feb1/test_freq_1_per_update_tokyo.js","Feb 2"],
-["/static/blog_feb1/test_freq_3_per_update_tokyo.js","Feb 2"],  
-["/static/blog_feb1/test_freq_0.08_per_update_traditional.js","Feb 2"],
-["/static/blog_feb1/test_freq_0.25_per_update_traditional.js","Feb 2"],
-["/static/blog_feb1/test_freq_0.42_per_update_traditional.js","Feb 2"],
-["/static/blog_feb1/test_freq_1_per_update_traditional.js","Feb 2"],
-["/static/blog_feb1/test_freq_3_per_update_traditional.js","Feb 2"],
-["/static/blog_feb1/test_freq_0.16_per_update_synckit.js","Feb 2"],
-["/static/blog_feb1/test_freq_0.33_per_update_synckit.js","Feb 2"],
-["/static/blog_feb1/test_freq_0.5_per_update_synckit.js","Feb 2"],
-["/static/blog_feb1/test_freq_2_per_update_synckit.js","Feb 2"],
-["/static/blog_feb1/test_freq_4_per_update_synckit.js","Feb 2"],
-["/static/blog_feb1/test_freq_0.16_per_update_tokyo.js","Feb 2"],
-["/static/blog_feb1/test_freq_0.33_per_update_tokyo.js","Feb 2"],
-["/static/blog_feb1/test_freq_0.5_per_update_tokyo.js","Feb 2"],
-["/static/blog_feb1/test_freq_2_per_update_tokyo.js","Feb 2"],
-["/static/blog_feb1/test_freq_4_per_update_tokyo.js","Feb 2"],
-["/static/blog_feb1/test_freq_0.16_per_update_traditional.js","Feb 2"],
-["/static/blog_feb1/test_freq_0.33_per_update_traditional.js","Feb 2"],
-["/static/blog_feb1/test_freq_0.5_per_update_traditional.js","Feb 2"],
-["/static/blog_feb1/test_freq_2_per_update_traditional.js","Feb 2"],
-["/static/blog_feb1/test_freq_4_per_update_traditional.js","Feb 2"],
-["/static/wiki1/synckit_1_a.js","Wiki Feb 2"],
-["/static/wiki1/tokyo_1_a.js","Wiki Feb 2"],
-["/static/wiki1/traditional_1_a.js","Wiki Feb 2"],
-["/static/wiki2/synckit_1_b.js","Wiki Feb 2"],
-["/static/wiki2/tokyo_1_b.js","Wiki Feb 2"],
-["/static/wiki2/traditional_1_b.js","Wiki Feb 2"],
-["/static/wiki3/synckit_1_c.js","Wiki Feb 2"],
-["/static/wiki3/tokyo_1_c.js","Wiki Feb 2"],
-["/static/wiki3/traditional_1_c.js","Wiki Feb 2"]
+["http://marcua.csail.mit.edu:7000/static/blog1/test_freq_0.33_per_update_traditional.js","Blog 1 Camera Ready"],
+["http://marcua.csail.mit.edu:7000/static/blog2/test_freq_0.33_per_update_traditional.js","Blog 2 Camera Ready"],
+["http://marcua.csail.mit.edu:7000/static/blog3/test_freq_0.33_per_update_traditional.js","Blog 3 Camera Ready"],
+["http://marcua.csail.mit.edu:7000/static/wiki1/test_freq_1_per_day_synckit.js","Wiki 1 Camera Ready"],
+["http://marcua.csail.mit.edu:7000/static/wiki1/test_freq_1_per_day_tokyo.js","Wiki 1 Camera Ready"],
+["http://marcua.csail.mit.edu:7000/static/wiki2/test_freq_1_per_day_tokyo.js","Wiki 2 Camera Ready"],
+["http://marcua.csail.mit.edu:7000/static/wiki3/test_freq_1_per_day_tokyo.js","Wiki 3 Camera Ready"],
+["http://marcua.csail.mit.edu:7000/static/wiki3/test_freq_1_per_day_traditional.js","Wiki 3 Camera Ready"],
+["http://marcua.csail.mit.edu:7000/static/blog1/test_freq_0.33_per_update_synckit.js","Blog 1 Camera Ready"],
+["http://marcua.csail.mit.edu:7000/static/blog1/test_freq_0.33_per_update_tokyo.js","Blog 1 Camera Ready"],
+["http://marcua.csail.mit.edu:7000/static/blog1/test_freq_0.33_per_update_traditional.js","Blog 1 Camera Ready"],
+["http://marcua.csail.mit.edu:7000/static/wiki2/test_freq_1_per_day_synckit.js","Wiki 2 Camera Ready"],
+["http://marcua.csail.mit.edu:7000/static/blog2/test_freq_0.33_per_update_synckit.js","Blog 2 Camera Ready"],
+["http://marcua.csail.mit.edu:7000/static/blog2/test_freq_0.33_per_update_tokyo.js","Blog 2 Camera Ready"],
+["http://marcua.csail.mit.edu:7000/static/blog2/test_freq_0.33_per_update_traditional.js","Blog 2 Camera Ready"],
+["http://marcua.csail.mit.edu:7000/static/wiki3/test_freq_1_per_day_synckit.js","Wiki 3 Camera Ready"],
+["http://marcua.csail.mit.edu:7000/static/blog3/test_freq_0.33_per_update_synckit.js","Blog 3 Camera Ready"],
+["http://marcua.csail.mit.edu:7000/static/blog3/test_freq_0.33_per_update_tokyo.js","Blog 3 Camera Ready"],
+["http://marcua.csail.mit.edu:7000/static/blog3/test_freq_0.33_per_update_traditional.js","Blog 3 Camera Ready"]
 ];
 
 window.users = null;
@@ -202,7 +182,5 @@ function LogData(page_name, style, url, synckit) {
 }
 
 function ClearDb() {
-    $('iframe#testframe').contents().find('#clearButton').each(function(i) {         
-        this.click();
-    });
+    $('iframe#testframe').contents().find('#clearButton').click();
 }
