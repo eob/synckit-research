@@ -184,13 +184,13 @@ class AutoSync:
         for proj,table in self.tables.items():
             if proj in versions:
                 if "min" in versions[proj]:
-                    where_additions.append("(%s.date > '%s')" % (proj, versions[proj]["min"]))
+                    where_additions.append("(%s.date < '%s')" % (proj, versions[proj]["min"]))
                 elif "max" in versions[proj]:
-                    where_additions.append("(%s.date < '%s')" % (proj, versions[proj]["max"]))                    
+                    where_additions.append("(%s.date > '%s')" % (proj, versions[proj]["max"]))                    
                 else:
                     where_additions.append("(1=1)")
                 if "now" in versions[proj]:
-                    now_additions.append("(%s.date < '%s')" % (proj, versions[proj]["now"]))                    
+                    now_additions.append("(%s.date <= '%s')" % (proj, versions[proj]["now"]))                    
             else:
                 where_additions.append("(1=1)")
         where_addition = " OR ".join(where_additions)
