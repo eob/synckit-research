@@ -1,4 +1,5 @@
 from django.db import connection, transaction
+import json
 
 class AutoSync:
     
@@ -210,16 +211,12 @@ class AutoSync:
         return queries
         
     def runqueries(self, request):
-        cursor = connection.cursor()    
-        
-        params = {}
-        for k,v in request.GET.items():
-            params[k] = v
-        for k,v in request.POST.items():
-            params[k] = v
-        
+        queries = request.REQUEST["queries"]
+        params = json.loads(queries)
         queries = self.generate_queries(params)
         results = {}
+        cursor = connection.cursor()    
+
         for table,query in queries.items():
             result_arr = []
             cursor.execute(query)
