@@ -1,4 +1,4 @@
-# from django.db import connection, transaction
+from django.db import connection, transaction
 
 class AutoSync:
     
