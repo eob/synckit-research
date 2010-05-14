@@ -204,7 +204,7 @@ class AutoSync:
             else:
                 q += "WHERE (%s) AND (%s)" % (where_addition, now_addition)
             if "ORDER" in self.parts:
-                q += " ORDER %s" % self.parts["ORDER"]
+                q += " ORDER BY %s" % self.parts["ORDER"]
             if "LIMIT" in self.parts:
                 q += " LIMIT %s" % self.parts["LIMIT"]
             queries[table] = q

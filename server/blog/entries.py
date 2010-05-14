@@ -16,7 +16,7 @@ ft_manager = ViewManager(ViewManager.SyncType.FLYING_TEMPLATES)
 ft_qv = QueueView(Entry, "date", 10)
 ft_manager.register("Posts", ft_qv)
 
-auto_manager = AutoSync("SELECT blog_entry.id, blog_entry.title, blog_entry.contents, blog_entry.date FROM blog_entry ORDER BY blog_engry.date LIMIT 10;")
+auto_manager = AutoSync("SELECT blog_entry.id, blog_entry.title, blog_entry.contents, blog_entry.date FROM blog_entry ORDER BY blog_entry.date LIMIT 10;")
 
 query_times = 0.0
 template_times = 0.0
