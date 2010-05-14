@@ -326,7 +326,6 @@ class QueueView(BaseView):
         queryset = self.model.objects.filter(**kwargs)
         queryset = queryset.order_by(self.orderby)
         queryset = queryset[:limit]
-
         return queryset
     def sync_spec(self):
         return {

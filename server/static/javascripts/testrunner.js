@@ -15,25 +15,25 @@ function timeEnd(obj) {
 }
 
 window.dataSources = [
-["http://marcua.csail.mit.edu:7000/static/blog1/test_freq_0.33_per_update_traditional.js","Blog 1 Camera Ready"],
-["http://marcua.csail.mit.edu:7000/static/blog2/test_freq_0.33_per_update_traditional.js","Blog 2 Camera Ready"],
-["http://marcua.csail.mit.edu:7000/static/blog3/test_freq_0.33_per_update_traditional.js","Blog 3 Camera Ready"],
-["http://marcua.csail.mit.edu:7000/static/wiki1/test_freq_1_per_day_synckit.js","Wiki 1 Camera Ready"],
-["http://marcua.csail.mit.edu:7000/static/wiki1/test_freq_1_per_day_tokyo.js","Wiki 1 Camera Ready"],
-["http://marcua.csail.mit.edu:7000/static/wiki2/test_freq_1_per_day_tokyo.js","Wiki 2 Camera Ready"],
-["http://marcua.csail.mit.edu:7000/static/wiki3/test_freq_1_per_day_tokyo.js","Wiki 3 Camera Ready"],
-["http://marcua.csail.mit.edu:7000/static/wiki3/test_freq_1_per_day_traditional.js","Wiki 3 Camera Ready"],
-["http://marcua.csail.mit.edu:7000/static/blog1/test_freq_0.33_per_update_synckit.js","Blog 1 Camera Ready"],
-["http://marcua.csail.mit.edu:7000/static/blog1/test_freq_0.33_per_update_tokyo.js","Blog 1 Camera Ready"],
-["http://marcua.csail.mit.edu:7000/static/blog1/test_freq_0.33_per_update_traditional.js","Blog 1 Camera Ready"],
-["http://marcua.csail.mit.edu:7000/static/wiki2/test_freq_1_per_day_synckit.js","Wiki 2 Camera Ready"],
-["http://marcua.csail.mit.edu:7000/static/blog2/test_freq_0.33_per_update_synckit.js","Blog 2 Camera Ready"],
-["http://marcua.csail.mit.edu:7000/static/blog2/test_freq_0.33_per_update_tokyo.js","Blog 2 Camera Ready"],
-["http://marcua.csail.mit.edu:7000/static/blog2/test_freq_0.33_per_update_traditional.js","Blog 2 Camera Ready"],
-["http://marcua.csail.mit.edu:7000/static/wiki3/test_freq_1_per_day_synckit.js","Wiki 3 Camera Ready"],
-["http://marcua.csail.mit.edu:7000/static/blog3/test_freq_0.33_per_update_synckit.js","Blog 3 Camera Ready"],
-["http://marcua.csail.mit.edu:7000/static/blog3/test_freq_0.33_per_update_tokyo.js","Blog 3 Camera Ready"],
-["http://marcua.csail.mit.edu:7000/static/blog3/test_freq_0.33_per_update_traditional.js","Blog 3 Camera Ready"]
+["/static/blog1/test_freq_0.33_per_update_traditional.js","Blog 1 Camera Ready"],
+["/static/blog2/test_freq_0.33_per_update_traditional.js","Blog 2 Camera Ready"],
+["/static/blog3/test_freq_0.33_per_update_traditional.js","Blog 3 Camera Ready"],
+["/static/wiki1/test_freq_1_per_day_synckit.js","Wiki 1 Camera Ready"],
+["/static/wiki1/test_freq_1_per_day_tokyo.js","Wiki 1 Camera Ready"],
+["/static/wiki2/test_freq_1_per_day_tokyo.js","Wiki 2 Camera Ready"],
+["/static/wiki3/test_freq_1_per_day_tokyo.js","Wiki 3 Camera Ready"],
+["/static/wiki3/test_freq_1_per_day_traditional.js","Wiki 3 Camera Ready"],
+["/static/blog1/test_freq_0.33_per_update_synckit.js","Blog 1 Camera Ready"],
+["/static/blog1/test_freq_0.33_per_update_tokyo.js","Blog 1 Camera Ready"],
+["/static/blog1/test_freq_0.33_per_update_traditional.js","Blog 1 Camera Ready"],
+["/static/wiki2/test_freq_1_per_day_synckit.js","Wiki 2 Camera Ready"],
+["/static/blog2/test_freq_0.33_per_update_synckit.js","Blog 2 Camera Ready"],
+["/static/blog2/test_freq_0.33_per_update_tokyo.js","Blog 2 Camera Ready"],
+["/static/blog2/test_freq_0.33_per_update_traditional.js","Blog 2 Camera Ready"],
+["/static/wiki3/test_freq_1_per_day_synckit.js","Wiki 3 Camera Ready"],
+["/static/blog3/test_freq_0.33_per_update_synckit.js","Blog 3 Camera Ready"],
+["/static/blog3/test_freq_0.33_per_update_tokyo.js","Blog 3 Camera Ready"],
+["/static/blog3/test_freq_0.33_per_update_traditional.js","Blog 3 Camera Ready"]
 ];
 
 window.users = null;
