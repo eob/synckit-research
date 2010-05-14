@@ -152,43 +152,47 @@ class AutoSync:
                 for table in self.tables.keys():
                     self.table_fields[table].append((field, materialized, False))
 
-    def spec(self):
-        spec = {}
+    def spec_for_table(self, table_name):
         sync_spec = {
             '__type' : 'auto',
             'version' : self.version_field,
         }
-        for table in self.tables:
-            table_schema = []
+        
+        table = self.tables[table_name]:
+        table_schema = []
             
-            for t in self.table_fields[table]:
-                if t[2]:
-                    # Certain
-                    table_schema.append("%s %s" % (t[0].split('.')[1], self.type_for_field(table, t[0])))
-                else:
-                    # TODO: do a check to see if the field is in the table
-                    # Uncertain: ERROR! Not supported
-                    pass
-            spec[table] = {
-                "schema" : table_schema, \
-                "syncspec" : sync_spec, \
-                "vshash" : id
-            }
+        for t in self.table_fields[table]:
+            if t[2]:
+                # Certain
+                table_schema.append("%s %s" % (t[0].split('.')[1], self.type_for_field(table, t[0])))
+            else:
+                # TODO: do a check to see if the field is in the table
+                # Uncertain: ERROR! Not supported
+                pass
 
-        return spec
+        return {
+            "vshash":id
+            "syncspec":{
+                "__type":"auto",
+                "sortfield":"date"
+            },
+            "schema":table_schema
+        }
         
     def generate_queries(self, versions):
         queries = {}
         where_additions = []
         now_additions = []
+        send_schema = {}
         for proj,table in self.tables.items():
             if proj in versions:
                 if "min" in versions[proj]:
                     where_additions.append("(%s.date < '%s')" % (proj, versions[proj]["min"]))
-                elif "max" in versions[proj]:
+                elif "max" in versions[table]:
                     where_additions.append("(%s.date > '%s')" % (proj, versions[proj]["max"]))                    
                 else:
                     where_additions.append("(1=1)")
+                    send_schema[proj] = True
                 if "now" in versions[proj]:
                     now_additions.append("(%s.date <= '%s')" % (proj, versions[proj]["now"]))                    
             else:
@@ -211,12 +215,12 @@ class AutoSync:
                 q += " LIMIT %s" % self.parts["LIMIT"]
             queries[table] = q
             
-        return queries
+        return queries, send_schema
         
     def runqueries(self, request):
         queries = request.REQUEST["queries"]
         params = json.loads(queries)
-        queries = self.generate_queries(params)
+        queries, send_schema = self.generate_queries(params)
         results = {}
         cursor = connection.cursor()    
         for table,query in queries.items():
@@ -225,7 +229,11 @@ class AutoSync:
             cursor.execute(query)
             for row in cursor.fetchall() :
                 result_arr.append([str(item) for item in row])
-            results[table] = {"results":result_arr}
+            if table in send_schema:
+                results[table] = {"results":result_arr, "viewspec":self.spec_for_table(table)}
+            else:
+                results[table] = {"results":result_arr}
+                
         return results
 
 def main():
