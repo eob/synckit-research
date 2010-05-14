@@ -225,7 +225,7 @@ class AutoSync:
             cursor.execute(query)
             for row in cursor.fetchall() :
                 result_arr.append([str(item) for item in row])
-            results[table] = result_arr
+            results[table] = {"results":result_arr}
         return results
 
 def main():
