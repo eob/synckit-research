@@ -212,7 +212,10 @@ class AutoSync:
     def runqueries(self, request):
         cursor = connection.cursor()    
         
-        queries = self.generate_queries(request)
+        params = request.GET
+        params.extend(request.POST)
+        
+        queries = self.generate_queries(params)
         results = {}
         for table,query in queries.items():
             result_arr = []
