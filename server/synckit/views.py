@@ -320,9 +320,12 @@ class QueueView(BaseView):
             kwargs[self.fieldcompare] = query[self.minmax]
         if "now" in query:
             kwargs["date__lte"] = query["now"]
+        limit = self.limit
+        if "limit" in query:
+            limit = query["limit"]
         queryset = self.model.objects.filter(**kwargs)
         queryset = queryset.order_by(self.orderby)
-        queryset = queryset[:self.limit]
+        queryset = queryset[:limit]
  
         return queryset
     def sync_spec(self):
