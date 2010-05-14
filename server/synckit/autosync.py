@@ -209,13 +209,7 @@ class AutoSync:
             
         return queries
         
-
     def runqueries(self, request):
-        # Extract the version numbers
-        
-        return self.get_results(versions)
-        
-    def get_results(self, versions):
         cursor = connection.cursor()    
         
         queries = self.generate_queries(versions)
@@ -227,9 +221,6 @@ class AutoSync:
                 result_arr.append([str(item) for item in row])
             results[table] = result_arr
         return results
-        
-    def runqueries(self, request):
-        return {}
 
 def main():
     query = "SELECT blog_entry.id, blog_entry.title, blog_entry.contents, blog_entry.date FROM blog_entry LIMIT 10;"
