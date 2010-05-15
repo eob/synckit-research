@@ -101,9 +101,11 @@ class AutoSync:
     def type_for_field(self, table, field):
         # TODO: Make this query the DB
         if (field[-2:].lower() == "id"):
-            return "integer"
+            return "serial"
         elif field[-4:].lower() == "date":
-            return "date"
+            return "timestamp with time zone"
+        elif field[-5:].lower() == "title":
+            return "varchar(200)"
         else:
             return "text"
         
@@ -153,12 +155,7 @@ class AutoSync:
                     self.table_fields[table].append((field, materialized, False))
 
     def spec_for_table(self, table_name):
-        sync_spec = {
-            '__type' : 'auto',
-            'version' : self.version_field,
-        }
-        
-        table = self.tables[table_name]:
+        table = self.tables[table_name]
         table_schema = []
             
         for t in self.table_fields[table]:
@@ -171,7 +168,7 @@ class AutoSync:
                 pass
 
         return {
-            "vshash":id
+            "vshash":"foo",
             "syncspec":{
                 "__type":"auto",
                 "sortfield":"date"
