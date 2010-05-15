@@ -16,16 +16,16 @@ $(function() {
              "order": "ASC",
              "sortfield": "date"
             }, 
-        "schema": ["id serial", "author integer", "title varchar(200)", "contents text", "date timestamp with time zone"]
+        "schema": ["title varchar(200)", "date timestamp with time zone", "contents text", "id serial"]
     };
 
-    window.synckit.build_view(endpoint, "Posts", viewspec);
+    window.synckit.build_view(endpoint, "blog_entry", viewspec);
 
     // 'now' is a parameter used for time-travel through the posts
     var extra_view_params = {};
     var now = urlParam('now');
 	if (now != 'undefined') {
-	    extra_view_params.Posts = {"now": now};
+	    extra_view_params.blog_entry = {"now": now};
 	}
     
     var callback = function() {
@@ -33,11 +33,11 @@ $(function() {
 		$('#newtemplate').render_new();
 	    window.synckit._templateTime = window.synckit.timeEnd("template");;
         if (parent.LogData != "undefined") {
-        	parent.LogData("Blog", "Sync Kit", window.location.href, window.synckit);
+        	parent.LogData("Blog", "Auto", window.location.href, window.synckit);
         }
     };
 
-    window.synckit.sync(endpoint, ["Posts"], extra_view_params, {}, callback);
+    window.synckit.sync(endpoint, ["blog_entry"], extra_view_params, {}, callback);
 });
 
 </script>
@@ -54,7 +54,7 @@ $(function() {
 <p align="center"><b>Template Loading...</b></p>
 </div>
 
-<table id="newtemplate" query="SELECT * From sk_Posts1 LIMIT 10;" as="entry">
+<table id="newtemplate" query="SELECT * From sk_blog_entry1 LIMIT 10;" as="entry">
 	<tr itemscope="yes" itemtype="Entry" />
 		<td><span itemprop="title">from</span></td>
 		<td><span itemprop="contents">content</span></td>
