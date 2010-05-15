@@ -158,7 +158,7 @@ class AutoSync:
             'version' : self.version_field,
         }
         
-        table = self.tables[table_name]:
+        table = self.tables[table_name]
         table_schema = []
             
         for t in self.table_fields[table]:
@@ -171,7 +171,7 @@ class AutoSync:
                 pass
 
         return {
-            "vshash":id
+            "vshash":"foo",
             "syncspec":{
                 "__type":"auto",
                 "sortfield":"date"
